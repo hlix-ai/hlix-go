@@ -1,0 +1,51 @@
+# ProjectEnvironmentCapabilities
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Desktop** | **bool** |  | 
+
+## Methods
+
+### NewProjectEnvironmentCapabilities
+
+`func NewProjectEnvironmentCapabilities(desktop bool, ) *ProjectEnvironmentCapabilities`
+
+NewProjectEnvironmentCapabilities instantiates a new ProjectEnvironmentCapabilities object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewProjectEnvironmentCapabilitiesWithDefaults
+
+`func NewProjectEnvironmentCapabilitiesWithDefaults() *ProjectEnvironmentCapabilities`
+
+NewProjectEnvironmentCapabilitiesWithDefaults instantiates a new ProjectEnvironmentCapabilities object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetDesktop
+
+`func (o *ProjectEnvironmentCapabilities) GetDesktop() bool`
+
+GetDesktop returns the Desktop field if non-nil, zero value otherwise.
+
+### GetDesktopOk
+
+`func (o *ProjectEnvironmentCapabilities) GetDesktopOk() (*bool, bool)`
+
+GetDesktopOk returns a tuple with the Desktop field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDesktop
+
+`func (o *ProjectEnvironmentCapabilities) SetDesktop(v bool)`
+
+SetDesktop sets Desktop field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

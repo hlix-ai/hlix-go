@@ -1,0 +1,1454 @@
+# ProjectSummary
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ActiveCycles** | **int32** |  | 
+**AgentCount** | **int32** |  | 
+**ArchivedAt** | **NullableString** |  | 
+**AssignedUserId** | **NullableString** |  | 
+**BranchNames** | **string** |  | 
+**BranchPrefix** | **NullableString** |  | 
+**BranchPrefixLockedAt** | **NullableString** |  | 
+**Brief** | **NullableString** |  | 
+**ClaudeMd** | **NullableString** |  | 
+**ClientAccountId** | **NullableString** |  | 
+**CompletedAtLastRevision** | **int32** |  | 
+**CostCapMicros** | **NullableInt64** |  | 
+**CreatedAt** | **string** |  | 
+**CustomDomain** | **NullableString** |  | 
+**CycleCap** | **NullableInt32** |  | 
+**CycleCount** | **int32** |  | 
+**CyclesDone** | **int32** |  | 
+**DeliveryStatus** | **NullableString** |  | 
+**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  | 
+**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  | 
+**ExtraUsage** | **NullableString** |  | 
+**GrowthAutopilot** | **bool** |  | 
+**GrowthDailyBudgetMicros** | **NullableInt64** |  | 
+**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
+**Id** | **string** |  | 
+**InitialProposalRequired** | **bool** |  | 
+**Intake** | [**ProjectIntake**](ProjectIntake.md) |  | 
+**Iteration** | **int32** |  | 
+**Kind** | **string** |  | 
+**LastActivityAt** | **NullableString** |  | 
+**LatestCycleStatus** | **NullableString** |  | 
+**MaxRevisions** | **NullableInt32** |  | 
+**MobileTargetsInitialized** | **bool** |  | 
+**Name** | **string** |  | 
+**OrganizationId** | **string** |  | 
+**PausedAt** | **NullableString** |  | 
+**PausedByUserId** | **NullableString** |  | 
+**PendingRequests** | **int32** |  | 
+**PrUrl** | **NullableString** |  | 
+**PreviewCommand** | **NullableString** |  | 
+**PreviewPort** | **NullableInt32** |  | 
+**Repos** | [**[]ProjectReposInner**](ProjectReposInner.md) |  | 
+**Round** | **int32** |  | 
+**RunningAgents** | **int32** |  | 
+**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  | 
+**SandboxSize** | **NullableString** |  | 
+**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  | 
+**Slug** | **string** |  | 
+**Stack** | **string** |  | 
+**StalledRevisions** | **int32** |  | 
+**Tier** | **NullableString** |  | 
+**TotalCostMicros** | **NullableInt64** |  | 
+**UseWorkspaceBrand** | **bool** |  | 
+**VerifyCommand** | **NullableString** |  | 
+
+## Methods
+
+### NewProjectSummary
+
+`func NewProjectSummary(activeCycles int32, agentCount int32, archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, cycleCount int32, cyclesDone int32, deliveryStatus NullableString, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, lastActivityAt NullableString, latestCycleStatus NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, pendingRequests int32, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runningAgents int32, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, totalCostMicros NullableInt64, useWorkspaceBrand bool, verifyCommand NullableString, ) *ProjectSummary`
+
+NewProjectSummary instantiates a new ProjectSummary object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewProjectSummaryWithDefaults
+
+`func NewProjectSummaryWithDefaults() *ProjectSummary`
+
+NewProjectSummaryWithDefaults instantiates a new ProjectSummary object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetActiveCycles
+
+`func (o *ProjectSummary) GetActiveCycles() int32`
+
+GetActiveCycles returns the ActiveCycles field if non-nil, zero value otherwise.
+
+### GetActiveCyclesOk
+
+`func (o *ProjectSummary) GetActiveCyclesOk() (*int32, bool)`
+
+GetActiveCyclesOk returns a tuple with the ActiveCycles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActiveCycles
+
+`func (o *ProjectSummary) SetActiveCycles(v int32)`
+
+SetActiveCycles sets ActiveCycles field to given value.
+
+
+### GetAgentCount
+
+`func (o *ProjectSummary) GetAgentCount() int32`
+
+GetAgentCount returns the AgentCount field if non-nil, zero value otherwise.
+
+### GetAgentCountOk
+
+`func (o *ProjectSummary) GetAgentCountOk() (*int32, bool)`
+
+GetAgentCountOk returns a tuple with the AgentCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentCount
+
+`func (o *ProjectSummary) SetAgentCount(v int32)`
+
+SetAgentCount sets AgentCount field to given value.
+
+
+### GetArchivedAt
+
+`func (o *ProjectSummary) GetArchivedAt() string`
+
+GetArchivedAt returns the ArchivedAt field if non-nil, zero value otherwise.
+
+### GetArchivedAtOk
+
+`func (o *ProjectSummary) GetArchivedAtOk() (*string, bool)`
+
+GetArchivedAtOk returns a tuple with the ArchivedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchivedAt
+
+`func (o *ProjectSummary) SetArchivedAt(v string)`
+
+SetArchivedAt sets ArchivedAt field to given value.
+
+
+### SetArchivedAtNil
+
+`func (o *ProjectSummary) SetArchivedAtNil(b bool)`
+
+ SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil
+
+### UnsetArchivedAt
+`func (o *ProjectSummary) UnsetArchivedAt()`
+
+UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil
+### GetAssignedUserId
+
+`func (o *ProjectSummary) GetAssignedUserId() string`
+
+GetAssignedUserId returns the AssignedUserId field if non-nil, zero value otherwise.
+
+### GetAssignedUserIdOk
+
+`func (o *ProjectSummary) GetAssignedUserIdOk() (*string, bool)`
+
+GetAssignedUserIdOk returns a tuple with the AssignedUserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssignedUserId
+
+`func (o *ProjectSummary) SetAssignedUserId(v string)`
+
+SetAssignedUserId sets AssignedUserId field to given value.
+
+
+### SetAssignedUserIdNil
+
+`func (o *ProjectSummary) SetAssignedUserIdNil(b bool)`
+
+ SetAssignedUserIdNil sets the value for AssignedUserId to be an explicit nil
+
+### UnsetAssignedUserId
+`func (o *ProjectSummary) UnsetAssignedUserId()`
+
+UnsetAssignedUserId ensures that no value is present for AssignedUserId, not even an explicit nil
+### GetBranchNames
+
+`func (o *ProjectSummary) GetBranchNames() string`
+
+GetBranchNames returns the BranchNames field if non-nil, zero value otherwise.
+
+### GetBranchNamesOk
+
+`func (o *ProjectSummary) GetBranchNamesOk() (*string, bool)`
+
+GetBranchNamesOk returns a tuple with the BranchNames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBranchNames
+
+`func (o *ProjectSummary) SetBranchNames(v string)`
+
+SetBranchNames sets BranchNames field to given value.
+
+
+### GetBranchPrefix
+
+`func (o *ProjectSummary) GetBranchPrefix() string`
+
+GetBranchPrefix returns the BranchPrefix field if non-nil, zero value otherwise.
+
+### GetBranchPrefixOk
+
+`func (o *ProjectSummary) GetBranchPrefixOk() (*string, bool)`
+
+GetBranchPrefixOk returns a tuple with the BranchPrefix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBranchPrefix
+
+`func (o *ProjectSummary) SetBranchPrefix(v string)`
+
+SetBranchPrefix sets BranchPrefix field to given value.
+
+
+### SetBranchPrefixNil
+
+`func (o *ProjectSummary) SetBranchPrefixNil(b bool)`
+
+ SetBranchPrefixNil sets the value for BranchPrefix to be an explicit nil
+
+### UnsetBranchPrefix
+`func (o *ProjectSummary) UnsetBranchPrefix()`
+
+UnsetBranchPrefix ensures that no value is present for BranchPrefix, not even an explicit nil
+### GetBranchPrefixLockedAt
+
+`func (o *ProjectSummary) GetBranchPrefixLockedAt() string`
+
+GetBranchPrefixLockedAt returns the BranchPrefixLockedAt field if non-nil, zero value otherwise.
+
+### GetBranchPrefixLockedAtOk
+
+`func (o *ProjectSummary) GetBranchPrefixLockedAtOk() (*string, bool)`
+
+GetBranchPrefixLockedAtOk returns a tuple with the BranchPrefixLockedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBranchPrefixLockedAt
+
+`func (o *ProjectSummary) SetBranchPrefixLockedAt(v string)`
+
+SetBranchPrefixLockedAt sets BranchPrefixLockedAt field to given value.
+
+
+### SetBranchPrefixLockedAtNil
+
+`func (o *ProjectSummary) SetBranchPrefixLockedAtNil(b bool)`
+
+ SetBranchPrefixLockedAtNil sets the value for BranchPrefixLockedAt to be an explicit nil
+
+### UnsetBranchPrefixLockedAt
+`func (o *ProjectSummary) UnsetBranchPrefixLockedAt()`
+
+UnsetBranchPrefixLockedAt ensures that no value is present for BranchPrefixLockedAt, not even an explicit nil
+### GetBrief
+
+`func (o *ProjectSummary) GetBrief() string`
+
+GetBrief returns the Brief field if non-nil, zero value otherwise.
+
+### GetBriefOk
+
+`func (o *ProjectSummary) GetBriefOk() (*string, bool)`
+
+GetBriefOk returns a tuple with the Brief field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrief
+
+`func (o *ProjectSummary) SetBrief(v string)`
+
+SetBrief sets Brief field to given value.
+
+
+### SetBriefNil
+
+`func (o *ProjectSummary) SetBriefNil(b bool)`
+
+ SetBriefNil sets the value for Brief to be an explicit nil
+
+### UnsetBrief
+`func (o *ProjectSummary) UnsetBrief()`
+
+UnsetBrief ensures that no value is present for Brief, not even an explicit nil
+### GetClaudeMd
+
+`func (o *ProjectSummary) GetClaudeMd() string`
+
+GetClaudeMd returns the ClaudeMd field if non-nil, zero value otherwise.
+
+### GetClaudeMdOk
+
+`func (o *ProjectSummary) GetClaudeMdOk() (*string, bool)`
+
+GetClaudeMdOk returns a tuple with the ClaudeMd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClaudeMd
+
+`func (o *ProjectSummary) SetClaudeMd(v string)`
+
+SetClaudeMd sets ClaudeMd field to given value.
+
+
+### SetClaudeMdNil
+
+`func (o *ProjectSummary) SetClaudeMdNil(b bool)`
+
+ SetClaudeMdNil sets the value for ClaudeMd to be an explicit nil
+
+### UnsetClaudeMd
+`func (o *ProjectSummary) UnsetClaudeMd()`
+
+UnsetClaudeMd ensures that no value is present for ClaudeMd, not even an explicit nil
+### GetClientAccountId
+
+`func (o *ProjectSummary) GetClientAccountId() string`
+
+GetClientAccountId returns the ClientAccountId field if non-nil, zero value otherwise.
+
+### GetClientAccountIdOk
+
+`func (o *ProjectSummary) GetClientAccountIdOk() (*string, bool)`
+
+GetClientAccountIdOk returns a tuple with the ClientAccountId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientAccountId
+
+`func (o *ProjectSummary) SetClientAccountId(v string)`
+
+SetClientAccountId sets ClientAccountId field to given value.
+
+
+### SetClientAccountIdNil
+
+`func (o *ProjectSummary) SetClientAccountIdNil(b bool)`
+
+ SetClientAccountIdNil sets the value for ClientAccountId to be an explicit nil
+
+### UnsetClientAccountId
+`func (o *ProjectSummary) UnsetClientAccountId()`
+
+UnsetClientAccountId ensures that no value is present for ClientAccountId, not even an explicit nil
+### GetCompletedAtLastRevision
+
+`func (o *ProjectSummary) GetCompletedAtLastRevision() int32`
+
+GetCompletedAtLastRevision returns the CompletedAtLastRevision field if non-nil, zero value otherwise.
+
+### GetCompletedAtLastRevisionOk
+
+`func (o *ProjectSummary) GetCompletedAtLastRevisionOk() (*int32, bool)`
+
+GetCompletedAtLastRevisionOk returns a tuple with the CompletedAtLastRevision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompletedAtLastRevision
+
+`func (o *ProjectSummary) SetCompletedAtLastRevision(v int32)`
+
+SetCompletedAtLastRevision sets CompletedAtLastRevision field to given value.
+
+
+### GetCostCapMicros
+
+`func (o *ProjectSummary) GetCostCapMicros() int64`
+
+GetCostCapMicros returns the CostCapMicros field if non-nil, zero value otherwise.
+
+### GetCostCapMicrosOk
+
+`func (o *ProjectSummary) GetCostCapMicrosOk() (*int64, bool)`
+
+GetCostCapMicrosOk returns a tuple with the CostCapMicros field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCostCapMicros
+
+`func (o *ProjectSummary) SetCostCapMicros(v int64)`
+
+SetCostCapMicros sets CostCapMicros field to given value.
+
+
+### SetCostCapMicrosNil
+
+`func (o *ProjectSummary) SetCostCapMicrosNil(b bool)`
+
+ SetCostCapMicrosNil sets the value for CostCapMicros to be an explicit nil
+
+### UnsetCostCapMicros
+`func (o *ProjectSummary) UnsetCostCapMicros()`
+
+UnsetCostCapMicros ensures that no value is present for CostCapMicros, not even an explicit nil
+### GetCreatedAt
+
+`func (o *ProjectSummary) GetCreatedAt() string`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ProjectSummary) GetCreatedAtOk() (*string, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ProjectSummary) SetCreatedAt(v string)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetCustomDomain
+
+`func (o *ProjectSummary) GetCustomDomain() string`
+
+GetCustomDomain returns the CustomDomain field if non-nil, zero value otherwise.
+
+### GetCustomDomainOk
+
+`func (o *ProjectSummary) GetCustomDomainOk() (*string, bool)`
+
+GetCustomDomainOk returns a tuple with the CustomDomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomDomain
+
+`func (o *ProjectSummary) SetCustomDomain(v string)`
+
+SetCustomDomain sets CustomDomain field to given value.
+
+
+### SetCustomDomainNil
+
+`func (o *ProjectSummary) SetCustomDomainNil(b bool)`
+
+ SetCustomDomainNil sets the value for CustomDomain to be an explicit nil
+
+### UnsetCustomDomain
+`func (o *ProjectSummary) UnsetCustomDomain()`
+
+UnsetCustomDomain ensures that no value is present for CustomDomain, not even an explicit nil
+### GetCycleCap
+
+`func (o *ProjectSummary) GetCycleCap() int32`
+
+GetCycleCap returns the CycleCap field if non-nil, zero value otherwise.
+
+### GetCycleCapOk
+
+`func (o *ProjectSummary) GetCycleCapOk() (*int32, bool)`
+
+GetCycleCapOk returns a tuple with the CycleCap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCycleCap
+
+`func (o *ProjectSummary) SetCycleCap(v int32)`
+
+SetCycleCap sets CycleCap field to given value.
+
+
+### SetCycleCapNil
+
+`func (o *ProjectSummary) SetCycleCapNil(b bool)`
+
+ SetCycleCapNil sets the value for CycleCap to be an explicit nil
+
+### UnsetCycleCap
+`func (o *ProjectSummary) UnsetCycleCap()`
+
+UnsetCycleCap ensures that no value is present for CycleCap, not even an explicit nil
+### GetCycleCount
+
+`func (o *ProjectSummary) GetCycleCount() int32`
+
+GetCycleCount returns the CycleCount field if non-nil, zero value otherwise.
+
+### GetCycleCountOk
+
+`func (o *ProjectSummary) GetCycleCountOk() (*int32, bool)`
+
+GetCycleCountOk returns a tuple with the CycleCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCycleCount
+
+`func (o *ProjectSummary) SetCycleCount(v int32)`
+
+SetCycleCount sets CycleCount field to given value.
+
+
+### GetCyclesDone
+
+`func (o *ProjectSummary) GetCyclesDone() int32`
+
+GetCyclesDone returns the CyclesDone field if non-nil, zero value otherwise.
+
+### GetCyclesDoneOk
+
+`func (o *ProjectSummary) GetCyclesDoneOk() (*int32, bool)`
+
+GetCyclesDoneOk returns a tuple with the CyclesDone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCyclesDone
+
+`func (o *ProjectSummary) SetCyclesDone(v int32)`
+
+SetCyclesDone sets CyclesDone field to given value.
+
+
+### GetDeliveryStatus
+
+`func (o *ProjectSummary) GetDeliveryStatus() string`
+
+GetDeliveryStatus returns the DeliveryStatus field if non-nil, zero value otherwise.
+
+### GetDeliveryStatusOk
+
+`func (o *ProjectSummary) GetDeliveryStatusOk() (*string, bool)`
+
+GetDeliveryStatusOk returns a tuple with the DeliveryStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeliveryStatus
+
+`func (o *ProjectSummary) SetDeliveryStatus(v string)`
+
+SetDeliveryStatus sets DeliveryStatus field to given value.
+
+
+### SetDeliveryStatusNil
+
+`func (o *ProjectSummary) SetDeliveryStatusNil(b bool)`
+
+ SetDeliveryStatusNil sets the value for DeliveryStatus to be an explicit nil
+
+### UnsetDeliveryStatus
+`func (o *ProjectSummary) UnsetDeliveryStatus()`
+
+UnsetDeliveryStatus ensures that no value is present for DeliveryStatus, not even an explicit nil
+### GetDetectedCommands
+
+`func (o *ProjectSummary) GetDetectedCommands() ProjectDetectedCommands`
+
+GetDetectedCommands returns the DetectedCommands field if non-nil, zero value otherwise.
+
+### GetDetectedCommandsOk
+
+`func (o *ProjectSummary) GetDetectedCommandsOk() (*ProjectDetectedCommands, bool)`
+
+GetDetectedCommandsOk returns a tuple with the DetectedCommands field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetectedCommands
+
+`func (o *ProjectSummary) SetDetectedCommands(v ProjectDetectedCommands)`
+
+SetDetectedCommands sets DetectedCommands field to given value.
+
+
+### SetDetectedCommandsNil
+
+`func (o *ProjectSummary) SetDetectedCommandsNil(b bool)`
+
+ SetDetectedCommandsNil sets the value for DetectedCommands to be an explicit nil
+
+### UnsetDetectedCommands
+`func (o *ProjectSummary) UnsetDetectedCommands()`
+
+UnsetDetectedCommands ensures that no value is present for DetectedCommands, not even an explicit nil
+### GetEnvironmentSnapshot
+
+`func (o *ProjectSummary) GetEnvironmentSnapshot() ProjectEnvironmentSnapshot`
+
+GetEnvironmentSnapshot returns the EnvironmentSnapshot field if non-nil, zero value otherwise.
+
+### GetEnvironmentSnapshotOk
+
+`func (o *ProjectSummary) GetEnvironmentSnapshotOk() (*ProjectEnvironmentSnapshot, bool)`
+
+GetEnvironmentSnapshotOk returns a tuple with the EnvironmentSnapshot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironmentSnapshot
+
+`func (o *ProjectSummary) SetEnvironmentSnapshot(v ProjectEnvironmentSnapshot)`
+
+SetEnvironmentSnapshot sets EnvironmentSnapshot field to given value.
+
+
+### SetEnvironmentSnapshotNil
+
+`func (o *ProjectSummary) SetEnvironmentSnapshotNil(b bool)`
+
+ SetEnvironmentSnapshotNil sets the value for EnvironmentSnapshot to be an explicit nil
+
+### UnsetEnvironmentSnapshot
+`func (o *ProjectSummary) UnsetEnvironmentSnapshot()`
+
+UnsetEnvironmentSnapshot ensures that no value is present for EnvironmentSnapshot, not even an explicit nil
+### GetExtraUsage
+
+`func (o *ProjectSummary) GetExtraUsage() string`
+
+GetExtraUsage returns the ExtraUsage field if non-nil, zero value otherwise.
+
+### GetExtraUsageOk
+
+`func (o *ProjectSummary) GetExtraUsageOk() (*string, bool)`
+
+GetExtraUsageOk returns a tuple with the ExtraUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExtraUsage
+
+`func (o *ProjectSummary) SetExtraUsage(v string)`
+
+SetExtraUsage sets ExtraUsage field to given value.
+
+
+### SetExtraUsageNil
+
+`func (o *ProjectSummary) SetExtraUsageNil(b bool)`
+
+ SetExtraUsageNil sets the value for ExtraUsage to be an explicit nil
+
+### UnsetExtraUsage
+`func (o *ProjectSummary) UnsetExtraUsage()`
+
+UnsetExtraUsage ensures that no value is present for ExtraUsage, not even an explicit nil
+### GetGrowthAutopilot
+
+`func (o *ProjectSummary) GetGrowthAutopilot() bool`
+
+GetGrowthAutopilot returns the GrowthAutopilot field if non-nil, zero value otherwise.
+
+### GetGrowthAutopilotOk
+
+`func (o *ProjectSummary) GetGrowthAutopilotOk() (*bool, bool)`
+
+GetGrowthAutopilotOk returns a tuple with the GrowthAutopilot field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGrowthAutopilot
+
+`func (o *ProjectSummary) SetGrowthAutopilot(v bool)`
+
+SetGrowthAutopilot sets GrowthAutopilot field to given value.
+
+
+### GetGrowthDailyBudgetMicros
+
+`func (o *ProjectSummary) GetGrowthDailyBudgetMicros() int64`
+
+GetGrowthDailyBudgetMicros returns the GrowthDailyBudgetMicros field if non-nil, zero value otherwise.
+
+### GetGrowthDailyBudgetMicrosOk
+
+`func (o *ProjectSummary) GetGrowthDailyBudgetMicrosOk() (*int64, bool)`
+
+GetGrowthDailyBudgetMicrosOk returns a tuple with the GrowthDailyBudgetMicros field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGrowthDailyBudgetMicros
+
+`func (o *ProjectSummary) SetGrowthDailyBudgetMicros(v int64)`
+
+SetGrowthDailyBudgetMicros sets GrowthDailyBudgetMicros field to given value.
+
+
+### SetGrowthDailyBudgetMicrosNil
+
+`func (o *ProjectSummary) SetGrowthDailyBudgetMicrosNil(b bool)`
+
+ SetGrowthDailyBudgetMicrosNil sets the value for GrowthDailyBudgetMicros to be an explicit nil
+
+### UnsetGrowthDailyBudgetMicros
+`func (o *ProjectSummary) UnsetGrowthDailyBudgetMicros()`
+
+UnsetGrowthDailyBudgetMicros ensures that no value is present for GrowthDailyBudgetMicros, not even an explicit nil
+### GetGrowthSendingSchedule
+
+`func (o *ProjectSummary) GetGrowthSendingSchedule() CreateGrowthPlaySendingSchedule`
+
+GetGrowthSendingSchedule returns the GrowthSendingSchedule field if non-nil, zero value otherwise.
+
+### GetGrowthSendingScheduleOk
+
+`func (o *ProjectSummary) GetGrowthSendingScheduleOk() (*CreateGrowthPlaySendingSchedule, bool)`
+
+GetGrowthSendingScheduleOk returns a tuple with the GrowthSendingSchedule field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGrowthSendingSchedule
+
+`func (o *ProjectSummary) SetGrowthSendingSchedule(v CreateGrowthPlaySendingSchedule)`
+
+SetGrowthSendingSchedule sets GrowthSendingSchedule field to given value.
+
+
+### SetGrowthSendingScheduleNil
+
+`func (o *ProjectSummary) SetGrowthSendingScheduleNil(b bool)`
+
+ SetGrowthSendingScheduleNil sets the value for GrowthSendingSchedule to be an explicit nil
+
+### UnsetGrowthSendingSchedule
+`func (o *ProjectSummary) UnsetGrowthSendingSchedule()`
+
+UnsetGrowthSendingSchedule ensures that no value is present for GrowthSendingSchedule, not even an explicit nil
+### GetId
+
+`func (o *ProjectSummary) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ProjectSummary) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ProjectSummary) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetInitialProposalRequired
+
+`func (o *ProjectSummary) GetInitialProposalRequired() bool`
+
+GetInitialProposalRequired returns the InitialProposalRequired field if non-nil, zero value otherwise.
+
+### GetInitialProposalRequiredOk
+
+`func (o *ProjectSummary) GetInitialProposalRequiredOk() (*bool, bool)`
+
+GetInitialProposalRequiredOk returns a tuple with the InitialProposalRequired field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInitialProposalRequired
+
+`func (o *ProjectSummary) SetInitialProposalRequired(v bool)`
+
+SetInitialProposalRequired sets InitialProposalRequired field to given value.
+
+
+### GetIntake
+
+`func (o *ProjectSummary) GetIntake() ProjectIntake`
+
+GetIntake returns the Intake field if non-nil, zero value otherwise.
+
+### GetIntakeOk
+
+`func (o *ProjectSummary) GetIntakeOk() (*ProjectIntake, bool)`
+
+GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntake
+
+`func (o *ProjectSummary) SetIntake(v ProjectIntake)`
+
+SetIntake sets Intake field to given value.
+
+
+### GetIteration
+
+`func (o *ProjectSummary) GetIteration() int32`
+
+GetIteration returns the Iteration field if non-nil, zero value otherwise.
+
+### GetIterationOk
+
+`func (o *ProjectSummary) GetIterationOk() (*int32, bool)`
+
+GetIterationOk returns a tuple with the Iteration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIteration
+
+`func (o *ProjectSummary) SetIteration(v int32)`
+
+SetIteration sets Iteration field to given value.
+
+
+### GetKind
+
+`func (o *ProjectSummary) GetKind() string`
+
+GetKind returns the Kind field if non-nil, zero value otherwise.
+
+### GetKindOk
+
+`func (o *ProjectSummary) GetKindOk() (*string, bool)`
+
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKind
+
+`func (o *ProjectSummary) SetKind(v string)`
+
+SetKind sets Kind field to given value.
+
+
+### GetLastActivityAt
+
+`func (o *ProjectSummary) GetLastActivityAt() string`
+
+GetLastActivityAt returns the LastActivityAt field if non-nil, zero value otherwise.
+
+### GetLastActivityAtOk
+
+`func (o *ProjectSummary) GetLastActivityAtOk() (*string, bool)`
+
+GetLastActivityAtOk returns a tuple with the LastActivityAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastActivityAt
+
+`func (o *ProjectSummary) SetLastActivityAt(v string)`
+
+SetLastActivityAt sets LastActivityAt field to given value.
+
+
+### SetLastActivityAtNil
+
+`func (o *ProjectSummary) SetLastActivityAtNil(b bool)`
+
+ SetLastActivityAtNil sets the value for LastActivityAt to be an explicit nil
+
+### UnsetLastActivityAt
+`func (o *ProjectSummary) UnsetLastActivityAt()`
+
+UnsetLastActivityAt ensures that no value is present for LastActivityAt, not even an explicit nil
+### GetLatestCycleStatus
+
+`func (o *ProjectSummary) GetLatestCycleStatus() string`
+
+GetLatestCycleStatus returns the LatestCycleStatus field if non-nil, zero value otherwise.
+
+### GetLatestCycleStatusOk
+
+`func (o *ProjectSummary) GetLatestCycleStatusOk() (*string, bool)`
+
+GetLatestCycleStatusOk returns a tuple with the LatestCycleStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestCycleStatus
+
+`func (o *ProjectSummary) SetLatestCycleStatus(v string)`
+
+SetLatestCycleStatus sets LatestCycleStatus field to given value.
+
+
+### SetLatestCycleStatusNil
+
+`func (o *ProjectSummary) SetLatestCycleStatusNil(b bool)`
+
+ SetLatestCycleStatusNil sets the value for LatestCycleStatus to be an explicit nil
+
+### UnsetLatestCycleStatus
+`func (o *ProjectSummary) UnsetLatestCycleStatus()`
+
+UnsetLatestCycleStatus ensures that no value is present for LatestCycleStatus, not even an explicit nil
+### GetMaxRevisions
+
+`func (o *ProjectSummary) GetMaxRevisions() int32`
+
+GetMaxRevisions returns the MaxRevisions field if non-nil, zero value otherwise.
+
+### GetMaxRevisionsOk
+
+`func (o *ProjectSummary) GetMaxRevisionsOk() (*int32, bool)`
+
+GetMaxRevisionsOk returns a tuple with the MaxRevisions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxRevisions
+
+`func (o *ProjectSummary) SetMaxRevisions(v int32)`
+
+SetMaxRevisions sets MaxRevisions field to given value.
+
+
+### SetMaxRevisionsNil
+
+`func (o *ProjectSummary) SetMaxRevisionsNil(b bool)`
+
+ SetMaxRevisionsNil sets the value for MaxRevisions to be an explicit nil
+
+### UnsetMaxRevisions
+`func (o *ProjectSummary) UnsetMaxRevisions()`
+
+UnsetMaxRevisions ensures that no value is present for MaxRevisions, not even an explicit nil
+### GetMobileTargetsInitialized
+
+`func (o *ProjectSummary) GetMobileTargetsInitialized() bool`
+
+GetMobileTargetsInitialized returns the MobileTargetsInitialized field if non-nil, zero value otherwise.
+
+### GetMobileTargetsInitializedOk
+
+`func (o *ProjectSummary) GetMobileTargetsInitializedOk() (*bool, bool)`
+
+GetMobileTargetsInitializedOk returns a tuple with the MobileTargetsInitialized field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMobileTargetsInitialized
+
+`func (o *ProjectSummary) SetMobileTargetsInitialized(v bool)`
+
+SetMobileTargetsInitialized sets MobileTargetsInitialized field to given value.
+
+
+### GetName
+
+`func (o *ProjectSummary) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ProjectSummary) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ProjectSummary) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetOrganizationId
+
+`func (o *ProjectSummary) GetOrganizationId() string`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *ProjectSummary) GetOrganizationIdOk() (*string, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *ProjectSummary) SetOrganizationId(v string)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+
+### GetPausedAt
+
+`func (o *ProjectSummary) GetPausedAt() string`
+
+GetPausedAt returns the PausedAt field if non-nil, zero value otherwise.
+
+### GetPausedAtOk
+
+`func (o *ProjectSummary) GetPausedAtOk() (*string, bool)`
+
+GetPausedAtOk returns a tuple with the PausedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPausedAt
+
+`func (o *ProjectSummary) SetPausedAt(v string)`
+
+SetPausedAt sets PausedAt field to given value.
+
+
+### SetPausedAtNil
+
+`func (o *ProjectSummary) SetPausedAtNil(b bool)`
+
+ SetPausedAtNil sets the value for PausedAt to be an explicit nil
+
+### UnsetPausedAt
+`func (o *ProjectSummary) UnsetPausedAt()`
+
+UnsetPausedAt ensures that no value is present for PausedAt, not even an explicit nil
+### GetPausedByUserId
+
+`func (o *ProjectSummary) GetPausedByUserId() string`
+
+GetPausedByUserId returns the PausedByUserId field if non-nil, zero value otherwise.
+
+### GetPausedByUserIdOk
+
+`func (o *ProjectSummary) GetPausedByUserIdOk() (*string, bool)`
+
+GetPausedByUserIdOk returns a tuple with the PausedByUserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPausedByUserId
+
+`func (o *ProjectSummary) SetPausedByUserId(v string)`
+
+SetPausedByUserId sets PausedByUserId field to given value.
+
+
+### SetPausedByUserIdNil
+
+`func (o *ProjectSummary) SetPausedByUserIdNil(b bool)`
+
+ SetPausedByUserIdNil sets the value for PausedByUserId to be an explicit nil
+
+### UnsetPausedByUserId
+`func (o *ProjectSummary) UnsetPausedByUserId()`
+
+UnsetPausedByUserId ensures that no value is present for PausedByUserId, not even an explicit nil
+### GetPendingRequests
+
+`func (o *ProjectSummary) GetPendingRequests() int32`
+
+GetPendingRequests returns the PendingRequests field if non-nil, zero value otherwise.
+
+### GetPendingRequestsOk
+
+`func (o *ProjectSummary) GetPendingRequestsOk() (*int32, bool)`
+
+GetPendingRequestsOk returns a tuple with the PendingRequests field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPendingRequests
+
+`func (o *ProjectSummary) SetPendingRequests(v int32)`
+
+SetPendingRequests sets PendingRequests field to given value.
+
+
+### GetPrUrl
+
+`func (o *ProjectSummary) GetPrUrl() string`
+
+GetPrUrl returns the PrUrl field if non-nil, zero value otherwise.
+
+### GetPrUrlOk
+
+`func (o *ProjectSummary) GetPrUrlOk() (*string, bool)`
+
+GetPrUrlOk returns a tuple with the PrUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrUrl
+
+`func (o *ProjectSummary) SetPrUrl(v string)`
+
+SetPrUrl sets PrUrl field to given value.
+
+
+### SetPrUrlNil
+
+`func (o *ProjectSummary) SetPrUrlNil(b bool)`
+
+ SetPrUrlNil sets the value for PrUrl to be an explicit nil
+
+### UnsetPrUrl
+`func (o *ProjectSummary) UnsetPrUrl()`
+
+UnsetPrUrl ensures that no value is present for PrUrl, not even an explicit nil
+### GetPreviewCommand
+
+`func (o *ProjectSummary) GetPreviewCommand() string`
+
+GetPreviewCommand returns the PreviewCommand field if non-nil, zero value otherwise.
+
+### GetPreviewCommandOk
+
+`func (o *ProjectSummary) GetPreviewCommandOk() (*string, bool)`
+
+GetPreviewCommandOk returns a tuple with the PreviewCommand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviewCommand
+
+`func (o *ProjectSummary) SetPreviewCommand(v string)`
+
+SetPreviewCommand sets PreviewCommand field to given value.
+
+
+### SetPreviewCommandNil
+
+`func (o *ProjectSummary) SetPreviewCommandNil(b bool)`
+
+ SetPreviewCommandNil sets the value for PreviewCommand to be an explicit nil
+
+### UnsetPreviewCommand
+`func (o *ProjectSummary) UnsetPreviewCommand()`
+
+UnsetPreviewCommand ensures that no value is present for PreviewCommand, not even an explicit nil
+### GetPreviewPort
+
+`func (o *ProjectSummary) GetPreviewPort() int32`
+
+GetPreviewPort returns the PreviewPort field if non-nil, zero value otherwise.
+
+### GetPreviewPortOk
+
+`func (o *ProjectSummary) GetPreviewPortOk() (*int32, bool)`
+
+GetPreviewPortOk returns a tuple with the PreviewPort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviewPort
+
+`func (o *ProjectSummary) SetPreviewPort(v int32)`
+
+SetPreviewPort sets PreviewPort field to given value.
+
+
+### SetPreviewPortNil
+
+`func (o *ProjectSummary) SetPreviewPortNil(b bool)`
+
+ SetPreviewPortNil sets the value for PreviewPort to be an explicit nil
+
+### UnsetPreviewPort
+`func (o *ProjectSummary) UnsetPreviewPort()`
+
+UnsetPreviewPort ensures that no value is present for PreviewPort, not even an explicit nil
+### GetRepos
+
+`func (o *ProjectSummary) GetRepos() []ProjectReposInner`
+
+GetRepos returns the Repos field if non-nil, zero value otherwise.
+
+### GetReposOk
+
+`func (o *ProjectSummary) GetReposOk() (*[]ProjectReposInner, bool)`
+
+GetReposOk returns a tuple with the Repos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRepos
+
+`func (o *ProjectSummary) SetRepos(v []ProjectReposInner)`
+
+SetRepos sets Repos field to given value.
+
+
+### GetRound
+
+`func (o *ProjectSummary) GetRound() int32`
+
+GetRound returns the Round field if non-nil, zero value otherwise.
+
+### GetRoundOk
+
+`func (o *ProjectSummary) GetRoundOk() (*int32, bool)`
+
+GetRoundOk returns a tuple with the Round field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRound
+
+`func (o *ProjectSummary) SetRound(v int32)`
+
+SetRound sets Round field to given value.
+
+
+### GetRunningAgents
+
+`func (o *ProjectSummary) GetRunningAgents() int32`
+
+GetRunningAgents returns the RunningAgents field if non-nil, zero value otherwise.
+
+### GetRunningAgentsOk
+
+`func (o *ProjectSummary) GetRunningAgentsOk() (*int32, bool)`
+
+GetRunningAgentsOk returns a tuple with the RunningAgents field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunningAgents
+
+`func (o *ProjectSummary) SetRunningAgents(v int32)`
+
+SetRunningAgents sets RunningAgents field to given value.
+
+
+### GetRuntime
+
+`func (o *ProjectSummary) GetRuntime() ProjectRuntime`
+
+GetRuntime returns the Runtime field if non-nil, zero value otherwise.
+
+### GetRuntimeOk
+
+`func (o *ProjectSummary) GetRuntimeOk() (*ProjectRuntime, bool)`
+
+GetRuntimeOk returns a tuple with the Runtime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRuntime
+
+`func (o *ProjectSummary) SetRuntime(v ProjectRuntime)`
+
+SetRuntime sets Runtime field to given value.
+
+
+### GetSandboxSize
+
+`func (o *ProjectSummary) GetSandboxSize() string`
+
+GetSandboxSize returns the SandboxSize field if non-nil, zero value otherwise.
+
+### GetSandboxSizeOk
+
+`func (o *ProjectSummary) GetSandboxSizeOk() (*string, bool)`
+
+GetSandboxSizeOk returns a tuple with the SandboxSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSandboxSize
+
+`func (o *ProjectSummary) SetSandboxSize(v string)`
+
+SetSandboxSize sets SandboxSize field to given value.
+
+
+### SetSandboxSizeNil
+
+`func (o *ProjectSummary) SetSandboxSizeNil(b bool)`
+
+ SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
+
+### UnsetSandboxSize
+`func (o *ProjectSummary) UnsetSandboxSize()`
+
+UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
+### GetSetupReport
+
+`func (o *ProjectSummary) GetSetupReport() ProjectSetupReport`
+
+GetSetupReport returns the SetupReport field if non-nil, zero value otherwise.
+
+### GetSetupReportOk
+
+`func (o *ProjectSummary) GetSetupReportOk() (*ProjectSetupReport, bool)`
+
+GetSetupReportOk returns a tuple with the SetupReport field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetupReport
+
+`func (o *ProjectSummary) SetSetupReport(v ProjectSetupReport)`
+
+SetSetupReport sets SetupReport field to given value.
+
+
+### SetSetupReportNil
+
+`func (o *ProjectSummary) SetSetupReportNil(b bool)`
+
+ SetSetupReportNil sets the value for SetupReport to be an explicit nil
+
+### UnsetSetupReport
+`func (o *ProjectSummary) UnsetSetupReport()`
+
+UnsetSetupReport ensures that no value is present for SetupReport, not even an explicit nil
+### GetSlug
+
+`func (o *ProjectSummary) GetSlug() string`
+
+GetSlug returns the Slug field if non-nil, zero value otherwise.
+
+### GetSlugOk
+
+`func (o *ProjectSummary) GetSlugOk() (*string, bool)`
+
+GetSlugOk returns a tuple with the Slug field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSlug
+
+`func (o *ProjectSummary) SetSlug(v string)`
+
+SetSlug sets Slug field to given value.
+
+
+### GetStack
+
+`func (o *ProjectSummary) GetStack() string`
+
+GetStack returns the Stack field if non-nil, zero value otherwise.
+
+### GetStackOk
+
+`func (o *ProjectSummary) GetStackOk() (*string, bool)`
+
+GetStackOk returns a tuple with the Stack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStack
+
+`func (o *ProjectSummary) SetStack(v string)`
+
+SetStack sets Stack field to given value.
+
+
+### GetStalledRevisions
+
+`func (o *ProjectSummary) GetStalledRevisions() int32`
+
+GetStalledRevisions returns the StalledRevisions field if non-nil, zero value otherwise.
+
+### GetStalledRevisionsOk
+
+`func (o *ProjectSummary) GetStalledRevisionsOk() (*int32, bool)`
+
+GetStalledRevisionsOk returns a tuple with the StalledRevisions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStalledRevisions
+
+`func (o *ProjectSummary) SetStalledRevisions(v int32)`
+
+SetStalledRevisions sets StalledRevisions field to given value.
+
+
+### GetTier
+
+`func (o *ProjectSummary) GetTier() string`
+
+GetTier returns the Tier field if non-nil, zero value otherwise.
+
+### GetTierOk
+
+`func (o *ProjectSummary) GetTierOk() (*string, bool)`
+
+GetTierOk returns a tuple with the Tier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTier
+
+`func (o *ProjectSummary) SetTier(v string)`
+
+SetTier sets Tier field to given value.
+
+
+### SetTierNil
+
+`func (o *ProjectSummary) SetTierNil(b bool)`
+
+ SetTierNil sets the value for Tier to be an explicit nil
+
+### UnsetTier
+`func (o *ProjectSummary) UnsetTier()`
+
+UnsetTier ensures that no value is present for Tier, not even an explicit nil
+### GetTotalCostMicros
+
+`func (o *ProjectSummary) GetTotalCostMicros() int64`
+
+GetTotalCostMicros returns the TotalCostMicros field if non-nil, zero value otherwise.
+
+### GetTotalCostMicrosOk
+
+`func (o *ProjectSummary) GetTotalCostMicrosOk() (*int64, bool)`
+
+GetTotalCostMicrosOk returns a tuple with the TotalCostMicros field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalCostMicros
+
+`func (o *ProjectSummary) SetTotalCostMicros(v int64)`
+
+SetTotalCostMicros sets TotalCostMicros field to given value.
+
+
+### SetTotalCostMicrosNil
+
+`func (o *ProjectSummary) SetTotalCostMicrosNil(b bool)`
+
+ SetTotalCostMicrosNil sets the value for TotalCostMicros to be an explicit nil
+
+### UnsetTotalCostMicros
+`func (o *ProjectSummary) UnsetTotalCostMicros()`
+
+UnsetTotalCostMicros ensures that no value is present for TotalCostMicros, not even an explicit nil
+### GetUseWorkspaceBrand
+
+`func (o *ProjectSummary) GetUseWorkspaceBrand() bool`
+
+GetUseWorkspaceBrand returns the UseWorkspaceBrand field if non-nil, zero value otherwise.
+
+### GetUseWorkspaceBrandOk
+
+`func (o *ProjectSummary) GetUseWorkspaceBrandOk() (*bool, bool)`
+
+GetUseWorkspaceBrandOk returns a tuple with the UseWorkspaceBrand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseWorkspaceBrand
+
+`func (o *ProjectSummary) SetUseWorkspaceBrand(v bool)`
+
+SetUseWorkspaceBrand sets UseWorkspaceBrand field to given value.
+
+
+### GetVerifyCommand
+
+`func (o *ProjectSummary) GetVerifyCommand() string`
+
+GetVerifyCommand returns the VerifyCommand field if non-nil, zero value otherwise.
+
+### GetVerifyCommandOk
+
+`func (o *ProjectSummary) GetVerifyCommandOk() (*string, bool)`
+
+GetVerifyCommandOk returns a tuple with the VerifyCommand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerifyCommand
+
+`func (o *ProjectSummary) SetVerifyCommand(v string)`
+
+SetVerifyCommand sets VerifyCommand field to given value.
+
+
+### SetVerifyCommandNil
+
+`func (o *ProjectSummary) SetVerifyCommandNil(b bool)`
+
+ SetVerifyCommandNil sets the value for VerifyCommand to be an explicit nil
+
+### UnsetVerifyCommand
+`func (o *ProjectSummary) UnsetVerifyCommand()`
+
+UnsetVerifyCommand ensures that no value is present for VerifyCommand, not even an explicit nil
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
