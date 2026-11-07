@@ -13288,6 +13288,61 @@ paths:
       summary: Read managed mailbox configuration and commercial readiness
       tags:
       - growth
+  /v1/api/growth/managed-mailboxes/import:
+    post:
+      operationId: importManagedMailboxes
+      parameters:
+      - $ref: "#/components/parameters/OrganizationId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ManagedMailboxImportInput"
+        required: true
+      responses:
+        "200":
+          description: Persisted onboarding orders; follow nextCursor to import the
+            next bounded batch.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAgent_400_response"
+          description: Invalid request.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: No valid session or API key.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Owner or admin required.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Resource not found in this workspace.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Request conflicts with the recorded order or current quote.
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Provider or commercial configuration is unavailable.
+      summary: Connect existing InboxKit domains and mailboxes without purchasing
+        them again
+      tags:
+      - growth
   /v1/api/growth/managed-mailboxes/orders:
     get:
       operationId: listManagedMailboxOrders
@@ -15744,6 +15799,89 @@ paths:
           description: "The resource does not exist, or the caller is a task-scoped\
             \ credential and this endpoint is outside its allowlist."
       summary: Add or replace the workspace's own key for a growth provider
+      tags:
+      - growth
+  /v1/api/growth/sendkit:
+    get:
+      operationId: getGrowthSendkitConnection
+      parameters:
+      - $ref: "#/components/parameters/OrganizationId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GrowthSendkitReadiness"
+          description: Verified connection state. Provider connection alone does not
+            enable sending.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: The request named no active organization.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: No valid session or API key.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: "Authenticated, but not a member of the named organization\
+            \ — or a client collaborator without the required access on this project."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: "The resource does not exist, or the caller is a task-scoped\
+            \ credential and this endpoint is outside its allowlist."
+      summary: Inspect the workspace's SendKit connection and mailbox inventory
+      tags:
+      - growth
+  /v1/api/growth/sendkit/connect:
+    post:
+      operationId: connectGrowthSendkit
+      parameters:
+      - $ref: "#/components/parameters/OrganizationId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GrowthSendkitReadiness"
+          description: Connection state after verification. Credentials remain server-side
+            and no campaign is started.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: The request named no active organization.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: No valid session or API key.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: Only an owner or admin manages mailboxes.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+          description: "The resource does not exist, or the caller is a task-scoped\
+            \ credential and this endpoint is outside its allowlist."
+      summary: Verify and bind the deployment-configured SendKit workspace
       tags:
       - growth
   /v1/api/growth/settings:
@@ -42733,6 +42871,49 @@ components:
       - startedByUserId
       - status
       - websiteUrl
+    GrowthSendkitReadiness:
+      example:
+        configured: true
+        connected: true
+        blocker: not_configured
+        executionReady: true
+        mailboxes:
+        - address: address
+          id: id
+          warmupStatus: warmupStatus
+          status: status
+        - address: address
+          id: id
+          warmupStatus: warmupStatus
+          status: status
+        workspaceName: workspaceName
+      properties:
+        blocker:
+          enum:
+          - not_configured
+          - not_connected
+          - credential_changed
+          - provider_unavailable
+          - execution_not_verified
+          type: string
+        configured:
+          type: boolean
+        connected:
+          type: boolean
+        executionReady:
+          type: boolean
+        mailboxes:
+          items:
+            $ref: "#/components/schemas/GrowthSendkitReadiness_mailboxes_inner"
+          type: array
+        workspaceName:
+          type: string
+      required:
+      - blocker
+      - configured
+      - connected
+      - executionReady
+      - mailboxes
     GrowthSettingsState:
       example:
         settings:
@@ -45383,6 +45564,11 @@ components:
         blockers:
         - blockers
         - blockers
+        connectionBlockers:
+        - connectionBlockers
+        - connectionBlockers
+        importAvailable: true
+        connectionConfigured: true
         microsoftSupported: true
       properties:
         blockers:
@@ -45391,7 +45577,15 @@ components:
           type: array
         configured:
           type: boolean
+        connectionBlockers:
+          items:
+            type: string
+          type: array
+        connectionConfigured:
+          type: boolean
         googleSupported:
+          type: boolean
+        importAvailable:
           type: boolean
         microsoftSupported:
           type: boolean
@@ -45403,6 +45597,35 @@ components:
       - googleSupported
       - microsoftSupported
       - warmupAvailable
+    ManagedMailboxImportInput:
+      additionalProperties: false
+      example:
+        cursor: cursor
+        limit: 1
+        domains:
+        - domains
+        - domains
+        - domains
+        - domains
+        - domains
+      properties:
+        cursor:
+          maxLength: 253
+          pattern: "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,63}$"
+          type: string
+        domains:
+          items:
+            maxLength: 253
+            pattern: "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,63}$"
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        limit:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
     ManagedMailboxOrder:
       example:
         costStatus: pending
@@ -45505,6 +45728,7 @@ components:
           warmupStatus: warmupStatus
           issueCode: issueCode
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        source: purchase
         issueCode: issueCode
         billedMicros: 721321908029599
         status: pending
@@ -45549,6 +45773,11 @@ components:
           items:
             $ref: "#/components/schemas/ManagedMailboxOrder_resources_inner"
           type: array
+        source:
+          enum:
+          - purchase
+          - import
+          type: string
         status:
           enum:
           - pending
@@ -45710,6 +45939,7 @@ components:
             warmupStatus: warmupStatus
             issueCode: issueCode
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          source: purchase
           issueCode: issueCode
           billedMicros: 721321908029599
           status: pending
@@ -45814,6 +46044,7 @@ components:
             warmupStatus: warmupStatus
             issueCode: issueCode
           id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          source: purchase
           issueCode: issueCode
           billedMicros: 721321908029599
           status: pending
@@ -69028,6 +69259,27 @@ components:
       - tried
       - unknown
       - verified
+    GrowthSendkitReadiness_mailboxes_inner:
+      example:
+        address: address
+        id: id
+        warmupStatus: warmupStatus
+        status: status
+      properties:
+        address:
+          type: string
+        id:
+          type: string
+        status:
+          type: string
+        warmupStatus:
+          nullable: true
+          type: string
+      required:
+      - address
+      - id
+      - status
+      - warmupStatus
     GrowthSettingsState_settings:
       example:
         monthlyCapMicros: -6366625337625832
@@ -72715,6 +72967,7 @@ components:
           warmupStatus: warmupStatus
           issueCode: issueCode
         id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        source: purchase
         issueCode: issueCode
         billedMicros: 721321908029599
         status: pending
@@ -72759,6 +73012,11 @@ components:
           items:
             $ref: "#/components/schemas/ManagedMailboxOrder_resources_inner"
           type: array
+        source:
+          enum:
+          - purchase
+          - import
+          type: string
         status:
           enum:
           - pending

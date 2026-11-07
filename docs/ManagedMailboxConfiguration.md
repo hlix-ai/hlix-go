@@ -6,7 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Blockers** | **[]string** |  | 
 **Configured** | **bool** |  | 
+**ConnectionBlockers** | Pointer to **[]string** |  | [optional] 
+**ConnectionConfigured** | Pointer to **bool** |  | [optional] 
 **GoogleSupported** | **bool** |  | 
+**ImportAvailable** | Pointer to **bool** |  | [optional] 
 **MicrosoftSupported** | **bool** |  | 
 **WarmupAvailable** | **bool** |  | 
 
@@ -69,6 +72,56 @@ and a boolean to check if the value has been set.
 SetConfigured sets Configured field to given value.
 
 
+### GetConnectionBlockers
+
+`func (o *ManagedMailboxConfiguration) GetConnectionBlockers() []string`
+
+GetConnectionBlockers returns the ConnectionBlockers field if non-nil, zero value otherwise.
+
+### GetConnectionBlockersOk
+
+`func (o *ManagedMailboxConfiguration) GetConnectionBlockersOk() (*[]string, bool)`
+
+GetConnectionBlockersOk returns a tuple with the ConnectionBlockers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnectionBlockers
+
+`func (o *ManagedMailboxConfiguration) SetConnectionBlockers(v []string)`
+
+SetConnectionBlockers sets ConnectionBlockers field to given value.
+
+### HasConnectionBlockers
+
+`func (o *ManagedMailboxConfiguration) HasConnectionBlockers() bool`
+
+HasConnectionBlockers returns a boolean if a field has been set.
+
+### GetConnectionConfigured
+
+`func (o *ManagedMailboxConfiguration) GetConnectionConfigured() bool`
+
+GetConnectionConfigured returns the ConnectionConfigured field if non-nil, zero value otherwise.
+
+### GetConnectionConfiguredOk
+
+`func (o *ManagedMailboxConfiguration) GetConnectionConfiguredOk() (*bool, bool)`
+
+GetConnectionConfiguredOk returns a tuple with the ConnectionConfigured field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnectionConfigured
+
+`func (o *ManagedMailboxConfiguration) SetConnectionConfigured(v bool)`
+
+SetConnectionConfigured sets ConnectionConfigured field to given value.
+
+### HasConnectionConfigured
+
+`func (o *ManagedMailboxConfiguration) HasConnectionConfigured() bool`
+
+HasConnectionConfigured returns a boolean if a field has been set.
+
 ### GetGoogleSupported
 
 `func (o *ManagedMailboxConfiguration) GetGoogleSupported() bool`
@@ -88,6 +141,31 @@ and a boolean to check if the value has been set.
 
 SetGoogleSupported sets GoogleSupported field to given value.
 
+
+### GetImportAvailable
+
+`func (o *ManagedMailboxConfiguration) GetImportAvailable() bool`
+
+GetImportAvailable returns the ImportAvailable field if non-nil, zero value otherwise.
+
+### GetImportAvailableOk
+
+`func (o *ManagedMailboxConfiguration) GetImportAvailableOk() (*bool, bool)`
+
+GetImportAvailableOk returns a tuple with the ImportAvailable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImportAvailable
+
+`func (o *ManagedMailboxConfiguration) SetImportAvailable(v bool)`
+
+SetImportAvailable sets ImportAvailable field to given value.
+
+### HasImportAvailable
+
+`func (o *ManagedMailboxConfiguration) HasImportAvailable() bool`
+
+HasImportAvailable returns a boolean if a field has been set.
 
 ### GetMicrosoftSupported
 

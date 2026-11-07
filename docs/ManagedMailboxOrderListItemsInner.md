@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Quote** | [**ManagedMailboxOrderQuote**](ManagedMailboxOrderQuote.md) |  | 
 **ReservedMicros** | **int64** |  | 
 **Resources** | [**[]ManagedMailboxOrderResourcesInner**](ManagedMailboxOrderResourcesInner.md) |  | 
+**Source** | Pointer to **string** |  | [optional] 
 **Status** | **string** |  | 
 **UpdatedAt** | **time.Time** |  | 
 
@@ -244,6 +245,31 @@ and a boolean to check if the value has been set.
 
 SetResources sets Resources field to given value.
 
+
+### GetSource
+
+`func (o *ManagedMailboxOrderListItemsInner) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *ManagedMailboxOrderListItemsInner) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *ManagedMailboxOrderListItemsInner) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *ManagedMailboxOrderListItemsInner) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
 
 ### GetStatus
 

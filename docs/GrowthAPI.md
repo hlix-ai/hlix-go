@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**ClassifyGrowthMessage**](GrowthAPI.md#ClassifyGrowthMessage) | **Patch** /v1/api/growth/messages/{messageId} | Sort a reply by hand
 [**CompareGrowthProviders**](GrowthAPI.md#CompareGrowthProviders) | **Post** /v1/api/growth/chains/find_email/compare | Run two email finders on the same sample of the workspace&#39;s leads
 [**ConnectGrowthMailbox**](GrowthAPI.md#ConnectGrowthMailbox) | **Post** /v1/api/growth/mailboxes/connect | Start connecting a Google or Microsoft mailbox to send from
+[**ConnectGrowthSendkit**](GrowthAPI.md#ConnectGrowthSendkit) | **Post** /v1/api/growth/sendkit/connect | Verify and bind the deployment-configured SendKit workspace
 [**CreateGrowthPlay**](GrowthAPI.md#CreateGrowthPlay) | **Post** /v1/api/growth/projects/{projectId}/plays | Create one campaign
 [**CreateGrowthProject**](GrowthAPI.md#CreateGrowthProject) | **Post** /v1/api/growth/projects | Create a growth project from a website and start its research run
 [**DisconnectGrowthMailbox**](GrowthAPI.md#DisconnectGrowthMailbox) | **Delete** /v1/api/growth/mailboxes/{mailboxId} | Disconnect a mailbox and revoke its access
@@ -24,12 +25,14 @@ Method | HTTP request | Description
 [**GetGrowthOverview**](GrowthAPI.md#GetGrowthOverview) | **Get** /v1/api/growth/projects/{projectId}/overview | A growth project&#39;s outreach, hot leads and spend per day, with its daily budget
 [**GetGrowthProject**](GrowthAPI.md#GetGrowthProject) | **Get** /v1/api/growth/projects/{projectId} | Show a growth project&#39;s brain, campaigns and last run
 [**GetGrowthSendingSchedule**](GrowthAPI.md#GetGrowthSendingSchedule) | **Get** /v1/api/growth/projects/{projectId}/sending-schedule | Resolve project and campaign sending schedules
+[**GetGrowthSendkitConnection**](GrowthAPI.md#GetGrowthSendkitConnection) | **Get** /v1/api/growth/sendkit | Inspect the workspace&#39;s SendKit connection and mailbox inventory
 [**GetGrowthSettings**](GrowthAPI.md#GetGrowthSettings) | **Get** /v1/api/growth/settings | The workspace&#39;s growth settings and this month&#39;s growth spend
 [**GetGrowthSpend**](GrowthAPI.md#GetGrowthSpend) | **Get** /v1/api/growth/projects/{projectId}/spend | Show each campaign&#39;s data-provider spend for today and the last 30 days
 [**GetGrowthThread**](GrowthAPI.md#GetGrowthThread) | **Get** /v1/api/growth/leads/{leadId}/thread | Show a lead&#39;s whole email thread, drafts included
 [**GetManagedMailboxConfiguration**](GrowthAPI.md#GetManagedMailboxConfiguration) | **Get** /v1/api/growth/managed-mailboxes/configuration | Read managed mailbox configuration and commercial readiness
 [**GetManagedMailboxOrder**](GrowthAPI.md#GetManagedMailboxOrder) | **Get** /v1/api/growth/managed-mailboxes/orders/{orderId} | Read a saved managed mailbox order
 [**ImportGrowthToolResult**](GrowthAPI.md#ImportGrowthToolResult) | **Post** /v1/api/growth/projects/{projectId}/lead-lists/from-tool-call | Import the people a completed tool call returned
+[**ImportManagedMailboxes**](GrowthAPI.md#ImportManagedMailboxes) | **Post** /v1/api/growth/managed-mailboxes/import | Connect existing InboxKit domains and mailboxes without purchasing them again
 [**ListGrowthBatches**](GrowthAPI.md#ListGrowthBatches) | **Get** /v1/api/growth/projects/{projectId}/batches | Research lists and their twelve-hour review deadlines
 [**ListGrowthChains**](GrowthAPI.md#ListGrowthChains) | **Get** /v1/api/growth/chains | Each capability&#39;s data-provider order and how each provider did in the last 7 days
 [**ListGrowthCitableProjects**](GrowthAPI.md#ListGrowthCitableProjects) | **Get** /v1/api/growth/citable-projects | List the finished delivery projects a growth brain may quote
@@ -770,6 +773,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ConnectGrowthSendkit
+
+> GrowthSendkitReadiness ConnectGrowthSendkit(ctx).XOrganizationId(xOrganizationId).Execute()
+
+Verify and bind the deployment-configured SendKit workspace
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GrowthAPI.ConnectGrowthSendkit(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GrowthAPI.ConnectGrowthSendkit``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ConnectGrowthSendkit`: GrowthSendkitReadiness
+	fmt.Fprintf(os.Stdout, "Response from `GrowthAPI.ConnectGrowthSendkit`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiConnectGrowthSendkitRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+
+### Return type
+
+[**GrowthSendkitReadiness**](GrowthSendkitReadiness.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateGrowthPlay
 
 > GrowthPlay CreateGrowthPlay(ctx, projectId).CreateGrowthPlay(createGrowthPlay).XOrganizationId(xOrganizationId).Execute()
@@ -1467,6 +1534,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetGrowthSendkitConnection
+
+> GrowthSendkitReadiness GetGrowthSendkitConnection(ctx).XOrganizationId(xOrganizationId).Execute()
+
+Inspect the workspace's SendKit connection and mailbox inventory
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.GrowthAPI.GetGrowthSendkitConnection(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GrowthAPI.GetGrowthSendkitConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetGrowthSendkitConnection`: GrowthSendkitReadiness
+	fmt.Fprintf(os.Stdout, "Response from `GrowthAPI.GetGrowthSendkitConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGrowthSendkitConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+
+### Return type
+
+[**GrowthSendkitReadiness**](GrowthSendkitReadiness.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetGrowthSettings
 
 > GrowthSettingsState GetGrowthSettings(ctx).XOrganizationId(xOrganizationId).Execute()
@@ -1862,6 +1993,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GrowthToolResultImport**](GrowthToolResultImport.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportManagedMailboxes
+
+> ImportManagedMailboxes(ctx).ManagedMailboxImportInput(managedMailboxImportInput).XOrganizationId(xOrganizationId).Execute()
+
+Connect existing InboxKit domains and mailboxes without purchasing them again
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	managedMailboxImportInput := *openapiclient.NewManagedMailboxImportInput() // ManagedMailboxImportInput | 
+	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.GrowthAPI.ImportManagedMailboxes(context.Background()).ManagedMailboxImportInput(managedMailboxImportInput).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `GrowthAPI.ImportManagedMailboxes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportManagedMailboxesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **managedMailboxImportInput** | [**ManagedMailboxImportInput**](ManagedMailboxImportInput.md) |  | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 

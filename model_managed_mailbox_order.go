@@ -30,6 +30,7 @@ type ManagedMailboxOrder struct {
 	Quote ManagedMailboxOrderQuote `json:"quote"`
 	ReservedMicros int64 `json:"reservedMicros"`
 	Resources []ManagedMailboxOrderResourcesInner `json:"resources"`
+	Source *string `json:"source,omitempty"`
 	Status string `json:"status"`
 	UpdatedAt time.Time `json:"updatedAt"`
 	AdditionalProperties map[string]interface{}
@@ -287,6 +288,38 @@ func (o *ManagedMailboxOrder) SetResources(v []ManagedMailboxOrderResourcesInner
 	o.Resources = v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *ManagedMailboxOrder) GetSource() string {
+	if o == nil || IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ManagedMailboxOrder) GetSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *ManagedMailboxOrder) HasSource() bool {
+	if o != nil && !IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *ManagedMailboxOrder) SetSource(v string) {
+	o.Source = &v
+}
+
 // GetStatus returns the Status field value
 func (o *ManagedMailboxOrder) GetStatus() string {
 	if o == nil {
@@ -354,6 +387,9 @@ func (o ManagedMailboxOrder) ToMap() (map[string]interface{}, error) {
 	toSerialize["quote"] = o.Quote
 	toSerialize["reservedMicros"] = o.ReservedMicros
 	toSerialize["resources"] = o.Resources
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["updatedAt"] = o.UpdatedAt
 
@@ -418,6 +454,7 @@ func (o *ManagedMailboxOrder) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "quote")
 		delete(additionalProperties, "reservedMicros")
 		delete(additionalProperties, "resources")
+		delete(additionalProperties, "source")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "updatedAt")
 		o.AdditionalProperties = additionalProperties

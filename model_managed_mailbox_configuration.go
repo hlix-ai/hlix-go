@@ -22,7 +22,10 @@ var _ MappedNullable = &ManagedMailboxConfiguration{}
 type ManagedMailboxConfiguration struct {
 	Blockers []string `json:"blockers"`
 	Configured bool `json:"configured"`
+	ConnectionBlockers []string `json:"connectionBlockers,omitempty"`
+	ConnectionConfigured *bool `json:"connectionConfigured,omitempty"`
 	GoogleSupported bool `json:"googleSupported"`
+	ImportAvailable *bool `json:"importAvailable,omitempty"`
 	MicrosoftSupported bool `json:"microsoftSupported"`
 	WarmupAvailable bool `json:"warmupAvailable"`
 	AdditionalProperties map[string]interface{}
@@ -100,6 +103,70 @@ func (o *ManagedMailboxConfiguration) SetConfigured(v bool) {
 	o.Configured = v
 }
 
+// GetConnectionBlockers returns the ConnectionBlockers field value if set, zero value otherwise.
+func (o *ManagedMailboxConfiguration) GetConnectionBlockers() []string {
+	if o == nil || IsNil(o.ConnectionBlockers) {
+		var ret []string
+		return ret
+	}
+	return o.ConnectionBlockers
+}
+
+// GetConnectionBlockersOk returns a tuple with the ConnectionBlockers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ManagedMailboxConfiguration) GetConnectionBlockersOk() ([]string, bool) {
+	if o == nil || IsNil(o.ConnectionBlockers) {
+		return nil, false
+	}
+	return o.ConnectionBlockers, true
+}
+
+// HasConnectionBlockers returns a boolean if a field has been set.
+func (o *ManagedMailboxConfiguration) HasConnectionBlockers() bool {
+	if o != nil && !IsNil(o.ConnectionBlockers) {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionBlockers gets a reference to the given []string and assigns it to the ConnectionBlockers field.
+func (o *ManagedMailboxConfiguration) SetConnectionBlockers(v []string) {
+	o.ConnectionBlockers = v
+}
+
+// GetConnectionConfigured returns the ConnectionConfigured field value if set, zero value otherwise.
+func (o *ManagedMailboxConfiguration) GetConnectionConfigured() bool {
+	if o == nil || IsNil(o.ConnectionConfigured) {
+		var ret bool
+		return ret
+	}
+	return *o.ConnectionConfigured
+}
+
+// GetConnectionConfiguredOk returns a tuple with the ConnectionConfigured field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ManagedMailboxConfiguration) GetConnectionConfiguredOk() (*bool, bool) {
+	if o == nil || IsNil(o.ConnectionConfigured) {
+		return nil, false
+	}
+	return o.ConnectionConfigured, true
+}
+
+// HasConnectionConfigured returns a boolean if a field has been set.
+func (o *ManagedMailboxConfiguration) HasConnectionConfigured() bool {
+	if o != nil && !IsNil(o.ConnectionConfigured) {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionConfigured gets a reference to the given bool and assigns it to the ConnectionConfigured field.
+func (o *ManagedMailboxConfiguration) SetConnectionConfigured(v bool) {
+	o.ConnectionConfigured = &v
+}
+
 // GetGoogleSupported returns the GoogleSupported field value
 func (o *ManagedMailboxConfiguration) GetGoogleSupported() bool {
 	if o == nil {
@@ -122,6 +189,38 @@ func (o *ManagedMailboxConfiguration) GetGoogleSupportedOk() (*bool, bool) {
 // SetGoogleSupported sets field value
 func (o *ManagedMailboxConfiguration) SetGoogleSupported(v bool) {
 	o.GoogleSupported = v
+}
+
+// GetImportAvailable returns the ImportAvailable field value if set, zero value otherwise.
+func (o *ManagedMailboxConfiguration) GetImportAvailable() bool {
+	if o == nil || IsNil(o.ImportAvailable) {
+		var ret bool
+		return ret
+	}
+	return *o.ImportAvailable
+}
+
+// GetImportAvailableOk returns a tuple with the ImportAvailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ManagedMailboxConfiguration) GetImportAvailableOk() (*bool, bool) {
+	if o == nil || IsNil(o.ImportAvailable) {
+		return nil, false
+	}
+	return o.ImportAvailable, true
+}
+
+// HasImportAvailable returns a boolean if a field has been set.
+func (o *ManagedMailboxConfiguration) HasImportAvailable() bool {
+	if o != nil && !IsNil(o.ImportAvailable) {
+		return true
+	}
+
+	return false
+}
+
+// SetImportAvailable gets a reference to the given bool and assigns it to the ImportAvailable field.
+func (o *ManagedMailboxConfiguration) SetImportAvailable(v bool) {
+	o.ImportAvailable = &v
 }
 
 // GetMicrosoftSupported returns the MicrosoftSupported field value
@@ -184,7 +283,16 @@ func (o ManagedMailboxConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["blockers"] = o.Blockers
 	toSerialize["configured"] = o.Configured
+	if !IsNil(o.ConnectionBlockers) {
+		toSerialize["connectionBlockers"] = o.ConnectionBlockers
+	}
+	if !IsNil(o.ConnectionConfigured) {
+		toSerialize["connectionConfigured"] = o.ConnectionConfigured
+	}
 	toSerialize["googleSupported"] = o.GoogleSupported
+	if !IsNil(o.ImportAvailable) {
+		toSerialize["importAvailable"] = o.ImportAvailable
+	}
 	toSerialize["microsoftSupported"] = o.MicrosoftSupported
 	toSerialize["warmupAvailable"] = o.WarmupAvailable
 
@@ -236,7 +344,10 @@ func (o *ManagedMailboxConfiguration) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "blockers")
 		delete(additionalProperties, "configured")
+		delete(additionalProperties, "connectionBlockers")
+		delete(additionalProperties, "connectionConfigured")
 		delete(additionalProperties, "googleSupported")
+		delete(additionalProperties, "importAvailable")
 		delete(additionalProperties, "microsoftSupported")
 		delete(additionalProperties, "warmupAvailable")
 		o.AdditionalProperties = additionalProperties

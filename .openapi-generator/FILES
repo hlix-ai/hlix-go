@@ -581,6 +581,8 @@ docs/GrowthRefinedReply.md
 docs/GrowthReplySent.md
 docs/GrowthResearchResult.md
 docs/GrowthRun.md
+docs/GrowthSendkitReadiness.md
+docs/GrowthSendkitReadinessMailboxesInner.md
 docs/GrowthSettingsState.md
 docs/GrowthSettingsStateSettings.md
 docs/GrowthSettingsStateSpend.md
@@ -683,6 +685,7 @@ docs/ListProjectReports200Response.md
 docs/LogEntry.md
 docs/LogsAPI.md
 docs/ManagedMailboxConfiguration.md
+docs/ManagedMailboxImportInput.md
 docs/ManagedMailboxOrder.md
 docs/ManagedMailboxOrderInput.md
 docs/ManagedMailboxOrderInputContact.md
@@ -1624,6 +1627,8 @@ model_growth_refined_reply.go
 model_growth_reply_sent.go
 model_growth_research_result.go
 model_growth_run.go
+model_growth_sendkit_readiness.go
+model_growth_sendkit_readiness_mailboxes_inner.go
 model_growth_settings_state.go
 model_growth_settings_state_settings.go
 model_growth_settings_state_spend.go
@@ -1722,6 +1727,7 @@ model_list_plugins_400_response.go
 model_list_project_reports_200_response.go
 model_log_entry.go
 model_managed_mailbox_configuration.go
+model_managed_mailbox_import_input.go
 model_managed_mailbox_order.go
 model_managed_mailbox_order_input.go
 model_managed_mailbox_order_input_contact.go
