@@ -4,63 +4,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssignedUserId** | **NullableString** |  | 
-**BaseRef** | **NullableString** |  | 
-**BranchSlug** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**CreatedByRun** | [**NullableCycleDetailCreatedByRun**](CycleDetailCreatedByRun.md) |  | 
-**CreatedByRunId** | **NullableString** |  | 
-**DependsOn** | **[]string** |  | 
-**Description** | **string** |  | 
-**E2eVideoUrl** | **NullableString** |  | 
-**FollowUpOfCycleId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**Lane** | **NullableString** |  | 
-**LinearIssueIdentifier** | **NullableString** |  | 
-**LinearIssueUrl** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**OutcomeSummary** | **NullableString** |  | 
-**Persona** | **NullableString** |  | 
-**PrUrl** | **NullableString** |  | 
-**PreviewBranch** | **NullableString** |  | 
-**PreviewUrl** | **NullableString** |  | 
-**Priority** | **int32** |  | 
-**ProjectId** | **string** |  | 
-**RefinedReqs** | **NullableString** |  | 
-**ReplannedThroughRun** | **NullableInt32** |  | 
-**RepoId** | **NullableString** |  | 
-**RequestedByUserId** | **NullableString** |  | 
-**Revision** | **int32** |  | 
-**RunPin** | [**NullableCycleRunPin**](CycleRunPin.md) |  | 
-**Source** | **NullableString** |  | 
-**StageHistory** | [**[]CycleStageHistoryInner**](CycleStageHistoryInner.md) |  | 
-**Status** | **string** |  | 
-**TargetBranch** | **NullableString** |  | 
-**TaskTimeoutMinutes** | **int32** |  | 
-**Tasks** | [**[]CycleDetailTasksInner**](CycleDetailTasksInner.md) |  | 
-**Title** | **string** |  | 
-**TotalCostMicros** | **NullableInt64** |  | 
-**UpdatedAt** | **string** |  | 
+**AssignedUserId** | **NullableString** |  |
+**BaseRef** | **NullableString** |  |
+**BranchSlug** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**CreatedByRun** | [**NullableCycleDetailCreatedByRun**](CycleDetailCreatedByRun.md) |  |
+**CreatedByRunId** | **NullableString** |  |
+**DependsOn** | **[]string** |  |
+**Description** | **string** |  |
+**E2eVideoUrl** | **NullableString** |  |
+**Handling** | **NullableString** |  |
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**LinearIssueIdentifier** | **NullableString** |  |
+**LinearIssueUrl** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**OriginCycleId** | **NullableString** |  |
+**OutcomeSummary** | **NullableString** |  |
+**PrUrl** | **NullableString** |  |
+**PreviewBranch** | **NullableString** |  |
+**PreviewUrl** | **NullableString** |  |
+**Priority** | **int32** |  |
+**ProjectId** | **string** |  |
+**RefinedReqs** | **NullableString** |  |
+**ReplannedThroughRun** | **NullableInt32** |  |
+**RepoId** | **NullableString** |  |
+**RequestedByUserId** | **NullableString** |  |
+**Revision** | **int32** |  |
+**Role** | **NullableString** |  |
+**RunPin** | [**NullableCycleRunPin**](CycleRunPin.md) |  |
+**Source** | **NullableString** |  |
+**StageHistory** | [**[]CycleStageHistoryInner**](CycleStageHistoryInner.md) |  |
+**Status** | **string** |  |
+**TargetBranch** | **NullableString** |  |
+**TaskTimeoutMinutes** | **int32** |  |
+**Tasks** | [**[]CycleDetailTasksInner**](CycleDetailTasksInner.md) |  |
+**Title** | **string** |  |
+**TotalCostMicros** | **NullableInt64** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
 ### NewCycleDetail
 
-`func NewCycleDetail(assignedUserId NullableString, baseRef NullableString, branchSlug NullableString, createdAt string, createdByRun NullableCycleDetailCreatedByRun, createdByRunId NullableString, dependsOn []string, description string, e2eVideoUrl NullableString, followUpOfCycleId NullableString, id string, kind string, lane NullableString, linearIssueIdentifier NullableString, linearIssueUrl NullableString, organizationId string, outcomeSummary NullableString, persona NullableString, prUrl NullableString, previewBranch NullableString, previewUrl NullableString, priority int32, projectId string, refinedReqs NullableString, replannedThroughRun NullableInt32, repoId NullableString, requestedByUserId NullableString, revision int32, runPin NullableCycleRunPin, source NullableString, stageHistory []CycleStageHistoryInner, status string, targetBranch NullableString, taskTimeoutMinutes int32, tasks []CycleDetailTasksInner, title string, totalCostMicros NullableInt64, updatedAt string, ) *CycleDetail`
+`func NewCycleDetail(assignedUserId NullableString, baseRef NullableString, branchSlug NullableString, createdAt string, createdByRun NullableCycleDetailCreatedByRun, createdByRunId NullableString, dependsOn []string, description string, e2eVideoUrl NullableString, handling NullableString, id string, kind string, linearIssueIdentifier NullableString, linearIssueUrl NullableString, organizationId string, originCycleId NullableString, outcomeSummary NullableString, prUrl NullableString, previewBranch NullableString, previewUrl NullableString, priority int32, projectId string, refinedReqs NullableString, replannedThroughRun NullableInt32, repoId NullableString, requestedByUserId NullableString, revision int32, role NullableString, runPin NullableCycleRunPin, source NullableString, stageHistory []CycleStageHistoryInner, status string, targetBranch NullableString, taskTimeoutMinutes int32, tasks []CycleDetailTasksInner, title string, totalCostMicros NullableInt64, updatedAt string, ) *CycleDetail`
 
 NewCycleDetail instantiates a new CycleDetail object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleDetailWithDefaults
 
 `func NewCycleDetailWithDefaults() *CycleDetail`
 
 NewCycleDetailWithDefaults instantiates a new CycleDetail object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAssignedUserId
 
@@ -302,36 +300,36 @@ SetE2eVideoUrl sets E2eVideoUrl field to given value.
 `func (o *CycleDetail) UnsetE2eVideoUrl()`
 
 UnsetE2eVideoUrl ensures that no value is present for E2eVideoUrl, not even an explicit nil
-### GetFollowUpOfCycleId
+### GetHandling
 
-`func (o *CycleDetail) GetFollowUpOfCycleId() string`
+`func (o *CycleDetail) GetHandling() string`
 
-GetFollowUpOfCycleId returns the FollowUpOfCycleId field if non-nil, zero value otherwise.
+GetHandling returns the Handling field if non-nil, zero value otherwise.
 
-### GetFollowUpOfCycleIdOk
+### GetHandlingOk
 
-`func (o *CycleDetail) GetFollowUpOfCycleIdOk() (*string, bool)`
+`func (o *CycleDetail) GetHandlingOk() (*string, bool)`
 
-GetFollowUpOfCycleIdOk returns a tuple with the FollowUpOfCycleId field if it's non-nil, zero value otherwise
+GetHandlingOk returns a tuple with the Handling field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFollowUpOfCycleId
+### SetHandling
 
-`func (o *CycleDetail) SetFollowUpOfCycleId(v string)`
+`func (o *CycleDetail) SetHandling(v string)`
 
-SetFollowUpOfCycleId sets FollowUpOfCycleId field to given value.
+SetHandling sets Handling field to given value.
 
 
-### SetFollowUpOfCycleIdNil
+### SetHandlingNil
 
-`func (o *CycleDetail) SetFollowUpOfCycleIdNil(b bool)`
+`func (o *CycleDetail) SetHandlingNil(b bool)`
 
- SetFollowUpOfCycleIdNil sets the value for FollowUpOfCycleId to be an explicit nil
+ SetHandlingNil sets the value for Handling to be an explicit nil
 
-### UnsetFollowUpOfCycleId
-`func (o *CycleDetail) UnsetFollowUpOfCycleId()`
+### UnsetHandling
+`func (o *CycleDetail) UnsetHandling()`
 
-UnsetFollowUpOfCycleId ensures that no value is present for FollowUpOfCycleId, not even an explicit nil
+UnsetHandling ensures that no value is present for Handling, not even an explicit nil
 ### GetId
 
 `func (o *CycleDetail) GetId() string`
@@ -372,36 +370,6 @@ and a boolean to check if the value has been set.
 SetKind sets Kind field to given value.
 
 
-### GetLane
-
-`func (o *CycleDetail) GetLane() string`
-
-GetLane returns the Lane field if non-nil, zero value otherwise.
-
-### GetLaneOk
-
-`func (o *CycleDetail) GetLaneOk() (*string, bool)`
-
-GetLaneOk returns a tuple with the Lane field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLane
-
-`func (o *CycleDetail) SetLane(v string)`
-
-SetLane sets Lane field to given value.
-
-
-### SetLaneNil
-
-`func (o *CycleDetail) SetLaneNil(b bool)`
-
- SetLaneNil sets the value for Lane to be an explicit nil
-
-### UnsetLane
-`func (o *CycleDetail) UnsetLane()`
-
-UnsetLane ensures that no value is present for Lane, not even an explicit nil
 ### GetLinearIssueIdentifier
 
 `func (o *CycleDetail) GetLinearIssueIdentifier() string`
@@ -482,6 +450,36 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
+### GetOriginCycleId
+
+`func (o *CycleDetail) GetOriginCycleId() string`
+
+GetOriginCycleId returns the OriginCycleId field if non-nil, zero value otherwise.
+
+### GetOriginCycleIdOk
+
+`func (o *CycleDetail) GetOriginCycleIdOk() (*string, bool)`
+
+GetOriginCycleIdOk returns a tuple with the OriginCycleId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOriginCycleId
+
+`func (o *CycleDetail) SetOriginCycleId(v string)`
+
+SetOriginCycleId sets OriginCycleId field to given value.
+
+
+### SetOriginCycleIdNil
+
+`func (o *CycleDetail) SetOriginCycleIdNil(b bool)`
+
+ SetOriginCycleIdNil sets the value for OriginCycleId to be an explicit nil
+
+### UnsetOriginCycleId
+`func (o *CycleDetail) UnsetOriginCycleId()`
+
+UnsetOriginCycleId ensures that no value is present for OriginCycleId, not even an explicit nil
 ### GetOutcomeSummary
 
 `func (o *CycleDetail) GetOutcomeSummary() string`
@@ -512,36 +510,6 @@ SetOutcomeSummary sets OutcomeSummary field to given value.
 `func (o *CycleDetail) UnsetOutcomeSummary()`
 
 UnsetOutcomeSummary ensures that no value is present for OutcomeSummary, not even an explicit nil
-### GetPersona
-
-`func (o *CycleDetail) GetPersona() string`
-
-GetPersona returns the Persona field if non-nil, zero value otherwise.
-
-### GetPersonaOk
-
-`func (o *CycleDetail) GetPersonaOk() (*string, bool)`
-
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPersona
-
-`func (o *CycleDetail) SetPersona(v string)`
-
-SetPersona sets Persona field to given value.
-
-
-### SetPersonaNil
-
-`func (o *CycleDetail) SetPersonaNil(b bool)`
-
- SetPersonaNil sets the value for Persona to be an explicit nil
-
-### UnsetPersona
-`func (o *CycleDetail) UnsetPersona()`
-
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
 ### GetPrUrl
 
 `func (o *CycleDetail) GetPrUrl() string`
@@ -812,6 +780,36 @@ and a boolean to check if the value has been set.
 SetRevision sets Revision field to given value.
 
 
+### GetRole
+
+`func (o *CycleDetail) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *CycleDetail) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *CycleDetail) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+
+### SetRoleNil
+
+`func (o *CycleDetail) SetRoleNil(b bool)`
+
+ SetRoleNil sets the value for Role to be an explicit nil
+
+### UnsetRole
+`func (o *CycleDetail) UnsetRole()`
+
+UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetRunPin
 
 `func (o *CycleDetail) GetRunPin() CycleRunPin`

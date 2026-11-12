@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,9 +21,9 @@ var _ MappedNullable = &ProjectCanvas{}
 // ProjectCanvas struct for ProjectCanvas
 type ProjectCanvas struct {
 	Activity []ProjectCanvasActivityInner `json:"activity"`
-	Intake ProjectCanvasIntake `json:"intake"`
 	Preview NullableProjectCanvasPreview `json:"preview"`
 	Repositories []ProjectCanvasRepositoriesInner `json:"repositories"`
+	Sources ProjectCanvasSources `json:"sources"`
 	Workspace NullableProjectCanvasWorkspace `json:"workspace"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,12 +34,12 @@ type _ProjectCanvas ProjectCanvas
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectCanvas(activity []ProjectCanvasActivityInner, intake ProjectCanvasIntake, preview NullableProjectCanvasPreview, repositories []ProjectCanvasRepositoriesInner, workspace NullableProjectCanvasWorkspace) *ProjectCanvas {
+func NewProjectCanvas(activity []ProjectCanvasActivityInner, preview NullableProjectCanvasPreview, repositories []ProjectCanvasRepositoriesInner, sources ProjectCanvasSources, workspace NullableProjectCanvasWorkspace) *ProjectCanvas {
 	this := ProjectCanvas{}
 	this.Activity = activity
-	this.Intake = intake
 	this.Preview = preview
 	this.Repositories = repositories
+	this.Sources = sources
 	this.Workspace = workspace
 	return &this
 }
@@ -74,30 +74,6 @@ func (o *ProjectCanvas) GetActivityOk() ([]ProjectCanvasActivityInner, bool) {
 // SetActivity sets field value
 func (o *ProjectCanvas) SetActivity(v []ProjectCanvasActivityInner) {
 	o.Activity = v
-}
-
-// GetIntake returns the Intake field value
-func (o *ProjectCanvas) GetIntake() ProjectCanvasIntake {
-	if o == nil {
-		var ret ProjectCanvasIntake
-		return ret
-	}
-
-	return o.Intake
-}
-
-// GetIntakeOk returns a tuple with the Intake field value
-// and a boolean to check if the value has been set.
-func (o *ProjectCanvas) GetIntakeOk() (*ProjectCanvasIntake, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Intake, true
-}
-
-// SetIntake sets field value
-func (o *ProjectCanvas) SetIntake(v ProjectCanvasIntake) {
-	o.Intake = v
 }
 
 // GetPreview returns the Preview field value
@@ -150,6 +126,30 @@ func (o *ProjectCanvas) SetRepositories(v []ProjectCanvasRepositoriesInner) {
 	o.Repositories = v
 }
 
+// GetSources returns the Sources field value
+func (o *ProjectCanvas) GetSources() ProjectCanvasSources {
+	if o == nil {
+		var ret ProjectCanvasSources
+		return ret
+	}
+
+	return o.Sources
+}
+
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *ProjectCanvas) GetSourcesOk() (*ProjectCanvasSources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
+// SetSources sets field value
+func (o *ProjectCanvas) SetSources(v ProjectCanvasSources) {
+	o.Sources = v
+}
+
 // GetWorkspace returns the Workspace field value
 // If the value is explicit nil, the zero value for ProjectCanvasWorkspace will be returned
 func (o *ProjectCanvas) GetWorkspace() ProjectCanvasWorkspace {
@@ -187,9 +187,9 @@ func (o ProjectCanvas) MarshalJSON() ([]byte, error) {
 func (o ProjectCanvas) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["activity"] = o.Activity
-	toSerialize["intake"] = o.Intake
 	toSerialize["preview"] = o.Preview.Get()
 	toSerialize["repositories"] = o.Repositories
+	toSerialize["sources"] = o.Sources
 	toSerialize["workspace"] = o.Workspace.Get()
 
 	for key, value := range o.AdditionalProperties {
@@ -205,9 +205,9 @@ func (o *ProjectCanvas) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"activity",
-		"intake",
 		"preview",
 		"repositories",
+		"sources",
 		"workspace",
 	}
 
@@ -239,9 +239,9 @@ func (o *ProjectCanvas) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "activity")
-		delete(additionalProperties, "intake")
 		delete(additionalProperties, "preview")
 		delete(additionalProperties, "repositories")
+		delete(additionalProperties, "sources")
 		delete(additionalProperties, "workspace")
 		o.AdditionalProperties = additionalProperties
 	}

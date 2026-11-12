@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Effort** | Pointer to **NullableString** |  | [optional] 
-**Funding** | Pointer to [**NullableUpsertSettingsFunding**](UpsertSettingsFunding.md) |  | [optional] 
-**Harness** | Pointer to **NullableString** |  | [optional] 
-**MaxParallelCycles** | Pointer to **NullableInt32** |  | [optional] 
-**Model** | Pointer to **NullableString** |  | [optional] 
+**Coder** | Pointer to **NullableString** |  | [optional]
+**Effort** | Pointer to **NullableString** |  | [optional]
+**Funding** | Pointer to [**NullableUpsertSettingsFunding**](UpsertSettingsFunding.md) |  | [optional]
+**MaxParallelCycles** | Pointer to **NullableInt32** |  | [optional]
+**Model** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -17,18 +17,51 @@ Name | Type | Description | Notes
 `func NewUpsertSettings() *UpsertSettings`
 
 NewUpsertSettings instantiates a new UpsertSettings object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpsertSettingsWithDefaults
 
 `func NewUpsertSettingsWithDefaults() *UpsertSettings`
 
 NewUpsertSettingsWithDefaults instantiates a new UpsertSettings object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
+### GetCoder
+
+`func (o *UpsertSettings) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *UpsertSettings) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *UpsertSettings) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+### HasCoder
+
+`func (o *UpsertSettings) HasCoder() bool`
+
+HasCoder returns a boolean if a field has been set.
+
+### SetCoderNil
+
+`func (o *UpsertSettings) SetCoderNil(b bool)`
+
+ SetCoderNil sets the value for Coder to be an explicit nil
+
+### UnsetCoder
+`func (o *UpsertSettings) UnsetCoder()`
+
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetEffort
 
 `func (o *UpsertSettings) GetEffort() string`
@@ -99,41 +132,6 @@ HasFunding returns a boolean if a field has been set.
 `func (o *UpsertSettings) UnsetFunding()`
 
 UnsetFunding ensures that no value is present for Funding, not even an explicit nil
-### GetHarness
-
-`func (o *UpsertSettings) GetHarness() string`
-
-GetHarness returns the Harness field if non-nil, zero value otherwise.
-
-### GetHarnessOk
-
-`func (o *UpsertSettings) GetHarnessOk() (*string, bool)`
-
-GetHarnessOk returns a tuple with the Harness field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHarness
-
-`func (o *UpsertSettings) SetHarness(v string)`
-
-SetHarness sets Harness field to given value.
-
-### HasHarness
-
-`func (o *UpsertSettings) HasHarness() bool`
-
-HasHarness returns a boolean if a field has been set.
-
-### SetHarnessNil
-
-`func (o *UpsertSettings) SetHarnessNil(b bool)`
-
- SetHarnessNil sets the value for Harness to be an explicit nil
-
-### UnsetHarness
-`func (o *UpsertSettings) UnsetHarness()`
-
-UnsetHarness ensures that no value is present for Harness, not even an explicit nil
 ### GetMaxParallelCycles
 
 `func (o *UpsertSettings) GetMaxParallelCycles() int32`

@@ -1,92 +1,48 @@
 # ReviewCommentListVisualContext
 
-## Properties
+This model accepts exactly one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Enabled** | **bool** |  | 
-**Reason** | **string** |  | 
-**ReasonCode** | **string** |  | 
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| [ReviewCommentListVisualContextOneOf](ReviewCommentListVisualContextOneOf.md) | `enabled` |
+| [ReviewCommentListVisualContextOneOf1](ReviewCommentListVisualContextOneOf1.md) | `enabled`, `reason`, `reasonCode` |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `ReviewCommentListVisualContextOneOf` | `*ReviewCommentListVisualContextOneOf` |
+| `ReviewCommentListVisualContextOneOf1` | `*ReviewCommentListVisualContextOneOf1` |
 
 ## Methods
 
-### NewReviewCommentListVisualContext
+### ReviewCommentListVisualContextOneOfAsReviewCommentListVisualContext
 
-`func NewReviewCommentListVisualContext(enabled bool, reason string, reasonCode string, ) *ReviewCommentListVisualContext`
+`func ReviewCommentListVisualContextOneOfAsReviewCommentListVisualContext(v *ReviewCommentListVisualContextOneOf) ReviewCommentListVisualContext`
 
-NewReviewCommentListVisualContext instantiates a new ReviewCommentListVisualContext object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### ReviewCommentListVisualContextOneOf1AsReviewCommentListVisualContext
 
-### NewReviewCommentListVisualContextWithDefaults
+`func ReviewCommentListVisualContextOneOf1AsReviewCommentListVisualContext(v *ReviewCommentListVisualContextOneOf1) ReviewCommentListVisualContext`
 
-`func NewReviewCommentListVisualContextWithDefaults() *ReviewCommentListVisualContext`
+### UnmarshalJSON
 
-NewReviewCommentListVisualContextWithDefaults instantiates a new ReviewCommentListVisualContext object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+`func (dst *ReviewCommentListVisualContext) UnmarshalJSON(data []byte) error`
 
-### GetEnabled
+### MarshalJSON
 
-`func (o *ReviewCommentListVisualContext) GetEnabled() bool`
+`func (src ReviewCommentListVisualContext) MarshalJSON() ([]byte, error)`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+### GetActualInstance
 
-### GetEnabledOk
+`func (obj *ReviewCommentListVisualContext) GetActualInstance() (interface{})`
 
-`func (o *ReviewCommentListVisualContext) GetEnabledOk() (*bool, bool)`
+### GetActualInstanceValue
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnabled
-
-`func (o *ReviewCommentListVisualContext) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetReason
-
-`func (o *ReviewCommentListVisualContext) GetReason() string`
-
-GetReason returns the Reason field if non-nil, zero value otherwise.
-
-### GetReasonOk
-
-`func (o *ReviewCommentListVisualContext) GetReasonOk() (*string, bool)`
-
-GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReason
-
-`func (o *ReviewCommentListVisualContext) SetReason(v string)`
-
-SetReason sets Reason field to given value.
-
-
-### GetReasonCode
-
-`func (o *ReviewCommentListVisualContext) GetReasonCode() string`
-
-GetReasonCode returns the ReasonCode field if non-nil, zero value otherwise.
-
-### GetReasonCodeOk
-
-`func (o *ReviewCommentListVisualContext) GetReasonCodeOk() (*string, bool)`
-
-GetReasonCodeOk returns a tuple with the ReasonCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReasonCode
-
-`func (o *ReviewCommentListVisualContext) SetReasonCode(v string)`
-
-SetReasonCode sets ReasonCode field to given value.
-
-
+`func (obj ReviewCommentListVisualContext) GetActualInstanceValue() (interface{})`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

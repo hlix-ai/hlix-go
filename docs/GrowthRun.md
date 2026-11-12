@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DroppedFacts** | **NullableInt32** |  | 
-**Error** | **NullableString** |  | 
-**FinishedAt** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Input** | [**GrowthProjectCreatedRunInput**](GrowthProjectCreatedRunInput.md) |  | 
-**OrganizationId** | **string** |  | 
-**PagesRead** | **[]string** |  | 
-**ProjectId** | **string** |  | 
-**StartedAt** | **string** |  | 
-**StartedByUserId** | **NullableString** |  | 
-**Status** | **string** |  | 
-**WebsiteUrl** | **NullableString** |  | 
+**DroppedFacts** | **NullableInt32** |  |
+**Error** | **NullableString** |  |
+**FinishedAt** | **NullableString** |  |
+**Id** | **string** |  |
+**Input** | [**GrowthProjectCreatedRunInput**](GrowthProjectCreatedRunInput.md) |  |
+**OrganizationId** | **string** |  |
+**PagesRead** | **[]string** |  |
+**ProjectId** | **string** |  |
+**StartedAt** | **string** |  |
+**StartedByUserId** | **NullableString** |  |
+**Status** | **string** |  |
+**WebsiteUrl** | **NullableString** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewGrowthRun(droppedFacts NullableInt32, error_ NullableString, finishedAt NullableString, id string, input GrowthProjectCreatedRunInput, organizationId string, pagesRead []string, projectId string, startedAt string, startedByUserId NullableString, status string, websiteUrl NullableString, ) *GrowthRun`
 
 NewGrowthRun instantiates a new GrowthRun object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthRunWithDefaults
 
 `func NewGrowthRunWithDefaults() *GrowthRun`
 
 NewGrowthRunWithDefaults instantiates a new GrowthRun object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDroppedFacts
 

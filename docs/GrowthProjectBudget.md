@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DailyBudgetMicros** | **NullableInt64** |  | 
+**DailyBudgetMicros** | **NullableInt64** |  |
 
 ## Methods
 
@@ -13,17 +13,15 @@ Name | Type | Description | Notes
 `func NewGrowthProjectBudget(dailyBudgetMicros NullableInt64, ) *GrowthProjectBudget`
 
 NewGrowthProjectBudget instantiates a new GrowthProjectBudget object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProjectBudgetWithDefaults
 
 `func NewGrowthProjectBudgetWithDefaults() *GrowthProjectBudget`
 
 NewGrowthProjectBudgetWithDefaults instantiates a new GrowthProjectBudget object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDailyBudgetMicros
 

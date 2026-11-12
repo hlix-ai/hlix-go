@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,6 +23,7 @@ type Agent struct {
 	AvatarImageKey NullableString `json:"avatarImageKey"`
 	AvatarKey NullableString `json:"avatarKey"`
 	AvatarUrl NullableString `json:"avatarUrl"`
+	Coder NullableString `json:"coder"`
 	ContextOverlay interface{} `json:"contextOverlay"`
 	CreatedAt string `json:"createdAt"`
 	CreatedByUserId NullableString `json:"createdByUserId"`
@@ -34,10 +35,9 @@ type Agent struct {
 	ModelOverride NullableString `json:"modelOverride"`
 	Name string `json:"name"`
 	OrganizationId string `json:"organizationId"`
-	Pipeline string `json:"pipeline"`
 	PreRunHooks interface{} `json:"preRunHooks"`
 	ProjectId NullableString `json:"projectId"`
-	RuntimeKind NullableString `json:"runtimeKind"`
+	ReviewSet string `json:"reviewSet"`
 	RuntimeVersion NullableString `json:"runtimeVersion"`
 	ToolConfig interface{} `json:"toolConfig"`
 	UpdatedAt string `json:"updatedAt"`
@@ -50,11 +50,12 @@ type _Agent Agent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgent(avatarImageKey NullableString, avatarKey NullableString, avatarUrl NullableString, contextOverlay interface{}, createdAt string, createdByUserId NullableString, description NullableString, duty string, id string, instructions NullableString, isActive bool, modelOverride NullableString, name string, organizationId string, pipeline string, preRunHooks interface{}, projectId NullableString, runtimeKind NullableString, runtimeVersion NullableString, toolConfig interface{}, updatedAt string) *Agent {
+func NewAgent(avatarImageKey NullableString, avatarKey NullableString, avatarUrl NullableString, coder NullableString, contextOverlay interface{}, createdAt string, createdByUserId NullableString, description NullableString, duty string, id string, instructions NullableString, isActive bool, modelOverride NullableString, name string, organizationId string, preRunHooks interface{}, projectId NullableString, reviewSet string, runtimeVersion NullableString, toolConfig interface{}, updatedAt string) *Agent {
 	this := Agent{}
 	this.AvatarImageKey = avatarImageKey
 	this.AvatarKey = avatarKey
 	this.AvatarUrl = avatarUrl
+	this.Coder = coder
 	this.ContextOverlay = contextOverlay
 	this.CreatedAt = createdAt
 	this.CreatedByUserId = createdByUserId
@@ -66,10 +67,9 @@ func NewAgent(avatarImageKey NullableString, avatarKey NullableString, avatarUrl
 	this.ModelOverride = modelOverride
 	this.Name = name
 	this.OrganizationId = organizationId
-	this.Pipeline = pipeline
 	this.PreRunHooks = preRunHooks
 	this.ProjectId = projectId
-	this.RuntimeKind = runtimeKind
+	this.ReviewSet = reviewSet
 	this.RuntimeVersion = runtimeVersion
 	this.ToolConfig = toolConfig
 	this.UpdatedAt = updatedAt
@@ -160,6 +160,32 @@ func (o *Agent) GetAvatarUrlOk() (*string, bool) {
 // SetAvatarUrl sets field value
 func (o *Agent) SetAvatarUrl(v string) {
 	o.AvatarUrl.Set(&v)
+}
+
+// GetCoder returns the Coder field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Agent) GetCoder() string {
+	if o == nil || o.Coder.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Coder.Get()
+}
+
+// GetCoderOk returns a tuple with the Coder field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Agent) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Coder.Get(), o.Coder.IsSet()
+}
+
+// SetCoder sets field value
+func (o *Agent) SetCoder(v string) {
+	o.Coder.Set(&v)
 }
 
 // GetContextOverlay returns the ContextOverlay field value
@@ -436,30 +462,6 @@ func (o *Agent) SetOrganizationId(v string) {
 	o.OrganizationId = v
 }
 
-// GetPipeline returns the Pipeline field value
-func (o *Agent) GetPipeline() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Pipeline
-}
-
-// GetPipelineOk returns a tuple with the Pipeline field value
-// and a boolean to check if the value has been set.
-func (o *Agent) GetPipelineOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Pipeline, true
-}
-
-// SetPipeline sets field value
-func (o *Agent) SetPipeline(v string) {
-	o.Pipeline = v
-}
-
 // GetPreRunHooks returns the PreRunHooks field value
 // If the value is explicit nil, the zero value for interface{} will be returned
 func (o *Agent) GetPreRunHooks() interface{} {
@@ -512,30 +514,28 @@ func (o *Agent) SetProjectId(v string) {
 	o.ProjectId.Set(&v)
 }
 
-// GetRuntimeKind returns the RuntimeKind field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Agent) GetRuntimeKind() string {
-	if o == nil || o.RuntimeKind.Get() == nil {
+// GetReviewSet returns the ReviewSet field value
+func (o *Agent) GetReviewSet() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.RuntimeKind.Get()
+	return o.ReviewSet
 }
 
-// GetRuntimeKindOk returns a tuple with the RuntimeKind field value
+// GetReviewSetOk returns a tuple with the ReviewSet field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Agent) GetRuntimeKindOk() (*string, bool) {
+func (o *Agent) GetReviewSetOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RuntimeKind.Get(), o.RuntimeKind.IsSet()
+	return &o.ReviewSet, true
 }
 
-// SetRuntimeKind sets field value
-func (o *Agent) SetRuntimeKind(v string) {
-	o.RuntimeKind.Set(&v)
+// SetReviewSet sets field value
+func (o *Agent) SetReviewSet(v string) {
+	o.ReviewSet = v
 }
 
 // GetRuntimeVersion returns the RuntimeVersion field value
@@ -627,6 +627,7 @@ func (o Agent) ToMap() (map[string]interface{}, error) {
 	toSerialize["avatarImageKey"] = o.AvatarImageKey.Get()
 	toSerialize["avatarKey"] = o.AvatarKey.Get()
 	toSerialize["avatarUrl"] = o.AvatarUrl.Get()
+	toSerialize["coder"] = o.Coder.Get()
 	if o.ContextOverlay != nil {
 		toSerialize["contextOverlay"] = o.ContextOverlay
 	}
@@ -640,12 +641,11 @@ func (o Agent) ToMap() (map[string]interface{}, error) {
 	toSerialize["modelOverride"] = o.ModelOverride.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["organizationId"] = o.OrganizationId
-	toSerialize["pipeline"] = o.Pipeline
 	if o.PreRunHooks != nil {
 		toSerialize["preRunHooks"] = o.PreRunHooks
 	}
 	toSerialize["projectId"] = o.ProjectId.Get()
-	toSerialize["runtimeKind"] = o.RuntimeKind.Get()
+	toSerialize["reviewSet"] = o.ReviewSet
 	toSerialize["runtimeVersion"] = o.RuntimeVersion.Get()
 	if o.ToolConfig != nil {
 		toSerialize["toolConfig"] = o.ToolConfig
@@ -667,6 +667,7 @@ func (o *Agent) UnmarshalJSON(data []byte) (err error) {
 		"avatarImageKey",
 		"avatarKey",
 		"avatarUrl",
+		"coder",
 		"contextOverlay",
 		"createdAt",
 		"createdByUserId",
@@ -678,10 +679,9 @@ func (o *Agent) UnmarshalJSON(data []byte) (err error) {
 		"modelOverride",
 		"name",
 		"organizationId",
-		"pipeline",
 		"preRunHooks",
 		"projectId",
-		"runtimeKind",
+		"reviewSet",
 		"runtimeVersion",
 		"toolConfig",
 		"updatedAt",
@@ -717,6 +717,7 @@ func (o *Agent) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "avatarImageKey")
 		delete(additionalProperties, "avatarKey")
 		delete(additionalProperties, "avatarUrl")
+		delete(additionalProperties, "coder")
 		delete(additionalProperties, "contextOverlay")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "createdByUserId")
@@ -728,10 +729,9 @@ func (o *Agent) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "modelOverride")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "organizationId")
-		delete(additionalProperties, "pipeline")
 		delete(additionalProperties, "preRunHooks")
 		delete(additionalProperties, "projectId")
-		delete(additionalProperties, "runtimeKind")
+		delete(additionalProperties, "reviewSet")
 		delete(additionalProperties, "runtimeVersion")
 		delete(additionalProperties, "toolConfig")
 		delete(additionalProperties, "updatedAt")

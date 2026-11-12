@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Error** | **NullableString** |  | 
-**Id** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **string** |  | 
-**SecretCount** | **int32** |  | 
-**Status** | **string** |  | 
+**Action** | **string** |  |
+**CreatedAt** | **string** |  |
+**Error** | **NullableString** |  |
+**Id** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **string** |  |
+**SecretCount** | **int32** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewSecretsSyncLog(action string, createdAt string, error_ NullableString, id string, organizationId string, projectId string, secretCount int32, status string, ) *SecretsSyncLog`
 
 NewSecretsSyncLog instantiates a new SecretsSyncLog object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSecretsSyncLogWithDefaults
 
 `func NewSecretsSyncLogWithDefaults() *SecretsSyncLog`
 
 NewSecretsSyncLogWithDefaults instantiates a new SecretsSyncLog object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAction
 

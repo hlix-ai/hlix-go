@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ByDay** | [**[]WorkspaceUsageByDayInner**](WorkspaceUsageByDayInner.md) |  | 
-**ByModel** | [**[]WorkspaceUsageByModelInner**](WorkspaceUsageByModelInner.md) |  | 
-**ByProject** | [**[]WorkspaceUsageByProjectInner**](WorkspaceUsageByProjectInner.md) |  | 
-**Entitlement** | [**OrgBillingStateEntitlement**](OrgBillingStateEntitlement.md) |  | 
-**EnvironmentRuntimeCostMicros** | **NullableInt64** |  | 
-**Runs** | [**[]WorkspaceUsageRunsInner**](WorkspaceUsageRunsInner.md) |  | 
-**Totals** | [**WorkspaceUsageTotals**](WorkspaceUsageTotals.md) |  | 
+**ByDay** | [**[]WorkspaceUsageByDayInner**](WorkspaceUsageByDayInner.md) |  |
+**ByModel** | [**[]WorkspaceUsageByModelInner**](WorkspaceUsageByModelInner.md) |  |
+**ByProject** | [**[]WorkspaceUsageByProjectInner**](WorkspaceUsageByProjectInner.md) |  |
+**Entitlement** | [**OrgBillingStateEntitlement**](OrgBillingStateEntitlement.md) |  |
+**EnvironmentRuntimeCostMicros** | **NullableInt64** | The price in micros of machine time and environment storage in the window (cost plus markup). In metered billing it is what the workspace is charged and what the meter is sent; in task billing the workspace pays per accepted task, so it is the price equivalent of the usage, not a charge. |
+**Runs** | [**[]WorkspaceUsageRunsInner**](WorkspaceUsageRunsInner.md) |  |
+**Totals** | [**WorkspaceUsageTotals**](WorkspaceUsageTotals.md) |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewWorkspaceUsage(byDay []WorkspaceUsageByDayInner, byModel []WorkspaceUsageByModelInner, byProject []WorkspaceUsageByProjectInner, entitlement OrgBillingStateEntitlement, environmentRuntimeCostMicros NullableInt64, runs []WorkspaceUsageRunsInner, totals WorkspaceUsageTotals, ) *WorkspaceUsage`
 
 NewWorkspaceUsage instantiates a new WorkspaceUsage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWorkspaceUsageWithDefaults
 
 `func NewWorkspaceUsageWithDefaults() *WorkspaceUsage`
 
 NewWorkspaceUsageWithDefaults instantiates a new WorkspaceUsage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetByDay
 

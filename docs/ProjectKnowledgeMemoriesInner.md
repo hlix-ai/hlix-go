@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Category** | **string** |  | 
-**Confidence** | **float32** |  | 
-**CreatedAt** | **string** |  | 
-**Id** | **string** |  | 
-**Key** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Scope** | **string** |  | 
-**ScopeId** | **string** |  | 
-**Score** | Pointer to **float32** |  | [optional] 
-**Source** | **string** |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Value** | **string** |  | 
+**Category** | **string** |  |
+**Confidence** | **float32** |  |
+**CreatedAt** | **string** |  |
+**Id** | **string** |  |
+**Key** | **string** |  |
+**OrganizationId** | **string** |  |
+**Scope** | **string** |  |
+**ScopeId** | **string** |  |
+**Score** | Pointer to **float32** |  | [optional]
+**Source** | **string** |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Value** | **string** |  |
 
 ## Methods
 
@@ -25,17 +25,15 @@ Name | Type | Description | Notes
 `func NewProjectKnowledgeMemoriesInner(category string, confidence float32, createdAt string, id string, key string, organizationId string, scope string, scopeId string, source string, status string, updatedAt string, value string, ) *ProjectKnowledgeMemoriesInner`
 
 NewProjectKnowledgeMemoriesInner instantiates a new ProjectKnowledgeMemoriesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectKnowledgeMemoriesInnerWithDefaults
 
 `func NewProjectKnowledgeMemoriesInnerWithDefaults() *ProjectKnowledgeMemoriesInner`
 
 NewProjectKnowledgeMemoriesInnerWithDefaults instantiates a new ProjectKnowledgeMemoriesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCategory
 

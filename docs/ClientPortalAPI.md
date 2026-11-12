@@ -1,17 +1,17 @@
-# \ClientPortalAPI
+# ClientPortalAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApproveClientRequest**](ClientPortalAPI.md#ApproveClientRequest) | **Post** /v1/api/client-portal/requests/{id}/approve | Approve the exact saved plan once and enter operator intake
-[**CreateClientRequest**](ClientPortalAPI.md#CreateClientRequest) | **Post** /v1/api/client-portal/requests | Start a personal request conversation visible to the agency
-[**DownloadClientRequestAttachment**](ClientPortalAPI.md#DownloadClientRequestAttachment) | **Get** /v1/api/client-portal/requests/{id}/attachments/{attachmentId} | Read a request-owned attachment
-[**GetClientPortalOverview**](ClientPortalAPI.md#GetClientPortalOverview) | **Get** /v1/api/client-portal/overview | Get the portal landing view
-[**GetClientRequest**](ClientPortalAPI.md#GetClientRequest) | **Get** /v1/api/client-portal/requests/{id} | Read an authorized request and its canonical conversation
-[**ListClientPortalActivity**](ClientPortalAPI.md#ListClientPortalActivity) | **Get** /v1/api/client-portal/activity | List client-visible activity
-[**ListClientRequests**](ClientPortalAPI.md#ListClientRequests) | **Get** /v1/api/client-portal/requests | List your personal requests or the agency&#39;s client requests
-[**UploadClientRequestAttachment**](ClientPortalAPI.md#UploadClientRequestAttachment) | **Post** /v1/api/client-portal/requests/{id}/attachments | Upload a request-owned file or voice recording
+[**ApproveClientRequest**](ClientPortalAPI.md#approveclientrequest) | **Post** /v1/api/client-portal/requests/{id}/approve | Approve the exact saved plan once and enter operator sources
+[**CreateClientRequest**](ClientPortalAPI.md#createclientrequest) | **Post** /v1/api/client-portal/requests | Start a personal request conversation visible to the agency
+[**DownloadClientRequestAttachment**](ClientPortalAPI.md#downloadclientrequestattachment) | **Get** /v1/api/client-portal/requests/{id}/attachments/{attachmentId} | Read a request-owned attachment
+[**GetClientPortalOverview**](ClientPortalAPI.md#getclientportaloverview) | **Get** /v1/api/client-portal/overview | Get the portal landing view
+[**GetClientRequest**](ClientPortalAPI.md#getclientrequest) | **Get** /v1/api/client-portal/requests/{id} | Read an authorized request and its canonical conversation
+[**ListClientPortalActivity**](ClientPortalAPI.md#listclientportalactivity) | **Get** /v1/api/client-portal/activity | List client-visible activity
+[**ListClientRequests**](ClientPortalAPI.md#listclientrequests) | **Get** /v1/api/client-portal/requests | List your personal requests or the agency&#39;s client requests
+[**UploadClientRequestAttachment**](ClientPortalAPI.md#uploadclientrequestattachment) | **Post** /v1/api/client-portal/requests/{id}/attachments | Upload a request-owned file or voice recording
 
 
 
@@ -19,14 +19,17 @@ Method | HTTP request | Description
 
 > ClientRequestDetail ApproveClientRequest(ctx, id).ApproveClientRequest(approveClientRequest).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Approve the exact saved plan once and enter operator intake
+Approve the exact saved plan once and enter operator sources
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -34,14 +37,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	approveClientRequest := *openapiclient.NewApproveClientRequest("Hash_example", int32(123)) // ApproveClientRequest | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var approveClientRequest openapiclient.ApproveClientRequest
+	if err := json.Unmarshal([]byte("{\"hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"revision\":2}"), &approveClientRequest); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.ApproveClientRequest(context.Background(), id).ApproveClientRequest(approveClientRequest).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.ApproveClientRequest(ctx, id).ApproveClientRequest(approveClientRequest).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.ApproveClientRequest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,19 +65,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiApproveClientRequestRequest struct via the builder pattern
+Pass optional parameters through the `apiApproveClientRequestRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **approveClientRequest** | [**ApproveClientRequest**](ApproveClientRequest.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **approveClientRequest** | [**ApproveClientRequest**](ApproveClientRequest.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -77,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -97,10 +105,13 @@ Start a personal request conversation visible to the agency
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -108,13 +119,18 @@ import (
 )
 
 func main() {
-	createClientRequest := *openapiclient.NewCreateClientRequest("ProjectId_example") // CreateClientRequest | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createClientRequest openapiclient.CreateClientRequest
+	if err := json.Unmarshal([]byte("{\"projectId\":\"text\"}"), &createClientRequest); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.CreateClientRequest(context.Background()).CreateClientRequest(createClientRequest).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.CreateClientRequest(ctx).CreateClientRequest(createClientRequest).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.CreateClientRequest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,14 +146,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateClientRequestRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateClientRequestRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createClientRequest** | [**CreateClientRequest**](CreateClientRequest.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **createClientRequest** | [**CreateClientRequest**](CreateClientRequest.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -145,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -165,6 +181,8 @@ Read a request-owned attachment
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -176,14 +194,16 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	attachmentId := "attachmentId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	attachmentId := "attachmentId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.DownloadClientRequestAttachment(context.Background(), id, attachmentId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.DownloadClientRequestAttachment(ctx, id, attachmentId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.DownloadClientRequestAttachment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,28 +219,28 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-**attachmentId** | **string** |  | 
+**id** | **string** |  |
+**attachmentId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDownloadClientRequestAttachmentRequest struct via the builder pattern
+Pass optional parameters through the `apiDownloadClientRequestAttachmentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[***os.File**](*os.File.md)
+`*os.File`
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -240,6 +260,8 @@ Get the portal landing view
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -251,12 +273,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.GetClientPortalOverview(context.Background()).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.GetClientPortalOverview(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.GetClientPortalOverview``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,13 +296,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetClientPortalOverviewRequest struct via the builder pattern
+Pass optional parameters through the `apiGetClientPortalOverviewRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -286,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -306,6 +330,8 @@ Read an authorized request and its canonical conversation
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -317,13 +343,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.GetClientRequest(context.Background(), id).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.GetClientRequest(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.GetClientRequest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,18 +367,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetClientRequestRequest struct via the builder pattern
+Pass optional parameters through the `apiGetClientRequestRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -358,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -378,6 +406,8 @@ List client-visible activity
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -389,15 +419,17 @@ import (
 )
 
 func main() {
-	type_ := "type__example" // string | One `ClientActivityType`. Filtered SERVER-side on purpose: the overview caps its list at twenty items of all kinds, so filtering that list client-side hides real work behind an omission that looks like an absence. An UNRECOGNISED type answers `[]` rather than everything — silently widening a filter nobody asked to widen is how a narrow request answers with more than it should. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	type_ := "type__example" // string | One `ClientActivityType`, applied on the server before the twenty-item overview limit. An unrecognized type returns an empty list. (optional)
 	limit := "limit_example" // string | Page size, clamped to 1–500; 100 when omitted or not an integer. (optional)
 	offset := "offset_example" // string | Items to skip, newest first. Ask for the next page with `offset` + `limit` until a page comes back shorter than `limit`. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.ListClientPortalActivity(context.Background()).Type_(type_).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.ListClientPortalActivity(ctx).Type_(type_).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.ListClientPortalActivity``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,16 +445,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListClientPortalActivityRequest struct via the builder pattern
+Pass optional parameters through the `apiListClientPortalActivityRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | **string** | One &#x60;ClientActivityType&#x60;. Filtered SERVER-side on purpose: the overview caps its list at twenty items of all kinds, so filtering that list client-side hides real work behind an omission that looks like an absence. An UNRECOGNISED type answers &#x60;[]&#x60; rather than everything — silently widening a filter nobody asked to widen is how a narrow request answers with more than it should. | 
- **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. | 
- **offset** | **string** | Items to skip, newest first. Ask for the next page with &#x60;offset&#x60; + &#x60;limit&#x60; until a page comes back shorter than &#x60;limit&#x60;. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **type_** | **string** | One &#x60;ClientActivityType&#x60;, applied on the server before the twenty-item overview limit. An unrecognized type returns an empty list. |
+ **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. |
+ **offset** | **string** | Items to skip, newest first. Ask for the next page with &#x60;offset&#x60; + &#x60;limit&#x60; until a page comes back shorter than &#x60;limit&#x60;. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -430,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -450,6 +482,8 @@ List your personal requests or the agency's client requests
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -461,13 +495,15 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	projectId := "projectId_example" // string | Limit to this accessible project (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.ListClientRequests(context.Background()).ProjectId(projectId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.ListClientRequests(ctx).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.ListClientRequests``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -483,14 +519,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListClientRequestsRequest struct via the builder pattern
+Pass optional parameters through the `apiListClientRequestsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Limit to this accessible project | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **projectId** | **string** | Limit to this accessible project |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -498,7 +534,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -518,6 +554,8 @@ Upload a request-owned file or voice recording
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -529,14 +567,16 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	file := os.NewFile(1234, "some_file") // *os.File | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	file := os.NewFile(1234, "some_file") // *os.File |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalAPI.UploadClientRequestAttachment(context.Background(), id).File(file).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalAPI.UploadClientRequestAttachment(ctx, id).File(file).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalAPI.UploadClientRequestAttachment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -552,19 +592,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUploadClientRequestAttachmentRequest struct via the builder pattern
+Pass optional parameters through the `apiUploadClientRequestAttachmentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **file** | ***os.File** |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **file** | ***os.File** |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -572,7 +612,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

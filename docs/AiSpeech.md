@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContentType** | **string** |  | 
-**CorrelationId** | **string** |  | 
-**Key** | **string** |  | 
-**Model** | **string** |  | 
-**Provider** | Pointer to **string** |  | [optional] 
-**Url** | **string** |  | 
-**Usage** | Pointer to [**AiGeneratedImagesUsage**](AiGeneratedImagesUsage.md) |  | [optional] 
+**ContentType** | **string** |  |
+**CorrelationId** | **string** |  |
+**Key** | **string** |  |
+**Model** | **string** |  |
+**Provider** | Pointer to **string** |  | [optional]
+**Url** | **string** |  |
+**Usage** | Pointer to [**AiGeneratedImagesUsage**](AiGeneratedImagesUsage.md) |  | [optional]
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewAiSpeech(contentType string, correlationId string, key string, model string, url string, ) *AiSpeech`
 
 NewAiSpeech instantiates a new AiSpeech object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiSpeechWithDefaults
 
 `func NewAiSpeechWithDefaults() *AiSpeech`
 
 NewAiSpeechWithDefaults instantiates a new AiSpeech object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetContentType
 

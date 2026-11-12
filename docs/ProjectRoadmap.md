@@ -4,30 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompletedCount** | **int32** |  | 
-**CostToDateMicros** | **NullableInt64** |  | 
-**Cycles** | [**[]ProjectRoadmapCyclesInner**](ProjectRoadmapCyclesInner.md) |  | 
-**Proposals** | [**[]ProjectRoadmapProposalsInner**](ProjectRoadmapProposalsInner.md) |  | 
-**TotalCount** | **int32** |  | 
+**CompletedCount** | **int32** |  |
+**CostToDateMicros** | **NullableInt64** |  |
+**Cycles** | [**[]ProjectRoadmapCyclesInner**](ProjectRoadmapCyclesInner.md) |  |
+**Requests** | [**[]ProjectRoadmapRequestsInner**](ProjectRoadmapRequestsInner.md) |  |
+**TotalCount** | **int32** |  |
 
 ## Methods
 
 ### NewProjectRoadmap
 
-`func NewProjectRoadmap(completedCount int32, costToDateMicros NullableInt64, cycles []ProjectRoadmapCyclesInner, proposals []ProjectRoadmapProposalsInner, totalCount int32, ) *ProjectRoadmap`
+`func NewProjectRoadmap(completedCount int32, costToDateMicros NullableInt64, cycles []ProjectRoadmapCyclesInner, requests []ProjectRoadmapRequestsInner, totalCount int32, ) *ProjectRoadmap`
 
 NewProjectRoadmap instantiates a new ProjectRoadmap object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectRoadmapWithDefaults
 
 `func NewProjectRoadmapWithDefaults() *ProjectRoadmap`
 
 NewProjectRoadmapWithDefaults instantiates a new ProjectRoadmap object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompletedCount
 
@@ -99,24 +97,24 @@ and a boolean to check if the value has been set.
 SetCycles sets Cycles field to given value.
 
 
-### GetProposals
+### GetRequests
 
-`func (o *ProjectRoadmap) GetProposals() []ProjectRoadmapProposalsInner`
+`func (o *ProjectRoadmap) GetRequests() []ProjectRoadmapRequestsInner`
 
-GetProposals returns the Proposals field if non-nil, zero value otherwise.
+GetRequests returns the Requests field if non-nil, zero value otherwise.
 
-### GetProposalsOk
+### GetRequestsOk
 
-`func (o *ProjectRoadmap) GetProposalsOk() (*[]ProjectRoadmapProposalsInner, bool)`
+`func (o *ProjectRoadmap) GetRequestsOk() (*[]ProjectRoadmapRequestsInner, bool)`
 
-GetProposalsOk returns a tuple with the Proposals field if it's non-nil, zero value otherwise
+GetRequestsOk returns a tuple with the Requests field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProposals
+### SetRequests
 
-`func (o *ProjectRoadmap) SetProposals(v []ProjectRoadmapProposalsInner)`
+`func (o *ProjectRoadmap) SetRequests(v []ProjectRoadmapRequestsInner)`
 
-SetProposals sets Proposals field to given value.
+SetRequests sets Requests field to given value.
 
 
 ### GetTotalCount

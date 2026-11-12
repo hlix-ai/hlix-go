@@ -4,38 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveWork** | **bool** |  | 
-**Agents** | [**AgencyOverviewReportProjectsInnerAgents**](AgencyOverviewReportProjectsInnerAgents.md) |  | 
-**Approvals** | [**AgencyOverviewReportProjectsInnerApprovals**](AgencyOverviewReportProjectsInnerApprovals.md) |  | 
-**ClientAccountId** | **NullableString** |  | 
-**ClientName** | **NullableString** |  | 
-**CostCapMicros** | **NullableInt64** |  | 
-**Cycles** | [**AgencyOverviewReportProjectsInnerCycles**](AgencyOverviewReportProjectsInnerCycles.md) |  | 
-**Deployments** | [**AgencyOverviewReportProjectsInnerDeployments**](AgencyOverviewReportProjectsInnerDeployments.md) |  | 
-**Health** | [**AgencyOverviewReportProjectsInnerHealth**](AgencyOverviewReportProjectsInnerHealth.md) |  | 
-**Id** | **string** |  | 
-**LastActivityAt** | **NullableString** |  | 
-**Name** | **string** |  | 
-**Tasks** | [**AgencyOverviewReportProjectsInnerTasks**](AgencyOverviewReportProjectsInnerTasks.md) |  | 
+**ActiveWork** | **bool** |  |
+**Agents** | [**AgencyOverviewReportProjectsInnerAgents**](AgencyOverviewReportProjectsInnerAgents.md) |  |
+**Approvals** | [**AgencyOverviewReportProjectsInnerApprovals**](AgencyOverviewReportProjectsInnerApprovals.md) |  |
+**Attention** | [**[]AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  |
+**ClientAccountId** | **NullableString** |  |
+**ClientName** | **NullableString** |  |
+**CostCapMicros** | **NullableInt64** |  |
+**Cycles** | [**AgencyOverviewReportProjectsInnerCycles**](AgencyOverviewReportProjectsInnerCycles.md) |  |
+**Deployments** | [**AgencyOverviewReportProjectsInnerDeployments**](AgencyOverviewReportProjectsInnerDeployments.md) |  |
+**Health** | [**AgencyOverviewReportProjectsInnerHealth**](AgencyOverviewReportProjectsInnerHealth.md) |  |
+**Id** | **string** |  |
+**LastActivityAt** | **NullableString** |  |
+**Name** | **string** |  |
+**Tasks** | [**AgencyOverviewReportProjectsInnerTasks**](AgencyOverviewReportProjectsInnerTasks.md) |  |
 
 ## Methods
 
 ### NewAgencyOverviewReportProjectsInner
 
-`func NewAgencyOverviewReportProjectsInner(activeWork bool, agents AgencyOverviewReportProjectsInnerAgents, approvals AgencyOverviewReportProjectsInnerApprovals, clientAccountId NullableString, clientName NullableString, costCapMicros NullableInt64, cycles AgencyOverviewReportProjectsInnerCycles, deployments AgencyOverviewReportProjectsInnerDeployments, health AgencyOverviewReportProjectsInnerHealth, id string, lastActivityAt NullableString, name string, tasks AgencyOverviewReportProjectsInnerTasks, ) *AgencyOverviewReportProjectsInner`
+`func NewAgencyOverviewReportProjectsInner(activeWork bool, agents AgencyOverviewReportProjectsInnerAgents, approvals AgencyOverviewReportProjectsInnerApprovals, attention []AgencyOverviewReportAttentionInnerAttentionItem, clientAccountId NullableString, clientName NullableString, costCapMicros NullableInt64, cycles AgencyOverviewReportProjectsInnerCycles, deployments AgencyOverviewReportProjectsInnerDeployments, health AgencyOverviewReportProjectsInnerHealth, id string, lastActivityAt NullableString, name string, tasks AgencyOverviewReportProjectsInnerTasks, ) *AgencyOverviewReportProjectsInner`
 
 NewAgencyOverviewReportProjectsInner instantiates a new AgencyOverviewReportProjectsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportProjectsInnerWithDefaults
 
 `func NewAgencyOverviewReportProjectsInnerWithDefaults() *AgencyOverviewReportProjectsInner`
 
 NewAgencyOverviewReportProjectsInnerWithDefaults instantiates a new AgencyOverviewReportProjectsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveWork
 
@@ -95,6 +94,26 @@ and a boolean to check if the value has been set.
 `func (o *AgencyOverviewReportProjectsInner) SetApprovals(v AgencyOverviewReportProjectsInnerApprovals)`
 
 SetApprovals sets Approvals field to given value.
+
+
+### GetAttention
+
+`func (o *AgencyOverviewReportProjectsInner) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttention returns the Attention field if non-nil, zero value otherwise.
+
+### GetAttentionOk
+
+`func (o *AgencyOverviewReportProjectsInner) GetAttentionOk() (*[]AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionOk returns a tuple with the Attention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttention
+
+`func (o *AgencyOverviewReportProjectsInner) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttention sets Attention field to given value.
 
 
 ### GetClientAccountId

@@ -1,28 +1,28 @@
-# \ClientPortalsAPI
+# ClientPortalsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AcceptClientPortalInvitation**](ClientPortalsAPI.md#AcceptClientPortalInvitation) | **Post** /v1/api/portal-invitations/{token}/accept | Accept an email-bound client portal invitation
-[**CreateClientPortalIdea**](ClientPortalsAPI.md#CreateClientPortalIdea) | **Post** /v1/api/portal/projects | Create a brainstorming project
-[**EnterWorkspaceClientPortal**](ClientPortalsAPI.md#EnterWorkspaceClientPortal) | **Post** /v1/api/portals/{agencySlug}/session | Enter the agency portal using the signed-in verified email
-[**GetClientPortalIdentity**](ClientPortalsAPI.md#GetClientPortalIdentity) | **Get** /v1/api/portals/{agencySlug}/identity | Read the published agency identity
-[**GetWorkspacePortalSettings**](ClientPortalsAPI.md#GetWorkspacePortalSettings) | **Get** /v1/api/client-portal/settings | Read default client permissions
-[**InitializePersonalWorkspace**](ClientPortalsAPI.md#InitializePersonalWorkspace) | **Post** /v1/api/me/workspace | Initialize your personal Hlix workspace
-[**InviteWorkspacePortalClient**](ClientPortalsAPI.md#InviteWorkspacePortalClient) | **Post** /v1/api/client-portal/invitations | Invite an email directly to the agency client portal
-[**ListMyClientPortals**](ClientPortalsAPI.md#ListMyClientPortals) | **Get** /v1/api/me/portals | Discover your available agency client portals
-[**ListWorkspacePortalClients**](ClientPortalsAPI.md#ListWorkspacePortalClients) | **Get** /v1/api/client-portal/members | List the agency&#39;s portal clients
-[**ListWorkspacePortalInvitations**](ClientPortalsAPI.md#ListWorkspacePortalInvitations) | **Get** /v1/api/client-portal/invitations | List agency client invitations
-[**ListWorkspacePortalProjectAccess**](ClientPortalsAPI.md#ListWorkspacePortalProjectAccess) | **Get** /v1/api/client-portal/members/{userId}/projects | List a client&#39;s current agency portal project access
-[**RemoveWorkspacePortalClient**](ClientPortalsAPI.md#RemoveWorkspacePortalClient) | **Delete** /v1/api/client-portal/members/{userId} | Remove a client&#39;s agency portal access
-[**RemoveWorkspacePortalCustomerAccess**](ClientPortalsAPI.md#RemoveWorkspacePortalCustomerAccess) | **Delete** /v1/api/client-portal/members/{userId}/accounts/{clientAccountId} | Take one customer away from a client
-[**RemoveWorkspacePortalProjectAccess**](ClientPortalsAPI.md#RemoveWorkspacePortalProjectAccess) | **Delete** /v1/api/client-portal/members/{userId}/projects/{projectId} | Remove one explicit portal project grant
-[**RestoreWorkspacePortalCustomerAccess**](ClientPortalsAPI.md#RestoreWorkspacePortalCustomerAccess) | **Put** /v1/api/client-portal/members/{userId}/accounts/{clientAccountId} | Give a client back one customer&#39;s access
-[**RevokeWorkspacePortalInvitation**](ClientPortalsAPI.md#RevokeWorkspacePortalInvitation) | **Delete** /v1/api/client-portal/invitations/{invitationId} | Revoke an unaccepted client invitation
-[**SetWorkspacePortalProjectAccess**](ClientPortalsAPI.md#SetWorkspacePortalProjectAccess) | **Put** /v1/api/client-portal/members/{userId}/projects/{projectId} | Grant one project, with steering and project insights
-[**UpdateWorkspacePortalClient**](ClientPortalsAPI.md#UpdateWorkspacePortalClient) | **Patch** /v1/api/client-portal/members/{userId} | Set or clear a client&#39;s permission override
-[**UpdateWorkspacePortalSettings**](ClientPortalsAPI.md#UpdateWorkspacePortalSettings) | **Patch** /v1/api/client-portal/settings | Update default client permissions
+[**AcceptClientPortalInvitation**](ClientPortalsAPI.md#acceptclientportalinvitation) | **Post** /v1/api/portal-invitations/{token}/accept | Accept an email-bound client portal invitation
+[**CreateClientPortalIdea**](ClientPortalsAPI.md#createclientportalidea) | **Post** /v1/api/portal/projects | Create a planning project
+[**EnterWorkspaceClientPortal**](ClientPortalsAPI.md#enterworkspaceclientportal) | **Post** /v1/api/portals/{agencySlug}/session | Enter the agency portal using the signed-in verified email
+[**GetClientPortalIdentity**](ClientPortalsAPI.md#getclientportalidentity) | **Get** /v1/api/portals/{agencySlug}/identity | Read the published agency identity
+[**GetWorkspacePortalSettings**](ClientPortalsAPI.md#getworkspaceportalsettings) | **Get** /v1/api/client-portal/settings | Read default client permissions
+[**InitializePersonalWorkspace**](ClientPortalsAPI.md#initializepersonalworkspace) | **Post** /v1/api/me/workspace | Initialize your personal Hlix workspace
+[**InviteWorkspacePortalClient**](ClientPortalsAPI.md#inviteworkspaceportalclient) | **Post** /v1/api/client-portal/invitations | Invite an email directly to the agency client portal
+[**ListMyClientPortals**](ClientPortalsAPI.md#listmyclientportals) | **Get** /v1/api/me/portals | Discover your available agency client portals
+[**ListWorkspacePortalClients**](ClientPortalsAPI.md#listworkspaceportalclients) | **Get** /v1/api/client-portal/members | List the agency&#39;s portal clients
+[**ListWorkspacePortalInvitations**](ClientPortalsAPI.md#listworkspaceportalinvitations) | **Get** /v1/api/client-portal/invitations | List agency client invitations
+[**ListWorkspacePortalProjectAccess**](ClientPortalsAPI.md#listworkspaceportalprojectaccess) | **Get** /v1/api/client-portal/members/{userId}/projects | List a client&#39;s current agency portal project access
+[**RemoveWorkspacePortalClient**](ClientPortalsAPI.md#removeworkspaceportalclient) | **Delete** /v1/api/client-portal/members/{userId} | Remove a client&#39;s agency portal access
+[**RemoveWorkspacePortalCustomerAccess**](ClientPortalsAPI.md#removeworkspaceportalcustomeraccess) | **Delete** /v1/api/client-portal/members/{userId}/accounts/{clientAccountId} | Take one customer away from a client
+[**RemoveWorkspacePortalProjectAccess**](ClientPortalsAPI.md#removeworkspaceportalprojectaccess) | **Delete** /v1/api/client-portal/members/{userId}/projects/{projectId} | Remove one explicit portal project grant
+[**RestoreWorkspacePortalCustomerAccess**](ClientPortalsAPI.md#restoreworkspaceportalcustomeraccess) | **Put** /v1/api/client-portal/members/{userId}/accounts/{clientAccountId} | Give a client back one customer&#39;s access
+[**RevokeWorkspacePortalInvitation**](ClientPortalsAPI.md#revokeworkspaceportalinvitation) | **Delete** /v1/api/client-portal/invitations/{invitationId} | Revoke an unaccepted client invitation
+[**SetWorkspacePortalProjectAccess**](ClientPortalsAPI.md#setworkspaceportalprojectaccess) | **Put** /v1/api/client-portal/members/{userId}/projects/{projectId} | Grant one project, with messaging and project insights
+[**UpdateWorkspacePortalClient**](ClientPortalsAPI.md#updateworkspaceportalclient) | **Patch** /v1/api/client-portal/members/{userId} | Set or clear a client&#39;s permission override
+[**UpdateWorkspacePortalSettings**](ClientPortalsAPI.md#updateworkspaceportalsettings) | **Patch** /v1/api/client-portal/settings | Update default client permissions
 
 
 
@@ -33,6 +33,8 @@ Method | HTTP request | Description
 Accept an email-bound client portal invitation
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -45,12 +47,13 @@ import (
 )
 
 func main() {
-	token := "token_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.Background()
+	token := "token_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.AcceptClientPortalInvitation(context.Background(), token).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.AcceptClientPortalInvitation(ctx, token).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.AcceptClientPortalInvitation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,17 +69,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**token** | **string** |  | 
+**token** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAcceptClientPortalInvitationRequest struct via the builder pattern
+Pass optional parameters through the `apiAcceptClientPortalInvitationRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -84,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -100,14 +103,17 @@ Name | Type | Description  | Notes
 
 > ProjectRow CreateClientPortalIdea(ctx).CreatePortalProject(createPortalProject).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Create a brainstorming project
+Create a planning project
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -115,13 +121,16 @@ import (
 )
 
 func main() {
-	createPortalProject := *openapiclient.NewCreatePortalProject("Name_example") // CreatePortalProject | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.Background()
+	var createPortalProject openapiclient.CreatePortalProject
+	if err := json.Unmarshal([]byte("{\"name\":\"text\"}"), &createPortalProject); err != nil {
+		panic(err)
+	}
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.CreateClientPortalIdea(context.Background()).CreatePortalProject(createPortalProject).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.CreateClientPortalIdea(ctx).CreatePortalProject(createPortalProject).XClientPortal(os.Getenv("HLIX_AGENCY_WORKSPACE_ID")).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.CreateClientPortalIdea``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,14 +146,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateClientPortalIdeaRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateClientPortalIdeaRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createPortalProject** | [**CreatePortalProject**](CreatePortalProject.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **createPortalProject** | [**CreatePortalProject**](CreatePortalProject.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -152,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -172,6 +181,8 @@ Enter the agency portal using the signed-in verified email
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -183,13 +194,13 @@ import (
 )
 
 func main() {
-	agencySlug := "agencySlug_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.Background()
+	agencySlug := "agencySlug_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.EnterWorkspaceClientPortal(context.Background(), agencySlug).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.EnterWorkspaceClientPortal(ctx, agencySlug).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.EnterWorkspaceClientPortal``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,18 +216,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agencySlug** | **string** |  | 
+**agencySlug** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEnterWorkspaceClientPortalRequest struct via the builder pattern
+Pass optional parameters through the `apiEnterWorkspaceClientPortalRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -224,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -244,6 +255,8 @@ Read the published agency identity
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -255,11 +268,14 @@ import (
 )
 
 func main() {
-	agencySlug := "agencySlug_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	agencySlug := "agencySlug_example" // string |
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.GetClientPortalIdentity(context.Background(), agencySlug).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.GetClientPortalIdentity(ctx, agencySlug).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.GetClientPortalIdentity``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,11 +291,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**agencySlug** | **string** |  | 
+**agencySlug** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetClientPortalIdentityRequest struct via the builder pattern
+Pass optional parameters through the `apiGetClientPortalIdentityRequest` request builder.
 
 
 Name | Type | Description  | Notes
@@ -312,6 +328,8 @@ Read default client permissions
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -323,11 +341,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.GetWorkspacePortalSettings(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.GetWorkspacePortalSettings(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.GetWorkspacePortalSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -343,12 +364,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspacePortalSettingsRequest struct via the builder pattern
+Pass optional parameters through the `apiGetWorkspacePortalSettingsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -356,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -376,6 +397,8 @@ Initialize your personal Hlix workspace
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -387,11 +410,12 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.Background()
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.InitializePersonalWorkspace(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.InitializePersonalWorkspace(ctx).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.InitializePersonalWorkspace``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -407,12 +431,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInitializePersonalWorkspaceRequest struct via the builder pattern
+Pass optional parameters through the `apiInitializePersonalWorkspaceRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -420,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -440,10 +464,13 @@ Invite an email directly to the agency client portal
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -451,12 +478,18 @@ import (
 )
 
 func main() {
-	inviteWorkspacePortal := *openapiclient.NewInviteWorkspacePortal("Email_example") // InviteWorkspacePortal | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var inviteWorkspacePortal openapiclient.InviteWorkspacePortal
+	if err := json.Unmarshal([]byte("{\"email\":\"person@example.com\"}"), &inviteWorkspacePortal); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.InviteWorkspacePortalClient(context.Background()).InviteWorkspacePortal(inviteWorkspacePortal).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.InviteWorkspacePortalClient(ctx).InviteWorkspacePortal(inviteWorkspacePortal).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.InviteWorkspacePortalClient``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -472,13 +505,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInviteWorkspacePortalClientRequest struct via the builder pattern
+Pass optional parameters through the `apiInviteWorkspacePortalClientRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inviteWorkspacePortal** | [**InviteWorkspacePortal**](InviteWorkspacePortal.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **inviteWorkspacePortal** | [**InviteWorkspacePortal**](InviteWorkspacePortal.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -486,7 +519,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -506,6 +539,8 @@ Discover your available agency client portals
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -517,12 +552,12 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.Background()
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.ListMyClientPortals(context.Background()).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.ListMyClientPortals(ctx).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.ListMyClientPortals``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -538,13 +573,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListMyClientPortalsRequest struct via the builder pattern
+Pass optional parameters through the `apiListMyClientPortalsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -552,7 +587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -572,6 +607,8 @@ List the agency's portal clients
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -583,11 +620,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalClients(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalClients(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.ListWorkspacePortalClients``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -603,12 +643,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspacePortalClientsRequest struct via the builder pattern
+Pass optional parameters through the `apiListWorkspacePortalClientsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -616,7 +656,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -636,6 +676,8 @@ List agency client invitations
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -647,11 +689,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalInvitations(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalInvitations(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.ListWorkspacePortalInvitations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -667,12 +712,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspacePortalInvitationsRequest struct via the builder pattern
+Pass optional parameters through the `apiListWorkspacePortalInvitationsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -680,7 +725,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -700,6 +745,8 @@ List a client's current agency portal project access
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -711,12 +758,15 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalProjectAccess(context.Background(), userId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.ListWorkspacePortalProjectAccess(ctx, userId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.ListWorkspacePortalProjectAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -732,17 +782,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspacePortalProjectAccessRequest struct via the builder pattern
+Pass optional parameters through the `apiListWorkspacePortalProjectAccessRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -750,7 +800,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -770,6 +820,8 @@ Remove a client's agency portal access
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -781,12 +833,15 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalClient(context.Background(), userId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalClient(ctx, userId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.RemoveWorkspacePortalClient``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -802,17 +857,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveWorkspacePortalClientRequest struct via the builder pattern
+Pass optional parameters through the `apiRemoveWorkspacePortalClientRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -820,7 +875,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -840,6 +895,8 @@ Take one customer away from a client
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -851,13 +908,16 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	clientAccountId := "clientAccountId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	clientAccountId := "clientAccountId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalCustomerAccess(context.Background(), userId, clientAccountId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalCustomerAccess(ctx, userId, clientAccountId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.RemoveWorkspacePortalCustomerAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -873,19 +933,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**clientAccountId** | **string** |  | 
+**userId** | **string** |  |
+**clientAccountId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveWorkspacePortalCustomerAccessRequest struct via the builder pattern
+Pass optional parameters through the `apiRemoveWorkspacePortalCustomerAccessRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -893,7 +953,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -913,6 +973,8 @@ Remove one explicit portal project grant
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -924,13 +986,16 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalProjectAccess(context.Background(), userId, projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.RemoveWorkspacePortalProjectAccess(ctx, userId, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.RemoveWorkspacePortalProjectAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -946,19 +1011,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**projectId** | **string** |  | 
+**userId** | **string** |  |
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveWorkspacePortalProjectAccessRequest struct via the builder pattern
+Pass optional parameters through the `apiRemoveWorkspacePortalProjectAccessRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -966,7 +1031,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -986,10 +1051,13 @@ Give a client back one customer's access
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -997,14 +1065,20 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	clientAccountId := "clientAccountId_example" // string | 
-	restoreCustomerAccess := *openapiclient.NewRestoreCustomerAccess(false) // RestoreCustomerAccess | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	clientAccountId := "clientAccountId_example" // string |
+	var restoreCustomerAccess openapiclient.RestoreCustomerAccess
+	if err := json.Unmarshal([]byte("{\"seat\":true}"), &restoreCustomerAccess); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.RestoreWorkspacePortalCustomerAccess(context.Background(), userId, clientAccountId).RestoreCustomerAccess(restoreCustomerAccess).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.RestoreWorkspacePortalCustomerAccess(ctx, userId, clientAccountId).RestoreCustomerAccess(restoreCustomerAccess).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.RestoreWorkspacePortalCustomerAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1020,20 +1094,20 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**clientAccountId** | **string** |  | 
+**userId** | **string** |  |
+**clientAccountId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRestoreWorkspacePortalCustomerAccessRequest struct via the builder pattern
+Pass optional parameters through the `apiRestoreWorkspacePortalCustomerAccessRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **restoreCustomerAccess** | [**RestoreCustomerAccess**](RestoreCustomerAccess.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **restoreCustomerAccess** | [**RestoreCustomerAccess**](RestoreCustomerAccess.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1041,7 +1115,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1061,6 +1135,8 @@ Revoke an unaccepted client invitation
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -1072,12 +1148,15 @@ import (
 )
 
 func main() {
-	invitationId := "invitationId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	invitationId := "invitationId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.RevokeWorkspacePortalInvitation(context.Background(), invitationId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.RevokeWorkspacePortalInvitation(ctx, invitationId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.RevokeWorkspacePortalInvitation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1093,17 +1172,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invitationId** | **string** |  | 
+**invitationId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRevokeWorkspacePortalInvitationRequest struct via the builder pattern
+Pass optional parameters through the `apiRevokeWorkspacePortalInvitationRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1111,7 +1190,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1127,14 +1206,17 @@ Name | Type | Description  | Notes
 
 > PortalProjectGrant SetWorkspacePortalProjectAccess(ctx, userId, projectId).PortalProjectPermissions(portalProjectPermissions).XOrganizationId(xOrganizationId).Execute()
 
-Grant one project, with steering and project insights
+Grant one project, with messaging and project insights
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1142,14 +1224,20 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	projectId := "projectId_example" // string | 
-	portalProjectPermissions := *openapiclient.NewPortalProjectPermissions(false) // PortalProjectPermissions | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	projectId := "projectId_example" // string |
+	var portalProjectPermissions openapiclient.PortalProjectPermissions
+	if err := json.Unmarshal([]byte("{\"canMessage\":true}"), &portalProjectPermissions); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.SetWorkspacePortalProjectAccess(context.Background(), userId, projectId).PortalProjectPermissions(portalProjectPermissions).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.SetWorkspacePortalProjectAccess(ctx, userId, projectId).PortalProjectPermissions(portalProjectPermissions).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.SetWorkspacePortalProjectAccess``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1165,20 +1253,20 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**projectId** | **string** |  | 
+**userId** | **string** |  |
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetWorkspacePortalProjectAccessRequest struct via the builder pattern
+Pass optional parameters through the `apiSetWorkspacePortalProjectAccessRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **portalProjectPermissions** | [**PortalProjectPermissions**](PortalProjectPermissions.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **portalProjectPermissions** | [**PortalProjectPermissions**](PortalProjectPermissions.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1186,7 +1274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1206,10 +1294,13 @@ Set or clear a client's permission override
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1217,13 +1308,19 @@ import (
 )
 
 func main() {
-	userId := "userId_example" // string | 
-	workspacePortalMember := *openapiclient.NewWorkspacePortalMember(false) // WorkspacePortalMember | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	userId := "userId_example" // string |
+	var workspacePortalMember openapiclient.WorkspacePortalMember
+	if err := json.Unmarshal([]byte("{\"canCreateProjects\":true}"), &workspacePortalMember); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.UpdateWorkspacePortalClient(context.Background(), userId).WorkspacePortalMember(workspacePortalMember).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.UpdateWorkspacePortalClient(ctx, userId).WorkspacePortalMember(workspacePortalMember).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.UpdateWorkspacePortalClient``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1239,18 +1336,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateWorkspacePortalClientRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateWorkspacePortalClientRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **workspacePortalMember** | [**WorkspacePortalMember**](WorkspacePortalMember.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **workspacePortalMember** | [**WorkspacePortalMember**](WorkspacePortalMember.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1258,7 +1355,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1278,10 +1375,13 @@ Update default client permissions
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1289,12 +1389,18 @@ import (
 )
 
 func main() {
-	workspacePortalSettings := *openapiclient.NewWorkspacePortalSettings(false) // WorkspacePortalSettings | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var workspacePortalSettings openapiclient.WorkspacePortalSettings
+	if err := json.Unmarshal([]byte("{\"defaultCanCreateProjects\":true}"), &workspacePortalSettings); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientPortalsAPI.UpdateWorkspacePortalSettings(context.Background()).WorkspacePortalSettings(workspacePortalSettings).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientPortalsAPI.UpdateWorkspacePortalSettings(ctx).WorkspacePortalSettings(workspacePortalSettings).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientPortalsAPI.UpdateWorkspacePortalSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1310,13 +1416,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateWorkspacePortalSettingsRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateWorkspacePortalSettingsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspacePortalSettings** | [**WorkspacePortalSettings**](WorkspacePortalSettings.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **workspacePortalSettings** | [**WorkspacePortalSettings**](WorkspacePortalSettings.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1324,7 +1430,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

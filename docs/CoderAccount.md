@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | **NullableString** |  | 
-**Coder** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Enabled** | **bool** |  | 
-**ExpiresAt** | **NullableString** |  | 
-**Hint** | **NullableString** |  | 
-**Id** | **string** |  | 
-**InUse** | **bool** |  | 
-**Kind** | **string** |  | 
-**Label** | **string** |  | 
-**LastUsedAt** | **NullableString** |  | 
-**LimitedUntil** | **NullableString** |  | 
-**OwnerUserId** | **NullableString** |  | 
-**Shared** | **bool** |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Usage** | [**NullableCoderAccountUsage**](CoderAccountUsage.md) |  | 
+**BaseUrl** | **NullableString** |  |
+**Coder** | **string** |  |
+**CreatedAt** | **string** |  |
+**Enabled** | **bool** |  |
+**ExpiresAt** | **NullableString** |  |
+**Hint** | **NullableString** |  |
+**Id** | **string** |  |
+**InUse** | **bool** |  |
+**Kind** | **string** |  |
+**Label** | **string** |  |
+**LastUsedAt** | **NullableString** |  |
+**LimitedUntil** | **NullableString** |  |
+**OwnerUserId** | **NullableString** |  |
+**Shared** | **bool** |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Usage** | [**NullableCoderAccountUsage**](CoderAccountUsage.md) |  |
 
 ## Methods
 
@@ -29,17 +29,15 @@ Name | Type | Description | Notes
 `func NewCoderAccount(baseUrl NullableString, coder string, createdAt string, enabled bool, expiresAt NullableString, hint NullableString, id string, inUse bool, kind string, label string, lastUsedAt NullableString, limitedUntil NullableString, ownerUserId NullableString, shared bool, status string, updatedAt string, usage NullableCoderAccountUsage, ) *CoderAccount`
 
 NewCoderAccount instantiates a new CoderAccount object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCoderAccountWithDefaults
 
 `func NewCoderAccountWithDefaults() *CoderAccount`
 
 NewCoderAccountWithDefaults instantiates a new CoderAccount object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBaseUrl
 

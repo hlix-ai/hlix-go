@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,7 +20,7 @@ var _ MappedNullable = &CycleStopped{}
 
 // CycleStopped struct for CycleStopped
 type CycleStopped struct {
-	OrchestratorNotified bool `json:"orchestratorNotified"`
+	ProjectManagerNotified bool `json:"projectManagerNotified"`
 	Status string `json:"status"`
 	Stopped bool `json:"stopped"`
 	AdditionalProperties map[string]interface{}
@@ -32,9 +32,9 @@ type _CycleStopped CycleStopped
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCycleStopped(orchestratorNotified bool, status string, stopped bool) *CycleStopped {
+func NewCycleStopped(projectManagerNotified bool, status string, stopped bool) *CycleStopped {
 	this := CycleStopped{}
-	this.OrchestratorNotified = orchestratorNotified
+	this.ProjectManagerNotified = projectManagerNotified
 	this.Status = status
 	this.Stopped = stopped
 	return &this
@@ -45,31 +45,33 @@ func NewCycleStopped(orchestratorNotified bool, status string, stopped bool) *Cy
 // but it doesn't guarantee that properties required by API are set
 func NewCycleStoppedWithDefaults() *CycleStopped {
 	this := CycleStopped{}
+	var stopped bool = true
+	this.Stopped = stopped
 	return &this
 }
 
-// GetOrchestratorNotified returns the OrchestratorNotified field value
-func (o *CycleStopped) GetOrchestratorNotified() bool {
+// GetProjectManagerNotified returns the ProjectManagerNotified field value
+func (o *CycleStopped) GetProjectManagerNotified() bool {
 	if o == nil {
 		var ret bool
 		return ret
 	}
 
-	return o.OrchestratorNotified
+	return o.ProjectManagerNotified
 }
 
-// GetOrchestratorNotifiedOk returns a tuple with the OrchestratorNotified field value
+// GetProjectManagerNotifiedOk returns a tuple with the ProjectManagerNotified field value
 // and a boolean to check if the value has been set.
-func (o *CycleStopped) GetOrchestratorNotifiedOk() (*bool, bool) {
+func (o *CycleStopped) GetProjectManagerNotifiedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.OrchestratorNotified, true
+	return &o.ProjectManagerNotified, true
 }
 
-// SetOrchestratorNotified sets field value
-func (o *CycleStopped) SetOrchestratorNotified(v bool) {
-	o.OrchestratorNotified = v
+// SetProjectManagerNotified sets field value
+func (o *CycleStopped) SetProjectManagerNotified(v bool) {
+	o.ProjectManagerNotified = v
 }
 
 // GetStatus returns the Status field value
@@ -130,7 +132,7 @@ func (o CycleStopped) MarshalJSON() ([]byte, error) {
 
 func (o CycleStopped) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["orchestratorNotified"] = o.OrchestratorNotified
+	toSerialize["projectManagerNotified"] = o.ProjectManagerNotified
 	toSerialize["status"] = o.Status
 	toSerialize["stopped"] = o.Stopped
 
@@ -146,7 +148,7 @@ func (o *CycleStopped) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"orchestratorNotified",
+		"projectManagerNotified",
 		"status",
 		"stopped",
 	}
@@ -178,7 +180,7 @@ func (o *CycleStopped) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "orchestratorNotified")
+		delete(additionalProperties, "projectManagerNotified")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "stopped")
 		o.AdditionalProperties = additionalProperties

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** |  | 
-**BrandColor** | Pointer to **NullableString** |  | [optional] 
-**ContactEmail** | Pointer to **NullableString** |  | [optional] 
-**DefaultPaymentTerms** | Pointer to **NullableString** |  | [optional] 
-**InvoiceFooter** | Pointer to **NullableString** |  | [optional] 
-**LegalName** | **string** |  | 
-**Logo** | Pointer to [**NullableUpsertBillingProfileLogo**](UpsertBillingProfileLogo.md) |  | [optional] 
-**TaxId** | Pointer to **NullableString** |  | [optional] 
+**Address** | **string** |  |
+**BrandColor** | Pointer to **NullableString** |  | [optional]
+**ContactEmail** | Pointer to **NullableString** |  | [optional]
+**DefaultPaymentTerms** | Pointer to **NullableString** |  | [optional]
+**InvoiceFooter** | Pointer to **NullableString** |  | [optional]
+**LegalName** | **string** |  |
+**Logo** | Pointer to [**NullableUpsertBillingProfileLogo**](UpsertBillingProfileLogo.md) |  | [optional]
+**TaxId** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewUpsertBillingProfile(address string, legalName string, ) *UpsertBillingProfile`
 
 NewUpsertBillingProfile instantiates a new UpsertBillingProfile object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpsertBillingProfileWithDefaults
 
 `func NewUpsertBillingProfileWithDefaults() *UpsertBillingProfile`
 
 NewUpsertBillingProfileWithDefaults instantiates a new UpsertBillingProfile object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAddress
 

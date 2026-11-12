@@ -1,27 +1,27 @@
-# \AiAPI
+# AiAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AnalyzeAiMedia**](AiAPI.md#AnalyzeAiMedia) | **Post** /v1/api/ai/media/analyze | Ask a question about an image or a video
-[**CreateHlixCodeChatCompletion**](AiAPI.md#CreateHlixCodeChatCompletion) | **Post** /v1/api/ai/w/{workspaceId}/chat/completions | Run an OpenAI-compatible chat completion on the workspace&#39;s own model budget
-[**CreateHlixCodeMessage**](AiAPI.md#CreateHlixCodeMessage) | **Post** /v1/api/ai/w/{workspaceId}/v1/messages | Run an Anthropic Messages request on the workspace&#39;s own model budget
-[**CreateHlixCodeResponse**](AiAPI.md#CreateHlixCodeResponse) | **Post** /v1/api/ai/w/{workspaceId}/responses | Run an OpenAI Responses request on the workspace&#39;s own model budget
-[**GenerateAiImages**](AiAPI.md#GenerateAiImages) | **Post** /v1/api/ai/media/images | Generate images
-[**GenerateAiVideo**](AiAPI.md#GenerateAiVideo) | **Post** /v1/api/ai/media/video | Submit a video generation
-[**GetAiAsset**](AiAPI.md#GetAiAsset) | **Get** /v1/api/ai/assets/{key} | Fetch one stored AI artifact
-[**GetAiBatch**](AiAPI.md#GetAiBatch) | **Get** /v1/api/ai/batches/{id} | Read one batch and a page of its items
-[**GetAiDocument**](AiAPI.md#GetAiDocument) | **Get** /v1/api/ai/documents/{id} | Read one parsed document
-[**GetAiVideoJob**](AiAPI.md#GetAiVideoJob) | **Get** /v1/api/ai/media/video/{id} | Read one video job
-[**ListAiDocuments**](AiAPI.md#ListAiDocuments) | **Get** /v1/api/ai/documents | List recently parsed documents
-[**ListHlixCodeModels**](AiAPI.md#ListHlixCodeModels) | **Get** /v1/api/ai/w/{workspaceId}/models | List the models a Hlix Code session may run, and the workspace default
-[**ParseAiDocument**](AiAPI.md#ParseAiDocument) | **Post** /v1/api/ai/documents | Parse a document into markdown
-[**PollAiBatch**](AiAPI.md#PollAiBatch) | **Post** /v1/api/ai/batches/{id}/poll | Poll one batch now
-[**ReviewAiVideoJob**](AiAPI.md#ReviewAiVideoJob) | **Post** /v1/api/ai/media/video/{id}/review | Record a review verdict on a generated video
-[**SubmitAiBatch**](AiAPI.md#SubmitAiBatch) | **Post** /v1/api/ai/batches | Submit a batch of offline requests
-[**SynthesizeAiSpeech**](AiAPI.md#SynthesizeAiSpeech) | **Post** /v1/api/ai/media/speech | Synthesize speech
-[**TranscribeAiAudio**](AiAPI.md#TranscribeAiAudio) | **Post** /v1/api/ai/media/transcriptions | Transcribe stored audio
+[**AnalyzeAiMedia**](AiAPI.md#analyzeaimedia) | **Post** /v1/api/ai/media/analyze | Ask a question about an image or a video
+[**CreateHlixCodeChatCompletion**](AiAPI.md#createhlixcodechatcompletion) | **Post** /v1/api/ai/w/{workspaceId}/chat/completions | Run an OpenAI-compatible chat completion on the workspace&#39;s own model budget
+[**CreateHlixCodeMessage**](AiAPI.md#createhlixcodemessage) | **Post** /v1/api/ai/w/{workspaceId}/v1/messages | Run an Anthropic Messages request on the workspace&#39;s own model budget
+[**CreateHlixCodeResponse**](AiAPI.md#createhlixcoderesponse) | **Post** /v1/api/ai/w/{workspaceId}/responses | Run an OpenAI Responses request on the workspace&#39;s own model budget
+[**GenerateAiImages**](AiAPI.md#generateaiimages) | **Post** /v1/api/ai/media/images | Generate images
+[**GenerateAiVideo**](AiAPI.md#generateaivideo) | **Post** /v1/api/ai/media/video | Submit a video generation
+[**GetAiAsset**](AiAPI.md#getaiasset) | **Get** /v1/api/ai/assets/{key} | Fetch one stored AI artifact
+[**GetAiBatch**](AiAPI.md#getaibatch) | **Get** /v1/api/ai/batches/{id} | Read one batch and a page of its items
+[**GetAiDocument**](AiAPI.md#getaidocument) | **Get** /v1/api/ai/documents/{id} | Read one parsed document
+[**GetAiVideoJob**](AiAPI.md#getaivideojob) | **Get** /v1/api/ai/media/video/{id} | Read one video job
+[**ListAiDocuments**](AiAPI.md#listaidocuments) | **Get** /v1/api/ai/documents | List recently parsed documents
+[**ListHlixCodeModels**](AiAPI.md#listhlixcodemodels) | **Get** /v1/api/ai/w/{workspaceId}/models | List the models a Hlix Code session may run, and the workspace default
+[**ParseAiDocument**](AiAPI.md#parseaidocument) | **Post** /v1/api/ai/documents | Parse a document into markdown
+[**PollAiBatch**](AiAPI.md#pollaibatch) | **Post** /v1/api/ai/batches/{id}/poll | Poll one batch now
+[**ReviewAiVideoJob**](AiAPI.md#reviewaivideojob) | **Post** /v1/api/ai/media/video/{id}/review | Record a review verdict on a generated video
+[**SubmitAiBatch**](AiAPI.md#submitaibatch) | **Post** /v1/api/ai/batches | Submit a batch of offline requests
+[**SynthesizeAiSpeech**](AiAPI.md#synthesizeaispeech) | **Post** /v1/api/ai/media/speech | Synthesize speech
+[**TranscribeAiAudio**](AiAPI.md#transcribeaiaudio) | **Post** /v1/api/ai/media/transcriptions | Transcribe stored audio
 
 
 
@@ -33,10 +33,13 @@ Ask a question about an image or a video
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -44,12 +47,18 @@ import (
 )
 
 func main() {
-	analyzeMedia := *openapiclient.NewAnalyzeMedia("Kind_example", "Question_example", *openapiclient.NewAnalyzeMediaSource("Url_example", "ArtifactKey_example")) // AnalyzeMedia | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var analyzeMedia openapiclient.AnalyzeMedia
+	if err := json.Unmarshal([]byte("{\"kind\":\"image\",\"question\":\"text\",\"source\":{\"url\":\"https://example.com\"}}"), &analyzeMedia); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.AnalyzeAiMedia(context.Background()).AnalyzeMedia(analyzeMedia).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.AnalyzeAiMedia(ctx).AnalyzeMedia(analyzeMedia).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.AnalyzeAiMedia``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,13 +74,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAnalyzeAiMediaRequest struct via the builder pattern
+Pass optional parameters through the `apiAnalyzeAiMediaRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **analyzeMedia** | [**AnalyzeMedia**](AnalyzeMedia.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **analyzeMedia** | [**AnalyzeMedia**](AnalyzeMedia.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -79,7 +88,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -99,10 +108,13 @@ Run an OpenAI-compatible chat completion on the workspace's own model budget
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -110,13 +122,19 @@ import (
 )
 
 func main() {
-	workspaceId := "workspaceId_example" // string | 
-	chatCompletions := *openapiclient.NewChatCompletions([]interface{}{nil}) // ChatCompletions | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	workspaceId := "workspaceId_example" // string |
+	var chatCompletions openapiclient.ChatCompletions
+	if err := json.Unmarshal([]byte("{\"messages\":[\"value\"]}"), &chatCompletions); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.CreateHlixCodeChatCompletion(context.Background(), workspaceId).ChatCompletions(chatCompletions).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.CreateHlixCodeChatCompletion(ctx, workspaceId).ChatCompletions(chatCompletions).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.CreateHlixCodeChatCompletion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,18 +150,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceId** | **string** |  | 
+**workspaceId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateHlixCodeChatCompletionRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateHlixCodeChatCompletionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **chatCompletions** | [**ChatCompletions**](ChatCompletions.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **chatCompletions** | [**ChatCompletions**](ChatCompletions.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -151,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -171,10 +189,13 @@ Run an Anthropic Messages request on the workspace's own model budget
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -182,13 +203,19 @@ import (
 )
 
 func main() {
-	workspaceId := "workspaceId_example" // string | 
-	anthropicMessages := *openapiclient.NewAnthropicMessages([]interface{}{nil}) // AnthropicMessages | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	workspaceId := "workspaceId_example" // string |
+	var anthropicMessages openapiclient.AnthropicMessages
+	if err := json.Unmarshal([]byte("{\"messages\":[\"value\"]}"), &anthropicMessages); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.CreateHlixCodeMessage(context.Background(), workspaceId).AnthropicMessages(anthropicMessages).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.CreateHlixCodeMessage(ctx, workspaceId).AnthropicMessages(anthropicMessages).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.CreateHlixCodeMessage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,18 +231,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceId** | **string** |  | 
+**workspaceId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateHlixCodeMessageRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateHlixCodeMessageRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **anthropicMessages** | [**AnthropicMessages**](AnthropicMessages.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **anthropicMessages** | [**AnthropicMessages**](AnthropicMessages.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -223,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -243,10 +270,13 @@ Run an OpenAI Responses request on the workspace's own model budget
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -254,13 +284,19 @@ import (
 )
 
 func main() {
-	workspaceId := "workspaceId_example" // string | 
-	responses := *openapiclient.NewResponses(*openapiclient.NewResponsesInput()) // Responses | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	workspaceId := "workspaceId_example" // string |
+	var responses openapiclient.Responses
+	if err := json.Unmarshal([]byte("{\"input\":\"text\"}"), &responses); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.CreateHlixCodeResponse(context.Background(), workspaceId).Responses(responses).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.CreateHlixCodeResponse(ctx, workspaceId).Responses(responses).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.CreateHlixCodeResponse``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -276,18 +312,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceId** | **string** |  | 
+**workspaceId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateHlixCodeResponseRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateHlixCodeResponseRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **responses** | [**Responses**](Responses.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **responses** | [**Responses**](Responses.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -295,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -315,10 +351,13 @@ Generate images
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -326,12 +365,18 @@ import (
 )
 
 func main() {
-	generateImages := *openapiclient.NewGenerateImages("Prompt_example") // GenerateImages | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var generateImages openapiclient.GenerateImages
+	if err := json.Unmarshal([]byte("{\"prompt\":\"text\"}"), &generateImages); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GenerateAiImages(context.Background()).GenerateImages(generateImages).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GenerateAiImages(ctx).GenerateImages(generateImages).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GenerateAiImages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -347,13 +392,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGenerateAiImagesRequest struct via the builder pattern
+Pass optional parameters through the `apiGenerateAiImagesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generateImages** | [**GenerateImages**](GenerateImages.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **generateImages** | [**GenerateImages**](GenerateImages.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -361,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -381,10 +426,13 @@ Submit a video generation
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -392,12 +440,18 @@ import (
 )
 
 func main() {
-	generateVideo := *openapiclient.NewGenerateVideo("IdempotencyKey_example", "Prompt_example") // GenerateVideo | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var generateVideo openapiclient.GenerateVideo
+	if err := json.Unmarshal([]byte("{\"idempotencyKey\":\"text\",\"prompt\":\"text\"}"), &generateVideo); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GenerateAiVideo(context.Background()).GenerateVideo(generateVideo).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GenerateAiVideo(ctx).GenerateVideo(generateVideo).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GenerateAiVideo``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -413,13 +467,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGenerateAiVideoRequest struct via the builder pattern
+Pass optional parameters through the `apiGenerateAiVideoRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generateVideo** | [**GenerateVideo**](GenerateVideo.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **generateVideo** | [**GenerateVideo**](GenerateVideo.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -427,7 +481,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -447,6 +501,8 @@ Fetch one stored AI artifact
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -458,13 +514,16 @@ import (
 )
 
 func main() {
-	key := "key_example" // string | 
-	download := "download_example" // string | Set to `1` to receive the object's own bytes instead of a JSON pointer. It only changes anything when this deployment cannot hand back a signed URL — artifacts stored locally, or a signed download link could not be issued for this request — because a signed URL is always answered as JSON. In that case the JSON body's `url` is this same route with `download=1` already appended, so following it is the normal flow; any other value, absent included, answers the JSON. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	key := "key_example" // string |
+	download := "download_example" // string | Set to `1` to download artifact bytes when a signed URL cannot be issued. The default JSON response then provides this route with `download=1` in its `url`. When a signed URL is available, the endpoint returns that URL as JSON regardless of this parameter. Other values, including an omitted parameter, return JSON. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GetAiAsset(context.Background(), key).Download(download).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GetAiAsset(ctx, key).Download(download).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GetAiAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,18 +539,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**key** | **string** |  | 
+**key** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAiAssetRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAiAssetRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **download** | **string** | Set to &#x60;1&#x60; to receive the object&#39;s own bytes instead of a JSON pointer. It only changes anything when this deployment cannot hand back a signed URL — artifacts stored locally, or a signed download link could not be issued for this request — because a signed URL is always answered as JSON. In that case the JSON body&#39;s &#x60;url&#x60; is this same route with &#x60;download&#x3D;1&#x60; already appended, so following it is the normal flow; any other value, absent included, answers the JSON. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **download** | **string** | Set to &#x60;1&#x60; to download artifact bytes when a signed URL cannot be issued. The default JSON response then provides this route with &#x60;download&#x3D;1&#x60; in its &#x60;url&#x60;. When a signed URL is available, the endpoint returns that URL as JSON regardless of this parameter. Other values, including an omitted parameter, return JSON. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -499,7 +558,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -519,6 +578,8 @@ Read one batch and a page of its items
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -530,14 +591,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	limit := "limit_example" // string | How many items to return, 1–1000. Defaults to 200. Rejected rather than clamped: a substituted window is how a paging loop skips rows unnoticed. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	limit := "limit_example" // string | Page size, 1–1000; default 200. Invalid values are rejected rather than clamped. (optional)
 	after := "after_example" // string | The previous page's `nextCursor`, verbatim — the last `customId` it returned. Omit for the first page. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GetAiBatch(context.Background(), id).Limit(limit).After(after).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GetAiBatch(ctx, id).Limit(limit).After(after).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GetAiBatch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -553,19 +617,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAiBatchRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAiBatchRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **limit** | **string** | How many items to return, 1–1000. Defaults to 200. Rejected rather than clamped: a substituted window is how a paging loop skips rows unnoticed. | 
- **after** | **string** | The previous page&#39;s &#x60;nextCursor&#x60;, verbatim — the last &#x60;customId&#x60; it returned. Omit for the first page. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **limit** | **string** | Page size, 1–1000; default 200. Invalid values are rejected rather than clamped. |
+ **after** | **string** | The previous page&#39;s &#x60;nextCursor&#x60;, verbatim — the last &#x60;customId&#x60; it returned. Omit for the first page. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -573,7 +637,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -593,6 +657,8 @@ Read one parsed document
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -604,12 +670,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GetAiDocument(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GetAiDocument(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GetAiDocument``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -625,17 +694,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAiDocumentRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAiDocumentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -643,7 +712,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -663,6 +732,8 @@ Read one video job
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -674,12 +745,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.GetAiVideoJob(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.GetAiVideoJob(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.GetAiVideoJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -695,17 +769,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAiVideoJobRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAiVideoJobRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -713,7 +787,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -733,6 +807,8 @@ List recently parsed documents
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -744,12 +820,15 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	limit := "limit_example" // string | How many rows to return, newest first. Clamped to 200; anything unparseable falls back to 50. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.ListAiDocuments(context.Background()).Limit(limit).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.ListAiDocuments(ctx).Limit(limit).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.ListAiDocuments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -765,13 +844,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListAiDocumentsRequest struct via the builder pattern
+Pass optional parameters through the `apiListAiDocumentsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **string** | How many rows to return, newest first. Clamped to 200; anything unparseable falls back to 50. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **limit** | **string** | How many rows to return, newest first. Clamped to 200; anything unparseable falls back to 50. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -779,7 +858,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -799,6 +878,8 @@ List the models a Hlix Code session may run, and the workspace default
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -810,12 +891,15 @@ import (
 )
 
 func main() {
-	workspaceId := "workspaceId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	workspaceId := "workspaceId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.ListHlixCodeModels(context.Background(), workspaceId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.ListHlixCodeModels(ctx, workspaceId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.ListHlixCodeModels``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -831,17 +915,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workspaceId** | **string** |  | 
+**workspaceId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListHlixCodeModelsRequest struct via the builder pattern
+Pass optional parameters through the `apiListHlixCodeModelsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -849,7 +933,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -869,10 +953,13 @@ Parse a document into markdown
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -880,12 +967,18 @@ import (
 )
 
 func main() {
-	parseDocument := *openapiclient.NewParseDocument(*openapiclient.NewParseDocumentSource("Kind_example", "Url_example", "Key_example")) // ParseDocument | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var parseDocument openapiclient.ParseDocument
+	if err := json.Unmarshal([]byte("{\"source\":{\"kind\":\"url\",\"url\":\"https://example.com\"}}"), &parseDocument); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.ParseAiDocument(context.Background()).ParseDocument(parseDocument).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.ParseAiDocument(ctx).ParseDocument(parseDocument).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.ParseAiDocument``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -901,13 +994,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiParseAiDocumentRequest struct via the builder pattern
+Pass optional parameters through the `apiParseAiDocumentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parseDocument** | [**ParseDocument**](ParseDocument.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **parseDocument** | [**ParseDocument**](ParseDocument.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -915,7 +1008,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -935,6 +1028,8 @@ Poll one batch now
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -946,12 +1041,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.PollAiBatch(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.PollAiBatch(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.PollAiBatch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -967,17 +1065,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPollAiBatchRequest struct via the builder pattern
+Pass optional parameters through the `apiPollAiBatchRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -985,7 +1083,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1005,10 +1103,13 @@ Record a review verdict on a generated video
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1016,13 +1117,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	reviewMediaJob := *openapiclient.NewReviewMediaJob("State_example") // ReviewMediaJob | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var reviewMediaJob openapiclient.ReviewMediaJob
+	if err := json.Unmarshal([]byte("{\"state\":\"approved\"}"), &reviewMediaJob); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.ReviewAiVideoJob(context.Background(), id).ReviewMediaJob(reviewMediaJob).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.ReviewAiVideoJob(ctx, id).ReviewMediaJob(reviewMediaJob).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.ReviewAiVideoJob``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1038,18 +1145,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReviewAiVideoJobRequest struct via the builder pattern
+Pass optional parameters through the `apiReviewAiVideoJobRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **reviewMediaJob** | [**ReviewMediaJob**](ReviewMediaJob.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **reviewMediaJob** | [**ReviewMediaJob**](ReviewMediaJob.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1057,7 +1164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1077,10 +1184,13 @@ Submit a batch of offline requests
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1088,12 +1198,18 @@ import (
 )
 
 func main() {
-	submitBatch := *openapiclient.NewSubmitBatch("Endpoint_example", "IdempotencyKey_example", []openapiclient.SubmitBatchItemsInner{*openapiclient.NewSubmitBatchItemsInner(map[string]interface{}{"key": interface{}(123)}, "CustomId_example")}, "Kind_example", "Model_example", *openapiclient.NewSubmitBatchPolicy(false)) // SubmitBatch | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var submitBatch openapiclient.SubmitBatch
+	if err := json.Unmarshal([]byte("{\"endpoint\":\"/v1/chat/completions\",\"idempotencyKey\":\"text\",\"items\":[{\"body\":{\"key\":\"value\"},\"customId\":\"text\"}],\"kind\":\"backfill\",\"model\":\"claude-fable-5-1\",\"policy\":{\"sensitiveDataApproved\":true}}"), &submitBatch); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.SubmitAiBatch(context.Background()).SubmitBatch(submitBatch).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.SubmitAiBatch(ctx).SubmitBatch(submitBatch).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.SubmitAiBatch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1109,13 +1225,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSubmitAiBatchRequest struct via the builder pattern
+Pass optional parameters through the `apiSubmitAiBatchRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **submitBatch** | [**SubmitBatch**](SubmitBatch.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **submitBatch** | [**SubmitBatch**](SubmitBatch.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1123,7 +1239,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1143,10 +1259,13 @@ Synthesize speech
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1154,12 +1273,18 @@ import (
 )
 
 func main() {
-	synthesizeSpeech := *openapiclient.NewSynthesizeSpeech("Text_example", "Voice_example") // SynthesizeSpeech | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var synthesizeSpeech openapiclient.SynthesizeSpeech
+	if err := json.Unmarshal([]byte("{\"text\":\"text\",\"voice\":\"text\"}"), &synthesizeSpeech); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.SynthesizeAiSpeech(context.Background()).SynthesizeSpeech(synthesizeSpeech).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.SynthesizeAiSpeech(ctx).SynthesizeSpeech(synthesizeSpeech).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.SynthesizeAiSpeech``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1175,13 +1300,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSynthesizeAiSpeechRequest struct via the builder pattern
+Pass optional parameters through the `apiSynthesizeAiSpeechRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **synthesizeSpeech** | [**SynthesizeSpeech**](SynthesizeSpeech.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **synthesizeSpeech** | [**SynthesizeSpeech**](SynthesizeSpeech.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1189,7 +1314,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -1209,10 +1334,13 @@ Transcribe stored audio
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -1220,12 +1348,18 @@ import (
 )
 
 func main() {
-	transcribeAudio := *openapiclient.NewTranscribeAudio("ArtifactKey_example", "Format_example") // TranscribeAudio | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var transcribeAudio openapiclient.TranscribeAudio
+	if err := json.Unmarshal([]byte("{\"artifactKey\":\"text\",\"format\":\"wav\"}"), &transcribeAudio); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AiAPI.TranscribeAiAudio(context.Background()).TranscribeAudio(transcribeAudio).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.AiAPI.TranscribeAiAudio(ctx).TranscribeAudio(transcribeAudio).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AiAPI.TranscribeAiAudio``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1241,13 +1375,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTranscribeAiAudioRequest struct via the builder pattern
+Pass optional parameters through the `apiTranscribeAiAudioRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **transcribeAudio** | [**TranscribeAudio**](TranscribeAudio.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **transcribeAudio** | [**TranscribeAudio**](TranscribeAudio.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -1255,7 +1389,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

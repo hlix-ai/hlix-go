@@ -1,21 +1,105 @@
-# \ChatAPI
+# ChatAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CheckUrgentChatMessage**](ChatAPI.md#CheckUrgentChatMessage) | **Post** /v1/api/chat/urgent | Stop only the project&#39;s recent work an urgent message contradicts
-[**CreateChatSession**](ChatAPI.md#CreateChatSession) | **Post** /v1/api/chat/sessions | Start a chat session with an agent, or fork one at a message
-[**GetChatTurn**](ChatAPI.md#GetChatTurn) | **Get** /v1/api/chat/turns/{turnId} | Read where a sent message stands and the agent&#39;s answer
-[**ListChatDirectory**](ChatAPI.md#ListChatDirectory) | **Get** /v1/api/chat/directory | Search your private and accessible shared project conversations
-[**ListChatMessages**](ChatAPI.md#ListChatMessages) | **Get** /v1/api/chat/messages | Read the projectless chat transcript
-[**ListChatSessionMessages**](ChatAPI.md#ListChatSessionMessages) | **Get** /v1/api/chat/sessions/{id}/messages | Read one chat session&#39;s history
-[**ListChatSessions**](ChatAPI.md#ListChatSessions) | **Get** /v1/api/chat/sessions | List your chat sessions with one agent
-[**SendChatTurn**](ChatAPI.md#SendChatTurn) | **Post** /v1/api/chat/turns | Send a message to a project and return while the agent works
-[**SetPrivateChatModel**](ChatAPI.md#SetPrivateChatModel) | **Patch** /v1/api/chat/sessions/{id}/model | Choose the model for your private conversation
-[**StopChatTurn**](ChatAPI.md#StopChatTurn) | **Post** /v1/api/chat/stop | Request cancellation of your exact model turn across replicas
-[**UploadChatAttachment**](ChatAPI.md#UploadChatAttachment) | **Post** /v1/api/chat/attachments | Store a file for a chat turn to name
+[**AnswerChatApproval**](ChatAPI.md#answerchatapproval) | **Post** /v1/api/chat/approvals/{requestId} | Answer an approval the agent asked for
+[**CheckUrgentChatMessage**](ChatAPI.md#checkurgentchatmessage) | **Post** /v1/api/chat/urgent | Stop only the project&#39;s recent work an urgent message contradicts
+[**ConnectChatSocket**](ChatAPI.md#connectchatsocket) | **Post** /v1/api/chat/connect | Get the proof a conversation&#39;s socket upgrade presents
+[**ConnectProjectStream**](ChatAPI.md#connectprojectstream) | **Post** /v1/api/projects/{id}/stream/connect | Get the proof a project stream&#39;s socket upgrade presents
+[**CreateChat**](ChatAPI.md#createchat) | **Post** /v1/api/chats | Start a chat session with an agent
+[**ListChatDirectory**](ChatAPI.md#listchatdirectory) | **Get** /v1/api/chat/directory | Search your private and accessible shared project conversations
+[**ListChatMessages**](ChatAPI.md#listchatmessages) | **Get** /v1/api/chat/messages | Read a conversation&#39;s messages, newest page first
+[**ListChats**](ChatAPI.md#listchats) | **Get** /v1/api/chats | List the chat sessions of a conversation you may see
+[**SendChatTurn**](ChatAPI.md#sendchatturn) | **Post** /v1/api/chat/turns | Send a message to a conversation and return while the agent works
+[**SetPrivateChatModel**](ChatAPI.md#setprivatechatmodel) | **Patch** /v1/api/chats/{id}/model | Choose the model for your private conversation
+[**StopChatTurn**](ChatAPI.md#stopchatturn) | **Post** /v1/api/chat/stop | Stop the turn a conversation is running
+[**StreamChatEvents**](ChatAPI.md#streamchatevents) | **Get** /v1/api/chat/events | Follow a conversation as Server-Sent Events
+[**UploadChatAttachment**](ChatAPI.md#uploadchatattachment) | **Post** /v1/api/chat/attachments | Store a file for a chat turn to name
 
+
+
+## AnswerChatApproval
+
+> ConversationApprovalResult AnswerChatApproval(ctx, requestId).ConversationApproval(conversationApproval).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+
+Answer an approval the agent asked for
+
+### Example
+
+Replace example resource IDs and request values with your own before running.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	requestId := "requestId_example" // string |
+	var conversationApproval openapiclient.ConversationApproval
+	if err := json.Unmarshal([]byte("{\"approved\":true,\"chatId\":\"text\"}"), &conversationApproval); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChatAPI.AnswerChatApproval(ctx, requestId).ConversationApproval(conversationApproval).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.AnswerChatApproval``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AnswerChatApproval`: ConversationApprovalResult
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.AnswerChatApproval`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**requestId** | **string** |  |
+
+### Other Parameters
+
+Pass optional parameters through the `apiAnswerChatApprovalRequest` request builder.
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **conversationApproval** | [**ConversationApproval**](ConversationApproval.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
+
+### Return type
+
+[**ConversationApprovalResult**](ConversationApprovalResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CheckUrgentChatMessage
@@ -26,10 +110,13 @@ Stop only the project's recent work an urgent message contradicts
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -37,12 +124,18 @@ import (
 )
 
 func main() {
-	chatUrgent := *openapiclient.NewChatUrgent("Content_example", "ProjectId_example") // ChatUrgent | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var chatUrgent openapiclient.ChatUrgent
+	if err := json.Unmarshal([]byte("{\"content\":\"text\",\"projectId\":\"123e4567-e89b-42d3-a456-426614174000\"}"), &chatUrgent); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.CheckUrgentChatMessage(context.Background()).ChatUrgent(chatUrgent).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChatAPI.CheckUrgentChatMessage(ctx).ChatUrgent(chatUrgent).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.CheckUrgentChatMessage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,13 +151,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCheckUrgentChatMessageRequest struct via the builder pattern
+Pass optional parameters through the `apiCheckUrgentChatMessageRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chatUrgent** | [**ChatUrgent**](ChatUrgent.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **chatUrgent** | [**ChatUrgent**](ChatUrgent.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -72,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -84,18 +177,21 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateChatSession
+## ConnectChatSocket
 
-> ChatSessionCreated CreateChatSession(ctx).ChatSessionCreate(chatSessionCreate).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+> ConversationConnection ConnectChatSocket(ctx).ConversationConnect(conversationConnect).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Start a chat session with an agent, or fork one at a message
+Get the proof a conversation's socket upgrade presents
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -103,19 +199,24 @@ import (
 )
 
 func main() {
-	chatSessionCreate := *openapiclient.NewChatSessionCreate("SessionId_example") // ChatSessionCreate | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var conversationConnect openapiclient.ConversationConnect
+	if err := json.Unmarshal([]byte("{\"chatId\":\"text\"}"), &conversationConnect); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.CreateChatSession(context.Background()).ChatSessionCreate(chatSessionCreate).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.ConnectChatSocket(ctx).ConversationConnect(conversationConnect).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.CreateChatSession``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ConnectChatSocket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateChatSession`: ChatSessionCreated
-	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.CreateChatSession`: %v\n", resp)
+	// response from `ConnectChatSocket`: ConversationConnection
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ConnectChatSocket`: %v\n", resp)
 }
 ```
 
@@ -125,22 +226,22 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateChatSessionRequest struct via the builder pattern
+Pass optional parameters through the `apiConnectChatSocketRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chatSessionCreate** | [**ChatSessionCreate**](ChatSessionCreate.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **conversationConnect** | [**ConversationConnect**](ConversationConnect.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**ChatSessionCreated**](ChatSessionCreated.md)
+[**ConversationConnection**](ConversationConnection.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -152,13 +253,15 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetChatTurn
+## ConnectProjectStream
 
-> ChatTurnResult GetChatTurn(ctx, turnId).ProjectId(projectId).ActiveCycleId(activeCycleId).TaskId(taskId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+> ConversationConnection ConnectProjectStream(ctx, id).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Read where a sent message stands and the agent's answer
+Get the proof a project stream's socket upgrade presents
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -171,22 +274,21 @@ import (
 )
 
 func main() {
-	turnId := "turnId_example" // string | 
-	projectId := "projectId_example" // string | The project the turn was sent to.
-	activeCycleId := "activeCycleId_example" // string | The cycle, when the turn was sent to one. (optional)
-	taskId := "taskId_example" // string | The task, when the turn was sent to one. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.GetChatTurn(context.Background(), turnId).ProjectId(projectId).ActiveCycleId(activeCycleId).TaskId(taskId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.ConnectProjectStream(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.GetChatTurn``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ConnectProjectStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetChatTurn`: ChatTurnResult
-	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.GetChatTurn`: %v\n", resp)
+	// response from `ConnectProjectStream`: ConversationConnection
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ConnectProjectStream`: %v\n", resp)
 }
 ```
 
@@ -196,33 +298,106 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**turnId** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetChatTurnRequest struct via the builder pattern
+Pass optional parameters through the `apiConnectProjectStreamRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **projectId** | **string** | The project the turn was sent to. | 
- **activeCycleId** | **string** | The cycle, when the turn was sent to one. | 
- **taskId** | **string** | The task, when the turn was sent to one. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**ChatTurnResult**](ChatTurnResult.md)
+[**ConversationConnection**](ConversationConnection.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateChat
+
+> ConversationChatCreated CreateChat(ctx).ConversationChatCreate(conversationChatCreate).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+
+Start a chat session with an agent
+
+### Example
+
+Replace example resource IDs and request values with your own before running.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var conversationChatCreate openapiclient.ConversationChatCreate
+	if err := json.Unmarshal([]byte("{\"chatId\":\"text\",\"id\":\"123e4567-e89b-42d3-a456-426614174000\"}"), &conversationChatCreate); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChatAPI.CreateChat(ctx).ConversationChatCreate(conversationChatCreate).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.CreateChat``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateChat`: ConversationChatCreated
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.CreateChat`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Pass optional parameters through the `apiCreateChatRequest` request builder.
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversationChatCreate** | [**ConversationChatCreate**](ConversationChatCreate.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
+
+### Return type
+
+[**ConversationChatCreated**](ConversationChatCreated.md)
+
+### Authorization
+
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -238,6 +413,8 @@ Search your private and accessible shared project conversations
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -249,17 +426,19 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	q := "q_example" // string | Search title, project or agent name. Up to 200 characters. (optional)
 	visibility := "visibility_example" // string | all (default), private or shared. (optional)
 	projectId := "projectId_example" // string | Limit shared conversations to an accessible project. (optional)
 	page := "page_example" // string | One-based page, default 1. (optional)
 	pageSize := "pageSize_example" // string | 1–50 conversations per page, default 20. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.ListChatDirectory(context.Background()).Q(q).Visibility(visibility).ProjectId(projectId).Page(page).PageSize(pageSize).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.ListChatDirectory(ctx).Q(q).Visibility(visibility).ProjectId(projectId).Page(page).PageSize(pageSize).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ListChatDirectory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,18 +454,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListChatDirectoryRequest struct via the builder pattern
+Pass optional parameters through the `apiListChatDirectoryRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Search title, project or agent name. Up to 200 characters. | 
- **visibility** | **string** | all (default), private or shared. | 
- **projectId** | **string** | Limit shared conversations to an accessible project. | 
- **page** | **string** | One-based page, default 1. | 
- **pageSize** | **string** | 1–50 conversations per page, default 20. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **q** | **string** | Search title, project or agent name. Up to 200 characters. |
+ **visibility** | **string** | all (default), private or shared. |
+ **projectId** | **string** | Limit shared conversations to an accessible project. |
+ **page** | **string** | One-based page, default 1. |
+ **pageSize** | **string** | 1–50 conversations per page, default 20. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -294,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -308,11 +487,13 @@ Name | Type | Description  | Notes
 
 ## ListChatMessages
 
-> []WireMessage ListChatMessages(ctx).XOrganizationId(xOrganizationId).Execute()
+> ConversationMessages ListChatMessages(ctx).ChatId(chatId).Limit(limit).Before(before).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Read the projectless chat transcript
+Read a conversation's messages, newest page first
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -325,16 +506,22 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	chatId := "chatId_example" // string | The conversation's address.
+	limit := "limit_example" // string | How many transcript entries one page holds, 1 to 200. Default 50. (optional)
+	before := "before_example" // string | The `next` of the page you have: read the messages before it. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.ListChatMessages(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChatAPI.ListChatMessages(ctx).ChatId(chatId).Limit(limit).Before(before).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ListChatMessages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListChatMessages`: []WireMessage
+	// response from `ListChatMessages`: ConversationMessages
 	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ListChatMessages`: %v\n", resp)
 }
 ```
@@ -345,20 +532,24 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListChatMessagesRequest struct via the builder pattern
+Pass optional parameters through the `apiListChatMessagesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **chatId** | **string** | The conversation&#39;s address. |
+ **limit** | **string** | How many transcript entries one page holds, 1 to 200. Default 50. |
+ **before** | **string** | The &#x60;next&#x60; of the page you have: read the messages before it. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**[]WireMessage**](WireMessage.md)
+[**ConversationMessages**](ConversationMessages.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -370,13 +561,15 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListChatSessionMessages
+## ListChats
 
-> []WireMessage ListChatSessionMessages(ctx, id).ThreadId(threadId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+> ConversationChats ListChats(ctx).ChatId(chatId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Read one chat session's history
+List the chat sessions of a conversation you may see
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -389,96 +582,21 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	threadId := "threadId_example" // string | The session live address returned when it was created or listed.
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	chatId := "chatId_example" // string | The conversation's address, or one of its sessions'.
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.ListChatSessionMessages(context.Background(), id).ThreadId(threadId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.ListChats(ctx).ChatId(chatId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ListChatSessionMessages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ListChats``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListChatSessionMessages`: []WireMessage
-	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ListChatSessionMessages`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListChatSessionMessagesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **threadId** | **string** | The session live address returned when it was created or listed. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
-
-### Return type
-
-[**[]WireMessage**](WireMessage.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListChatSessions
-
-> ChatSessionList ListChatSessions(ctx).ProjectId(projectId).AgentId(agentId).Limit(limit).Cursor(cursor).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
-
-List your chat sessions with one agent
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/hlix-ai/hlix-go"
-)
-
-func main() {
-	projectId := "projectId_example" // string | The project whose manager (or, with `agentId`, team agent) the sessions are with. Omitted: your own workspace assistant. (optional)
-	agentId := "agentId_example" // string | The team agent, within `projectId`. (optional)
-	limit := "limit_example" // string | How many sessions one page holds, 1 to 100. Default 50. (optional)
-	cursor := "cursor_example" // string | The `nextCursor` of the page you have: read the next, older sessions. A session started between two reads can appear on both pages; merge them by `id`. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.ListChatSessions(context.Background()).ProjectId(projectId).AgentId(agentId).Limit(limit).Cursor(cursor).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.ListChatSessions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListChatSessions`: ChatSessionList
-	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ListChatSessions`: %v\n", resp)
+	// response from `ListChats`: ConversationChats
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.ListChats`: %v\n", resp)
 }
 ```
 
@@ -488,25 +606,22 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListChatSessionsRequest struct via the builder pattern
+Pass optional parameters through the `apiListChatsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | The project whose manager (or, with &#x60;agentId&#x60;, team agent) the sessions are with. Omitted: your own workspace assistant. | 
- **agentId** | **string** | The team agent, within &#x60;projectId&#x60;. | 
- **limit** | **string** | How many sessions one page holds, 1 to 100. Default 50. | 
- **cursor** | **string** | The &#x60;nextCursor&#x60; of the page you have: read the next, older sessions. A session started between two reads can appear on both pages; merge them by &#x60;id&#x60;. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **chatId** | **string** | The conversation&#39;s address, or one of its sessions&#39;. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**ChatSessionList**](ChatSessionList.md)
+[**ConversationChats**](ConversationChats.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -520,16 +635,19 @@ Name | Type | Description  | Notes
 
 ## SendChatTurn
 
-> ChatTurnAccepted SendChatTurn(ctx).ChatSend(chatSend).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+> ConversationReceipt SendChatTurn(ctx).ConversationSend(conversationSend).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Send a message to a project and return while the agent works
+Send a message to a conversation and return while the agent works
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -537,18 +655,23 @@ import (
 )
 
 func main() {
-	chatSend := *openapiclient.NewChatSend("Message_example", "ProjectId_example") // ChatSend | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var conversationSend openapiclient.ConversationSend
+	if err := json.Unmarshal([]byte("{\"chatId\":\"text\",\"message\":\"text\"}"), &conversationSend); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.SendChatTurn(context.Background()).ChatSend(chatSend).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.SendChatTurn(ctx).ConversationSend(conversationSend).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.SendChatTurn``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SendChatTurn`: ChatTurnAccepted
+	// response from `SendChatTurn`: ConversationReceipt
 	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.SendChatTurn`: %v\n", resp)
 }
 ```
@@ -559,22 +682,22 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSendChatTurnRequest struct via the builder pattern
+Pass optional parameters through the `apiSendChatTurnRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chatSend** | [**ChatSend**](ChatSend.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **conversationSend** | [**ConversationSend**](ConversationSend.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**ChatTurnAccepted**](ChatTurnAccepted.md)
+[**ConversationReceipt**](ConversationReceipt.md)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -588,16 +711,19 @@ Name | Type | Description  | Notes
 
 ## SetPrivateChatModel
 
-> PrivateChatModelResponse SetPrivateChatModel(ctx, id).PrivateChatModel(privateChatModel).XOrganizationId(xOrganizationId).Execute()
+> PrivateChatModelResponse SetPrivateChatModel(ctx, id).ConversationModel(conversationModel).XOrganizationId(xOrganizationId).Execute()
 
 Choose the model for your private conversation
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -605,13 +731,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	privateChatModel := *openapiclient.NewPrivateChatModel("Model_example") // PrivateChatModel | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var conversationModel openapiclient.ConversationModel
+	if err := json.Unmarshal([]byte("{\"model\":\"text\"}"), &conversationModel); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.SetPrivateChatModel(context.Background(), id).PrivateChatModel(privateChatModel).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChatAPI.SetPrivateChatModel(ctx, id).ConversationModel(conversationModel).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.SetPrivateChatModel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -627,18 +759,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetPrivateChatModelRequest struct via the builder pattern
+Pass optional parameters through the `apiSetPrivateChatModelRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **privateChatModel** | [**PrivateChatModel**](PrivateChatModel.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **conversationModel** | [**ConversationModel**](ConversationModel.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -646,7 +778,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -660,11 +792,89 @@ Name | Type | Description  | Notes
 
 ## StopChatTurn
 
-> ChatStopResponse StopChatTurn(ctx).ChatStop(chatStop).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+> ConversationStopResponse StopChatTurn(ctx).ConversationStop(conversationStop).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
 
-Request cancellation of your exact model turn across replicas
+Stop the turn a conversation is running
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/hlix-ai/hlix-go"
+)
+
+func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var conversationStop openapiclient.ConversationStop
+	if err := json.Unmarshal([]byte("{\"chatId\":\"text\"}"), &conversationStop); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ChatAPI.StopChatTurn(ctx).ConversationStop(conversationStop).XOrganizationId(xOrganizationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.StopChatTurn``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StopChatTurn`: ConversationStopResponse
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.StopChatTurn`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Pass optional parameters through the `apiStopChatTurnRequest` request builder.
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **conversationStop** | [**ConversationStop**](ConversationStop.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
+
+### Return type
+
+[**ConversationStopResponse**](ConversationStopResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StreamChatEvents
+
+> string StreamChatEvents(ctx).ChatId(chatId).From(from).Gen(gen).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+
+Follow a conversation as Server-Sent Events
+
+### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -677,19 +887,23 @@ import (
 )
 
 func main() {
-	chatStop := *openapiclient.NewChatStop("TurnId_example") // ChatStop | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	chatId := "chatId_example" // string | The conversation's address.
+	from := "from_example" // string | The next event the client wants; `Last-Event-ID` says the same after a reconnect. (optional)
+	gen := "gen_example" // string | The stream generation `from` belongs to; a stale one starts from a snapshot. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.StopChatTurn(context.Background()).ChatStop(chatStop).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.ChatAPI.StreamChatEvents(ctx).ChatId(chatId).From(from).Gen(gen).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.StopChatTurn``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.StreamChatEvents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StopChatTurn`: ChatStopResponse
-	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.StopChatTurn`: %v\n", resp)
+	// response from `StreamChatEvents`: string
+	fmt.Fprintf(os.Stdout, "Response from `ChatAPI.StreamChatEvents`: %v\n", resp)
 }
 ```
 
@@ -699,27 +913,29 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStopChatTurnRequest struct via the builder pattern
+Pass optional parameters through the `apiStreamChatEventsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chatStop** | [**ChatStop**](ChatStop.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **chatId** | **string** | The conversation&#39;s address. |
+ **from** | **string** | The next event the client wants; &#x60;Last-Event-ID&#x60; says the same after a reconnect. |
+ **gen** | **string** | The stream generation &#x60;from&#x60; belongs to; a stale one starts from a snapshot. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
-[**ChatStopResponse**](ChatStopResponse.md)
+**string**
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: text/event-stream, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -734,6 +950,8 @@ Store a file for a chat turn to name
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -745,12 +963,15 @@ import (
 )
 
 func main() {
-	file := os.NewFile(1234, "some_file") // *os.File | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	file := os.NewFile(1234, "some_file") // *os.File |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChatAPI.UploadChatAttachment(context.Background()).File(file).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChatAPI.UploadChatAttachment(ctx).File(file).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChatAPI.UploadChatAttachment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -766,13 +987,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUploadChatAttachmentRequest struct via the builder pattern
+Pass optional parameters through the `apiUploadChatAttachmentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | ***os.File** |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **file** | ***os.File** |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -780,7 +1001,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

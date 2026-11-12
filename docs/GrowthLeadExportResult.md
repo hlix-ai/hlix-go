@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArtifactKey** | **string** |  | 
-**ChargedEmails** | **int32** |  | 
-**ChargedMicros** | **int64** |  | 
-**DownloadPath** | **string** |  | 
-**FileName** | **string** |  | 
-**Filters** | [**GrowthLeadExportResultFilters**](GrowthLeadExportResultFilters.md) |  | 
-**Rows** | **int32** |  | 
+**ArtifactKey** | **string** |  |
+**ChargedEmails** | **int32** |  |
+**ChargedMicros** | **int64** |  |
+**DownloadPath** | **string** |  |
+**FileName** | **string** |  |
+**Filters** | [**GrowthLeadExportResultFilters**](GrowthLeadExportResultFilters.md) |  |
+**Rows** | **int32** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewGrowthLeadExportResult(artifactKey string, chargedEmails int32, chargedMicros int64, downloadPath string, fileName string, filters GrowthLeadExportResultFilters, rows int32, ) *GrowthLeadExportResult`
 
 NewGrowthLeadExportResult instantiates a new GrowthLeadExportResult object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthLeadExportResultWithDefaults
 
 `func NewGrowthLeadExportResultWithDefaults() *GrowthLeadExportResult`
 
 NewGrowthLeadExportResultWithDefaults instantiates a new GrowthLeadExportResult object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArtifactKey
 

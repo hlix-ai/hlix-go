@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CycleId** | Pointer to **string** |  | [optional] 
-**Detail** | Pointer to [**ProjectBoardActivityInnerDetail**](ProjectBoardActivityInnerDetail.md) |  | [optional] 
-**GroupKey** | **string** |  | 
-**Id** | **string** |  | 
-**Repeats** | Pointer to **float32** |  | [optional] 
-**Status** | **string** |  | 
-**StepId** | **string** |  | 
-**Timestamp** | **float32** |  | 
+**CycleId** | Pointer to **string** |  | [optional]
+**Detail** | Pointer to [**ProjectBoardActivityInnerDetail**](ProjectBoardActivityInnerDetail.md) |  | [optional]
+**GroupKey** | **string** |  |
+**Id** | **string** |  |
+**Repeats** | Pointer to **float32** |  | [optional]
+**Status** | **string** |  |
+**StepId** | **string** |  |
+**Timestamp** | **float32** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewProjectBoardActivityInner(groupKey string, id string, status string, stepId string, timestamp float32, ) *ProjectBoardActivityInner`
 
 NewProjectBoardActivityInner instantiates a new ProjectBoardActivityInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBoardActivityInnerWithDefaults
 
 `func NewProjectBoardActivityInnerWithDefaults() *ProjectBoardActivityInner`
 
 NewProjectBoardActivityInnerWithDefaults instantiates a new ProjectBoardActivityInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycleId
 

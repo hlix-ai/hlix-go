@@ -4,48 +4,46 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ByPersona** | [**[]AgentUsageRollupByPersonaInner**](AgentUsageRollupByPersonaInner.md) |  | 
-**ByRole** | [**[]AgentUsageRollupByRoleInner**](AgentUsageRollupByRoleInner.md) |  | 
-**Charts** | Pointer to [**AgentUsageRollupCharts**](AgentUsageRollupCharts.md) |  | [optional] 
-**Totals** | [**AgentUsageRollupTotals**](AgentUsageRollupTotals.md) |  | 
+**ByPromptKey** | [**[]AgentUsageRollupByPromptKeyInner**](AgentUsageRollupByPromptKeyInner.md) |  |
+**ByRole** | [**[]AgentUsageRollupByRoleInner**](AgentUsageRollupByRoleInner.md) |  |
+**Charts** | Pointer to [**AgentUsageRollupCharts**](AgentUsageRollupCharts.md) |  | [optional]
+**Totals** | [**AgentUsageRollupTotals**](AgentUsageRollupTotals.md) |  |
 
 ## Methods
 
 ### NewAgentUsageRollup
 
-`func NewAgentUsageRollup(byPersona []AgentUsageRollupByPersonaInner, byRole []AgentUsageRollupByRoleInner, totals AgentUsageRollupTotals, ) *AgentUsageRollup`
+`func NewAgentUsageRollup(byPromptKey []AgentUsageRollupByPromptKeyInner, byRole []AgentUsageRollupByRoleInner, totals AgentUsageRollupTotals, ) *AgentUsageRollup`
 
 NewAgentUsageRollup instantiates a new AgentUsageRollup object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentUsageRollupWithDefaults
 
 `func NewAgentUsageRollupWithDefaults() *AgentUsageRollup`
 
 NewAgentUsageRollupWithDefaults instantiates a new AgentUsageRollup object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
-### GetByPersona
+### GetByPromptKey
 
-`func (o *AgentUsageRollup) GetByPersona() []AgentUsageRollupByPersonaInner`
+`func (o *AgentUsageRollup) GetByPromptKey() []AgentUsageRollupByPromptKeyInner`
 
-GetByPersona returns the ByPersona field if non-nil, zero value otherwise.
+GetByPromptKey returns the ByPromptKey field if non-nil, zero value otherwise.
 
-### GetByPersonaOk
+### GetByPromptKeyOk
 
-`func (o *AgentUsageRollup) GetByPersonaOk() (*[]AgentUsageRollupByPersonaInner, bool)`
+`func (o *AgentUsageRollup) GetByPromptKeyOk() (*[]AgentUsageRollupByPromptKeyInner, bool)`
 
-GetByPersonaOk returns a tuple with the ByPersona field if it's non-nil, zero value otherwise
+GetByPromptKeyOk returns a tuple with the ByPromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetByPersona
+### SetByPromptKey
 
-`func (o *AgentUsageRollup) SetByPersona(v []AgentUsageRollupByPersonaInner)`
+`func (o *AgentUsageRollup) SetByPromptKey(v []AgentUsageRollupByPromptKeyInner)`
 
-SetByPersona sets ByPersona field to given value.
+SetByPromptKey sets ByPromptKey field to given value.
 
 
 ### GetByRole

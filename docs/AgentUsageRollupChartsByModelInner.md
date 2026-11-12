@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostMicros** | **int64** |  | 
-**Model** | **string** |  | 
+**CostMicros** | **int64** |  |
+**Model** | **string** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewAgentUsageRollupChartsByModelInner(costMicros int64, model string, ) *AgentUsageRollupChartsByModelInner`
 
 NewAgentUsageRollupChartsByModelInner instantiates a new AgentUsageRollupChartsByModelInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentUsageRollupChartsByModelInnerWithDefaults
 
 `func NewAgentUsageRollupChartsByModelInnerWithDefaults() *AgentUsageRollupChartsByModelInner`
 
 NewAgentUsageRollupChartsByModelInnerWithDefaults instantiates a new AgentUsageRollupChartsByModelInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCostMicros
 

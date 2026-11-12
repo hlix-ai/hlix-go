@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AmountMicros** | **int64** |  | 
-**BillableId** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Description** | **string** |  | 
-**Id** | **string** |  | 
-**InvoiceId** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Position** | **float32** |  | 
-**Quantity** | **string** |  | 
-**TaxClass** | **string** |  | 
-**TaxMicros** | **int64** |  | 
-**TaxRateBps** | **float32** |  | 
-**Unit** | **string** |  | 
-**UnitPriceMicros** | **int64** |  | 
+**AmountMicros** | **int64** |  |
+**BillableId** | **string** |  |
+**CreatedAt** | **string** |  |
+**Description** | **string** |  |
+**Id** | **string** |  |
+**InvoiceId** | **string** |  |
+**OrganizationId** | **string** |  |
+**Position** | **float32** |  |
+**Quantity** | **string** |  |
+**TaxClass** | **string** |  |
+**TaxMicros** | **int64** |  |
+**TaxRateBps** | **float32** |  |
+**Unit** | **string** |  |
+**UnitPriceMicros** | **int64** |  |
 
 ## Methods
 
@@ -26,17 +26,15 @@ Name | Type | Description | Notes
 `func NewClientInvoiceLinesInner(amountMicros int64, billableId string, createdAt string, description string, id string, invoiceId string, organizationId string, position float32, quantity string, taxClass string, taxMicros int64, taxRateBps float32, unit string, unitPriceMicros int64, ) *ClientInvoiceLinesInner`
 
 NewClientInvoiceLinesInner instantiates a new ClientInvoiceLinesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientInvoiceLinesInnerWithDefaults
 
 `func NewClientInvoiceLinesInnerWithDefaults() *ClientInvoiceLinesInner`
 
 NewClientInvoiceLinesInnerWithDefaults instantiates a new ClientInvoiceLinesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAmountMicros
 

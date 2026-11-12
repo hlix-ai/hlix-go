@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorId** | **string** |  | 
-**Body** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **string** |  | 
-**HeadSha** | **string** |  | 
-**Id** | **string** |  | 
-**LineEnd** | **NullableFloat32** |  | 
-**LineStart** | **NullableFloat32** |  | 
-**Path** | **NullableString** |  | 
-**ProjectId** | **string** |  | 
-**Resolution** | **string** |  | 
-**ResolvedAt** | **NullableString** |  | 
-**ResolvedBy** | **NullableString** |  | 
-**RevisionIteration** | **NullableFloat32** |  | 
-**SelectedText** | **NullableString** |  | 
-**Side** | **NullableString** |  | 
-**Stale** | **bool** |  | 
-**UpdatedAt** | **string** |  | 
+**AuthorId** | **string** |  |
+**Body** | **string** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **string** |  |
+**HeadSha** | **string** |  |
+**Id** | **string** |  |
+**LineEnd** | **NullableFloat32** |  |
+**LineStart** | **NullableFloat32** |  |
+**Path** | **NullableString** |  |
+**ProjectId** | **string** |  |
+**Resolution** | **string** |  |
+**ResolvedAt** | **NullableString** |  |
+**ResolvedBy** | **NullableString** |  |
+**RevisionIteration** | **NullableFloat32** |  |
+**SelectedText** | **NullableString** |  |
+**Side** | **NullableString** |  |
+**Stale** | **bool** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -30,17 +30,15 @@ Name | Type | Description | Notes
 `func NewReviewComment(authorId string, body string, createdAt string, cycleId string, headSha string, id string, lineEnd NullableFloat32, lineStart NullableFloat32, path NullableString, projectId string, resolution string, resolvedAt NullableString, resolvedBy NullableString, revisionIteration NullableFloat32, selectedText NullableString, side NullableString, stale bool, updatedAt string, ) *ReviewComment`
 
 NewReviewComment instantiates a new ReviewComment object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewReviewCommentWithDefaults
 
 `func NewReviewCommentWithDefaults() *ReviewComment`
 
 NewReviewCommentWithDefaults instantiates a new ReviewComment object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAuthorId
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AspectRatio** | Pointer to **string** |  | [optional] 
-**Duration** | Pointer to **int32** |  | [optional] 
-**IdempotencyKey** | **string** |  | 
-**ProjectId** | Pointer to **string** |  | [optional] 
-**Prompt** | **string** |  | 
-**Resolution** | Pointer to **string** |  | [optional] 
-**UseWorkspaceBrand** | Pointer to **bool** |  | [optional] 
+**AspectRatio** | Pointer to **string** |  | [optional]
+**Duration** | Pointer to **int32** |  | [optional]
+**IdempotencyKey** | **string** |  |
+**ProjectId** | Pointer to **string** |  | [optional]
+**Prompt** | **string** |  |
+**Resolution** | Pointer to **string** |  | [optional]
+**UseWorkspaceBrand** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewGenerateVideo(idempotencyKey string, prompt string, ) *GenerateVideo`
 
 NewGenerateVideo instantiates a new GenerateVideo object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGenerateVideoWithDefaults
 
 `func NewGenerateVideoWithDefaults() *GenerateVideo`
 
 NewGenerateVideoWithDefaults instantiates a new GenerateVideo object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAspectRatio
 

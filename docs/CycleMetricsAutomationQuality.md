@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AutomatedShare** | **NullableFloat32** |  | 
-**AutomatedStageExits** | **int32** |  | 
-**CleanAutomatedExits** | **int32** |  | 
-**HumanStageExits** | **int32** |  | 
-**QualityAdjustedShare** | **NullableFloat32** |  | 
-**ReworkedAutomatedExits** | **int32** |  | 
-**TotalStageExits** | **int32** |  | 
+**AutomatedShare** | **NullableFloat32** |  |
+**AutomatedStageExits** | **int32** |  |
+**CleanAutomatedExits** | **int32** |  |
+**HumanStageExits** | **int32** |  |
+**QualityAdjustedShare** | **NullableFloat32** |  |
+**ReworkedAutomatedExits** | **int32** |  |
+**TotalStageExits** | **int32** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewCycleMetricsAutomationQuality(automatedShare NullableFloat32, automatedStageExits int32, cleanAutomatedExits int32, humanStageExits int32, qualityAdjustedShare NullableFloat32, reworkedAutomatedExits int32, totalStageExits int32, ) *CycleMetricsAutomationQuality`
 
 NewCycleMetricsAutomationQuality instantiates a new CycleMetricsAutomationQuality object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleMetricsAutomationQualityWithDefaults
 
 `func NewCycleMetricsAutomationQualityWithDefaults() *CycleMetricsAutomationQuality`
 
 NewCycleMetricsAutomationQualityWithDefaults instantiates a new CycleMetricsAutomationQuality object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAutomatedShare
 

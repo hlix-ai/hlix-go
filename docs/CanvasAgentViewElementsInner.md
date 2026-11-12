@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BoxType** | Pointer to **string** |  | [optional] 
-**Color** | Pointer to **string** |  | [optional] 
-**Context** | Pointer to **bool** |  | [optional] 
-**From** | Pointer to [**CanvasAgentOpsOpsInnerOneOfElementFrom**](CanvasAgentOpsOpsInnerOneOfElementFrom.md) |  | [optional] 
-**H** | **float32** |  | 
-**Heads** | Pointer to **string** |  | [optional] 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**Origin** | Pointer to **string** |  | [optional] 
-**ParentId** | Pointer to **NullableString** |  | [optional] 
-**Route** | Pointer to **string** |  | [optional] 
-**Shape** | Pointer to **string** |  | [optional] 
-**Template** | Pointer to **string** |  | [optional] 
-**Text** | Pointer to **string** |  | [optional] 
-**To** | Pointer to [**CanvasAgentOpsOpsInnerOneOfElementFrom**](CanvasAgentOpsOpsInnerOneOfElementFrom.md) |  | [optional] 
-**W** | **float32** |  | 
-**Widget** | Pointer to **string** |  | [optional] 
-**X** | **float32** |  | 
-**Y** | **float32** |  | 
-**Z** | **float32** |  | 
+**BoxType** | Pointer to **string** |  | [optional]
+**Color** | Pointer to **string** |  | [optional]
+**Context** | Pointer to **bool** |  | [optional]
+**From** | Pointer to [**CanvasAgentOpsOpsInnerOneOfElementFrom**](CanvasAgentOpsOpsInnerOneOfElementFrom.md) |  | [optional]
+**H** | **float32** |  |
+**Heads** | Pointer to **string** |  | [optional]
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**Origin** | Pointer to **string** |  | [optional]
+**ParentId** | Pointer to **NullableString** |  | [optional]
+**Route** | Pointer to **string** |  | [optional]
+**Shape** | Pointer to **string** |  | [optional]
+**Template** | Pointer to **string** |  | [optional]
+**Text** | Pointer to **string** |  | [optional]
+**To** | Pointer to [**CanvasAgentOpsOpsInnerOneOfElementFrom**](CanvasAgentOpsOpsInnerOneOfElementFrom.md) |  | [optional]
+**W** | **float32** |  |
+**Widget** | Pointer to **string** |  | [optional]
+**X** | **float32** |  |
+**Y** | **float32** |  |
+**Z** | **float32** |  |
 
 ## Methods
 
@@ -32,17 +32,15 @@ Name | Type | Description | Notes
 `func NewCanvasAgentViewElementsInner(h float32, id string, kind string, w float32, x float32, y float32, z float32, ) *CanvasAgentViewElementsInner`
 
 NewCanvasAgentViewElementsInner instantiates a new CanvasAgentViewElementsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCanvasAgentViewElementsInnerWithDefaults
 
 `func NewCanvasAgentViewElementsInnerWithDefaults() *CanvasAgentViewElementsInner`
 
 NewCanvasAgentViewElementsInnerWithDefaults instantiates a new CanvasAgentViewElementsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBoxType
 

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Brief** | Pointer to **string** |  | [optional] 
-**CycleId** | Pointer to **string** |  | [optional] 
-**IdempotencyKey** | Pointer to **string** |  | [optional] 
-**Intent** | **string** |  | 
-**Sources** | Pointer to [**[]CreateDesignSourcesInner**](CreateDesignSourcesInner.md) |  | [optional] 
-**Title** | **string** |  | 
+**Brief** | Pointer to **string** |  | [optional]
+**CycleId** | Pointer to **string** |  | [optional]
+**IdempotencyKey** | Pointer to **string** |  | [optional]
+**Intent** | **string** |  |
+**Sources** | Pointer to [**[]CreateDesignSourcesInner**](CreateDesignSourcesInner.md) |  | [optional]
+**Title** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewCreateDesign(intent string, title string, ) *CreateDesign`
 
 NewCreateDesign instantiates a new CreateDesign object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateDesignWithDefaults
 
 `func NewCreateDesignWithDefaults() *CreateDesign`
 
 NewCreateDesignWithDefaults instantiates a new CreateDesign object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBrief
 

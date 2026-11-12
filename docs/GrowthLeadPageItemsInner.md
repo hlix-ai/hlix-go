@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Company** | [**GrowthLeadPageItemsInnerCompany**](GrowthLeadPageItemsInnerCompany.md) |  | 
-**CreatedAt** | **string** |  | 
-**Evidence** | [**[]GrowthLeadPageItemsInnerEvidenceInner**](GrowthLeadPageItemsInnerEvidenceInner.md) |  | 
-**FitScore** | **NullableInt32** |  | 
-**Id** | **string** |  | 
-**Person** | [**GrowthLeadPageItemsInnerPerson**](GrowthLeadPageItemsInnerPerson.md) |  | 
-**PlayId** | **string** |  | 
-**Provenance** | [**GrowthLeadPageItemsInnerProvenance**](GrowthLeadPageItemsInnerProvenance.md) |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**Company** | [**GrowthLeadPageItemsInnerCompany**](GrowthLeadPageItemsInnerCompany.md) |  |
+**CreatedAt** | **string** |  |
+**Evidence** | [**[]GrowthLeadPageItemsInnerEvidenceInner**](GrowthLeadPageItemsInnerEvidenceInner.md) |  |
+**FitScore** | **NullableInt32** |  |
+**Id** | **string** |  |
+**Person** | [**GrowthLeadPageItemsInnerPerson**](GrowthLeadPageItemsInnerPerson.md) |  |
+**PlayId** | **string** |  |
+**Provenance** | [**GrowthLeadPageItemsInnerProvenance**](GrowthLeadPageItemsInnerProvenance.md) |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewGrowthLeadPageItemsInner(company GrowthLeadPageItemsInnerCompany, createdAt string, evidence []GrowthLeadPageItemsInnerEvidenceInner, fitScore NullableInt32, id string, person GrowthLeadPageItemsInnerPerson, playId string, provenance GrowthLeadPageItemsInnerProvenance, status string, updatedAt string, ) *GrowthLeadPageItemsInner`
 
 NewGrowthLeadPageItemsInner instantiates a new GrowthLeadPageItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthLeadPageItemsInnerWithDefaults
 
 `func NewGrowthLeadPageItemsInnerWithDefaults() *GrowthLeadPageItemsInner`
 
 NewGrowthLeadPageItemsInnerWithDefaults instantiates a new GrowthLeadPageItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompany
 

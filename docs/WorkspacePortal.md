@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgencyName** | **string** |  | 
-**AgencySlug** | **string** |  | 
-**CanCreateProjects** | **bool** |  | 
-**Href** | **string** |  | 
-**Logo** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**Role** | **string** |  | 
+**AgencyName** | **string** |  |
+**AgencySlug** | **string** |  |
+**CanCreateProjects** | **bool** |  |
+**Href** | **string** |  |
+**Logo** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**Role** | **string** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewWorkspacePortal(agencyName string, agencySlug string, canCreateProjects bool, href string, logo NullableString, organizationId string, role string, ) *WorkspacePortal`
 
 NewWorkspacePortal instantiates a new WorkspacePortal object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWorkspacePortalWithDefaults
 
 `func NewWorkspacePortalWithDefaults() *WorkspacePortal`
 
 NewWorkspacePortalWithDefaults instantiates a new WorkspacePortal object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgencyName
 

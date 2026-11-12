@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **NullableFloat32** |  | 
-**CreatedAt** | **string** |  | 
-**Currency** | **string** |  | 
-**Id** | **string** |  | 
-**Product** | [**OrgBillingStateActiveSubscriptionsInnerProduct**](OrgBillingStateActiveSubscriptionsInnerProduct.md) |  | 
-**Status** | **string** |  | 
+**Amount** | **NullableFloat32** |  |
+**CreatedAt** | **string** |  |
+**Currency** | **string** |  |
+**Id** | **string** |  |
+**Product** | [**OrgBillingStateActiveSubscriptionsInnerProduct**](OrgBillingStateActiveSubscriptionsInnerProduct.md) |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewOrgBillingStateOrdersInner(amount NullableFloat32, createdAt string, currency string, id string, product OrgBillingStateActiveSubscriptionsInnerProduct, status string, ) *OrgBillingStateOrdersInner`
 
 NewOrgBillingStateOrdersInner instantiates a new OrgBillingStateOrdersInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewOrgBillingStateOrdersInnerWithDefaults
 
 `func NewOrgBillingStateOrdersInnerWithDefaults() *OrgBillingStateOrdersInner`
 
 NewOrgBillingStateOrdersInnerWithDefaults instantiates a new OrgBillingStateOrdersInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAmount
 

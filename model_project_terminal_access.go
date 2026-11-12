@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -24,8 +24,6 @@ type ProjectTerminalAccess struct {
 	EnvironmentState *string `json:"environmentState,omitempty"`
 	ExpiresAt *string `json:"expiresAt,omitempty"`
 	Reason *string `json:"reason,omitempty"`
-	SshCommand *string `json:"sshCommand,omitempty"`
-	SshExpiresAt *string `json:"sshExpiresAt,omitempty"`
 	WebTerminalUrl *string `json:"webTerminalUrl,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -170,70 +168,6 @@ func (o *ProjectTerminalAccess) SetReason(v string) {
 	o.Reason = &v
 }
 
-// GetSshCommand returns the SshCommand field value if set, zero value otherwise.
-func (o *ProjectTerminalAccess) GetSshCommand() string {
-	if o == nil || IsNil(o.SshCommand) {
-		var ret string
-		return ret
-	}
-	return *o.SshCommand
-}
-
-// GetSshCommandOk returns a tuple with the SshCommand field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectTerminalAccess) GetSshCommandOk() (*string, bool) {
-	if o == nil || IsNil(o.SshCommand) {
-		return nil, false
-	}
-	return o.SshCommand, true
-}
-
-// HasSshCommand returns a boolean if a field has been set.
-func (o *ProjectTerminalAccess) HasSshCommand() bool {
-	if o != nil && !IsNil(o.SshCommand) {
-		return true
-	}
-
-	return false
-}
-
-// SetSshCommand gets a reference to the given string and assigns it to the SshCommand field.
-func (o *ProjectTerminalAccess) SetSshCommand(v string) {
-	o.SshCommand = &v
-}
-
-// GetSshExpiresAt returns the SshExpiresAt field value if set, zero value otherwise.
-func (o *ProjectTerminalAccess) GetSshExpiresAt() string {
-	if o == nil || IsNil(o.SshExpiresAt) {
-		var ret string
-		return ret
-	}
-	return *o.SshExpiresAt
-}
-
-// GetSshExpiresAtOk returns a tuple with the SshExpiresAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectTerminalAccess) GetSshExpiresAtOk() (*string, bool) {
-	if o == nil || IsNil(o.SshExpiresAt) {
-		return nil, false
-	}
-	return o.SshExpiresAt, true
-}
-
-// HasSshExpiresAt returns a boolean if a field has been set.
-func (o *ProjectTerminalAccess) HasSshExpiresAt() bool {
-	if o != nil && !IsNil(o.SshExpiresAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetSshExpiresAt gets a reference to the given string and assigns it to the SshExpiresAt field.
-func (o *ProjectTerminalAccess) SetSshExpiresAt(v string) {
-	o.SshExpiresAt = &v
-}
-
 // GetWebTerminalUrl returns the WebTerminalUrl field value if set, zero value otherwise.
 func (o *ProjectTerminalAccess) GetWebTerminalUrl() string {
 	if o == nil || IsNil(o.WebTerminalUrl) {
@@ -286,12 +220,6 @@ func (o ProjectTerminalAccess) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reason) {
 		toSerialize["reason"] = o.Reason
 	}
-	if !IsNil(o.SshCommand) {
-		toSerialize["sshCommand"] = o.SshCommand
-	}
-	if !IsNil(o.SshExpiresAt) {
-		toSerialize["sshExpiresAt"] = o.SshExpiresAt
-	}
 	if !IsNil(o.WebTerminalUrl) {
 		toSerialize["webTerminalUrl"] = o.WebTerminalUrl
 	}
@@ -342,8 +270,6 @@ func (o *ProjectTerminalAccess) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "environmentState")
 		delete(additionalProperties, "expiresAt")
 		delete(additionalProperties, "reason")
-		delete(additionalProperties, "sshCommand")
-		delete(additionalProperties, "sshExpiresAt")
 		delete(additionalProperties, "webTerminalUrl")
 		o.AdditionalProperties = additionalProperties
 	}

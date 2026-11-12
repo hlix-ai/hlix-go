@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Op** | **string** |  | 
-**Set** | [**CanvasAgentOpsOpsInnerOneOf1Set**](CanvasAgentOpsOpsInnerOneOf1Set.md) |  | 
+**Id** | **string** |  |
+**Op** | **string** |  |
+**Set** | [**CanvasAgentOpsOpsInnerOneOf1Set**](CanvasAgentOpsOpsInnerOneOf1Set.md) |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewCanvasAgentOpsOpsInnerOneOf1(id string, op string, set CanvasAgentOpsOpsInnerOneOf1Set, ) *CanvasAgentOpsOpsInnerOneOf1`
 
 NewCanvasAgentOpsOpsInnerOneOf1 instantiates a new CanvasAgentOpsOpsInnerOneOf1 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCanvasAgentOpsOpsInnerOneOf1WithDefaults
 
 `func NewCanvasAgentOpsOpsInnerOneOf1WithDefaults() *CanvasAgentOpsOpsInnerOneOf1`
 
 NewCanvasAgentOpsOpsInnerOneOf1WithDefaults instantiates a new CanvasAgentOpsOpsInnerOneOf1 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetId
 

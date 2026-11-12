@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GeneratedAt** | **string** |  | 
-**Invoices** | [**[]ClientBillingReportInvoicesInner**](ClientBillingReportInvoicesInner.md) |  | 
-**Projects** | [**[]ClientOverviewReportProjectsInner**](ClientOverviewReportProjectsInner.md) |  | 
-**RecentActivity** | [**[]ClientOverviewReportRecentActivityInner**](ClientOverviewReportRecentActivityInner.md) |  | 
-**Scope** | **string** |  | 
-**Summary** | [**ClientOverviewReportSummary**](ClientOverviewReportSummary.md) |  | 
+**GeneratedAt** | **string** |  |
+**Invoices** | [**[]ClientBillingReportInvoicesInner**](ClientBillingReportInvoicesInner.md) |  |
+**Projects** | [**[]ClientOverviewReportProjectsInner**](ClientOverviewReportProjectsInner.md) |  |
+**RecentActivity** | [**[]ClientOverviewReportRecentActivityInner**](ClientOverviewReportRecentActivityInner.md) |  |
+**Scope** | **string** |  |
+**Summary** | [**ClientOverviewReportSummary**](ClientOverviewReportSummary.md) |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewClientOverviewReport(generatedAt string, invoices []ClientBillingReportInvoicesInner, projects []ClientOverviewReportProjectsInner, recentActivity []ClientOverviewReportRecentActivityInner, scope string, summary ClientOverviewReportSummary, ) *ClientOverviewReport`
 
 NewClientOverviewReport instantiates a new ClientOverviewReport object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientOverviewReportWithDefaults
 
 `func NewClientOverviewReportWithDefaults() *ClientOverviewReport`
 
 NewClientOverviewReportWithDefaults instantiates a new ClientOverviewReport object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetGeneratedAt
 

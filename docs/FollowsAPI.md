@@ -1,12 +1,12 @@
-# \FollowsAPI
+# FollowsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFollow**](FollowsAPI.md#CreateFollow) | **Post** /v1/api/follows | Follow a project or a cycle
-[**DeleteFollow**](FollowsAPI.md#DeleteFollow) | **Delete** /v1/api/follows/{targetType}/{targetId} | Stop following
-[**ListFollows**](FollowsAPI.md#ListFollows) | **Get** /v1/api/follows | List what you follow
+[**CreateFollow**](FollowsAPI.md#createfollow) | **Post** /v1/api/follows | Follow a project or a cycle
+[**DeleteFollow**](FollowsAPI.md#deletefollow) | **Delete** /v1/api/follows/{targetType}/{targetId} | Stop following
+[**ListFollows**](FollowsAPI.md#listfollows) | **Get** /v1/api/follows | List what you follow
 
 
 
@@ -18,10 +18,13 @@ Follow a project or a cycle
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -29,12 +32,18 @@ import (
 )
 
 func main() {
-	followTarget := *openapiclient.NewFollowTarget("TargetId_example", "TargetType_example") // FollowTarget | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var followTarget openapiclient.FollowTarget
+	if err := json.Unmarshal([]byte("{\"targetId\":\"text\",\"targetType\":\"project\"}"), &followTarget); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.CreateFollow(context.Background()).FollowTarget(followTarget).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.FollowsAPI.CreateFollow(ctx).FollowTarget(followTarget).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.CreateFollow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,13 +59,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateFollowRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateFollowRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **followTarget** | [**FollowTarget**](FollowTarget.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **followTarget** | [**FollowTarget**](FollowTarget.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -64,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -84,6 +93,8 @@ Stop following
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -95,13 +106,16 @@ import (
 )
 
 func main() {
-	targetType := "targetType_example" // string | 
-	targetId := "targetId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	targetType := "targetType_example" // string |
+	targetId := "targetId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.DeleteFollow(context.Background(), targetType, targetId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.FollowsAPI.DeleteFollow(ctx, targetType, targetId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.DeleteFollow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -117,19 +131,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**targetType** | **string** |  | 
-**targetId** | **string** |  | 
+**targetType** | **string** |  |
+**targetId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteFollowRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteFollowRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -137,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -157,6 +171,8 @@ List what you follow
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -168,11 +184,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.ListFollows(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.FollowsAPI.ListFollows(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.ListFollows``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -188,12 +207,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListFollowsRequest struct via the builder pattern
+Pass optional parameters through the `apiListFollowsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -201,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

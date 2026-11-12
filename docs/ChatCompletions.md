@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Messages** | **[]interface{}** |  | 
-**Model** | Pointer to **string** | An OpenRouter model id, or \&quot;default\&quot; for the model this workspace has chosen for its coder (\&quot;hlix/default\&quot; and omitting the field mean the same thing). GET ../models lists every id that may be sent, and names \&quot;default\&quot; as its own. | [optional] 
-**Stream** | Pointer to **bool** |  | [optional] 
-**StreamOptions** | Pointer to [**ChatCompletionsStreamOptions**](ChatCompletionsStreamOptions.md) |  | [optional] 
+**Messages** | **[]interface{}** |  |
+**Model** | Pointer to **string** | A model ID from the models endpoint, or &#x60;default&#x60; to use the workspace coder model. &#x60;hlix/default&#x60; and an omitted model field have the same effect. | [optional]
+**Stream** | Pointer to **bool** |  | [optional]
+**StreamOptions** | Pointer to [**ChatCompletionsStreamOptions**](ChatCompletionsStreamOptions.md) |  | [optional]
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewChatCompletions(messages []interface{}, ) *ChatCompletions`
 
 NewChatCompletions instantiates a new ChatCompletions object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewChatCompletionsWithDefaults
 
 `func NewChatCompletionsWithDefaults() *ChatCompletions`
 
 NewChatCompletionsWithDefaults instantiates a new ChatCompletions object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetMessages
 

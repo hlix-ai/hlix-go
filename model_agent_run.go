@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,6 +21,7 @@ var _ MappedNullable = &AgentRun{}
 // AgentRun struct for AgentRun
 type AgentRun struct {
 	AccountingSource NullableString `json:"accountingSource"`
+	AgentKind string `json:"agentKind"`
 	BilledTo NullableString `json:"billedTo"`
 	BillingMarkupBps NullableInt32 `json:"billingMarkupBps"`
 	BillingProjectKind NullableString `json:"billingProjectKind"`
@@ -30,7 +31,6 @@ type AgentRun struct {
 	CredentialKind NullableString `json:"credentialKind"`
 	CycleId NullableString `json:"cycleId"`
 	CycleRunId NullableString `json:"cycleRunId"`
-	DurableRunId NullableString `json:"durableRunId"`
 	FundingMode NullableString `json:"fundingMode"`
 	Id string `json:"id"`
 	InputSnapshot NullableString `json:"inputSnapshot"`
@@ -39,9 +39,8 @@ type AgentRun struct {
 	OrganizationId string `json:"organizationId"`
 	OutputSnapshot NullableString `json:"outputSnapshot"`
 	ParentRunId NullableString `json:"parentRunId"`
-	Persona NullableString `json:"persona"`
 	ProjectId NullableString `json:"projectId"`
-	Role string `json:"role"`
+	PromptKey NullableString `json:"promptKey"`
 	SpanId NullableString `json:"spanId"`
 	StartedAt string `json:"startedAt"`
 	Status string `json:"status"`
@@ -60,9 +59,10 @@ type _AgentRun AgentRun
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentRun(accountingSource NullableString, billedTo NullableString, billingMarkupBps NullableInt32, billingProjectKind NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, cycleId NullableString, cycleRunId NullableString, durableRunId NullableString, fundingMode NullableString, id string, inputSnapshot NullableString, iteration NullableInt32, model string, organizationId string, outputSnapshot NullableString, parentRunId NullableString, persona NullableString, projectId NullableString, role string, spanId NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, traceId NullableString, usageCompleteness NullableString, usageSequence NullableInt32) *AgentRun {
+func NewAgentRun(accountingSource NullableString, agentKind string, billedTo NullableString, billingMarkupBps NullableInt32, billingProjectKind NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, cycleId NullableString, cycleRunId NullableString, fundingMode NullableString, id string, inputSnapshot NullableString, iteration NullableInt32, model string, organizationId string, outputSnapshot NullableString, parentRunId NullableString, projectId NullableString, promptKey NullableString, spanId NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, traceId NullableString, usageCompleteness NullableString, usageSequence NullableInt32) *AgentRun {
 	this := AgentRun{}
 	this.AccountingSource = accountingSource
+	this.AgentKind = agentKind
 	this.BilledTo = billedTo
 	this.BillingMarkupBps = billingMarkupBps
 	this.BillingProjectKind = billingProjectKind
@@ -72,7 +72,6 @@ func NewAgentRun(accountingSource NullableString, billedTo NullableString, billi
 	this.CredentialKind = credentialKind
 	this.CycleId = cycleId
 	this.CycleRunId = cycleRunId
-	this.DurableRunId = durableRunId
 	this.FundingMode = fundingMode
 	this.Id = id
 	this.InputSnapshot = inputSnapshot
@@ -81,9 +80,8 @@ func NewAgentRun(accountingSource NullableString, billedTo NullableString, billi
 	this.OrganizationId = organizationId
 	this.OutputSnapshot = outputSnapshot
 	this.ParentRunId = parentRunId
-	this.Persona = persona
 	this.ProjectId = projectId
-	this.Role = role
+	this.PromptKey = promptKey
 	this.SpanId = spanId
 	this.StartedAt = startedAt
 	this.Status = status
@@ -128,6 +126,30 @@ func (o *AgentRun) GetAccountingSourceOk() (*string, bool) {
 // SetAccountingSource sets field value
 func (o *AgentRun) SetAccountingSource(v string) {
 	o.AccountingSource.Set(&v)
+}
+
+// GetAgentKind returns the AgentKind field value
+func (o *AgentRun) GetAgentKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AgentKind
+}
+
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *AgentRun) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *AgentRun) SetAgentKind(v string) {
+	o.AgentKind = v
 }
 
 // GetBilledTo returns the BilledTo field value
@@ -364,32 +386,6 @@ func (o *AgentRun) SetCycleRunId(v string) {
 	o.CycleRunId.Set(&v)
 }
 
-// GetDurableRunId returns the DurableRunId field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *AgentRun) GetDurableRunId() string {
-	if o == nil || o.DurableRunId.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.DurableRunId.Get()
-}
-
-// GetDurableRunIdOk returns a tuple with the DurableRunId field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AgentRun) GetDurableRunIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DurableRunId.Get(), o.DurableRunId.IsSet()
-}
-
-// SetDurableRunId sets field value
-func (o *AgentRun) SetDurableRunId(v string) {
-	o.DurableRunId.Set(&v)
-}
-
 // GetFundingMode returns the FundingMode field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *AgentRun) GetFundingMode() string {
@@ -592,32 +588,6 @@ func (o *AgentRun) SetParentRunId(v string) {
 	o.ParentRunId.Set(&v)
 }
 
-// GetPersona returns the Persona field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *AgentRun) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Persona.Get()
-}
-
-// GetPersonaOk returns a tuple with the Persona field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AgentRun) GetPersonaOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Persona.Get(), o.Persona.IsSet()
-}
-
-// SetPersona sets field value
-func (o *AgentRun) SetPersona(v string) {
-	o.Persona.Set(&v)
-}
-
 // GetProjectId returns the ProjectId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *AgentRun) GetProjectId() string {
@@ -644,28 +614,30 @@ func (o *AgentRun) SetProjectId(v string) {
 	o.ProjectId.Set(&v)
 }
 
-// GetRole returns the Role field value
-func (o *AgentRun) GetRole() string {
-	if o == nil {
+// GetPromptKey returns the PromptKey field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *AgentRun) GetPromptKey() string {
+	if o == nil || o.PromptKey.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Role
+	return *o.PromptKey.Get()
 }
 
-// GetRoleOk returns a tuple with the Role field value
+// GetPromptKeyOk returns a tuple with the PromptKey field value
 // and a boolean to check if the value has been set.
-func (o *AgentRun) GetRoleOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AgentRun) GetPromptKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Role, true
+	return o.PromptKey.Get(), o.PromptKey.IsSet()
 }
 
-// SetRole sets field value
-func (o *AgentRun) SetRole(v string) {
-	o.Role = v
+// SetPromptKey sets field value
+func (o *AgentRun) SetPromptKey(v string) {
+	o.PromptKey.Set(&v)
 }
 
 // GetSpanId returns the SpanId field value
@@ -909,6 +881,7 @@ func (o AgentRun) MarshalJSON() ([]byte, error) {
 func (o AgentRun) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accountingSource"] = o.AccountingSource.Get()
+	toSerialize["agentKind"] = o.AgentKind
 	toSerialize["billedTo"] = o.BilledTo.Get()
 	toSerialize["billingMarkupBps"] = o.BillingMarkupBps.Get()
 	toSerialize["billingProjectKind"] = o.BillingProjectKind.Get()
@@ -918,7 +891,6 @@ func (o AgentRun) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentialKind"] = o.CredentialKind.Get()
 	toSerialize["cycleId"] = o.CycleId.Get()
 	toSerialize["cycleRunId"] = o.CycleRunId.Get()
-	toSerialize["durableRunId"] = o.DurableRunId.Get()
 	toSerialize["fundingMode"] = o.FundingMode.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["inputSnapshot"] = o.InputSnapshot.Get()
@@ -927,9 +899,8 @@ func (o AgentRun) ToMap() (map[string]interface{}, error) {
 	toSerialize["organizationId"] = o.OrganizationId
 	toSerialize["outputSnapshot"] = o.OutputSnapshot.Get()
 	toSerialize["parentRunId"] = o.ParentRunId.Get()
-	toSerialize["persona"] = o.Persona.Get()
 	toSerialize["projectId"] = o.ProjectId.Get()
-	toSerialize["role"] = o.Role
+	toSerialize["promptKey"] = o.PromptKey.Get()
 	toSerialize["spanId"] = o.SpanId.Get()
 	toSerialize["startedAt"] = o.StartedAt
 	toSerialize["status"] = o.Status
@@ -953,6 +924,7 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"accountingSource",
+		"agentKind",
 		"billedTo",
 		"billingMarkupBps",
 		"billingProjectKind",
@@ -962,7 +934,6 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 		"credentialKind",
 		"cycleId",
 		"cycleRunId",
-		"durableRunId",
 		"fundingMode",
 		"id",
 		"inputSnapshot",
@@ -971,9 +942,8 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 		"organizationId",
 		"outputSnapshot",
 		"parentRunId",
-		"persona",
 		"projectId",
-		"role",
+		"promptKey",
 		"spanId",
 		"startedAt",
 		"status",
@@ -1013,6 +983,7 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accountingSource")
+		delete(additionalProperties, "agentKind")
 		delete(additionalProperties, "billedTo")
 		delete(additionalProperties, "billingMarkupBps")
 		delete(additionalProperties, "billingProjectKind")
@@ -1022,7 +993,6 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "credentialKind")
 		delete(additionalProperties, "cycleId")
 		delete(additionalProperties, "cycleRunId")
-		delete(additionalProperties, "durableRunId")
 		delete(additionalProperties, "fundingMode")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "inputSnapshot")
@@ -1031,9 +1001,8 @@ func (o *AgentRun) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "organizationId")
 		delete(additionalProperties, "outputSnapshot")
 		delete(additionalProperties, "parentRunId")
-		delete(additionalProperties, "persona")
 		delete(additionalProperties, "projectId")
-		delete(additionalProperties, "role")
+		delete(additionalProperties, "promptKey")
 		delete(additionalProperties, "spanId")
 		delete(additionalProperties, "startedAt")
 		delete(additionalProperties, "status")

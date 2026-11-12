@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -113,6 +113,20 @@ func (a *DeliverablesAPIService) ApplyDeliverablePreparationExecute(r ApiApplyDe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -302,6 +316,20 @@ func (a *DeliverablesAPIService) CreateDeliverablePackageExecute(r ApiCreateDeli
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -414,7 +442,7 @@ func (r ApiDecideDeliverableApprovalRequest) XOrganizationId(xOrganizationId str
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiDecideDeliverableApprovalRequest) XClientPortal(xClientPortal string) ApiDecideDeliverableApprovalRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -503,6 +531,20 @@ func (a *DeliverablesAPIService) DecideDeliverableApprovalExecute(r ApiDecideDel
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -618,7 +660,7 @@ func (r ApiDecideDeliverablePackageApprovalRequest) XOrganizationId(xOrganizatio
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiDecideDeliverablePackageApprovalRequest) XClientPortal(xClientPortal string) ApiDecideDeliverablePackageApprovalRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -707,6 +749,20 @@ func (a *DeliverablesAPIService) DecideDeliverablePackageApprovalExecute(r ApiDe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -896,6 +952,20 @@ func (a *DeliverablesAPIService) GenerateDeliverableSuggestionsExecute(r ApiGene
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1001,7 +1071,7 @@ func (r ApiGetDeliverableRequest) XOrganizationId(xOrganizationId string) ApiGet
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiGetDeliverableRequest) XClientPortal(xClientPortal string) ApiGetDeliverableRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -1082,6 +1152,20 @@ func (a *DeliverablesAPIService) GetDeliverableExecute(r ApiGetDeliverableReques
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1179,7 +1263,7 @@ func (r ApiGetDeliverablePackageRequest) XOrganizationId(xOrganizationId string)
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiGetDeliverablePackageRequest) XClientPortal(xClientPortal string) ApiGetDeliverablePackageRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -1260,6 +1344,20 @@ func (a *DeliverablesAPIService) GetDeliverablePackageExecute(r ApiGetDeliverabl
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1359,7 +1457,7 @@ func (r ApiGetDeliverablePackageRecordingRequest) Revision(revision string) ApiG
 	return r
 }
 
-// Set to &#x60;1&#x60; to receive the object&#39;s own bytes instead of a JSON pointer. It only changes anything when this deployment cannot hand back a signed URL — artifacts stored locally, or a signed download link could not be issued for this request — because a signed URL is always answered as JSON. In that case the JSON body&#39;s &#x60;url&#x60; is this same route with &#x60;download&#x3D;1&#x60; already appended, so following it is the normal flow; any other value, absent included, answers the JSON.
+// Set to &#x60;1&#x60; to download artifact bytes when a signed URL cannot be issued. The default JSON response then provides this route with &#x60;download&#x3D;1&#x60; in its &#x60;url&#x60;. When a signed URL is available, the endpoint returns that URL as JSON regardless of this parameter. Other values, including an omitted parameter, return JSON.
 func (r ApiGetDeliverablePackageRecordingRequest) Download(download string) ApiGetDeliverablePackageRecordingRequest {
 	r.download = &download
 	return r
@@ -1371,7 +1469,7 @@ func (r ApiGetDeliverablePackageRecordingRequest) XOrganizationId(xOrganizationI
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiGetDeliverablePackageRecordingRequest) XClientPortal(xClientPortal string) ApiGetDeliverablePackageRecordingRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -1459,6 +1557,20 @@ func (a *DeliverablesAPIService) GetDeliverablePackageRecordingExecute(r ApiGetD
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1656,6 +1768,20 @@ func (a *DeliverablesAPIService) GetDeliverablePreparationExecute(r ApiGetDelive
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1756,7 +1882,7 @@ type ApiGetDeliverablePreparationRecordingRequest struct {
 	xOrganizationId *string
 }
 
-// Set to &#x60;1&#x60; to receive the object&#39;s own bytes instead of a JSON pointer. It only changes anything when this deployment cannot hand back a signed URL — artifacts stored locally, or a signed download link could not be issued for this request — because a signed URL is always answered as JSON. In that case the JSON body&#39;s &#x60;url&#x60; is this same route with &#x60;download&#x3D;1&#x60; already appended, so following it is the normal flow; any other value, absent included, answers the JSON.
+// Set to &#x60;1&#x60; to download artifact bytes when a signed URL cannot be issued. The default JSON response then provides this route with &#x60;download&#x3D;1&#x60; in its &#x60;url&#x60;. When a signed URL is available, the endpoint returns that URL as JSON regardless of this parameter. Other values, including an omitted parameter, return JSON.
 func (r ApiGetDeliverablePreparationRecordingRequest) Download(download string) ApiGetDeliverablePreparationRecordingRequest {
 	r.download = &download
 	return r
@@ -1846,6 +1972,20 @@ func (a *DeliverablesAPIService) GetDeliverablePreparationRecordingExecute(r Api
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1971,7 +2111,7 @@ func (r ApiGetDeliverableSuggestionsRequest) XOrganizationId(xOrganizationId str
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiGetDeliverableSuggestionsRequest) XClientPortal(xClientPortal string) ApiGetDeliverableSuggestionsRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -2053,6 +2193,20 @@ func (a *DeliverablesAPIService) GetDeliverableSuggestionsExecute(r ApiGetDelive
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -2161,7 +2315,7 @@ func (r ApiListDeliverableApprovalsRequest) XOrganizationId(xOrganizationId stri
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiListDeliverableApprovalsRequest) XClientPortal(xClientPortal string) ApiListDeliverableApprovalsRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -2242,6 +2396,20 @@ func (a *DeliverablesAPIService) ListDeliverableApprovalsExecute(r ApiListDelive
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -2339,7 +2507,7 @@ func (r ApiListDeliverablePackageApprovalsRequest) XOrganizationId(xOrganization
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiListDeliverablePackageApprovalsRequest) XClientPortal(xClientPortal string) ApiListDeliverablePackageApprovalsRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -2420,6 +2588,20 @@ func (a *DeliverablesAPIService) ListDeliverablePackageApprovalsExecute(r ApiLis
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -2523,7 +2705,7 @@ func (r ApiListDeliverablePackagesRequest) XOrganizationId(xOrganizationId strin
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiListDeliverablePackagesRequest) XClientPortal(xClientPortal string) ApiListDeliverablePackagesRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -2604,6 +2786,20 @@ func (a *DeliverablesAPIService) ListDeliverablePackagesExecute(r ApiListDeliver
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -2775,6 +2971,20 @@ func (a *DeliverablesAPIService) ListDeliverablePreparationsExecute(r ApiListDel
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2879,7 +3089,7 @@ func (r ApiListDeliverablesRequest) XOrganizationId(xOrganizationId string) ApiL
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiListDeliverablesRequest) XClientPortal(xClientPortal string) ApiListDeliverablesRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -2957,6 +3167,20 @@ func (a *DeliverablesAPIService) ListDeliverablesExecute(r ApiListDeliverablesRe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -3128,6 +3352,20 @@ func (a *DeliverablesAPIService) PublishDeliverableExecute(r ApiPublishDeliverab
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3293,6 +3531,20 @@ func (a *DeliverablesAPIService) PublishDeliverablePackageExecute(r ApiPublishDe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -3483,6 +3735,20 @@ func (a *DeliverablesAPIService) RequestDeliverableApprovalExecute(r ApiRequestD
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -3687,6 +3953,20 @@ func (a *DeliverablesAPIService) RequestDeliverablePackageApprovalExecute(r ApiR
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3863,6 +4143,20 @@ func (a *DeliverablesAPIService) StartDeliverablePreparationExecute(r ApiStartDe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -4067,6 +4361,20 @@ func (a *DeliverablesAPIService) UnpublishDeliverableExecute(r ApiUnpublishDeliv
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4232,6 +4540,20 @@ func (a *DeliverablesAPIService) UnpublishDeliverablePackageExecute(r ApiUnpubli
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -4425,6 +4747,20 @@ func (a *DeliverablesAPIService) UpdateDeliverablePackageExecute(r ApiUpdateDeli
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4612,6 +4948,20 @@ func (a *DeliverablesAPIService) UpsertDeliverableExecute(r ApiUpsertDeliverable
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}

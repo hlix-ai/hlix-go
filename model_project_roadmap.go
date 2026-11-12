@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,7 +23,7 @@ type ProjectRoadmap struct {
 	CompletedCount int32 `json:"completedCount"`
 	CostToDateMicros NullableInt64 `json:"costToDateMicros"`
 	Cycles []ProjectRoadmapCyclesInner `json:"cycles"`
-	Proposals []ProjectRoadmapProposalsInner `json:"proposals"`
+	Requests []ProjectRoadmapRequestsInner `json:"requests"`
 	TotalCount int32 `json:"totalCount"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,12 +34,12 @@ type _ProjectRoadmap ProjectRoadmap
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectRoadmap(completedCount int32, costToDateMicros NullableInt64, cycles []ProjectRoadmapCyclesInner, proposals []ProjectRoadmapProposalsInner, totalCount int32) *ProjectRoadmap {
+func NewProjectRoadmap(completedCount int32, costToDateMicros NullableInt64, cycles []ProjectRoadmapCyclesInner, requests []ProjectRoadmapRequestsInner, totalCount int32) *ProjectRoadmap {
 	this := ProjectRoadmap{}
 	this.CompletedCount = completedCount
 	this.CostToDateMicros = costToDateMicros
 	this.Cycles = cycles
-	this.Proposals = proposals
+	this.Requests = requests
 	this.TotalCount = totalCount
 	return &this
 }
@@ -126,28 +126,28 @@ func (o *ProjectRoadmap) SetCycles(v []ProjectRoadmapCyclesInner) {
 	o.Cycles = v
 }
 
-// GetProposals returns the Proposals field value
-func (o *ProjectRoadmap) GetProposals() []ProjectRoadmapProposalsInner {
+// GetRequests returns the Requests field value
+func (o *ProjectRoadmap) GetRequests() []ProjectRoadmapRequestsInner {
 	if o == nil {
-		var ret []ProjectRoadmapProposalsInner
+		var ret []ProjectRoadmapRequestsInner
 		return ret
 	}
 
-	return o.Proposals
+	return o.Requests
 }
 
-// GetProposalsOk returns a tuple with the Proposals field value
+// GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
-func (o *ProjectRoadmap) GetProposalsOk() ([]ProjectRoadmapProposalsInner, bool) {
+func (o *ProjectRoadmap) GetRequestsOk() ([]ProjectRoadmapRequestsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Proposals, true
+	return o.Requests, true
 }
 
-// SetProposals sets field value
-func (o *ProjectRoadmap) SetProposals(v []ProjectRoadmapProposalsInner) {
-	o.Proposals = v
+// SetRequests sets field value
+func (o *ProjectRoadmap) SetRequests(v []ProjectRoadmapRequestsInner) {
+	o.Requests = v
 }
 
 // GetTotalCount returns the TotalCount field value
@@ -187,7 +187,7 @@ func (o ProjectRoadmap) ToMap() (map[string]interface{}, error) {
 	toSerialize["completedCount"] = o.CompletedCount
 	toSerialize["costToDateMicros"] = o.CostToDateMicros.Get()
 	toSerialize["cycles"] = o.Cycles
-	toSerialize["proposals"] = o.Proposals
+	toSerialize["requests"] = o.Requests
 	toSerialize["totalCount"] = o.TotalCount
 
 	for key, value := range o.AdditionalProperties {
@@ -205,7 +205,7 @@ func (o *ProjectRoadmap) UnmarshalJSON(data []byte) (err error) {
 		"completedCount",
 		"costToDateMicros",
 		"cycles",
-		"proposals",
+		"requests",
 		"totalCount",
 	}
 
@@ -239,7 +239,7 @@ func (o *ProjectRoadmap) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "completedCount")
 		delete(additionalProperties, "costToDateMicros")
 		delete(additionalProperties, "cycles")
-		delete(additionalProperties, "proposals")
+		delete(additionalProperties, "requests")
 		delete(additionalProperties, "totalCount")
 		o.AdditionalProperties = additionalProperties
 	}

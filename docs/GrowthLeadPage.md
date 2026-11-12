@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | [**[]GrowthLeadPageItemsInner**](GrowthLeadPageItemsInner.md) |  | 
-**Limit** | **int32** |  | 
-**Mailboxes** | [**GrowthLeadPageMailboxes**](GrowthLeadPageMailboxes.md) |  | 
-**Offset** | **int32** |  | 
-**Total** | **int32** |  | 
+**Items** | [**[]GrowthLeadPageItemsInner**](GrowthLeadPageItemsInner.md) |  |
+**Limit** | **int32** |  |
+**Mailboxes** | [**GrowthLeadPageMailboxes**](GrowthLeadPageMailboxes.md) |  |
+**Offset** | **int32** |  |
+**Total** | **int32** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewGrowthLeadPage(items []GrowthLeadPageItemsInner, limit int32, mailboxes GrowthLeadPageMailboxes, offset int32, total int32, ) *GrowthLeadPage`
 
 NewGrowthLeadPage instantiates a new GrowthLeadPage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthLeadPageWithDefaults
 
 `func NewGrowthLeadPageWithDefaults() *GrowthLeadPage`
 
 NewGrowthLeadPageWithDefaults instantiates a new GrowthLeadPage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetItems
 

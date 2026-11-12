@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** |  | 
-**Reason** | **string** |  | 
-**ReasonCode** | **string** |  | 
+**Enabled** | **bool** |  | [default to false]
+**Reason** | **string** |  |
+**ReasonCode** | **string** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewReviewCommentListVisualContextOneOf1(enabled bool, reason string, reasonCode string, ) *ReviewCommentListVisualContextOneOf1`
 
 NewReviewCommentListVisualContextOneOf1 instantiates a new ReviewCommentListVisualContextOneOf1 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewReviewCommentListVisualContextOneOf1WithDefaults
 
 `func NewReviewCommentListVisualContextOneOf1WithDefaults() *ReviewCommentListVisualContextOneOf1`
 
 NewReviewCommentListVisualContextOneOf1WithDefaults instantiates a new ReviewCommentListVisualContextOneOf1 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEnabled
 

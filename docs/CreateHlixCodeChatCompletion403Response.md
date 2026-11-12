@@ -1,50 +1,32 @@
 # CreateHlixCodeChatCompletion403Response
 
-## Properties
+This model accepts at least one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Error** | [**OpenAiErrorError**](OpenAiErrorError.md) |  | 
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| [ApiError](ApiError.md) | `error` |
+| [OpenAiError](OpenAiError.md) | `error` |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `ApiError` | `*ApiError` |
+| `OpenAiError` | `*OpenAiError` |
 
 ## Methods
 
-### NewCreateHlixCodeChatCompletion403Response
+### UnmarshalJSON
 
-`func NewCreateHlixCodeChatCompletion403Response(error_ OpenAiErrorError, ) *CreateHlixCodeChatCompletion403Response`
+`func (dst *CreateHlixCodeChatCompletion403Response) UnmarshalJSON(data []byte) error`
 
-NewCreateHlixCodeChatCompletion403Response instantiates a new CreateHlixCodeChatCompletion403Response object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewCreateHlixCodeChatCompletion403ResponseWithDefaults
-
-`func NewCreateHlixCodeChatCompletion403ResponseWithDefaults() *CreateHlixCodeChatCompletion403Response`
-
-NewCreateHlixCodeChatCompletion403ResponseWithDefaults instantiates a new CreateHlixCodeChatCompletion403Response object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetError
-
-`func (o *CreateHlixCodeChatCompletion403Response) GetError() OpenAiErrorError`
-
-GetError returns the Error field if non-nil, zero value otherwise.
-
-### GetErrorOk
-
-`func (o *CreateHlixCodeChatCompletion403Response) GetErrorOk() (*OpenAiErrorError, bool)`
-
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetError
-
-`func (o *CreateHlixCodeChatCompletion403Response) SetError(v OpenAiErrorError)`
-
-SetError sets Error field to given value.
-
-
+`func (src CreateHlixCodeChatCompletion403Response) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

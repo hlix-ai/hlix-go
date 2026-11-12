@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**Evidence** | [**GrowthOverviewAutopilotChangesInnerEvidence**](GrowthOverviewAutopilotChangesInnerEvidence.md) |  | 
-**Id** | **string** |  | 
-**NewMicros** | **int64** |  | 
-**OldMicros** | **int64** |  | 
-**PlayId** | **string** |  | 
-**PlayName** | **string** |  | 
-**Reason** | **string** |  | 
+**CreatedAt** | **string** |  |
+**Evidence** | [**GrowthOverviewAutopilotChangesInnerEvidence**](GrowthOverviewAutopilotChangesInnerEvidence.md) |  |
+**Id** | **string** |  |
+**NewMicros** | **int64** |  |
+**OldMicros** | **int64** |  |
+**PlayId** | **string** |  |
+**PlayName** | **string** |  |
+**Reason** | **string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewGrowthOverviewAutopilotChangesInner(createdAt string, evidence GrowthOverviewAutopilotChangesInnerEvidence, id string, newMicros int64, oldMicros int64, playId string, playName string, reason string, ) *GrowthOverviewAutopilotChangesInner`
 
 NewGrowthOverviewAutopilotChangesInner instantiates a new GrowthOverviewAutopilotChangesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthOverviewAutopilotChangesInnerWithDefaults
 
 `func NewGrowthOverviewAutopilotChangesInnerWithDefaults() *GrowthOverviewAutopilotChangesInner`
 
 NewGrowthOverviewAutopilotChangesInnerWithDefaults instantiates a new GrowthOverviewAutopilotChangesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreatedAt
 

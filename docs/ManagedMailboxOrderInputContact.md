@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressLine1** | **string** |  | 
-**AddressLine2** | Pointer to **string** |  | [optional] 
-**City** | **string** |  | 
-**Country** | **string** |  | 
-**Email** | **string** |  | 
-**FirstName** | **string** |  | 
-**LastName** | **string** |  | 
-**Organization** | Pointer to **string** |  | [optional] 
-**Phone** | Pointer to **string** |  | [optional] 
-**PostalCode** | **string** |  | 
-**State** | **string** |  | 
+**AddressLine1** | **string** |  |
+**AddressLine2** | Pointer to **string** |  | [optional]
+**City** | **string** |  |
+**Country** | **string** |  |
+**Email** | **string** |  |
+**FirstName** | **string** |  |
+**LastName** | **string** |  |
+**Organization** | Pointer to **string** |  | [optional]
+**Phone** | Pointer to **string** |  | [optional]
+**PostalCode** | **string** |  |
+**State** | **string** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewManagedMailboxOrderInputContact(addressLine1 string, city string, country string, email string, firstName string, lastName string, postalCode string, state string, ) *ManagedMailboxOrderInputContact`
 
 NewManagedMailboxOrderInputContact instantiates a new ManagedMailboxOrderInputContact object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewManagedMailboxOrderInputContactWithDefaults
 
 `func NewManagedMailboxOrderInputContactWithDefaults() *ManagedMailboxOrderInputContact`
 
 NewManagedMailboxOrderInputContactWithDefaults instantiates a new ManagedMailboxOrderInputContact object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAddressLine1
 

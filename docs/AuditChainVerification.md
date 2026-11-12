@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Checked** | **int32** |  | 
-**FirstBadId** | **NullableString** |  | 
-**Ok** | **bool** |  | 
-**Total** | **int32** |  | 
+**Checked** | **int32** |  |
+**FirstBadId** | **NullableString** |  |
+**Ok** | **bool** |  |
+**Total** | **int32** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewAuditChainVerification(checked int32, firstBadId NullableString, ok bool, total int32, ) *AuditChainVerification`
 
 NewAuditChainVerification instantiates a new AuditChainVerification object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAuditChainVerificationWithDefaults
 
 `func NewAuditChainVerificationWithDefaults() *AuditChainVerification`
 
 NewAuditChainVerificationWithDefaults instantiates a new AuditChainVerification object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetChecked
 

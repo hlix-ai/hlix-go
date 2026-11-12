@@ -1,17 +1,17 @@
-# \ProvidersAPI
+# ProvidersAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ConnectModelProvider**](ProvidersAPI.md#ConnectModelProvider) | **Post** /v1/api/providers | Save a workspace model provider
-[**DeleteModelProvider**](ProvidersAPI.md#DeleteModelProvider) | **Delete** /v1/api/providers/{provider} | Disconnect a model provider
-[**GetModelProvider**](ProvidersAPI.md#GetModelProvider) | **Get** /v1/api/providers/{provider} | Read a model provider configuration
-[**GetModelProviderModels**](ProvidersAPI.md#GetModelProviderModels) | **Get** /v1/api/providers/{provider}/models | Read cached models advertised by this billing provider
-[**ListModelProviders**](ProvidersAPI.md#ListModelProviders) | **Get** /v1/api/providers | List connected model billing providers
-[**RefreshModelProviderModels**](ProvidersAPI.md#RefreshModelProviderModels) | **Post** /v1/api/providers/{provider}/models/refresh | Refresh the connected provider model catalog
-[**TestModelProvider**](ProvidersAPI.md#TestModelProvider) | **Post** /v1/api/providers/{provider}/test | Test provider credentials without inference
-[**UpdateModelProvider**](ProvidersAPI.md#UpdateModelProvider) | **Patch** /v1/api/providers/{provider} | Update a model provider
+[**ConnectModelProvider**](ProvidersAPI.md#connectmodelprovider) | **Post** /v1/api/providers | Save a workspace model provider
+[**DeleteModelProvider**](ProvidersAPI.md#deletemodelprovider) | **Delete** /v1/api/providers/{provider} | Disconnect a model provider
+[**GetModelProvider**](ProvidersAPI.md#getmodelprovider) | **Get** /v1/api/providers/{provider} | Read a model provider configuration
+[**GetModelProviderModels**](ProvidersAPI.md#getmodelprovidermodels) | **Get** /v1/api/providers/{provider}/models | Read cached models advertised by this billing provider
+[**ListModelProviders**](ProvidersAPI.md#listmodelproviders) | **Get** /v1/api/providers | List connected model billing providers
+[**RefreshModelProviderModels**](ProvidersAPI.md#refreshmodelprovidermodels) | **Post** /v1/api/providers/{provider}/models/refresh | Refresh the connected provider model catalog
+[**TestModelProvider**](ProvidersAPI.md#testmodelprovider) | **Post** /v1/api/providers/{provider}/test | Test provider credentials without inference
+[**UpdateModelProvider**](ProvidersAPI.md#updatemodelprovider) | **Patch** /v1/api/providers/{provider} | Update a model provider
 
 
 
@@ -23,10 +23,13 @@ Save a workspace model provider
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -34,12 +37,18 @@ import (
 )
 
 func main() {
-	upsertProvider := *openapiclient.NewUpsertProvider("Provider_example") // UpsertProvider | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var upsertProvider openapiclient.UpsertProvider
+	if err := json.Unmarshal([]byte("{\"provider\":\"openai\"}"), &upsertProvider); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.ConnectModelProvider(context.Background()).UpsertProvider(upsertProvider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.ConnectModelProvider(ctx).UpsertProvider(upsertProvider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.ConnectModelProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,13 +64,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiConnectModelProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiConnectModelProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsertProvider** | [**UpsertProvider**](UpsertProvider.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **upsertProvider** | [**UpsertProvider**](UpsertProvider.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -69,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -89,6 +98,8 @@ Disconnect a model provider
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -100,12 +111,15 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.DeleteModelProvider(context.Background(), provider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.DeleteModelProvider(ctx, provider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.DeleteModelProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,17 +135,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteModelProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteModelProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -139,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -159,6 +173,8 @@ Read a model provider configuration
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -170,12 +186,15 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.GetModelProvider(context.Background(), provider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.GetModelProvider(ctx, provider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.GetModelProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,17 +210,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetModelProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiGetModelProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -209,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -229,6 +248,8 @@ Read cached models advertised by this billing provider
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -240,12 +261,15 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.GetModelProviderModels(context.Background(), provider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.GetModelProviderModels(ctx, provider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.GetModelProviderModels``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,17 +285,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetModelProviderModelsRequest struct via the builder pattern
+Pass optional parameters through the `apiGetModelProviderModelsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -279,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -299,6 +323,8 @@ List connected model billing providers
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -310,11 +336,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.ListModelProviders(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.ListModelProviders(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.ListModelProviders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -330,12 +359,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListModelProvidersRequest struct via the builder pattern
+Pass optional parameters through the `apiListModelProvidersRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -343,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -363,6 +392,8 @@ Refresh the connected provider model catalog
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -374,12 +405,15 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.RefreshModelProviderModels(context.Background(), provider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.RefreshModelProviderModels(ctx, provider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.RefreshModelProviderModels``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -395,17 +429,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRefreshModelProviderModelsRequest struct via the builder pattern
+Pass optional parameters through the `apiRefreshModelProviderModelsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -413,7 +447,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -433,10 +467,13 @@ Test provider credentials without inference
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -444,13 +481,19 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	testModelProvider := *openapiclient.NewTestModelProvider() // TestModelProvider | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	var testModelProvider openapiclient.TestModelProvider
+	if err := json.Unmarshal([]byte("{}"), &testModelProvider); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.TestModelProvider(context.Background(), provider).TestModelProvider(testModelProvider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.TestModelProvider(ctx, provider).TestModelProvider(testModelProvider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.TestModelProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -466,18 +509,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTestModelProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiTestModelProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **testModelProvider** | [**TestModelProvider**](TestModelProvider.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **testModelProvider** | [**TestModelProvider**](TestModelProvider.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -485,7 +528,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -505,10 +548,13 @@ Update a model provider
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -516,13 +562,19 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	patchProvider := *openapiclient.NewPatchProvider() // PatchProvider | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	var patchProvider openapiclient.PatchProvider
+	if err := json.Unmarshal([]byte("{}"), &patchProvider); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvidersAPI.UpdateModelProvider(context.Background(), provider).PatchProvider(patchProvider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ProvidersAPI.UpdateModelProvider(ctx, provider).PatchProvider(patchProvider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvidersAPI.UpdateModelProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -538,18 +590,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateModelProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateModelProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchProvider** | [**PatchProvider**](PatchProvider.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **patchProvider** | [**PatchProvider**](PatchProvider.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -557,7 +609,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

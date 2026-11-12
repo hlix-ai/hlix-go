@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attachments** | Pointer to [**[]AnalyzeMediaSourceAnyOf1**](AnalyzeMediaSourceAnyOf1.md) |  | [optional] 
-**Brief** | Pointer to **string** |  | [optional] 
-**ClaudeMd** | Pointer to **string** |  | [optional] 
-**GithubRepository** | Pointer to **string** |  | [optional] 
-**InitialProposalRequired** | Pointer to **bool** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Repos** | Pointer to [**[]CreateProjectReposInner**](CreateProjectReposInner.md) |  | [optional] 
-**Runtime** | Pointer to [**CreateProjectRuntime**](CreateProjectRuntime.md) |  | [optional] 
-**Stack** | Pointer to **string** |  | [optional] 
-**Tier** | Pointer to **string** |  | [optional] 
-**UseWorkspaceBrand** | Pointer to **bool** |  | [optional] 
+**Attachments** | Pointer to [**[]AnalyzeMediaSourceAnyOf1**](AnalyzeMediaSourceAnyOf1.md) |  | [optional]
+**Brief** | Pointer to **string** |  | [optional]
+**ClaudeMd** | Pointer to **string** |  | [optional]
+**GithubRepository** | Pointer to **string** |  | [optional]
+**InitialProposalRequired** | Pointer to **bool** | Hold the first build until a person approves the plan. Defaults to false: hlix starts by itself. | [optional]
+**Name** | Pointer to **string** |  | [optional]
+**Repos** | Pointer to [**[]CreateProjectReposInner**](CreateProjectReposInner.md) |  | [optional]
+**Runtime** | Pointer to [**CreateProjectRuntime**](CreateProjectRuntime.md) |  | [optional]
+**Stack** | Pointer to **string** |  | [optional]
+**Tier** | Pointer to **string** |  | [optional]
+**UseWorkspaceBrand** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewCreateProject() *CreateProject`
 
 NewCreateProject instantiates a new CreateProject object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateProjectWithDefaults
 
 `func NewCreateProjectWithDefaults() *CreateProject`
 
 NewCreateProjectWithDefaults instantiates a new CreateProject object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAttachments
 

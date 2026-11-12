@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FinishedAt** | **string** |  | 
-**JourneyId** | **string** |  | 
-**Outcome** | **string** |  | 
-**Reason** | Pointer to **string** |  | [optional] 
-**RecordingKeys** | **[]string** |  | 
-**Requirement** | Pointer to **string** |  | [optional] 
-**StartedAt** | **string** |  | 
-**TaskIds** | **[]string** |  | 
-**Title** | **string** |  | 
-**TraceKey** | Pointer to **string** |  | [optional] 
+**By** | Pointer to **string** |  | [optional]
+**FinishedAt** | **string** |  |
+**JourneyId** | **string** |  |
+**Outcome** | **string** |  |
+**Reason** | Pointer to **string** |  | [optional]
+**RecordingKeys** | **[]string** |  |
+**Requirement** | Pointer to **string** |  | [optional]
+**StartedAt** | **string** |  |
+**TaskIds** | **[]string** |  |
+**Title** | **string** |  |
+**TraceKey** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -22,17 +23,40 @@ Name | Type | Description | Notes
 `func NewCycleE2eReportJourneysInner(finishedAt string, journeyId string, outcome string, recordingKeys []string, startedAt string, taskIds []string, title string, ) *CycleE2eReportJourneysInner`
 
 NewCycleE2eReportJourneysInner instantiates a new CycleE2eReportJourneysInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleE2eReportJourneysInnerWithDefaults
 
 `func NewCycleE2eReportJourneysInnerWithDefaults() *CycleE2eReportJourneysInner`
 
 NewCycleE2eReportJourneysInnerWithDefaults instantiates a new CycleE2eReportJourneysInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetBy
+
+`func (o *CycleE2eReportJourneysInner) GetBy() string`
+
+GetBy returns the By field if non-nil, zero value otherwise.
+
+### GetByOk
+
+`func (o *CycleE2eReportJourneysInner) GetByOk() (*string, bool)`
+
+GetByOk returns a tuple with the By field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBy
+
+`func (o *CycleE2eReportJourneysInner) SetBy(v string)`
+
+SetBy sets By field to given value.
+
+### HasBy
+
+`func (o *CycleE2eReportJourneysInner) HasBy() bool`
+
+HasBy returns a boolean if a field has been set.
 
 ### GetFinishedAt
 

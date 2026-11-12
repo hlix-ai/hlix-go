@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgingWip** | [**[]CycleMetricsAgingWipInner**](CycleMetricsAgingWipInner.md) |  | 
-**AutomationQuality** | [**CycleMetricsAutomationQuality**](CycleMetricsAutomationQuality.md) |  | 
-**CycleTimeMs** | [**CycleMetricsCycleTimeMs**](CycleMetricsCycleTimeMs.md) |  | 
-**PerCycle** | [**[]CycleMetricsPerCycleInner**](CycleMetricsPerCycleInner.md) |  | 
-**PerStageMedians** | [**[]CycleMetricsPerStageMediansInner**](CycleMetricsPerStageMediansInner.md) |  | 
-**Throughput** | [**CycleMetricsThroughput**](CycleMetricsThroughput.md) |  | 
-**TotalCycles** | **int32** |  | 
-**Wip** | [**CycleMetricsWip**](CycleMetricsWip.md) |  | 
+**AgingWip** | [**[]CycleMetricsAgingWipInner**](CycleMetricsAgingWipInner.md) |  |
+**AutomationQuality** | [**CycleMetricsAutomationQuality**](CycleMetricsAutomationQuality.md) |  |
+**CycleTimeMs** | [**CycleMetricsCycleTimeMs**](CycleMetricsCycleTimeMs.md) |  |
+**PerCycle** | [**[]CycleMetricsPerCycleInner**](CycleMetricsPerCycleInner.md) |  |
+**PerStageMedians** | [**[]CycleMetricsPerStageMediansInner**](CycleMetricsPerStageMediansInner.md) |  |
+**Throughput** | [**CycleMetricsThroughput**](CycleMetricsThroughput.md) |  |
+**TotalCycles** | **int32** |  |
+**Wip** | [**CycleMetricsWip**](CycleMetricsWip.md) |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewCycleMetrics(agingWip []CycleMetricsAgingWipInner, automationQuality CycleMetricsAutomationQuality, cycleTimeMs CycleMetricsCycleTimeMs, perCycle []CycleMetricsPerCycleInner, perStageMedians []CycleMetricsPerStageMediansInner, throughput CycleMetricsThroughput, totalCycles int32, wip CycleMetricsWip, ) *CycleMetrics`
 
 NewCycleMetrics instantiates a new CycleMetrics object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleMetricsWithDefaults
 
 `func NewCycleMetricsWithDefaults() *CycleMetrics`
 
 NewCycleMetricsWithDefaults instantiates a new CycleMetrics object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgingWip
 

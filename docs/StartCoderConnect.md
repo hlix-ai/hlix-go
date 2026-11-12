@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | Pointer to **string** |  | [optional] 
-**CallbackPort** | Pointer to **int32** |  | [optional] 
-**Coder** | **string** |  | 
-**Label** | **string** |  | 
+**AccountId** | Pointer to **string** |  | [optional]
+**CallbackPort** | Pointer to **int32** |  | [optional]
+**Coder** | **string** |  |
+**Label** | **string** |  |
 **Shared** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewStartCoderConnect(coder string, label string, ) *StartCoderConnect`
 
 NewStartCoderConnect instantiates a new StartCoderConnect object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewStartCoderConnectWithDefaults
 
 `func NewStartCoderConnectWithDefaults() *StartCoderConnect`
 
 NewStartCoderConnectWithDefaults instantiates a new StartCoderConnect object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountId
 

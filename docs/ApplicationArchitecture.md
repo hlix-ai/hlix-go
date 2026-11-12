@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Coverage** | [**ApplicationArchitectureCoverage**](ApplicationArchitectureCoverage.md) |  | 
-**Cycle** | [**NullableApplicationArchitectureCycle**](ApplicationArchitectureCycle.md) |  | 
-**Edges** | [**[]ApplicationArchitectureEdgesInner**](ApplicationArchitectureEdgesInner.md) |  | 
-**Nodes** | [**[]ApplicationArchitectureNodesInner**](ApplicationArchitectureNodesInner.md) |  | 
-**ObservedAt** | **string** |  | 
-**Repositories** | [**[]ApplicationArchitectureRepositoriesInner**](ApplicationArchitectureRepositoriesInner.md) |  | 
-**Status** | **string** |  | 
-**Warnings** | **[]string** |  | 
+**Coverage** | [**ApplicationArchitectureCoverage**](ApplicationArchitectureCoverage.md) |  |
+**Cycle** | [**NullableApplicationArchitectureCycle**](ApplicationArchitectureCycle.md) |  |
+**Edges** | [**[]ApplicationArchitectureEdgesInner**](ApplicationArchitectureEdgesInner.md) |  |
+**Nodes** | [**[]ApplicationArchitectureNodesInner**](ApplicationArchitectureNodesInner.md) |  |
+**ObservedAt** | **string** |  |
+**Repositories** | [**[]ApplicationArchitectureRepositoriesInner**](ApplicationArchitectureRepositoriesInner.md) |  |
+**Status** | **string** |  |
+**Warnings** | **[]string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewApplicationArchitecture(coverage ApplicationArchitectureCoverage, cycle NullableApplicationArchitectureCycle, edges []ApplicationArchitectureEdgesInner, nodes []ApplicationArchitectureNodesInner, observedAt string, repositories []ApplicationArchitectureRepositoriesInner, status string, warnings []string, ) *ApplicationArchitecture`
 
 NewApplicationArchitecture instantiates a new ApplicationArchitecture object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewApplicationArchitectureWithDefaults
 
 `func NewApplicationArchitectureWithDefaults() *ApplicationArchitecture`
 
 NewApplicationArchitectureWithDefaults instantiates a new ApplicationArchitecture object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCoverage
 

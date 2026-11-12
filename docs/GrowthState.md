@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Brain** | [**NullableGrowthStateBrain**](GrowthStateBrain.md) |  | 
-**Campaigns** | [**[]GrowthStateCampaignsInner**](GrowthStateCampaignsInner.md) |  | 
-**DroppedFacts** | **NullableInt32** |  | 
-**LastRun** | [**NullableGrowthStateLastRun**](GrowthStateLastRun.md) |  | 
-**LeadList** | [**GrowthStateLeadList**](GrowthStateLeadList.md) |  | 
-**Project** | [**GrowthProjectCreatedProject**](GrowthProjectCreatedProject.md) |  | 
-**Reach** | [**map[string]GrowthStateReachValue**](GrowthStateReachValue.md) |  | 
-**WebsiteUrl** | **NullableString** |  | 
+**Brain** | [**NullableGrowthStateBrain**](GrowthStateBrain.md) |  |
+**Campaigns** | [**[]GrowthStateCampaignsInner**](GrowthStateCampaignsInner.md) |  |
+**DroppedFacts** | **NullableInt32** |  |
+**LastRun** | [**NullableGrowthStateLastRun**](GrowthStateLastRun.md) |  |
+**LeadList** | [**GrowthStateLeadList**](GrowthStateLeadList.md) |  |
+**Project** | [**GrowthProjectCreatedProject**](GrowthProjectCreatedProject.md) |  |
+**Reach** | [**map[string]GrowthStateReachValue**](GrowthStateReachValue.md) |  |
+**WebsiteUrl** | **NullableString** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewGrowthState(brain NullableGrowthStateBrain, campaigns []GrowthStateCampaignsInner, droppedFacts NullableInt32, lastRun NullableGrowthStateLastRun, leadList GrowthStateLeadList, project GrowthProjectCreatedProject, reach map[string]GrowthStateReachValue, websiteUrl NullableString, ) *GrowthState`
 
 NewGrowthState instantiates a new GrowthState object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthStateWithDefaults
 
 `func NewGrowthStateWithDefaults() *GrowthState`
 
 NewGrowthStateWithDefaults instantiates a new GrowthState object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBrain
 

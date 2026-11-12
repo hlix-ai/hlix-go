@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Basis** | **string** |  | 
-**CapturedAt** | **string** |  | 
-**CostMicros** | **int64** |  | 
-**InputPricePerMTokensMicros** | **int64** |  | 
-**MarkupBps** | **float32** |  | 
-**ModelIdentifier** | **string** |  | 
-**OutputPricePerMTokensMicros** | **int64** |  | 
-**TokensIn** | **float32** |  | 
-**TokensOut** | **float32** |  | 
+**Basis** | **string** |  |
+**CapturedAt** | **string** |  |
+**CostMicros** | **int64** |  |
+**InputPricePerMTokensMicros** | **int64** |  |
+**MarkupBps** | **float32** |  |
+**ModelIdentifier** | **string** |  |
+**OutputPricePerMTokensMicros** | **int64** |  |
+**TokensIn** | **float32** |  |
+**TokensOut** | **float32** |  |
 
 ## Methods
 
@@ -21,17 +21,15 @@ Name | Type | Description | Notes
 `func NewClientBillableRateSnapshotAnyOf1(basis string, capturedAt string, costMicros int64, inputPricePerMTokensMicros int64, markupBps float32, modelIdentifier string, outputPricePerMTokensMicros int64, tokensIn float32, tokensOut float32, ) *ClientBillableRateSnapshotAnyOf1`
 
 NewClientBillableRateSnapshotAnyOf1 instantiates a new ClientBillableRateSnapshotAnyOf1 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientBillableRateSnapshotAnyOf1WithDefaults
 
 `func NewClientBillableRateSnapshotAnyOf1WithDefaults() *ClientBillableRateSnapshotAnyOf1`
 
 NewClientBillableRateSnapshotAnyOf1WithDefaults instantiates a new ClientBillableRateSnapshotAnyOf1 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBasis
 

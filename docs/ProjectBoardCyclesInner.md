@@ -4,33 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveRun** | [**NullableProjectBoardCyclesInnerActiveRun**](ProjectBoardCyclesInnerActiveRun.md) |  | 
-**DependsOn** | **[]string** |  | 
-**Id** | **string** |  | 
-**Persona** | **NullableString** |  | 
-**Stage** | **string** |  | 
-**Status** | **string** |  | 
-**Steps** | [**[]ProjectBoardCyclesInnerStepsInner**](ProjectBoardCyclesInnerStepsInner.md) |  | 
-**Title** | **string** |  | 
+**ActiveRun** | [**NullableProjectBoardCyclesInnerActiveRun**](ProjectBoardCyclesInnerActiveRun.md) |  |
+**DependsOn** | **[]string** |  |
+**Id** | **string** |  |
+**Kind** | Pointer to **string** |  | [optional]
+**Role** | **NullableString** |  |
+**Stage** | **string** |  |
+**Status** | **string** |  |
+**Title** | **string** |  |
 
 ## Methods
 
 ### NewProjectBoardCyclesInner
 
-`func NewProjectBoardCyclesInner(activeRun NullableProjectBoardCyclesInnerActiveRun, dependsOn []string, id string, persona NullableString, stage string, status string, steps []ProjectBoardCyclesInnerStepsInner, title string, ) *ProjectBoardCyclesInner`
+`func NewProjectBoardCyclesInner(activeRun NullableProjectBoardCyclesInnerActiveRun, dependsOn []string, id string, role NullableString, stage string, status string, title string, ) *ProjectBoardCyclesInner`
 
 NewProjectBoardCyclesInner instantiates a new ProjectBoardCyclesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBoardCyclesInnerWithDefaults
 
 `func NewProjectBoardCyclesInnerWithDefaults() *ProjectBoardCyclesInner`
 
 NewProjectBoardCyclesInnerWithDefaults instantiates a new ProjectBoardCyclesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveRun
 
@@ -102,36 +100,61 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetPersona
+### GetKind
 
-`func (o *ProjectBoardCyclesInner) GetPersona() string`
+`func (o *ProjectBoardCyclesInner) GetKind() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetKind returns the Kind field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetKindOk
 
-`func (o *ProjectBoardCyclesInner) GetPersonaOk() (*string, bool)`
+`func (o *ProjectBoardCyclesInner) GetKindOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetKindOk returns a tuple with the Kind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetKind
 
-`func (o *ProjectBoardCyclesInner) SetPersona(v string)`
+`func (o *ProjectBoardCyclesInner) SetKind(v string)`
 
-SetPersona sets Persona field to given value.
+SetKind sets Kind field to given value.
+
+### HasKind
+
+`func (o *ProjectBoardCyclesInner) HasKind() bool`
+
+HasKind returns a boolean if a field has been set.
+
+### GetRole
+
+`func (o *ProjectBoardCyclesInner) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *ProjectBoardCyclesInner) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *ProjectBoardCyclesInner) SetRole(v string)`
+
+SetRole sets Role field to given value.
 
 
-### SetPersonaNil
+### SetRoleNil
 
-`func (o *ProjectBoardCyclesInner) SetPersonaNil(b bool)`
+`func (o *ProjectBoardCyclesInner) SetRoleNil(b bool)`
 
- SetPersonaNil sets the value for Persona to be an explicit nil
+ SetRoleNil sets the value for Role to be an explicit nil
 
-### UnsetPersona
-`func (o *ProjectBoardCyclesInner) UnsetPersona()`
+### UnsetRole
+`func (o *ProjectBoardCyclesInner) UnsetRole()`
 
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
+UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetStage
 
 `func (o *ProjectBoardCyclesInner) GetStage() string`
@@ -170,26 +193,6 @@ and a boolean to check if the value has been set.
 `func (o *ProjectBoardCyclesInner) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
-
-
-### GetSteps
-
-`func (o *ProjectBoardCyclesInner) GetSteps() []ProjectBoardCyclesInnerStepsInner`
-
-GetSteps returns the Steps field if non-nil, zero value otherwise.
-
-### GetStepsOk
-
-`func (o *ProjectBoardCyclesInner) GetStepsOk() (*[]ProjectBoardCyclesInnerStepsInner, bool)`
-
-GetStepsOk returns a tuple with the Steps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSteps
-
-`func (o *ProjectBoardCyclesInner) SetSteps(v []ProjectBoardCyclesInnerStepsInner)`
-
-SetSteps sets Steps field to given value.
 
 
 ### GetTitle

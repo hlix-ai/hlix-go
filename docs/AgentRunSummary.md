@@ -4,42 +4,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountingSource** | **NullableString** |  | 
-**BilledTo** | **NullableString** |  | 
-**CoderAccountId** | **NullableString** |  | 
-**CompletedAt** | **NullableString** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CredentialKind** | **NullableString** |  | 
-**FundingMode** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Model** | **string** |  | 
-**Persona** | **NullableString** |  | 
-**Role** | **string** |  | 
-**StartedAt** | **string** |  | 
-**Status** | **string** |  | 
-**TaskId** | **NullableString** |  | 
-**TokensIn** | **NullableInt32** |  | 
-**TokensOut** | **NullableInt32** |  | 
-**UsageCompleteness** | **NullableString** |  | 
+**AccountingSource** | **NullableString** |  |
+**AgentKind** | **string** |  |
+**BilledTo** | **NullableString** |  |
+**CoderAccountId** | **NullableString** |  |
+**CompletedAt** | **NullableString** |  |
+**CostMicros** | **NullableInt64** |  |
+**CredentialKind** | **NullableString** |  |
+**FundingMode** | **NullableString** |  |
+**Id** | **string** |  |
+**Model** | **string** |  |
+**PromptKey** | **NullableString** |  |
+**StartedAt** | **string** |  |
+**Status** | **string** |  |
+**TaskId** | **NullableString** |  |
+**TokensIn** | **NullableInt32** |  |
+**TokensOut** | **NullableInt32** |  |
+**UsageCompleteness** | **NullableString** |  |
 
 ## Methods
 
 ### NewAgentRunSummary
 
-`func NewAgentRunSummary(accountingSource NullableString, billedTo NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, persona NullableString, role string, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString, ) *AgentRunSummary`
+`func NewAgentRunSummary(accountingSource NullableString, agentKind string, billedTo NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, promptKey NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString, ) *AgentRunSummary`
 
 NewAgentRunSummary instantiates a new AgentRunSummary object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentRunSummaryWithDefaults
 
 `func NewAgentRunSummaryWithDefaults() *AgentRunSummary`
 
 NewAgentRunSummaryWithDefaults instantiates a new AgentRunSummary object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountingSource
 
@@ -71,6 +69,26 @@ SetAccountingSource sets AccountingSource field to given value.
 `func (o *AgentRunSummary) UnsetAccountingSource()`
 
 UnsetAccountingSource ensures that no value is present for AccountingSource, not even an explicit nil
+### GetAgentKind
+
+`func (o *AgentRunSummary) GetAgentKind() string`
+
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
+
+### GetAgentKindOk
+
+`func (o *AgentRunSummary) GetAgentKindOk() (*string, bool)`
+
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentKind
+
+`func (o *AgentRunSummary) SetAgentKind(v string)`
+
+SetAgentKind sets AgentKind field to given value.
+
+
 ### GetBilledTo
 
 `func (o *AgentRunSummary) GetBilledTo() string`
@@ -291,56 +309,36 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
-### GetPersona
+### GetPromptKey
 
-`func (o *AgentRunSummary) GetPersona() string`
+`func (o *AgentRunSummary) GetPromptKey() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetPromptKeyOk
 
-`func (o *AgentRunSummary) GetPersonaOk() (*string, bool)`
+`func (o *AgentRunSummary) GetPromptKeyOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetPromptKey
 
-`func (o *AgentRunSummary) SetPersona(v string)`
+`func (o *AgentRunSummary) SetPromptKey(v string)`
 
-SetPersona sets Persona field to given value.
-
-
-### SetPersonaNil
-
-`func (o *AgentRunSummary) SetPersonaNil(b bool)`
-
- SetPersonaNil sets the value for Persona to be an explicit nil
-
-### UnsetPersona
-`func (o *AgentRunSummary) UnsetPersona()`
-
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
-### GetRole
-
-`func (o *AgentRunSummary) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *AgentRunSummary) GetRoleOk() (*string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRole
-
-`func (o *AgentRunSummary) SetRole(v string)`
-
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *AgentRunSummary) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *AgentRunSummary) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 ### GetStartedAt
 
 `func (o *AgentRunSummary) GetStartedAt() string`

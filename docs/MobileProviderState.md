@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CredentialSource** | **string** |  | 
-**Enabled** | **bool** |  | 
-**HasApiKey** | **bool** |  | 
-**PlatformAvailable** | **bool** |  | 
-**Provider** | **string** |  | 
+**CredentialSource** | **string** |  |
+**Enabled** | **bool** |  |
+**HasApiKey** | **bool** |  |
+**PlatformAvailable** | **bool** |  |
+**Provider** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewMobileProviderState(credentialSource string, enabled bool, hasApiKey bool, platformAvailable bool, provider string, ) *MobileProviderState`
 
 NewMobileProviderState instantiates a new MobileProviderState object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewMobileProviderStateWithDefaults
 
 `func NewMobileProviderStateWithDefaults() *MobileProviderState`
 
 NewMobileProviderStateWithDefaults instantiates a new MobileProviderState object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCredentialSource
 

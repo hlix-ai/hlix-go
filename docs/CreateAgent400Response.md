@@ -1,71 +1,32 @@
 # CreateAgent400Response
 
-## Properties
+This model accepts at least one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Error** | **string** |  | 
-**Success** | **bool** |  | 
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| [ValidationError](ValidationError.md) | `error`, `success` |
+| [ApiError](ApiError.md) | `error` |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `ApiError` | `*ApiError` |
+| `ValidationError` | `*ValidationError` |
 
 ## Methods
 
-### NewCreateAgent400Response
+### UnmarshalJSON
 
-`func NewCreateAgent400Response(error_ string, success bool, ) *CreateAgent400Response`
+`func (dst *CreateAgent400Response) UnmarshalJSON(data []byte) error`
 
-NewCreateAgent400Response instantiates a new CreateAgent400Response object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewCreateAgent400ResponseWithDefaults
-
-`func NewCreateAgent400ResponseWithDefaults() *CreateAgent400Response`
-
-NewCreateAgent400ResponseWithDefaults instantiates a new CreateAgent400Response object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetError
-
-`func (o *CreateAgent400Response) GetError() string`
-
-GetError returns the Error field if non-nil, zero value otherwise.
-
-### GetErrorOk
-
-`func (o *CreateAgent400Response) GetErrorOk() (*string, bool)`
-
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetError
-
-`func (o *CreateAgent400Response) SetError(v string)`
-
-SetError sets Error field to given value.
-
-
-### GetSuccess
-
-`func (o *CreateAgent400Response) GetSuccess() bool`
-
-GetSuccess returns the Success field if non-nil, zero value otherwise.
-
-### GetSuccessOk
-
-`func (o *CreateAgent400Response) GetSuccessOk() (*bool, bool)`
-
-GetSuccessOk returns a tuple with the Success field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSuccess
-
-`func (o *CreateAgent400Response) SetSuccess(v bool)`
-
-SetSuccess sets Success field to given value.
-
-
+`func (src CreateAgent400Response) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

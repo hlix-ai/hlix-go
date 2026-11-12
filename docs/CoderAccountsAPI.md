@@ -1,20 +1,20 @@
-# \CoderAccountsAPI
+# CoderAccountsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelCoderAccountConnect**](CoderAccountsAPI.md#CancelCoderAccountConnect) | **Delete** /v1/api/coder-accounts/connect/{sessionId} | Cancel subscription sign-in
-[**CompleteCoderAccountConnect**](CoderAccountsAPI.md#CompleteCoderAccountConnect) | **Post** /v1/api/coder-accounts/connect/{sessionId}/complete | Finish subscription sign-in or poll device authorization
-[**CreateCoderAccount**](CoderAccountsAPI.md#CreateCoderAccount) | **Post** /v1/api/coder-accounts | Import a subscription credential or custom API key
-[**DeleteCoderAccount**](CoderAccountsAPI.md#DeleteCoderAccount) | **Delete** /v1/api/coder-accounts/{id} | Remove an account and its credential
-[**GetCoderAccountModels**](CoderAccountsAPI.md#GetCoderAccountModels) | **Get** /v1/api/coder-accounts/{id}/models | Read cached models advertised by an account
-[**ListCoderAccounts**](CoderAccountsAPI.md#ListCoderAccounts) | **Get** /v1/api/coder-accounts | List safe coder accounts
-[**ReconnectCoderAccount**](CoderAccountsAPI.md#ReconnectCoderAccount) | **Put** /v1/api/coder-accounts/{id}/credential | Replace an account credential
-[**RefreshCoderAccountModels**](CoderAccountsAPI.md#RefreshCoderAccountModels) | **Post** /v1/api/coder-accounts/{id}/models/refresh | Refresh an API account&#39;s advertised models
-[**StartCoderAccountConnect**](CoderAccountsAPI.md#StartCoderAccountConnect) | **Post** /v1/api/coder-accounts/connect | Start subscription sign-in
-[**TestCoderAccount**](CoderAccountsAPI.md#TestCoderAccount) | **Post** /v1/api/coder-accounts/{id}/test | Check a Claude or Codex API key
-[**UpdateCoderAccount**](CoderAccountsAPI.md#UpdateCoderAccount) | **Patch** /v1/api/coder-accounts/{id} | Rename, share or enable an account
+[**CancelCoderAccountConnect**](CoderAccountsAPI.md#cancelcoderaccountconnect) | **Delete** /v1/api/coder-accounts/connect/{sessionId} | Cancel subscription sign-in
+[**CompleteCoderAccountConnect**](CoderAccountsAPI.md#completecoderaccountconnect) | **Post** /v1/api/coder-accounts/connect/{sessionId}/complete | Finish subscription sign-in or poll device authorization
+[**CreateCoderAccount**](CoderAccountsAPI.md#createcoderaccount) | **Post** /v1/api/coder-accounts | Import a subscription credential or custom API key
+[**DeleteCoderAccount**](CoderAccountsAPI.md#deletecoderaccount) | **Delete** /v1/api/coder-accounts/{id} | Remove an account and its credential
+[**GetCoderAccountModels**](CoderAccountsAPI.md#getcoderaccountmodels) | **Get** /v1/api/coder-accounts/{id}/models | Read cached models advertised by an account
+[**ListCoderAccounts**](CoderAccountsAPI.md#listcoderaccounts) | **Get** /v1/api/coder-accounts | List safe coder accounts
+[**ReconnectCoderAccount**](CoderAccountsAPI.md#reconnectcoderaccount) | **Put** /v1/api/coder-accounts/{id}/credential | Replace an account credential
+[**RefreshCoderAccountModels**](CoderAccountsAPI.md#refreshcoderaccountmodels) | **Post** /v1/api/coder-accounts/{id}/models/refresh | Refresh an API account&#39;s advertised models
+[**StartCoderAccountConnect**](CoderAccountsAPI.md#startcoderaccountconnect) | **Post** /v1/api/coder-accounts/connect | Start subscription sign-in
+[**TestCoderAccount**](CoderAccountsAPI.md#testcoderaccount) | **Post** /v1/api/coder-accounts/{id}/test | Check a Claude or Codex API key
+[**UpdateCoderAccount**](CoderAccountsAPI.md#updatecoderaccount) | **Patch** /v1/api/coder-accounts/{id} | Rename, share or enable an account
 
 
 
@@ -25,6 +25,8 @@ Method | HTTP request | Description
 Cancel subscription sign-in
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -37,12 +39,15 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	sessionId := "sessionId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.CancelCoderAccountConnect(context.Background(), sessionId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.CancelCoderAccountConnect(ctx, sessionId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.CancelCoderAccountConnect``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,17 +63,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sessionId** | **string** |  | 
+**sessionId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCancelCoderAccountConnectRequest struct via the builder pattern
+Pass optional parameters through the `apiCancelCoderAccountConnectRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -76,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -96,10 +101,13 @@ Finish subscription sign-in or poll device authorization
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -107,13 +115,19 @@ import (
 )
 
 func main() {
-	sessionId := "sessionId_example" // string | 
-	completeCoderConnect := *openapiclient.NewCompleteCoderConnect() // CompleteCoderConnect | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	sessionId := "sessionId_example" // string |
+	var completeCoderConnect openapiclient.CompleteCoderConnect
+	if err := json.Unmarshal([]byte("{}"), &completeCoderConnect); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.CompleteCoderAccountConnect(context.Background(), sessionId).CompleteCoderConnect(completeCoderConnect).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.CompleteCoderAccountConnect(ctx, sessionId).CompleteCoderConnect(completeCoderConnect).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.CompleteCoderAccountConnect``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,18 +143,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**sessionId** | **string** |  | 
+**sessionId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCompleteCoderAccountConnectRequest struct via the builder pattern
+Pass optional parameters through the `apiCompleteCoderAccountConnectRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **completeCoderConnect** | [**CompleteCoderConnect**](CompleteCoderConnect.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **completeCoderConnect** | [**CompleteCoderConnect**](CompleteCoderConnect.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -148,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -168,10 +182,13 @@ Import a subscription credential or custom API key
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -179,12 +196,18 @@ import (
 )
 
 func main() {
-	createCoderAccount := *openapiclient.NewCreateCoderAccount("Coder_example", "Credential_example", "Kind_example", "Label_example") // CreateCoderAccount | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createCoderAccount openapiclient.CreateCoderAccount
+	if err := json.Unmarshal([]byte("{\"coder\":\"claude-code\",\"credential\":\"text\",\"kind\":\"subscription\",\"label\":\"text\"}"), &createCoderAccount); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.CreateCoderAccount(context.Background()).CreateCoderAccount(createCoderAccount).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.CreateCoderAccount(ctx).CreateCoderAccount(createCoderAccount).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.CreateCoderAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,13 +223,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCoderAccountRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateCoderAccountRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createCoderAccount** | [**CreateCoderAccount**](CreateCoderAccount.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createCoderAccount** | [**CreateCoderAccount**](CreateCoderAccount.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -214,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -234,6 +257,8 @@ Remove an account and its credential
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -245,12 +270,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.DeleteCoderAccount(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.DeleteCoderAccount(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.DeleteCoderAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,17 +294,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteCoderAccountRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteCoderAccountRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -284,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -304,6 +332,8 @@ Read cached models advertised by an account
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -315,12 +345,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.GetCoderAccountModels(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.GetCoderAccountModels(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.GetCoderAccountModels``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,17 +369,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCoderAccountModelsRequest struct via the builder pattern
+Pass optional parameters through the `apiGetCoderAccountModelsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -354,7 +387,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -374,6 +407,8 @@ List safe coder accounts
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -385,11 +420,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.ListCoderAccounts(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.ListCoderAccounts(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.ListCoderAccounts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -405,12 +443,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCoderAccountsRequest struct via the builder pattern
+Pass optional parameters through the `apiListCoderAccountsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -418,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -438,10 +476,13 @@ Replace an account credential
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -449,13 +490,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	reconnectCoderAccount := *openapiclient.NewReconnectCoderAccount("Credential_example") // ReconnectCoderAccount | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var reconnectCoderAccount openapiclient.ReconnectCoderAccount
+	if err := json.Unmarshal([]byte("{\"credential\":\"text\"}"), &reconnectCoderAccount); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.ReconnectCoderAccount(context.Background(), id).ReconnectCoderAccount(reconnectCoderAccount).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.ReconnectCoderAccount(ctx, id).ReconnectCoderAccount(reconnectCoderAccount).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.ReconnectCoderAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -471,18 +518,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiReconnectCoderAccountRequest struct via the builder pattern
+Pass optional parameters through the `apiReconnectCoderAccountRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **reconnectCoderAccount** | [**ReconnectCoderAccount**](ReconnectCoderAccount.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **reconnectCoderAccount** | [**ReconnectCoderAccount**](ReconnectCoderAccount.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -490,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -510,6 +557,8 @@ Refresh an API account's advertised models
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -521,12 +570,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.RefreshCoderAccountModels(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.RefreshCoderAccountModels(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.RefreshCoderAccountModels``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -542,17 +594,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRefreshCoderAccountModelsRequest struct via the builder pattern
+Pass optional parameters through the `apiRefreshCoderAccountModelsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -560,7 +612,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -580,10 +632,13 @@ Start subscription sign-in
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -591,12 +646,18 @@ import (
 )
 
 func main() {
-	startCoderConnect := *openapiclient.NewStartCoderConnect("Coder_example", "Label_example") // StartCoderConnect | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var startCoderConnect openapiclient.StartCoderConnect
+	if err := json.Unmarshal([]byte("{\"coder\":\"claude-code\",\"label\":\"text\"}"), &startCoderConnect); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.StartCoderAccountConnect(context.Background()).StartCoderConnect(startCoderConnect).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.StartCoderAccountConnect(ctx).StartCoderConnect(startCoderConnect).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.StartCoderAccountConnect``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -612,13 +673,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStartCoderAccountConnectRequest struct via the builder pattern
+Pass optional parameters through the `apiStartCoderAccountConnectRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startCoderConnect** | [**StartCoderConnect**](StartCoderConnect.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **startCoderConnect** | [**StartCoderConnect**](StartCoderConnect.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -626,7 +687,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -646,6 +707,8 @@ Check a Claude or Codex API key
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -657,12 +720,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.TestCoderAccount(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.TestCoderAccount(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.TestCoderAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -678,17 +744,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTestCoderAccountRequest struct via the builder pattern
+Pass optional parameters through the `apiTestCoderAccountRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -696,7 +762,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -716,10 +782,13 @@ Rename, share or enable an account
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -727,13 +796,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	patchCoderAccount := *openapiclient.NewPatchCoderAccount() // PatchCoderAccount | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var patchCoderAccount openapiclient.PatchCoderAccount
+	if err := json.Unmarshal([]byte("{}"), &patchCoderAccount); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CoderAccountsAPI.UpdateCoderAccount(context.Background(), id).PatchCoderAccount(patchCoderAccount).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CoderAccountsAPI.UpdateCoderAccount(ctx, id).PatchCoderAccount(patchCoderAccount).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CoderAccountsAPI.UpdateCoderAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -749,18 +824,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCoderAccountRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateCoderAccountRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchCoderAccount** | [**PatchCoderAccount**](PatchCoderAccount.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **patchCoderAccount** | [**PatchCoderAccount**](PatchCoderAccount.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -768,7 +843,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

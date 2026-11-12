@@ -4,40 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountingSource** | **NullableString** |  | 
-**BilledTo** | **NullableString** |  | 
-**CoderAccountId** | **NullableString** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CredentialKind** | **NullableString** |  | 
-**FundingMode** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Model** | **string** |  | 
-**Persona** | **NullableString** |  | 
-**ProjectName** | **NullableString** |  | 
-**Role** | **string** |  | 
-**StartedAt** | **string** |  | 
-**TokensIn** | **NullableInt32** |  | 
-**TokensOut** | **NullableInt32** |  | 
-**UsageCompleteness** | **NullableString** |  | 
+**AccountingSource** | **NullableString** |  |
+**AgentKind** | **string** |  |
+**BilledTo** | **NullableString** |  |
+**CoderAccountId** | **NullableString** |  |
+**CostMicros** | **NullableInt64** | What this run is priced at in micros (Hlix-funded runs at cost plus markup). In metered billing it is what the workspace is charged and what the meter is sent; in task billing the workspace pays per accepted task, so it is the price equivalent of the usage, not a charge. A run on the workspace&#39;s own key shows its own cost, flagged by billedTo; a run on a coding login has none. |
+**CredentialKind** | **NullableString** |  |
+**FundingMode** | **NullableString** |  |
+**Id** | **string** |  |
+**Model** | **string** |  |
+**ProjectName** | **NullableString** |  |
+**PromptKey** | **NullableString** |  |
+**StartedAt** | **string** |  |
+**TokensIn** | **NullableInt32** |  |
+**TokensOut** | **NullableInt32** |  |
+**UsageCompleteness** | **NullableString** |  |
 
 ## Methods
 
 ### NewWorkspaceUsageRunsInner
 
-`func NewWorkspaceUsageRunsInner(accountingSource NullableString, billedTo NullableString, coderAccountId NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, persona NullableString, projectName NullableString, role string, startedAt string, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString, ) *WorkspaceUsageRunsInner`
+`func NewWorkspaceUsageRunsInner(accountingSource NullableString, agentKind string, billedTo NullableString, coderAccountId NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, projectName NullableString, promptKey NullableString, startedAt string, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString, ) *WorkspaceUsageRunsInner`
 
 NewWorkspaceUsageRunsInner instantiates a new WorkspaceUsageRunsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWorkspaceUsageRunsInnerWithDefaults
 
 `func NewWorkspaceUsageRunsInnerWithDefaults() *WorkspaceUsageRunsInner`
 
 NewWorkspaceUsageRunsInnerWithDefaults instantiates a new WorkspaceUsageRunsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountingSource
 
@@ -69,6 +67,26 @@ SetAccountingSource sets AccountingSource field to given value.
 `func (o *WorkspaceUsageRunsInner) UnsetAccountingSource()`
 
 UnsetAccountingSource ensures that no value is present for AccountingSource, not even an explicit nil
+### GetAgentKind
+
+`func (o *WorkspaceUsageRunsInner) GetAgentKind() string`
+
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
+
+### GetAgentKindOk
+
+`func (o *WorkspaceUsageRunsInner) GetAgentKindOk() (*string, bool)`
+
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentKind
+
+`func (o *WorkspaceUsageRunsInner) SetAgentKind(v string)`
+
+SetAgentKind sets AgentKind field to given value.
+
+
 ### GetBilledTo
 
 `func (o *WorkspaceUsageRunsInner) GetBilledTo() string`
@@ -259,36 +277,6 @@ and a boolean to check if the value has been set.
 SetModel sets Model field to given value.
 
 
-### GetPersona
-
-`func (o *WorkspaceUsageRunsInner) GetPersona() string`
-
-GetPersona returns the Persona field if non-nil, zero value otherwise.
-
-### GetPersonaOk
-
-`func (o *WorkspaceUsageRunsInner) GetPersonaOk() (*string, bool)`
-
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPersona
-
-`func (o *WorkspaceUsageRunsInner) SetPersona(v string)`
-
-SetPersona sets Persona field to given value.
-
-
-### SetPersonaNil
-
-`func (o *WorkspaceUsageRunsInner) SetPersonaNil(b bool)`
-
- SetPersonaNil sets the value for Persona to be an explicit nil
-
-### UnsetPersona
-`func (o *WorkspaceUsageRunsInner) UnsetPersona()`
-
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
 ### GetProjectName
 
 `func (o *WorkspaceUsageRunsInner) GetProjectName() string`
@@ -319,26 +307,36 @@ SetProjectName sets ProjectName field to given value.
 `func (o *WorkspaceUsageRunsInner) UnsetProjectName()`
 
 UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
-### GetRole
+### GetPromptKey
 
-`func (o *WorkspaceUsageRunsInner) GetRole() string`
+`func (o *WorkspaceUsageRunsInner) GetPromptKey() string`
 
-GetRole returns the Role field if non-nil, zero value otherwise.
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### GetRoleOk
+### GetPromptKeyOk
 
-`func (o *WorkspaceUsageRunsInner) GetRoleOk() (*string, bool)`
+`func (o *WorkspaceUsageRunsInner) GetPromptKeyOk() (*string, bool)`
 
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetPromptKey
 
-`func (o *WorkspaceUsageRunsInner) SetRole(v string)`
+`func (o *WorkspaceUsageRunsInner) SetPromptKey(v string)`
 
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *WorkspaceUsageRunsInner) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *WorkspaceUsageRunsInner) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 ### GetStartedAt
 
 `func (o *WorkspaceUsageRunsInner) GetStartedAt() string`

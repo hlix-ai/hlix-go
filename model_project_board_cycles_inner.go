@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,10 +23,10 @@ type ProjectBoardCyclesInner struct {
 	ActiveRun NullableProjectBoardCyclesInnerActiveRun `json:"activeRun"`
 	DependsOn []string `json:"dependsOn"`
 	Id string `json:"id"`
-	Persona NullableString `json:"persona"`
+	Kind *string `json:"kind,omitempty"`
+	Role NullableString `json:"role"`
 	Stage string `json:"stage"`
 	Status string `json:"status"`
-	Steps []ProjectBoardCyclesInnerStepsInner `json:"steps"`
 	Title string `json:"title"`
 	AdditionalProperties map[string]interface{}
 }
@@ -37,15 +37,14 @@ type _ProjectBoardCyclesInner ProjectBoardCyclesInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectBoardCyclesInner(activeRun NullableProjectBoardCyclesInnerActiveRun, dependsOn []string, id string, persona NullableString, stage string, status string, steps []ProjectBoardCyclesInnerStepsInner, title string) *ProjectBoardCyclesInner {
+func NewProjectBoardCyclesInner(activeRun NullableProjectBoardCyclesInnerActiveRun, dependsOn []string, id string, role NullableString, stage string, status string, title string) *ProjectBoardCyclesInner {
 	this := ProjectBoardCyclesInner{}
 	this.ActiveRun = activeRun
 	this.DependsOn = dependsOn
 	this.Id = id
-	this.Persona = persona
+	this.Role = role
 	this.Stage = stage
 	this.Status = status
-	this.Steps = steps
 	this.Title = title
 	return &this
 }
@@ -132,30 +131,62 @@ func (o *ProjectBoardCyclesInner) SetId(v string) {
 	o.Id = v
 }
 
-// GetPersona returns the Persona field value
+// GetKind returns the Kind field value if set, zero value otherwise.
+func (o *ProjectBoardCyclesInner) GetKind() string {
+	if o == nil || IsNil(o.Kind) {
+		var ret string
+		return ret
+	}
+	return *o.Kind
+}
+
+// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectBoardCyclesInner) GetKindOk() (*string, bool) {
+	if o == nil || IsNil(o.Kind) {
+		return nil, false
+	}
+	return o.Kind, true
+}
+
+// HasKind returns a boolean if a field has been set.
+func (o *ProjectBoardCyclesInner) HasKind() bool {
+	if o != nil && !IsNil(o.Kind) {
+		return true
+	}
+
+	return false
+}
+
+// SetKind gets a reference to the given string and assigns it to the Kind field.
+func (o *ProjectBoardCyclesInner) SetKind(v string) {
+	o.Kind = &v
+}
+
+// GetRole returns the Role field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ProjectBoardCyclesInner) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
+func (o *ProjectBoardCyclesInner) GetRole() string {
+	if o == nil || o.Role.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Persona.Get()
+	return *o.Role.Get()
 }
 
-// GetPersonaOk returns a tuple with the Persona field value
+// GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectBoardCyclesInner) GetPersonaOk() (*string, bool) {
+func (o *ProjectBoardCyclesInner) GetRoleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Persona.Get(), o.Persona.IsSet()
+	return o.Role.Get(), o.Role.IsSet()
 }
 
-// SetPersona sets field value
-func (o *ProjectBoardCyclesInner) SetPersona(v string) {
-	o.Persona.Set(&v)
+// SetRole sets field value
+func (o *ProjectBoardCyclesInner) SetRole(v string) {
+	o.Role.Set(&v)
 }
 
 // GetStage returns the Stage field value
@@ -206,30 +237,6 @@ func (o *ProjectBoardCyclesInner) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetSteps returns the Steps field value
-func (o *ProjectBoardCyclesInner) GetSteps() []ProjectBoardCyclesInnerStepsInner {
-	if o == nil {
-		var ret []ProjectBoardCyclesInnerStepsInner
-		return ret
-	}
-
-	return o.Steps
-}
-
-// GetStepsOk returns a tuple with the Steps field value
-// and a boolean to check if the value has been set.
-func (o *ProjectBoardCyclesInner) GetStepsOk() ([]ProjectBoardCyclesInnerStepsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Steps, true
-}
-
-// SetSteps sets field value
-func (o *ProjectBoardCyclesInner) SetSteps(v []ProjectBoardCyclesInnerStepsInner) {
-	o.Steps = v
-}
-
 // GetTitle returns the Title field value
 func (o *ProjectBoardCyclesInner) GetTitle() string {
 	if o == nil {
@@ -267,10 +274,12 @@ func (o ProjectBoardCyclesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize["activeRun"] = o.ActiveRun.Get()
 	toSerialize["dependsOn"] = o.DependsOn
 	toSerialize["id"] = o.Id
-	toSerialize["persona"] = o.Persona.Get()
+	if !IsNil(o.Kind) {
+		toSerialize["kind"] = o.Kind
+	}
+	toSerialize["role"] = o.Role.Get()
 	toSerialize["stage"] = o.Stage
 	toSerialize["status"] = o.Status
-	toSerialize["steps"] = o.Steps
 	toSerialize["title"] = o.Title
 
 	for key, value := range o.AdditionalProperties {
@@ -288,10 +297,9 @@ func (o *ProjectBoardCyclesInner) UnmarshalJSON(data []byte) (err error) {
 		"activeRun",
 		"dependsOn",
 		"id",
-		"persona",
+		"role",
 		"stage",
 		"status",
-		"steps",
 		"title",
 	}
 
@@ -325,10 +333,10 @@ func (o *ProjectBoardCyclesInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "activeRun")
 		delete(additionalProperties, "dependsOn")
 		delete(additionalProperties, "id")
-		delete(additionalProperties, "persona")
+		delete(additionalProperties, "kind")
+		delete(additionalProperties, "role")
 		delete(additionalProperties, "stage")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "steps")
 		delete(additionalProperties, "title")
 		o.AdditionalProperties = additionalProperties
 	}

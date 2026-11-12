@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarImageKey** | Pointer to **NullableString** |  | [optional] 
-**AvatarKey** | Pointer to **NullableString** |  | [optional] 
-**AvatarUrl** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Duty** | Pointer to **string** |  | [optional] 
-**Instructions** | Pointer to **NullableString** |  | [optional] 
-**ModelOverride** | Pointer to **NullableString** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Pipeline** | Pointer to **string** |  | [optional] 
-**ProjectId** | Pointer to **NullableString** |  | [optional] 
-**RuntimeKind** | Pointer to **NullableString** |  | [optional] 
-**RuntimeVersion** | Pointer to **NullableString** |  | [optional] 
+**AvatarImageKey** | Pointer to **NullableString** |  | [optional]
+**AvatarKey** | Pointer to **NullableString** |  | [optional]
+**AvatarUrl** | Pointer to **NullableString** |  | [optional]
+**Coder** | Pointer to **NullableString** |  | [optional]
+**Description** | Pointer to **NullableString** |  | [optional]
+**Duty** | Pointer to **string** |  | [optional]
+**Instructions** | Pointer to **NullableString** |  | [optional]
+**ModelOverride** | Pointer to **NullableString** |  | [optional]
+**Name** | Pointer to **string** |  | [optional]
+**ProjectId** | Pointer to **NullableString** |  | [optional]
+**ReviewSet** | Pointer to **string** |  | [optional]
+**RuntimeVersion** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewUpdateAgent() *UpdateAgent`
 
 NewUpdateAgent instantiates a new UpdateAgent object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateAgentWithDefaults
 
 `func NewUpdateAgentWithDefaults() *UpdateAgent`
 
 NewUpdateAgentWithDefaults instantiates a new UpdateAgent object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAvatarImageKey
 
@@ -141,6 +139,41 @@ HasAvatarUrl returns a boolean if a field has been set.
 `func (o *UpdateAgent) UnsetAvatarUrl()`
 
 UnsetAvatarUrl ensures that no value is present for AvatarUrl, not even an explicit nil
+### GetCoder
+
+`func (o *UpdateAgent) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *UpdateAgent) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *UpdateAgent) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+### HasCoder
+
+`func (o *UpdateAgent) HasCoder() bool`
+
+HasCoder returns a boolean if a field has been set.
+
+### SetCoderNil
+
+`func (o *UpdateAgent) SetCoderNil(b bool)`
+
+ SetCoderNil sets the value for Coder to be an explicit nil
+
+### UnsetCoder
+`func (o *UpdateAgent) UnsetCoder()`
+
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetDescription
 
 `func (o *UpdateAgent) GetDescription() string`
@@ -296,31 +329,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetPipeline
-
-`func (o *UpdateAgent) GetPipeline() string`
-
-GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
-
-### GetPipelineOk
-
-`func (o *UpdateAgent) GetPipelineOk() (*string, bool)`
-
-GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPipeline
-
-`func (o *UpdateAgent) SetPipeline(v string)`
-
-SetPipeline sets Pipeline field to given value.
-
-### HasPipeline
-
-`func (o *UpdateAgent) HasPipeline() bool`
-
-HasPipeline returns a boolean if a field has been set.
-
 ### GetProjectId
 
 `func (o *UpdateAgent) GetProjectId() string`
@@ -356,41 +364,31 @@ HasProjectId returns a boolean if a field has been set.
 `func (o *UpdateAgent) UnsetProjectId()`
 
 UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
-### GetRuntimeKind
+### GetReviewSet
 
-`func (o *UpdateAgent) GetRuntimeKind() string`
+`func (o *UpdateAgent) GetReviewSet() string`
 
-GetRuntimeKind returns the RuntimeKind field if non-nil, zero value otherwise.
+GetReviewSet returns the ReviewSet field if non-nil, zero value otherwise.
 
-### GetRuntimeKindOk
+### GetReviewSetOk
 
-`func (o *UpdateAgent) GetRuntimeKindOk() (*string, bool)`
+`func (o *UpdateAgent) GetReviewSetOk() (*string, bool)`
 
-GetRuntimeKindOk returns a tuple with the RuntimeKind field if it's non-nil, zero value otherwise
+GetReviewSetOk returns a tuple with the ReviewSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRuntimeKind
+### SetReviewSet
 
-`func (o *UpdateAgent) SetRuntimeKind(v string)`
+`func (o *UpdateAgent) SetReviewSet(v string)`
 
-SetRuntimeKind sets RuntimeKind field to given value.
+SetReviewSet sets ReviewSet field to given value.
 
-### HasRuntimeKind
+### HasReviewSet
 
-`func (o *UpdateAgent) HasRuntimeKind() bool`
+`func (o *UpdateAgent) HasReviewSet() bool`
 
-HasRuntimeKind returns a boolean if a field has been set.
+HasReviewSet returns a boolean if a field has been set.
 
-### SetRuntimeKindNil
-
-`func (o *UpdateAgent) SetRuntimeKindNil(b bool)`
-
- SetRuntimeKindNil sets the value for RuntimeKind to be an explicit nil
-
-### UnsetRuntimeKind
-`func (o *UpdateAgent) UnsetRuntimeKind()`
-
-UnsetRuntimeKind ensures that no value is present for RuntimeKind, not even an explicit nil
 ### GetRuntimeVersion
 
 `func (o *UpdateAgent) GetRuntimeVersion() string`

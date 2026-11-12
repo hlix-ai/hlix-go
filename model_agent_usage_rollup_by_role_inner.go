@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,10 +20,10 @@ var _ MappedNullable = &AgentUsageRollupByRoleInner{}
 
 // AgentUsageRollupByRoleInner struct for AgentUsageRollupByRoleInner
 type AgentUsageRollupByRoleInner struct {
+	AgentKind string `json:"agentKind"`
 	CostMicros NullableInt64 `json:"costMicros"`
 	Count int32 `json:"count"`
 	IncompleteUsageRuns *int32 `json:"incompleteUsageRuns,omitempty"`
-	Role string `json:"role"`
 	TokensIn int32 `json:"tokensIn"`
 	TokensOut int32 `json:"tokensOut"`
 	AdditionalProperties map[string]interface{}
@@ -35,11 +35,11 @@ type _AgentUsageRollupByRoleInner AgentUsageRollupByRoleInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentUsageRollupByRoleInner(costMicros NullableInt64, count int32, role string, tokensIn int32, tokensOut int32) *AgentUsageRollupByRoleInner {
+func NewAgentUsageRollupByRoleInner(agentKind string, costMicros NullableInt64, count int32, tokensIn int32, tokensOut int32) *AgentUsageRollupByRoleInner {
 	this := AgentUsageRollupByRoleInner{}
+	this.AgentKind = agentKind
 	this.CostMicros = costMicros
 	this.Count = count
-	this.Role = role
 	this.TokensIn = tokensIn
 	this.TokensOut = tokensOut
 	return &this
@@ -51,6 +51,30 @@ func NewAgentUsageRollupByRoleInner(costMicros NullableInt64, count int32, role 
 func NewAgentUsageRollupByRoleInnerWithDefaults() *AgentUsageRollupByRoleInner {
 	this := AgentUsageRollupByRoleInner{}
 	return &this
+}
+
+// GetAgentKind returns the AgentKind field value
+func (o *AgentUsageRollupByRoleInner) GetAgentKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AgentKind
+}
+
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *AgentUsageRollupByRoleInner) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *AgentUsageRollupByRoleInner) SetAgentKind(v string) {
+	o.AgentKind = v
 }
 
 // GetCostMicros returns the CostMicros field value
@@ -135,30 +159,6 @@ func (o *AgentUsageRollupByRoleInner) SetIncompleteUsageRuns(v int32) {
 	o.IncompleteUsageRuns = &v
 }
 
-// GetRole returns the Role field value
-func (o *AgentUsageRollupByRoleInner) GetRole() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Role
-}
-
-// GetRoleOk returns a tuple with the Role field value
-// and a boolean to check if the value has been set.
-func (o *AgentUsageRollupByRoleInner) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Role, true
-}
-
-// SetRole sets field value
-func (o *AgentUsageRollupByRoleInner) SetRole(v string) {
-	o.Role = v
-}
-
 // GetTokensIn returns the TokensIn field value
 func (o *AgentUsageRollupByRoleInner) GetTokensIn() int32 {
 	if o == nil {
@@ -217,12 +217,12 @@ func (o AgentUsageRollupByRoleInner) MarshalJSON() ([]byte, error) {
 
 func (o AgentUsageRollupByRoleInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["agentKind"] = o.AgentKind
 	toSerialize["costMicros"] = o.CostMicros.Get()
 	toSerialize["count"] = o.Count
 	if !IsNil(o.IncompleteUsageRuns) {
 		toSerialize["incompleteUsageRuns"] = o.IncompleteUsageRuns
 	}
-	toSerialize["role"] = o.Role
 	toSerialize["tokensIn"] = o.TokensIn
 	toSerialize["tokensOut"] = o.TokensOut
 
@@ -238,9 +238,9 @@ func (o *AgentUsageRollupByRoleInner) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"agentKind",
 		"costMicros",
 		"count",
-		"role",
 		"tokensIn",
 		"tokensOut",
 	}
@@ -272,10 +272,10 @@ func (o *AgentUsageRollupByRoleInner) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "agentKind")
 		delete(additionalProperties, "costMicros")
 		delete(additionalProperties, "count")
 		delete(additionalProperties, "incompleteUsageRuns")
-		delete(additionalProperties, "role")
 		delete(additionalProperties, "tokensIn")
 		delete(additionalProperties, "tokensOut")
 		o.AdditionalProperties = additionalProperties

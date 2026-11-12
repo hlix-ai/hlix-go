@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentSlugs** | **[]string** |  | 
-**AlwaysOn** | Pointer to **bool** |  | [optional] 
-**Category** | **string** |  | 
-**Description** | **string** |  | 
-**IsActive** | **bool** |  | 
-**Keywords** | **[]string** |  | 
-**Name** | **string** |  | 
-**ProjectPackId** | **NullableString** |  | 
-**SkillSlugs** | **[]string** |  | 
-**Source** | Pointer to **string** |  | [optional] 
-**System** | Pointer to **bool** |  | [optional] 
-**Version** | **string** |  | 
+**AgentSlugs** | **[]string** |  |
+**AlwaysOn** | Pointer to **bool** |  | [optional]
+**Category** | **string** |  |
+**Description** | **string** |  |
+**IsActive** | **bool** |  |
+**Keywords** | **[]string** |  |
+**Name** | **string** |  |
+**ProjectPackId** | **NullableString** |  |
+**SkillSlugs** | **[]string** |  |
+**Source** | Pointer to **string** |  | [optional]
+**System** | Pointer to **bool** |  | [optional]
+**Version** | **string** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewAvailablePack(agentSlugs []string, category string, description string, isActive bool, keywords []string, name string, projectPackId NullableString, skillSlugs []string, version string, ) *AvailablePack`
 
 NewAvailablePack instantiates a new AvailablePack object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAvailablePackWithDefaults
 
 `func NewAvailablePackWithDefaults() *AvailablePack`
 
 NewAvailablePackWithDefaults instantiates a new AvailablePack object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentSlugs
 

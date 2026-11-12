@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Completed** | **int32** |  | 
-**Failed** | **int32** |  | 
-**Total** | **int32** |  | 
+**Completed** | **int32** |  |
+**Failed** | **int32** |  |
+**Total** | **int32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewAgencyOverviewReportProjectsInnerCycles(completed int32, failed int32, total int32, ) *AgencyOverviewReportProjectsInnerCycles`
 
 NewAgencyOverviewReportProjectsInnerCycles instantiates a new AgencyOverviewReportProjectsInnerCycles object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportProjectsInnerCyclesWithDefaults
 
 `func NewAgencyOverviewReportProjectsInnerCyclesWithDefaults() *AgencyOverviewReportProjectsInnerCycles`
 
 NewAgencyOverviewReportProjectsInnerCyclesWithDefaults instantiates a new AgencyOverviewReportProjectsInnerCycles object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompleted
 

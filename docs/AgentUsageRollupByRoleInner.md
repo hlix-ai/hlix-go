@@ -4,31 +4,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostMicros** | **NullableInt64** |  | 
-**Count** | **int32** |  | 
-**IncompleteUsageRuns** | Pointer to **int32** |  | [optional] 
-**Role** | **string** |  | 
-**TokensIn** | **int32** |  | 
-**TokensOut** | **int32** |  | 
+**AgentKind** | **string** |  |
+**CostMicros** | **NullableInt64** |  |
+**Count** | **int32** |  |
+**IncompleteUsageRuns** | Pointer to **int32** |  | [optional]
+**TokensIn** | **int32** |  |
+**TokensOut** | **int32** |  |
 
 ## Methods
 
 ### NewAgentUsageRollupByRoleInner
 
-`func NewAgentUsageRollupByRoleInner(costMicros NullableInt64, count int32, role string, tokensIn int32, tokensOut int32, ) *AgentUsageRollupByRoleInner`
+`func NewAgentUsageRollupByRoleInner(agentKind string, costMicros NullableInt64, count int32, tokensIn int32, tokensOut int32, ) *AgentUsageRollupByRoleInner`
 
 NewAgentUsageRollupByRoleInner instantiates a new AgentUsageRollupByRoleInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentUsageRollupByRoleInnerWithDefaults
 
 `func NewAgentUsageRollupByRoleInnerWithDefaults() *AgentUsageRollupByRoleInner`
 
 NewAgentUsageRollupByRoleInnerWithDefaults instantiates a new AgentUsageRollupByRoleInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetAgentKind
+
+`func (o *AgentUsageRollupByRoleInner) GetAgentKind() string`
+
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
+
+### GetAgentKindOk
+
+`func (o *AgentUsageRollupByRoleInner) GetAgentKindOk() (*string, bool)`
+
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentKind
+
+`func (o *AgentUsageRollupByRoleInner) SetAgentKind(v string)`
+
+SetAgentKind sets AgentKind field to given value.
+
 
 ### GetCostMicros
 
@@ -104,26 +122,6 @@ SetIncompleteUsageRuns sets IncompleteUsageRuns field to given value.
 `func (o *AgentUsageRollupByRoleInner) HasIncompleteUsageRuns() bool`
 
 HasIncompleteUsageRuns returns a boolean if a field has been set.
-
-### GetRole
-
-`func (o *AgentUsageRollupByRoleInner) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *AgentUsageRollupByRoleInner) GetRoleOk() (*string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRole
-
-`func (o *AgentUsageRollupByRoleInner) SetRole(v string)`
-
-SetRole sets Role field to given value.
-
 
 ### GetTokensIn
 

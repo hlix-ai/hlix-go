@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientStatus** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **string** |  | 
-**DueDate** | **NullableString** |  | 
-**Id** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**PublishedAt** | **NullableString** |  | 
-**SubmittedRevision** | **NullableInt32** |  | 
-**Summary** | **NullableString** |  | 
-**Title** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Visibility** | **string** |  | 
+**ClientStatus** | **string** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **string** |  |
+**DueDate** | **NullableString** |  |
+**Id** | **string** |  |
+**OrganizationId** | **string** |  |
+**PublishedAt** | **NullableString** |  |
+**SubmittedRevision** | **NullableInt32** |  |
+**Summary** | **NullableString** |  |
+**Title** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Visibility** | **string** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewDeliverable(clientStatus string, createdAt string, cycleId string, dueDate NullableString, id string, organizationId string, publishedAt NullableString, submittedRevision NullableInt32, summary NullableString, title string, updatedAt string, visibility string, ) *Deliverable`
 
 NewDeliverable instantiates a new Deliverable object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverableWithDefaults
 
 `func NewDeliverableWithDefaults() *Deliverable`
 
 NewDeliverableWithDefaults instantiates a new Deliverable object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClientStatus
 

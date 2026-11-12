@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Error** | Pointer to **string** |  | [optional] 
-**Input** | Pointer to **interface{}** |  | [optional] 
-**Output** | Pointer to **interface{}** |  | [optional] 
-**State** | **string** |  | 
-**ToolCallId** | **string** |  | 
-**ToolName** | **string** |  | 
-**Type** | **string** |  | 
+**Error** | Pointer to **string** |  | [optional]
+**Input** | Pointer to **interface{}** |  | [optional]
+**Output** | Pointer to **interface{}** |  | [optional]
+**State** | **string** |  |
+**ToolCallId** | **string** |  |
+**ToolName** | **string** |  |
+**Type** | **string** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewClientRequestDetailMessagesInnerPartsInnerOneOf3(state string, toolCallId string, toolName string, type_ string, ) *ClientRequestDetailMessagesInnerPartsInnerOneOf3`
 
 NewClientRequestDetailMessagesInnerPartsInnerOneOf3 instantiates a new ClientRequestDetailMessagesInnerPartsInnerOneOf3 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientRequestDetailMessagesInnerPartsInnerOneOf3WithDefaults
 
 `func NewClientRequestDetailMessagesInnerPartsInnerOneOf3WithDefaults() *ClientRequestDetailMessagesInnerPartsInnerOneOf3`
 
 NewClientRequestDetailMessagesInnerPartsInnerOneOf3WithDefaults instantiates a new ClientRequestDetailMessagesInnerPartsInnerOneOf3 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetError
 

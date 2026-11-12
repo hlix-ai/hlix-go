@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientAccountId** | **string** |  | 
-**ClosedAt** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**Currency** | **NullableString** |  | 
-**ExpectedCloseOn** | **NullableString** |  | 
-**Id** | **string** |  | 
-**LostReason** | **NullableString** |  | 
-**NextStep** | **NullableString** |  | 
-**NextStepAt** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**OwnerUserId** | **NullableString** |  | 
-**PipelineId** | **string** |  | 
-**SourceKind** | **string** |  | 
-**SourcePlayId** | **NullableString** |  | 
-**Stage** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**ValueMicros** | **NullableInt64** |  | 
-**WonAt** | **NullableString** |  | 
+**ClientAccountId** | **string** |  |
+**ClosedAt** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Currency** | **NullableString** |  |
+**ExpectedCloseOn** | **NullableString** |  |
+**Id** | **string** |  |
+**LostReason** | **NullableString** |  |
+**NextStep** | **NullableString** |  |
+**NextStepAt** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**OwnerUserId** | **NullableString** |  |
+**PipelineId** | **string** |  |
+**SourceKind** | **string** |  |
+**SourcePlayId** | **NullableString** |  |
+**Stage** | **string** |  |
+**UpdatedAt** | **string** |  |
+**ValueMicros** | **NullableInt64** |  |
+**WonAt** | **NullableString** |  |
 
 ## Methods
 
@@ -30,17 +30,15 @@ Name | Type | Description | Notes
 `func NewCrmClientRecordDealsInner(clientAccountId string, closedAt NullableString, createdAt string, currency NullableString, expectedCloseOn NullableString, id string, lostReason NullableString, nextStep NullableString, nextStepAt NullableString, organizationId string, ownerUserId NullableString, pipelineId string, sourceKind string, sourcePlayId NullableString, stage string, updatedAt string, valueMicros NullableInt64, wonAt NullableString, ) *CrmClientRecordDealsInner`
 
 NewCrmClientRecordDealsInner instantiates a new CrmClientRecordDealsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmClientRecordDealsInnerWithDefaults
 
 `func NewCrmClientRecordDealsInnerWithDefaults() *CrmClientRecordDealsInner`
 
 NewCrmClientRecordDealsInnerWithDefaults instantiates a new CrmClientRecordDealsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClientAccountId
 

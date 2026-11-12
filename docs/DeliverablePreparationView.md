@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Applied** | **bool** |  | 
-**CreatedAt** | **string** |  | 
-**DeliverableId** | **string** |  | 
-**Error** | **NullableString** |  | 
-**FinishedAt** | **NullableString** |  | 
-**Id** | **string** |  | 
-**RecordingUrl** | **NullableString** |  | 
-**Result** | [**NullableDeliverablePreparationViewResult**](DeliverablePreparationViewResult.md) |  | 
-**SourceSha** | **string** |  | 
-**Stage** | **string** |  | 
-**Status** | **string** |  | 
-**VerificationTarget** | **string** |  | 
+**Applied** | **bool** |  |
+**CreatedAt** | **string** |  |
+**DeliverableId** | **string** |  |
+**Error** | **NullableString** |  |
+**FinishedAt** | **NullableString** |  |
+**Id** | **string** |  |
+**RecordingUrl** | **NullableString** |  |
+**Result** | [**NullableDeliverablePreparationViewResult**](DeliverablePreparationViewResult.md) |  |
+**SourceSha** | **string** |  |
+**Stage** | **string** |  |
+**Status** | **string** |  |
+**VerificationTarget** | **string** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewDeliverablePreparationView(applied bool, createdAt string, deliverableId string, error_ NullableString, finishedAt NullableString, id string, recordingUrl NullableString, result NullableDeliverablePreparationViewResult, sourceSha string, stage string, status string, verificationTarget string, ) *DeliverablePreparationView`
 
 NewDeliverablePreparationView instantiates a new DeliverablePreparationView object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverablePreparationViewWithDefaults
 
 `func NewDeliverablePreparationViewWithDefaults() *DeliverablePreparationView`
 
 NewDeliverablePreparationViewWithDefaults instantiates a new DeliverablePreparationView object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApplied
 

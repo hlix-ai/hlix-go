@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActorId** | **NullableString** |  | 
-**ActorType** | **string** |  | 
-**ClientAccountId** | **NullableString** |  | 
-**ContactId** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**DealId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**OccurredAt** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Ref** | **map[string]interface{}** |  | 
-**Summary** | **string** |  | 
+**ActorId** | **NullableString** |  |
+**ActorType** | **string** |  |
+**ClientAccountId** | **NullableString** |  |
+**ContactId** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**DealId** | **NullableString** |  |
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**OccurredAt** | **string** |  |
+**OrganizationId** | **string** |  |
+**Ref** | **map[string]interface{}** |  |
+**Summary** | **string** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewCrmClientRecordActivitiesInner(actorId NullableString, actorType string, clientAccountId NullableString, contactId NullableString, createdAt string, dealId NullableString, id string, kind string, occurredAt string, organizationId string, ref map[string]interface{}, summary string, ) *CrmClientRecordActivitiesInner`
 
 NewCrmClientRecordActivitiesInner instantiates a new CrmClientRecordActivitiesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmClientRecordActivitiesInnerWithDefaults
 
 `func NewCrmClientRecordActivitiesInnerWithDefaults() *CrmClientRecordActivitiesInner`
 
 NewCrmClientRecordActivitiesInnerWithDefaults instantiates a new CrmClientRecordActivitiesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActorId
 

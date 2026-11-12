@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AmountMicros** | **int64** |  | 
-**ClientAccountId** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CreatedBy** | **string** |  | 
-**Currency** | **string** |  | 
-**Description** | **string** |  | 
-**EntryType** | **string** |  | 
-**Id** | **string** |  | 
-**NetAmountMicros** | **int64** |  | 
-**OccurredAt** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **NullableString** |  | 
-**Quantity** | **string** |  | 
-**RateSnapshot** | [**ClientBillableRateSnapshot**](ClientBillableRateSnapshot.md) |  | 
-**ReplacesBillableId** | **NullableString** |  | 
-**Source** | **string** |  | 
-**SourceEntityId** | **NullableString** |  | 
-**SourceEntityType** | **NullableString** |  | 
-**SourceEvidence** | **map[string]interface{}** |  | 
-**TaxClass** | **string** |  | 
-**Unit** | **string** |  | 
-**UnitPriceMicros** | **int64** |  | 
-**VoidedByBillableId** | **NullableString** |  | 
+**AmountMicros** | **int64** |  |
+**ClientAccountId** | **string** |  |
+**CreatedAt** | **string** |  |
+**CreatedBy** | **string** |  |
+**Currency** | **string** |  |
+**Description** | **string** |  |
+**EntryType** | **string** |  |
+**Id** | **string** |  |
+**NetAmountMicros** | **int64** |  |
+**OccurredAt** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **NullableString** |  |
+**Quantity** | **string** |  |
+**RateSnapshot** | [**ClientBillableRateSnapshot**](ClientBillableRateSnapshot.md) |  |
+**ReplacesBillableId** | **NullableString** |  |
+**Source** | **string** |  |
+**SourceEntityId** | **NullableString** |  |
+**SourceEntityType** | **NullableString** |  |
+**SourceEvidence** | **map[string]interface{}** |  |
+**TaxClass** | **string** |  |
+**Unit** | **string** |  |
+**UnitPriceMicros** | **int64** |  |
+**VoidedByBillableId** | **NullableString** |  |
 
 ## Methods
 
@@ -35,17 +35,15 @@ Name | Type | Description | Notes
 `func NewClientBillableView(amountMicros int64, clientAccountId string, createdAt string, createdBy string, currency string, description string, entryType string, id string, netAmountMicros int64, occurredAt string, organizationId string, projectId NullableString, quantity string, rateSnapshot ClientBillableRateSnapshot, replacesBillableId NullableString, source string, sourceEntityId NullableString, sourceEntityType NullableString, sourceEvidence map[string]interface{}, taxClass string, unit string, unitPriceMicros int64, voidedByBillableId NullableString, ) *ClientBillableView`
 
 NewClientBillableView instantiates a new ClientBillableView object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientBillableViewWithDefaults
 
 `func NewClientBillableViewWithDefaults() *ClientBillableView`
 
 NewClientBillableViewWithDefaults instantiates a new ClientBillableView object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAmountMicros
 

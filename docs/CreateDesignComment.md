@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Body** | **string** |  | 
-**FrameId** | **string** |  | 
-**ParentId** | Pointer to **string** |  | [optional] 
-**RevisionId** | **string** |  | 
-**X** | Pointer to **float32** |  | [optional] 
-**Y** | Pointer to **float32** |  | [optional] 
+**Body** | **string** |  |
+**FrameId** | **string** |  |
+**ParentId** | Pointer to **string** |  | [optional]
+**RevisionId** | **string** |  |
+**X** | Pointer to **float32** |  | [optional]
+**Y** | Pointer to **float32** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewCreateDesignComment(body string, frameId string, revisionId string, ) *CreateDesignComment`
 
 NewCreateDesignComment instantiates a new CreateDesignComment object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateDesignCommentWithDefaults
 
 `func NewCreateDesignCommentWithDefaults() *CreateDesignComment`
 
 NewCreateDesignCommentWithDefaults instantiates a new CreateDesignComment object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBody
 

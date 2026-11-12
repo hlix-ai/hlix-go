@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Requests** | [**[]ClientRequestListRequestsInner**](ClientRequestListRequestsInner.md) |  | 
+**Requests** | [**[]ClientRequestListRequestsInner**](ClientRequestListRequestsInner.md) |  |
 
 ## Methods
 
@@ -13,17 +13,15 @@ Name | Type | Description | Notes
 `func NewClientRequestList(requests []ClientRequestListRequestsInner, ) *ClientRequestList`
 
 NewClientRequestList instantiates a new ClientRequestList object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientRequestListWithDefaults
 
 `func NewClientRequestListWithDefaults() *ClientRequestList`
 
 NewClientRequestListWithDefaults instantiates a new ClientRequestList object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetRequests
 

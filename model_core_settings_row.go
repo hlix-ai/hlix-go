@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,10 +20,10 @@ var _ MappedNullable = &CoreSettingsRow{}
 
 // CoreSettingsRow struct for CoreSettingsRow
 type CoreSettingsRow struct {
+	Coder NullableString `json:"coder"`
 	CreatedAt string `json:"createdAt"`
 	Effort NullableString `json:"effort"`
 	Funding NullableCoreSettingsRowFunding `json:"funding"`
-	Harness NullableString `json:"harness"`
 	Id string `json:"id"`
 	MaxParallelCycles NullableInt32 `json:"maxParallelCycles"`
 	Model NullableString `json:"model"`
@@ -39,12 +39,12 @@ type _CoreSettingsRow CoreSettingsRow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCoreSettingsRow(createdAt string, effort NullableString, funding NullableCoreSettingsRowFunding, harness NullableString, id string, maxParallelCycles NullableInt32, model NullableString, projectId NullableString, slot string, updatedAt string) *CoreSettingsRow {
+func NewCoreSettingsRow(coder NullableString, createdAt string, effort NullableString, funding NullableCoreSettingsRowFunding, id string, maxParallelCycles NullableInt32, model NullableString, projectId NullableString, slot string, updatedAt string) *CoreSettingsRow {
 	this := CoreSettingsRow{}
+	this.Coder = coder
 	this.CreatedAt = createdAt
 	this.Effort = effort
 	this.Funding = funding
-	this.Harness = harness
 	this.Id = id
 	this.MaxParallelCycles = maxParallelCycles
 	this.Model = model
@@ -60,6 +60,32 @@ func NewCoreSettingsRow(createdAt string, effort NullableString, funding Nullabl
 func NewCoreSettingsRowWithDefaults() *CoreSettingsRow {
 	this := CoreSettingsRow{}
 	return &this
+}
+
+// GetCoder returns the Coder field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CoreSettingsRow) GetCoder() string {
+	if o == nil || o.Coder.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Coder.Get()
+}
+
+// GetCoderOk returns a tuple with the Coder field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CoreSettingsRow) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Coder.Get(), o.Coder.IsSet()
+}
+
+// SetCoder sets field value
+func (o *CoreSettingsRow) SetCoder(v string) {
+	o.Coder.Set(&v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -136,32 +162,6 @@ func (o *CoreSettingsRow) GetFundingOk() (*CoreSettingsRowFunding, bool) {
 // SetFunding sets field value
 func (o *CoreSettingsRow) SetFunding(v CoreSettingsRowFunding) {
 	o.Funding.Set(&v)
-}
-
-// GetHarness returns the Harness field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *CoreSettingsRow) GetHarness() string {
-	if o == nil || o.Harness.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Harness.Get()
-}
-
-// GetHarnessOk returns a tuple with the Harness field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CoreSettingsRow) GetHarnessOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Harness.Get(), o.Harness.IsSet()
-}
-
-// SetHarness sets field value
-func (o *CoreSettingsRow) SetHarness(v string) {
-	o.Harness.Set(&v)
 }
 
 // GetId returns the Id field value
@@ -324,10 +324,10 @@ func (o CoreSettingsRow) MarshalJSON() ([]byte, error) {
 
 func (o CoreSettingsRow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["coder"] = o.Coder.Get()
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["effort"] = o.Effort.Get()
 	toSerialize["funding"] = o.Funding.Get()
-	toSerialize["harness"] = o.Harness.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["maxParallelCycles"] = o.MaxParallelCycles.Get()
 	toSerialize["model"] = o.Model.Get()
@@ -347,10 +347,10 @@ func (o *CoreSettingsRow) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"coder",
 		"createdAt",
 		"effort",
 		"funding",
-		"harness",
 		"id",
 		"maxParallelCycles",
 		"model",
@@ -386,10 +386,10 @@ func (o *CoreSettingsRow) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "coder")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "effort")
 		delete(additionalProperties, "funding")
-		delete(additionalProperties, "harness")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "maxParallelCycles")
 		delete(additionalProperties, "model")

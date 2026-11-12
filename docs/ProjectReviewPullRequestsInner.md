@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseBranch** | **string** |  | 
-**HeadSha** | **string** |  | 
-**RepoId** | **string** |  | 
-**RepoName** | **string** |  | 
-**Url** | **string** |  | 
+**BaseBranch** | **string** |  |
+**HeadSha** | **string** |  |
+**RepoId** | **string** |  |
+**RepoName** | **string** |  |
+**Url** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewProjectReviewPullRequestsInner(baseBranch string, headSha string, repoId string, repoName string, url string, ) *ProjectReviewPullRequestsInner`
 
 NewProjectReviewPullRequestsInner instantiates a new ProjectReviewPullRequestsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectReviewPullRequestsInnerWithDefaults
 
 `func NewProjectReviewPullRequestsInnerWithDefaults() *ProjectReviewPullRequestsInner`
 
 NewProjectReviewPullRequestsInnerWithDefaults instantiates a new ProjectReviewPullRequestsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBaseBranch
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AiMicros** | **NullableInt64** |  | 
-**CapMicros** | **NullableInt64** |  | 
-**EmailsMicros** | **int64** |  | 
-**LeadsMicros** | **int64** |  | 
-**MonthStart** | **string** |  | 
-**ReservedMicros** | **int64** |  | 
-**TotalMicros** | **NullableInt64** |  | 
+**AiMicros** | **NullableInt64** |  |
+**CapMicros** | **NullableInt64** |  |
+**EmailsMicros** | **int64** |  |
+**LeadsMicros** | **int64** |  |
+**MonthStart** | **string** |  |
+**ReservedMicros** | **int64** |  |
+**TotalMicros** | **NullableInt64** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewGrowthSettingsStateSpend(aiMicros NullableInt64, capMicros NullableInt64, emailsMicros int64, leadsMicros int64, monthStart string, reservedMicros int64, totalMicros NullableInt64, ) *GrowthSettingsStateSpend`
 
 NewGrowthSettingsStateSpend instantiates a new GrowthSettingsStateSpend object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthSettingsStateSpendWithDefaults
 
 `func NewGrowthSettingsStateSpendWithDefaults() *GrowthSettingsStateSpend`
 
 NewGrowthSettingsStateSpendWithDefaults instantiates a new GrowthSettingsStateSpend object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAiMicros
 

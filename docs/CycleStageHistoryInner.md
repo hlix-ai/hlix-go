@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Actor** | [**CycleStageHistoryInnerActor**](CycleStageHistoryInnerActor.md) |  | 
-**At** | **string** |  | 
-**From** | **NullableString** |  | 
-**Intake** | Pointer to [**CycleStageHistoryInnerIntake**](CycleStageHistoryInnerIntake.md) |  | [optional] 
-**Reason** | Pointer to **string** |  | [optional] 
-**RuleSetVersion** | **string** |  | 
-**To** | **string** |  | 
+**Actor** | [**CycleStageHistoryInnerActor**](CycleStageHistoryInnerActor.md) |  |
+**At** | **string** |  |
+**From** | **NullableString** |  |
+**Reason** | Pointer to **string** |  | [optional]
+**RuleSetVersion** | **string** |  |
+**Sources** | Pointer to [**CycleStageHistoryInnerSources**](CycleStageHistoryInnerSources.md) |  | [optional]
+**To** | **string** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewCycleStageHistoryInner(actor CycleStageHistoryInnerActor, at string, from NullableString, ruleSetVersion string, to string, ) *CycleStageHistoryInner`
 
 NewCycleStageHistoryInner instantiates a new CycleStageHistoryInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleStageHistoryInnerWithDefaults
 
 `func NewCycleStageHistoryInnerWithDefaults() *CycleStageHistoryInner`
 
 NewCycleStageHistoryInnerWithDefaults instantiates a new CycleStageHistoryInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActor
 
@@ -101,31 +99,6 @@ SetFrom sets From field to given value.
 `func (o *CycleStageHistoryInner) UnsetFrom()`
 
 UnsetFrom ensures that no value is present for From, not even an explicit nil
-### GetIntake
-
-`func (o *CycleStageHistoryInner) GetIntake() CycleStageHistoryInnerIntake`
-
-GetIntake returns the Intake field if non-nil, zero value otherwise.
-
-### GetIntakeOk
-
-`func (o *CycleStageHistoryInner) GetIntakeOk() (*CycleStageHistoryInnerIntake, bool)`
-
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntake
-
-`func (o *CycleStageHistoryInner) SetIntake(v CycleStageHistoryInnerIntake)`
-
-SetIntake sets Intake field to given value.
-
-### HasIntake
-
-`func (o *CycleStageHistoryInner) HasIntake() bool`
-
-HasIntake returns a boolean if a field has been set.
-
 ### GetReason
 
 `func (o *CycleStageHistoryInner) GetReason() string`
@@ -170,6 +143,31 @@ and a boolean to check if the value has been set.
 
 SetRuleSetVersion sets RuleSetVersion field to given value.
 
+
+### GetSources
+
+`func (o *CycleStageHistoryInner) GetSources() CycleStageHistoryInnerSources`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *CycleStageHistoryInner) GetSourcesOk() (*CycleStageHistoryInnerSources, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *CycleStageHistoryInner) SetSources(v CycleStageHistoryInnerSources)`
+
+SetSources sets Sources field to given value.
+
+### HasSources
+
+`func (o *CycleStageHistoryInner) HasSources() bool`
+
+HasSources returns a boolean if a field has been set.
 
 ### GetTo
 

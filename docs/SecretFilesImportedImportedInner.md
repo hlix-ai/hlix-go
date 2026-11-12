@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Entries** | **int32** |  | 
-**Format** | **string** |  | 
-**Kind** | **string** |  | 
-**Path** | **string** |  | 
+**Entries** | **int32** |  |
+**Format** | **string** |  |
+**Kind** | **string** |  |
+**Path** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewSecretFilesImportedImportedInner(entries int32, format string, kind string, path string, ) *SecretFilesImportedImportedInner`
 
 NewSecretFilesImportedImportedInner instantiates a new SecretFilesImportedImportedInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSecretFilesImportedImportedInnerWithDefaults
 
 `func NewSecretFilesImportedImportedInnerWithDefaults() *SecretFilesImportedImportedInner`
 
 NewSecretFilesImportedImportedInnerWithDefaults instantiates a new SecretFilesImportedImportedInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEntries
 

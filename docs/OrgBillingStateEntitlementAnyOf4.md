@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Kind** | **string** |  | 
-**Reason** | **string** |  | 
+**Kind** | **string** |  |
+**Reason** | **string** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewOrgBillingStateEntitlementAnyOf4(kind string, reason string, ) *OrgBillingStateEntitlementAnyOf4`
 
 NewOrgBillingStateEntitlementAnyOf4 instantiates a new OrgBillingStateEntitlementAnyOf4 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewOrgBillingStateEntitlementAnyOf4WithDefaults
 
 `func NewOrgBillingStateEntitlementAnyOf4WithDefaults() *OrgBillingStateEntitlementAnyOf4`
 
 NewOrgBillingStateEntitlementAnyOf4WithDefaults instantiates a new OrgBillingStateEntitlementAnyOf4 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetKind
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **NullableString** |  | 
-**Mode** | **string** |  | 
-**NativeModel** | **NullableString** |  | 
-**ProviderId** | Pointer to **NullableString** |  | [optional] 
+**AccountId** | **NullableString** |  |
+**Mode** | **string** |  |
+**NativeModel** | **NullableString** |  |
+**ProviderId** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewCreateTaskTaskConfigFunding(accountId NullableString, mode string, nativeModel NullableString, ) *CreateTaskTaskConfigFunding`
 
 NewCreateTaskTaskConfigFunding instantiates a new CreateTaskTaskConfigFunding object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateTaskTaskConfigFundingWithDefaults
 
 `func NewCreateTaskTaskConfigFundingWithDefaults() *CreateTaskTaskConfigFunding`
 
 NewCreateTaskTaskConfigFundingWithDefaults instantiates a new CreateTaskTaskConfigFunding object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountId
 

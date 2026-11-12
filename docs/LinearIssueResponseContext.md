@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Archived** | **bool** |  | 
-**Assignee** | **NullableString** |  | 
-**Attachments** | [**[]LinearIssueResponseContextAttachmentsInner**](LinearIssueResponseContextAttachmentsInner.md) |  | 
-**Children** | [**[]LinearIssueResponseContextChildrenInner**](LinearIssueResponseContextChildrenInner.md) |  | 
-**Comments** | [**[]LinearIssueResponseContextCommentsInner**](LinearIssueResponseContextCommentsInner.md) |  | 
-**Description** | **string** |  | 
-**Id** | **string** |  | 
-**Identifier** | **string** |  | 
-**Labels** | [**[]HlixCodeModelsModelsInner**](HlixCodeModelsModelsInner.md) |  | 
-**Parent** | [**NullableLinearIssueResponseContextParent**](LinearIssueResponseContextParent.md) |  | 
-**Priority** | **string** |  | 
-**Project** | [**NullableLinearIssueResponseContextProject**](LinearIssueResponseContextProject.md) |  | 
-**State** | [**LinearIssueResponseContextState**](LinearIssueResponseContextState.md) |  | 
-**Team** | [**LinearCatalogResponseTeamsInner**](LinearCatalogResponseTeamsInner.md) |  | 
-**Title** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Url** | **string** |  | 
+**Archived** | **bool** |  |
+**Assignee** | **NullableString** |  |
+**Attachments** | [**[]LinearIssueResponseContextAttachmentsInner**](LinearIssueResponseContextAttachmentsInner.md) |  |
+**Children** | [**[]LinearIssueResponseContextChildrenInner**](LinearIssueResponseContextChildrenInner.md) |  |
+**Comments** | [**[]LinearIssueResponseContextCommentsInner**](LinearIssueResponseContextCommentsInner.md) |  |
+**Description** | **string** |  |
+**Id** | **string** |  |
+**Identifier** | **string** |  |
+**Labels** | [**[]HlixCodeModelsModelsInner**](HlixCodeModelsModelsInner.md) |  |
+**Parent** | [**NullableLinearIssueResponseContextParent**](LinearIssueResponseContextParent.md) |  |
+**Priority** | **string** |  |
+**Project** | [**NullableLinearIssueResponseContextProject**](LinearIssueResponseContextProject.md) |  |
+**State** | [**LinearIssueResponseContextState**](LinearIssueResponseContextState.md) |  |
+**Team** | [**LinearCatalogResponseTeamsInner**](LinearCatalogResponseTeamsInner.md) |  |
+**Title** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Url** | **string** |  |
 
 ## Methods
 
@@ -29,17 +29,15 @@ Name | Type | Description | Notes
 `func NewLinearIssueResponseContext(archived bool, assignee NullableString, attachments []LinearIssueResponseContextAttachmentsInner, children []LinearIssueResponseContextChildrenInner, comments []LinearIssueResponseContextCommentsInner, description string, id string, identifier string, labels []HlixCodeModelsModelsInner, parent NullableLinearIssueResponseContextParent, priority string, project NullableLinearIssueResponseContextProject, state LinearIssueResponseContextState, team LinearCatalogResponseTeamsInner, title string, updatedAt string, url string, ) *LinearIssueResponseContext`
 
 NewLinearIssueResponseContext instantiates a new LinearIssueResponseContext object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewLinearIssueResponseContextWithDefaults
 
 `func NewLinearIssueResponseContextWithDefaults() *LinearIssueResponseContext`
 
 NewLinearIssueResponseContextWithDefaults instantiates a new LinearIssueResponseContext object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArchived
 

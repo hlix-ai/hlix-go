@@ -4,30 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Capabilities** | [**ProjectEnvironmentCapabilities**](ProjectEnvironmentCapabilities.md) |  | 
-**CreatedAt** | **NullableString** |  | 
-**RepoDir** | **string** |  | 
-**State** | **string** |  | 
-**WorkspaceRoot** | **string** |  | 
+**Capabilities** | [**ProjectEnvironmentCapabilities**](ProjectEnvironmentCapabilities.md) |  |
+**CreatedAt** | **NullableString** |  |
+**State** | **string** |  |
+**WorkspaceRoot** | **string** |  |
 
 ## Methods
 
 ### NewProjectEnvironment
 
-`func NewProjectEnvironment(capabilities ProjectEnvironmentCapabilities, createdAt NullableString, repoDir string, state string, workspaceRoot string, ) *ProjectEnvironment`
+`func NewProjectEnvironment(capabilities ProjectEnvironmentCapabilities, createdAt NullableString, state string, workspaceRoot string, ) *ProjectEnvironment`
 
 NewProjectEnvironment instantiates a new ProjectEnvironment object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectEnvironmentWithDefaults
 
 `func NewProjectEnvironmentWithDefaults() *ProjectEnvironment`
 
 NewProjectEnvironmentWithDefaults instantiates a new ProjectEnvironment object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCapabilities
 
@@ -79,26 +76,6 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *ProjectEnvironment) UnsetCreatedAt()`
 
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
-### GetRepoDir
-
-`func (o *ProjectEnvironment) GetRepoDir() string`
-
-GetRepoDir returns the RepoDir field if non-nil, zero value otherwise.
-
-### GetRepoDirOk
-
-`func (o *ProjectEnvironment) GetRepoDirOk() (*string, bool)`
-
-GetRepoDirOk returns a tuple with the RepoDir field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRepoDir
-
-`func (o *ProjectEnvironment) SetRepoDir(v string)`
-
-SetRepoDir sets RepoDir field to given value.
-
-
 ### GetState
 
 `func (o *ProjectEnvironment) GetState() string`

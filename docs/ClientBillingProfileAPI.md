@@ -1,13 +1,13 @@
-# \ClientBillingProfileAPI
+# ClientBillingProfileAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteAgencyBillingProfile**](ClientBillingProfileAPI.md#DeleteAgencyBillingProfile) | **Delete** /v1/api/client-billing/profile | Remove the workspace&#39;s billing identity
-[**GetAgencyBillingProfile**](ClientBillingProfileAPI.md#GetAgencyBillingProfile) | **Get** /v1/api/client-billing/profile | Get the workspace&#39;s billing identity
-[**GetAgencyBillingProfileLogo**](ClientBillingProfileAPI.md#GetAgencyBillingProfileLogo) | **Get** /v1/api/client-billing/profile/logo | Download the workspace&#39;s logo
-[**UpsertAgencyBillingProfile**](ClientBillingProfileAPI.md#UpsertAgencyBillingProfile) | **Put** /v1/api/client-billing/profile | Replace the workspace&#39;s billing identity
+[**DeleteAgencyBillingProfile**](ClientBillingProfileAPI.md#deleteagencybillingprofile) | **Delete** /v1/api/client-billing/profile | Remove the workspace&#39;s billing identity
+[**GetAgencyBillingProfile**](ClientBillingProfileAPI.md#getagencybillingprofile) | **Get** /v1/api/client-billing/profile | Get the workspace&#39;s billing identity
+[**GetAgencyBillingProfileLogo**](ClientBillingProfileAPI.md#getagencybillingprofilelogo) | **Get** /v1/api/client-billing/profile/logo | Download the workspace&#39;s logo
+[**UpsertAgencyBillingProfile**](ClientBillingProfileAPI.md#upsertagencybillingprofile) | **Put** /v1/api/client-billing/profile | Replace the workspace&#39;s billing identity
 
 
 
@@ -18,6 +18,8 @@ Method | HTTP request | Description
 Remove the workspace's billing identity
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -30,11 +32,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingProfileAPI.DeleteAgencyBillingProfile(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingProfileAPI.DeleteAgencyBillingProfile(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingProfileAPI.DeleteAgencyBillingProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,12 +55,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteAgencyBillingProfileRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteAgencyBillingProfileRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -63,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -83,6 +88,8 @@ Get the workspace's billing identity
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -94,11 +101,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingProfileAPI.GetAgencyBillingProfile(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingProfileAPI.GetAgencyBillingProfile(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingProfileAPI.GetAgencyBillingProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -114,12 +124,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAgencyBillingProfileRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAgencyBillingProfileRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -127,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -147,6 +157,8 @@ Download the workspace's logo
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -158,11 +170,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingProfileAPI.GetAgencyBillingProfileLogo(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingProfileAPI.GetAgencyBillingProfileLogo(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingProfileAPI.GetAgencyBillingProfileLogo``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -178,20 +193,20 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetAgencyBillingProfileLogoRequest struct via the builder pattern
+Pass optional parameters through the `apiGetAgencyBillingProfileLogoRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
-[***os.File**](*os.File.md)
+`*os.File`
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -211,10 +226,13 @@ Replace the workspace's billing identity
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -222,12 +240,18 @@ import (
 )
 
 func main() {
-	upsertBillingProfile := *openapiclient.NewUpsertBillingProfile("Address_example", "LegalName_example") // UpsertBillingProfile | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var upsertBillingProfile openapiclient.UpsertBillingProfile
+	if err := json.Unmarshal([]byte("{\"address\":\"text\",\"legalName\":\"text\"}"), &upsertBillingProfile); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingProfileAPI.UpsertAgencyBillingProfile(context.Background()).UpsertBillingProfile(upsertBillingProfile).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingProfileAPI.UpsertAgencyBillingProfile(ctx).UpsertBillingProfile(upsertBillingProfile).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingProfileAPI.UpsertAgencyBillingProfile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -243,13 +267,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpsertAgencyBillingProfileRequest struct via the builder pattern
+Pass optional parameters through the `apiUpsertAgencyBillingProfileRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **upsertBillingProfile** | [**UpsertBillingProfile**](UpsertBillingProfile.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **upsertBillingProfile** | [**UpsertBillingProfile**](UpsertBillingProfile.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -257,7 +281,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

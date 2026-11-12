@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountingOwner** | **string** |  | 
-**BilledMicros** | **NullableInt64** |  | 
-**CostStatus** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Error** | [**NullableToolCallError**](ToolCallError.md) |  | 
-**Funding** | **string** |  | 
-**Id** | **string** |  | 
-**ProjectId** | **NullableString** |  | 
-**ProviderCostMicros** | **NullableInt64** |  | 
-**ReservedMicros** | **int64** |  | 
-**Result** | **interface{}** |  | 
-**Status** | **string** |  | 
-**ToolId** | **string** |  | 
-**ToolName** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | **string** |  | 
+**AccountingOwner** | **string** |  |
+**BilledMicros** | **NullableInt64** |  |
+**CostStatus** | **string** |  |
+**CreatedAt** | **string** |  |
+**Error** | [**NullableToolCallError**](ToolCallError.md) |  |
+**Funding** | **string** |  |
+**Id** | **string** |  |
+**ProjectId** | **NullableString** |  |
+**ProviderCostMicros** | **NullableInt64** |  |
+**ReservedMicros** | **int64** |  |
+**Result** | **interface{}** |  |
+**Status** | **string** |  |
+**ToolId** | **string** |  |
+**ToolName** | Pointer to **string** |  | [optional]
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -27,17 +27,15 @@ Name | Type | Description | Notes
 `func NewToolCallListCallsInner(accountingOwner string, billedMicros NullableInt64, costStatus string, createdAt string, error_ NullableToolCallError, funding string, id string, projectId NullableString, providerCostMicros NullableInt64, reservedMicros int64, result interface{}, status string, toolId string, updatedAt string, ) *ToolCallListCallsInner`
 
 NewToolCallListCallsInner instantiates a new ToolCallListCallsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewToolCallListCallsInnerWithDefaults
 
 `func NewToolCallListCallsInnerWithDefaults() *ToolCallListCallsInner`
 
 NewToolCallListCallsInnerWithDefaults instantiates a new ToolCallListCallsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountingOwner
 

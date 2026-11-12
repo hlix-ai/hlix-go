@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveProjectCount** | **int32** |  | 
-**CustomerCount** | **int32** |  | 
-**CustomersWithActiveWork** | **int32** |  | 
-**PendingDecisions** | **int32** |  | 
-**ProjectCount** | **int32** |  | 
-**ProjectsNeedingAttention** | **int32** |  | 
+**ActiveProjectCount** | **int32** |  |
+**CustomerCount** | **int32** |  |
+**CustomersWithActiveWork** | **int32** |  |
+**PendingDecisions** | **int32** |  |
+**ProjectCount** | **int32** |  |
+**ProjectsNeedingAttention** | **int32** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewAgencyOverviewReportSummary(activeProjectCount int32, customerCount int32, customersWithActiveWork int32, pendingDecisions int32, projectCount int32, projectsNeedingAttention int32, ) *AgencyOverviewReportSummary`
 
 NewAgencyOverviewReportSummary instantiates a new AgencyOverviewReportSummary object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportSummaryWithDefaults
 
 `func NewAgencyOverviewReportSummaryWithDefaults() *AgencyOverviewReportSummary`
 
 NewAgencyOverviewReportSummaryWithDefaults instantiates a new AgencyOverviewReportSummary object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveProjectCount
 

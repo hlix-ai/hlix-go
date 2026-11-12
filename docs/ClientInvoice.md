@@ -4,42 +4,42 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BuyerAddress** | **NullableString** |  | 
-**BuyerBillingEmail** | **NullableString** |  | 
-**BuyerLegalName** | **NullableString** |  | 
-**ClientAccountId** | **string** |  | 
-**CollectorLegalName** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**CreatedBy** | **string** |  | 
-**Currency** | **string** |  | 
-**DueAt** | **NullableString** |  | 
-**Id** | **string** |  | 
-**InvoiceFooter** | **NullableString** |  | 
-**InvoiceNumber** | **NullableString** |  | 
-**InvoiceSequence** | **NullableFloat32** |  | 
-**IssuedAt** | **NullableString** |  | 
-**Lines** | [**[]ClientInvoiceLinesInner**](ClientInvoiceLinesInner.md) |  | 
-**MinorUnitExponent** | **float32** |  | 
-**OrganizationId** | **string** |  | 
-**PaidAt** | **NullableString** |  | 
-**PaymentDescriptor** | **NullableString** |  | 
-**PaymentProvider** | **NullableString** |  | 
-**PaymentProviderReference** | **NullableString** |  | 
-**PaymentTerms** | **NullableString** |  | 
-**ReplacesInvoiceId** | **NullableString** |  | 
-**SellerAddress** | **NullableString** |  | 
-**SellerBrandColor** | **NullableString** |  | 
-**SellerContactEmail** | **NullableString** |  | 
-**SellerLegalName** | **NullableString** |  | 
-**SellerLogoMediaType** | **NullableString** |  | 
-**SellerTaxId** | **NullableString** |  | 
-**Status** | **string** |  | 
-**SubtotalMicros** | **int64** |  | 
-**TaxMicros** | **int64** |  | 
-**TotalMicros** | **int64** |  | 
-**TotalMinorUnits** | **float32** |  | 
-**VoidReason** | **NullableString** |  | 
-**VoidedAt** | **NullableString** |  | 
+**BuyerAddress** | **NullableString** |  |
+**BuyerBillingEmail** | **NullableString** |  |
+**BuyerLegalName** | **NullableString** |  |
+**ClientAccountId** | **string** |  |
+**CollectorLegalName** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**CreatedBy** | **string** |  |
+**Currency** | **string** |  |
+**DueAt** | **NullableString** |  |
+**Id** | **string** |  |
+**InvoiceFooter** | **NullableString** |  |
+**InvoiceNumber** | **NullableString** |  |
+**InvoiceSequence** | **NullableFloat32** |  |
+**IssuedAt** | **NullableString** |  |
+**Lines** | [**[]ClientInvoiceLinesInner**](ClientInvoiceLinesInner.md) |  |
+**MinorUnitExponent** | **float32** |  |
+**OrganizationId** | **string** |  |
+**PaidAt** | **NullableString** |  |
+**PaymentDescriptor** | **NullableString** |  |
+**PaymentProvider** | **NullableString** |  |
+**PaymentProviderReference** | **NullableString** |  |
+**PaymentTerms** | **NullableString** |  |
+**ReplacesInvoiceId** | **NullableString** |  |
+**SellerAddress** | **NullableString** |  |
+**SellerBrandColor** | **NullableString** |  |
+**SellerContactEmail** | **NullableString** |  |
+**SellerLegalName** | **NullableString** |  |
+**SellerLogoMediaType** | **NullableString** |  |
+**SellerTaxId** | **NullableString** |  |
+**Status** | **string** |  |
+**SubtotalMicros** | **int64** |  |
+**TaxMicros** | **int64** |  |
+**TotalMicros** | **int64** |  |
+**TotalMinorUnits** | **float32** |  |
+**VoidReason** | **NullableString** |  |
+**VoidedAt** | **NullableString** |  |
 
 ## Methods
 
@@ -48,17 +48,15 @@ Name | Type | Description | Notes
 `func NewClientInvoice(buyerAddress NullableString, buyerBillingEmail NullableString, buyerLegalName NullableString, clientAccountId string, collectorLegalName NullableString, createdAt string, createdBy string, currency string, dueAt NullableString, id string, invoiceFooter NullableString, invoiceNumber NullableString, invoiceSequence NullableFloat32, issuedAt NullableString, lines []ClientInvoiceLinesInner, minorUnitExponent float32, organizationId string, paidAt NullableString, paymentDescriptor NullableString, paymentProvider NullableString, paymentProviderReference NullableString, paymentTerms NullableString, replacesInvoiceId NullableString, sellerAddress NullableString, sellerBrandColor NullableString, sellerContactEmail NullableString, sellerLegalName NullableString, sellerLogoMediaType NullableString, sellerTaxId NullableString, status string, subtotalMicros int64, taxMicros int64, totalMicros int64, totalMinorUnits float32, voidReason NullableString, voidedAt NullableString, ) *ClientInvoice`
 
 NewClientInvoice instantiates a new ClientInvoice object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientInvoiceWithDefaults
 
 `func NewClientInvoiceWithDefaults() *ClientInvoice`
 
 NewClientInvoiceWithDefaults instantiates a new ClientInvoice object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBuyerAddress
 

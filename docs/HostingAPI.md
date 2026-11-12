@@ -1,11 +1,11 @@
-# \HostingAPI
+# HostingAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetWorkspaceHosting**](HostingAPI.md#GetWorkspaceHosting) | **Get** /v1/api/settings/hosting | Read the workspace&#39;s immutable hosting region
-[**ListHostingRegions**](HostingAPI.md#ListHostingRegions) | **Get** /v1/api/hosting-regions | List configured regional entry points
+[**GetWorkspaceHosting**](HostingAPI.md#getworkspacehosting) | **Get** /v1/api/settings/hosting | Read the workspace&#39;s immutable hosting region
+[**ListHostingRegions**](HostingAPI.md#listhostingregions) | **Get** /v1/api/hosting-regions | List configured regional entry points
 
 
 
@@ -16,6 +16,8 @@ Method | HTTP request | Description
 Read the workspace's immutable hosting region
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -28,11 +30,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostingAPI.GetWorkspaceHosting(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.HostingAPI.GetWorkspaceHosting(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostingAPI.GetWorkspaceHosting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -48,12 +53,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetWorkspaceHostingRequest struct via the builder pattern
+Pass optional parameters through the `apiGetWorkspaceHostingRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -61,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -81,6 +86,8 @@ List configured regional entry points
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -92,10 +99,13 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostingAPI.ListHostingRegions(context.Background()).Execute()
+	resp, r, err := apiClient.HostingAPI.ListHostingRegions(ctx).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostingAPI.ListHostingRegions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -111,7 +121,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListHostingRegionsRequest struct via the builder pattern
+Pass optional parameters through the `apiListHostingRegionsRequest` request builder.
 
 
 ### Return type

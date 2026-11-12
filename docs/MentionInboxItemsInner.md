@@ -4,36 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentId** | **NullableString** |  | 
-**Author** | [**MentionInboxItemsInnerAuthor**](MentionInboxItemsInnerAuthor.md) |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**MessageId** | **string** |  | 
-**ProjectId** | **NullableString** |  | 
-**ProjectName** | **NullableString** |  | 
-**Snippet** | **string** |  | 
-**TaskId** | **NullableString** |  | 
-**ThreadId** | **string** |  | 
+**AgentId** | **NullableString** |  |
+**Author** | [**MentionInboxItemsInnerAuthor**](MentionInboxItemsInnerAuthor.md) |  |
+**ChatId** | **string** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **NullableString** |  |
+**Id** | **string** |  |
+**MessageId** | **string** |  |
+**ProjectId** | **NullableString** |  |
+**ProjectName** | **NullableString** |  |
+**Snippet** | **string** |  |
+**TaskId** | **NullableString** |  |
 
 ## Methods
 
 ### NewMentionInboxItemsInner
 
-`func NewMentionInboxItemsInner(agentId NullableString, author MentionInboxItemsInnerAuthor, createdAt string, cycleId NullableString, id string, messageId string, projectId NullableString, projectName NullableString, snippet string, taskId NullableString, threadId string, ) *MentionInboxItemsInner`
+`func NewMentionInboxItemsInner(agentId NullableString, author MentionInboxItemsInnerAuthor, chatId string, createdAt string, cycleId NullableString, id string, messageId string, projectId NullableString, projectName NullableString, snippet string, taskId NullableString, ) *MentionInboxItemsInner`
 
 NewMentionInboxItemsInner instantiates a new MentionInboxItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewMentionInboxItemsInnerWithDefaults
 
 `func NewMentionInboxItemsInnerWithDefaults() *MentionInboxItemsInner`
 
 NewMentionInboxItemsInnerWithDefaults instantiates a new MentionInboxItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentId
 
@@ -83,6 +81,26 @@ and a boolean to check if the value has been set.
 `func (o *MentionInboxItemsInner) SetAuthor(v MentionInboxItemsInnerAuthor)`
 
 SetAuthor sets Author field to given value.
+
+
+### GetChatId
+
+`func (o *MentionInboxItemsInner) GetChatId() string`
+
+GetChatId returns the ChatId field if non-nil, zero value otherwise.
+
+### GetChatIdOk
+
+`func (o *MentionInboxItemsInner) GetChatIdOk() (*string, bool)`
+
+GetChatIdOk returns a tuple with the ChatId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChatId
+
+`func (o *MentionInboxItemsInner) SetChatId(v string)`
+
+SetChatId sets ChatId field to given value.
 
 
 ### GetCreatedAt
@@ -285,26 +303,6 @@ SetTaskId sets TaskId field to given value.
 `func (o *MentionInboxItemsInner) UnsetTaskId()`
 
 UnsetTaskId ensures that no value is present for TaskId, not even an explicit nil
-### GetThreadId
-
-`func (o *MentionInboxItemsInner) GetThreadId() string`
-
-GetThreadId returns the ThreadId field if non-nil, zero value otherwise.
-
-### GetThreadIdOk
-
-`func (o *MentionInboxItemsInner) GetThreadIdOk() (*string, bool)`
-
-GetThreadIdOk returns a tuple with the ThreadId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThreadId
-
-`func (o *MentionInboxItemsInner) SetThreadId(v string)`
-
-SetThreadId sets ThreadId field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveProjectCount** | **int32** |  | 
-**AtRiskProjectCount** | **int32** |  | 
-**Billed** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Id** | **string** |  | 
-**LastActivityAt** | **NullableString** |  | 
-**Name** | **string** |  | 
-**Outstanding** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Overdue** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**PendingClientDecisions** | **int32** |  | 
-**ProjectCount** | **int32** |  | 
-**Status** | **string** |  | 
+**ActiveProjectCount** | **int32** |  |
+**AtRiskProjectCount** | **int32** |  |
+**Billed** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Id** | **string** |  |
+**LastActivityAt** | **NullableString** |  |
+**Name** | **string** |  |
+**Outstanding** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Overdue** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**PendingClientDecisions** | **int32** |  |
+**ProjectCount** | **int32** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewAgencyOverviewReportCustomersInner(activeProjectCount int32, atRiskProjectCount int32, billed []AgencyBillingReportBillingCollectedInner, id string, lastActivityAt NullableString, name string, outstanding []AgencyBillingReportBillingCollectedInner, overdue []AgencyBillingReportBillingCollectedInner, pendingClientDecisions int32, projectCount int32, status string, ) *AgencyOverviewReportCustomersInner`
 
 NewAgencyOverviewReportCustomersInner instantiates a new AgencyOverviewReportCustomersInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportCustomersInnerWithDefaults
 
 `func NewAgencyOverviewReportCustomersInnerWithDefaults() *AgencyOverviewReportCustomersInner`
 
 NewAgencyOverviewReportCustomersInnerWithDefaults instantiates a new AgencyOverviewReportCustomersInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveProjectCount
 

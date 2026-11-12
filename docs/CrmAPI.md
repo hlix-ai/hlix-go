@@ -1,19 +1,19 @@
-# \CrmAPI
+# CrmAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddCrmNote**](CrmAPI.md#AddCrmNote) | **Post** /v1/api/crm/notes | Add a note to a deal, contact or client timeline
-[**CreateCrmContact**](CrmAPI.md#CreateCrmContact) | **Post** /v1/api/crm/contacts | Create a contact
-[**CreateCrmDeal**](CrmAPI.md#CreateCrmDeal) | **Post** /v1/api/crm/deals | Create a deal
-[**GetCrmClientRecord**](CrmAPI.md#GetCrmClientRecord) | **Get** /v1/api/crm/clients/{clientAccountId} | Show a client&#39;s record: deals, contacts, timeline, projects and invoices
-[**GetCrmPipeline**](CrmAPI.md#GetCrmPipeline) | **Get** /v1/api/crm/pipeline | Show the pipeline board and the last 30 days of outbound
-[**ListCrmContacts**](CrmAPI.md#ListCrmContacts) | **Get** /v1/api/crm/contacts | List contacts
-[**RegenerateCrmDealSuggestion**](CrmAPI.md#RegenerateCrmDealSuggestion) | **Post** /v1/api/crm/deals/{dealId}/suggestion/regenerate | Have the agent write a new suggested next step and draft
-[**SetCrmDealSuggestion**](CrmAPI.md#SetCrmDealSuggestion) | **Put** /v1/api/crm/deals/{dealId}/suggestion | Replace a deal&#39;s suggested next step and draft with your own
-[**SetCrmStageProbability**](CrmAPI.md#SetCrmStageProbability) | **Put** /v1/api/crm/pipeline/stages/{stage}/probability | Set the forecast odds of an open pipeline stage
-[**UpdateCrmDeal**](CrmAPI.md#UpdateCrmDeal) | **Patch** /v1/api/crm/deals/{dealId} | Move a deal or edit its value, owner and next step
+[**AddCrmNote**](CrmAPI.md#addcrmnote) | **Post** /v1/api/crm/notes | Add a note to a deal, contact or client timeline
+[**CreateCrmContact**](CrmAPI.md#createcrmcontact) | **Post** /v1/api/crm/contacts | Create a contact
+[**CreateCrmDeal**](CrmAPI.md#createcrmdeal) | **Post** /v1/api/crm/deals | Create a deal
+[**GetCrmClientRecord**](CrmAPI.md#getcrmclientrecord) | **Get** /v1/api/crm/clients/{clientAccountId} | Show a client&#39;s record: deals, contacts, timeline, projects and invoices
+[**GetCrmPipeline**](CrmAPI.md#getcrmpipeline) | **Get** /v1/api/crm/pipeline | Show the pipeline board and the last 30 days of outbound
+[**ListCrmContacts**](CrmAPI.md#listcrmcontacts) | **Get** /v1/api/crm/contacts | List contacts
+[**RegenerateCrmDealSuggestion**](CrmAPI.md#regeneratecrmdealsuggestion) | **Post** /v1/api/crm/deals/{dealId}/suggestion/regenerate | Have the agent write a new suggested next step and draft
+[**SetCrmDealSuggestion**](CrmAPI.md#setcrmdealsuggestion) | **Put** /v1/api/crm/deals/{dealId}/suggestion | Replace a deal&#39;s suggested next step and draft with your own
+[**SetCrmStageProbability**](CrmAPI.md#setcrmstageprobability) | **Put** /v1/api/crm/pipeline/stages/{stage}/probability | Set the forecast odds of an open pipeline stage
+[**UpdateCrmDeal**](CrmAPI.md#updatecrmdeal) | **Patch** /v1/api/crm/deals/{dealId} | Move a deal or edit its value, owner and next step
 
 
 
@@ -25,10 +25,13 @@ Add a note to a deal, contact or client timeline
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -36,12 +39,18 @@ import (
 )
 
 func main() {
-	createNote := *openapiclient.NewCreateNote("Summary_example") // CreateNote | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createNote openapiclient.CreateNote
+	if err := json.Unmarshal([]byte("{\"summary\":\"text\"}"), &createNote); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.AddCrmNote(context.Background()).CreateNote(createNote).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.AddCrmNote(ctx).CreateNote(createNote).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.AddCrmNote``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,13 +66,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddCrmNoteRequest struct via the builder pattern
+Pass optional parameters through the `apiAddCrmNoteRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createNote** | [**CreateNote**](CreateNote.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createNote** | [**CreateNote**](CreateNote.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -71,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -91,10 +100,13 @@ Create a contact
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -102,12 +114,18 @@ import (
 )
 
 func main() {
-	createContact := *openapiclient.NewCreateContact("ClientAccountId_example", "Name_example") // CreateContact | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createContact openapiclient.CreateContact
+	if err := json.Unmarshal([]byte("{\"clientAccountId\":\"text\",\"name\":\"text\"}"), &createContact); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.CreateCrmContact(context.Background()).CreateContact(createContact).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.CreateCrmContact(ctx).CreateContact(createContact).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.CreateCrmContact``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,13 +141,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCrmContactRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateCrmContactRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createContact** | [**CreateContact**](CreateContact.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createContact** | [**CreateContact**](CreateContact.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -137,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -157,10 +175,13 @@ Create a deal
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -168,12 +189,18 @@ import (
 )
 
 func main() {
-	createDeal := *openapiclient.NewCreateDeal("ClientAccountId_example", "SourceKind_example") // CreateDeal | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createDeal openapiclient.CreateDeal
+	if err := json.Unmarshal([]byte("{\"clientAccountId\":\"text\",\"sourceKind\":\"play\"}"), &createDeal); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.CreateCrmDeal(context.Background()).CreateDeal(createDeal).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.CreateCrmDeal(ctx).CreateDeal(createDeal).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.CreateCrmDeal``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -189,13 +216,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCrmDealRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateCrmDealRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createDeal** | [**CreateDeal**](CreateDeal.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createDeal** | [**CreateDeal**](CreateDeal.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -203,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -223,6 +250,8 @@ Show a client's record: deals, contacts, timeline, projects and invoices
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -234,12 +263,15 @@ import (
 )
 
 func main() {
-	clientAccountId := "clientAccountId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	clientAccountId := "clientAccountId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.GetCrmClientRecord(context.Background(), clientAccountId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.GetCrmClientRecord(ctx, clientAccountId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.GetCrmClientRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -255,17 +287,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clientAccountId** | **string** |  | 
+**clientAccountId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCrmClientRecordRequest struct via the builder pattern
+Pass optional parameters through the `apiGetCrmClientRecordRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -273,7 +305,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -293,6 +325,8 @@ Show the pipeline board and the last 30 days of outbound
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -304,11 +338,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.GetCrmPipeline(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.GetCrmPipeline(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.GetCrmPipeline``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -324,12 +361,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCrmPipelineRequest struct via the builder pattern
+Pass optional parameters through the `apiGetCrmPipelineRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -337,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -357,6 +394,8 @@ List contacts
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -368,12 +407,15 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	clientAccountId := "clientAccountId_example" // string | Only this client account's contacts. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.ListCrmContacts(context.Background()).ClientAccountId(clientAccountId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.ListCrmContacts(ctx).ClientAccountId(clientAccountId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.ListCrmContacts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -389,13 +431,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCrmContactsRequest struct via the builder pattern
+Pass optional parameters through the `apiListCrmContactsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientAccountId** | **string** | Only this client account&#39;s contacts. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **clientAccountId** | **string** | Only this client account&#39;s contacts. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -403,7 +445,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -423,6 +465,8 @@ Have the agent write a new suggested next step and draft
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -434,12 +478,15 @@ import (
 )
 
 func main() {
-	dealId := "dealId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	dealId := "dealId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.RegenerateCrmDealSuggestion(context.Background(), dealId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.RegenerateCrmDealSuggestion(ctx, dealId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.RegenerateCrmDealSuggestion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -455,17 +502,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dealId** | **string** |  | 
+**dealId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRegenerateCrmDealSuggestionRequest struct via the builder pattern
+Pass optional parameters through the `apiRegenerateCrmDealSuggestionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -473,7 +520,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -493,10 +540,13 @@ Replace a deal's suggested next step and draft with your own
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -504,13 +554,19 @@ import (
 )
 
 func main() {
-	dealId := "dealId_example" // string | 
-	dealSuggestion := *openapiclient.NewDealSuggestion("DraftBody_example", "DraftSubject_example", "Step_example") // DealSuggestion | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	dealId := "dealId_example" // string |
+	var dealSuggestion openapiclient.DealSuggestion
+	if err := json.Unmarshal([]byte("{\"draftBody\":\"text\",\"draftSubject\":\"text\",\"step\":\"text\"}"), &dealSuggestion); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.SetCrmDealSuggestion(context.Background(), dealId).DealSuggestion(dealSuggestion).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.SetCrmDealSuggestion(ctx, dealId).DealSuggestion(dealSuggestion).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.SetCrmDealSuggestion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -526,18 +582,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dealId** | **string** |  | 
+**dealId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetCrmDealSuggestionRequest struct via the builder pattern
+Pass optional parameters through the `apiSetCrmDealSuggestionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dealSuggestion** | [**DealSuggestion**](DealSuggestion.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **dealSuggestion** | [**DealSuggestion**](DealSuggestion.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -545,7 +601,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -565,10 +621,13 @@ Set the forecast odds of an open pipeline stage
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -576,13 +635,19 @@ import (
 )
 
 func main() {
-	stage := "stage_example" // string | 
-	stageProbability := *openapiclient.NewStageProbability(NullableInt32(123)) // StageProbability | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	stage := "stage_example" // string |
+	var stageProbability openapiclient.StageProbability
+	if err := json.Unmarshal([]byte("{\"percent\":1}"), &stageProbability); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.SetCrmStageProbability(context.Background(), stage).StageProbability(stageProbability).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.SetCrmStageProbability(ctx, stage).StageProbability(stageProbability).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.SetCrmStageProbability``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -598,18 +663,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stage** | **string** |  | 
+**stage** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSetCrmStageProbabilityRequest struct via the builder pattern
+Pass optional parameters through the `apiSetCrmStageProbabilityRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **stageProbability** | [**StageProbability**](StageProbability.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **stageProbability** | [**StageProbability**](StageProbability.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -617,7 +682,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -637,10 +702,13 @@ Move a deal or edit its value, owner and next step
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -648,13 +716,19 @@ import (
 )
 
 func main() {
-	dealId := "dealId_example" // string | 
-	updateDeal := *openapiclient.NewUpdateDeal() // UpdateDeal | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	dealId := "dealId_example" // string |
+	var updateDeal openapiclient.UpdateDeal
+	if err := json.Unmarshal([]byte("{}"), &updateDeal); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CrmAPI.UpdateCrmDeal(context.Background(), dealId).UpdateDeal(updateDeal).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.CrmAPI.UpdateCrmDeal(ctx, dealId).UpdateDeal(updateDeal).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CrmAPI.UpdateCrmDeal``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -670,18 +744,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dealId** | **string** |  | 
+**dealId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCrmDealRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateCrmDealRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateDeal** | [**UpdateDeal**](UpdateDeal.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updateDeal** | [**UpdateDeal**](UpdateDeal.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -689,7 +763,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CloneUrl** | **string** |  | 
-**ConnectionStatus** | Pointer to **string** |  | [optional] 
-**CreatedAt** | **string** |  | 
-**DefaultBranch** | **string** |  | 
-**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  | 
-**GithubInstallationId** | **NullableString** |  | 
-**GithubRepoId** | **NullableInt32** |  | 
-**Id** | **string** |  | 
-**IsPrimary** | **bool** |  | 
-**Label** | **NullableString** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Owner** | **string** |  | 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**ProjectId** | **string** |  | 
-**Provider** | **string** |  | 
-**SetupCommand** | **NullableString** |  | 
-**VerifyCommand** | **NullableString** |  | 
+**CloneUrl** | **string** |  |
+**ConnectionStatus** | Pointer to **string** |  | [optional]
+**CreatedAt** | **string** |  |
+**DefaultBranch** | **string** |  |
+**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  |
+**GithubInstallationId** | **NullableString** |  |
+**GithubRepoId** | **NullableInt32** |  |
+**Id** | **string** |  |
+**IsPrimary** | **bool** |  |
+**Label** | **NullableString** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**Owner** | **string** |  |
+**PreviewCommand** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**ProjectId** | **string** |  |
+**Provider** | **string** |  |
+**SetupCommand** | **NullableString** |  |
+**VerifyCommand** | **NullableString** |  |
 
 ## Methods
 
@@ -31,17 +31,15 @@ Name | Type | Description | Notes
 `func NewProjectRepo(cloneUrl string, createdAt string, defaultBranch string, detectedCommands NullableProjectDetectedCommands, githubInstallationId NullableString, githubRepoId NullableInt32, id string, isPrimary bool, label NullableString, name string, organizationId string, owner string, previewCommand NullableString, previewPort NullableInt32, projectId string, provider string, setupCommand NullableString, verifyCommand NullableString, ) *ProjectRepo`
 
 NewProjectRepo instantiates a new ProjectRepo object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectRepoWithDefaults
 
 `func NewProjectRepoWithDefaults() *ProjectRepo`
 
 NewProjectRepoWithDefaults instantiates a new ProjectRepo object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCloneUrl
 

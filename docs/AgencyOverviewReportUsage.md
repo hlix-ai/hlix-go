@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostMicros** | **int64** |  | 
-**Runs** | **int32** |  | 
-**TokensIn** | **int32** |  | 
-**TokensOut** | **int32** |  | 
+**CostMicros** | **int64** |  |
+**Runs** | **int32** |  |
+**TokensIn** | **int32** |  |
+**TokensOut** | **int32** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewAgencyOverviewReportUsage(costMicros int64, runs int32, tokensIn int32, tokensOut int32, ) *AgencyOverviewReportUsage`
 
 NewAgencyOverviewReportUsage instantiates a new AgencyOverviewReportUsage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportUsageWithDefaults
 
 `func NewAgencyOverviewReportUsageWithDefaults() *AgencyOverviewReportUsage`
 
 NewAgencyOverviewReportUsageWithDefaults instantiates a new AgencyOverviewReportUsage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCostMicros
 

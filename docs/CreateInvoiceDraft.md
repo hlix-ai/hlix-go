@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BillableIds** | **[]string** |  | 
-**BuyerAddress** | **string** |  | 
-**BuyerBillingEmail** | Pointer to **NullableString** |  | [optional] 
-**BuyerLegalName** | Pointer to **string** |  | [optional] 
-**DueAt** | **time.Time** |  | 
-**PaymentTerms** | Pointer to **string** |  | [optional] 
-**ReplacesInvoiceId** | Pointer to **NullableString** |  | [optional] 
-**SellerAddress** | Pointer to **string** |  | [optional] 
-**SellerLegalName** | Pointer to **string** |  | [optional] 
-**TaxRatesBps** | Pointer to [**CreateInvoiceDraftTaxRatesBps**](CreateInvoiceDraftTaxRatesBps.md) |  | [optional] 
+**BillableIds** | **[]string** |  |
+**BuyerAddress** | **string** |  |
+**BuyerBillingEmail** | Pointer to **NullableString** |  | [optional]
+**BuyerLegalName** | Pointer to **string** |  | [optional]
+**DueAt** | **time.Time** |  |
+**PaymentTerms** | Pointer to **string** |  | [optional]
+**ReplacesInvoiceId** | Pointer to **NullableString** |  | [optional]
+**SellerAddress** | Pointer to **string** |  | [optional]
+**SellerLegalName** | Pointer to **string** |  | [optional]
+**TaxRatesBps** | Pointer to [**CreateInvoiceDraftTaxRatesBps**](CreateInvoiceDraftTaxRatesBps.md) |  | [optional]
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewCreateInvoiceDraft(billableIds []string, buyerAddress string, dueAt time.Time, ) *CreateInvoiceDraft`
 
 NewCreateInvoiceDraft instantiates a new CreateInvoiceDraft object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateInvoiceDraftWithDefaults
 
 `func NewCreateInvoiceDraftWithDefaults() *CreateInvoiceDraft`
 
 NewCreateInvoiceDraftWithDefaults instantiates a new CreateInvoiceDraft object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBillableIds
 

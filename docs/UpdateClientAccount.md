@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BillingEmail** | Pointer to **NullableString** |  | [optional] 
-**Branding** | Pointer to **map[string]string** |  | [optional] 
-**Currency** | Pointer to **NullableString** |  | [optional] 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**LegalName** | Pointer to **NullableString** |  | [optional] 
-**PortalSlug** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**BillingEmail** | Pointer to **NullableString** |  | [optional]
+**Branding** | Pointer to **map[string]string** |  | [optional]
+**Currency** | Pointer to **NullableString** |  | [optional]
+**DisplayName** | Pointer to **string** |  | [optional]
+**LegalName** | Pointer to **NullableString** |  | [optional]
+**PortalSlug** | Pointer to **string** |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewUpdateClientAccount() *UpdateClientAccount`
 
 NewUpdateClientAccount instantiates a new UpdateClientAccount object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateClientAccountWithDefaults
 
 `func NewUpdateClientAccountWithDefaults() *UpdateClientAccount`
 
 NewUpdateClientAccountWithDefaults instantiates a new UpdateClientAccount object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBillingEmail
 

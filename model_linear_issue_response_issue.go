@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -27,7 +27,7 @@ type LinearIssueResponseIssue struct {
 	Id string `json:"id"`
 	Identifier string `json:"identifier"`
 	PriorityLabel string `json:"priorityLabel"`
-	ProposalId NullableString `json:"proposalId"`
+	RequestId NullableString `json:"requestId"`
 	StateName string `json:"stateName"`
 	Status string `json:"status"`
 	Title string `json:"title"`
@@ -42,7 +42,7 @@ type _LinearIssueResponseIssue LinearIssueResponseIssue
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLinearIssueResponseIssue(assigneeName NullableString, cycleId NullableString, description string, error_ NullableString, id string, identifier string, priorityLabel string, proposalId NullableString, stateName string, status string, title string, updatedAt string, url string) *LinearIssueResponseIssue {
+func NewLinearIssueResponseIssue(assigneeName NullableString, cycleId NullableString, description string, error_ NullableString, id string, identifier string, priorityLabel string, requestId NullableString, stateName string, status string, title string, updatedAt string, url string) *LinearIssueResponseIssue {
 	this := LinearIssueResponseIssue{}
 	this.AssigneeName = assigneeName
 	this.CycleId = cycleId
@@ -51,7 +51,7 @@ func NewLinearIssueResponseIssue(assigneeName NullableString, cycleId NullableSt
 	this.Id = id
 	this.Identifier = identifier
 	this.PriorityLabel = priorityLabel
-	this.ProposalId = proposalId
+	this.RequestId = requestId
 	this.StateName = stateName
 	this.Status = status
 	this.Title = title
@@ -242,30 +242,30 @@ func (o *LinearIssueResponseIssue) SetPriorityLabel(v string) {
 	o.PriorityLabel = v
 }
 
-// GetProposalId returns the ProposalId field value
+// GetRequestId returns the RequestId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *LinearIssueResponseIssue) GetProposalId() string {
-	if o == nil || o.ProposalId.Get() == nil {
+func (o *LinearIssueResponseIssue) GetRequestId() string {
+	if o == nil || o.RequestId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.ProposalId.Get()
+	return *o.RequestId.Get()
 }
 
-// GetProposalIdOk returns a tuple with the ProposalId field value
+// GetRequestIdOk returns a tuple with the RequestId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinearIssueResponseIssue) GetProposalIdOk() (*string, bool) {
+func (o *LinearIssueResponseIssue) GetRequestIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ProposalId.Get(), o.ProposalId.IsSet()
+	return o.RequestId.Get(), o.RequestId.IsSet()
 }
 
-// SetProposalId sets field value
-func (o *LinearIssueResponseIssue) SetProposalId(v string) {
-	o.ProposalId.Set(&v)
+// SetRequestId sets field value
+func (o *LinearIssueResponseIssue) SetRequestId(v string) {
+	o.RequestId.Set(&v)
 }
 
 // GetStateName returns the StateName field value
@@ -405,7 +405,7 @@ func (o LinearIssueResponseIssue) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["identifier"] = o.Identifier
 	toSerialize["priorityLabel"] = o.PriorityLabel
-	toSerialize["proposalId"] = o.ProposalId.Get()
+	toSerialize["requestId"] = o.RequestId.Get()
 	toSerialize["stateName"] = o.StateName
 	toSerialize["status"] = o.Status
 	toSerialize["title"] = o.Title
@@ -431,7 +431,7 @@ func (o *LinearIssueResponseIssue) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"identifier",
 		"priorityLabel",
-		"proposalId",
+		"requestId",
 		"stateName",
 		"status",
 		"title",
@@ -473,7 +473,7 @@ func (o *LinearIssueResponseIssue) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "priorityLabel")
-		delete(additionalProperties, "proposalId")
+		delete(additionalProperties, "requestId")
 		delete(additionalProperties, "stateName")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "title")

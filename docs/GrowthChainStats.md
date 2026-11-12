@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ByProvider** | [**map[string]GrowthChainStatsByProviderValue**](GrowthChainStatsByProviderValue.md) |  | 
-**Chain** | [**NullableGrowthChainStatsChain**](GrowthChainStatsChain.md) |  | 
-**WindowDays** | **int32** |  | 
+**ByProvider** | [**map[string]GrowthChainStatsByProviderValue**](GrowthChainStatsByProviderValue.md) |  |
+**Chain** | [**NullableGrowthChainStatsChain**](GrowthChainStatsChain.md) |  |
+**WindowDays** | **int32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewGrowthChainStats(byProvider map[string]GrowthChainStatsByProviderValue, chain NullableGrowthChainStatsChain, windowDays int32, ) *GrowthChainStats`
 
 NewGrowthChainStats instantiates a new GrowthChainStats object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthChainStatsWithDefaults
 
 `func NewGrowthChainStatsWithDefaults() *GrowthChainStats`
 
 NewGrowthChainStatsWithDefaults instantiates a new GrowthChainStats object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetByProvider
 

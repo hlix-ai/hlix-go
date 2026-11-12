@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BranchPrefix** | Pointer to **NullableString** |  | [optional] 
-**Brief** | Pointer to **NullableString** |  | [optional] 
-**ClaudeMd** | Pointer to **string** |  | [optional] 
-**CostCapMicros** | Pointer to **NullableInt64** |  | [optional] 
-**CycleCap** | Pointer to **NullableInt32** |  | [optional] 
-**InitialProposalRequired** | Pointer to **bool** |  | [optional] 
-**Intake** | Pointer to [**UpdateProjectIntake**](UpdateProjectIntake.md) |  | [optional] 
-**MaxRevisions** | Pointer to **NullableInt32** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**PreviewCommand** | Pointer to **NullableString** |  | [optional] 
-**PreviewPort** | Pointer to **NullableInt32** |  | [optional] 
-**Runtime** | Pointer to [**CreateProjectRuntime**](CreateProjectRuntime.md) |  | [optional] 
-**SandboxSize** | Pointer to **NullableString** |  | [optional] 
-**Stack** | Pointer to **string** |  | [optional] 
-**Tier** | Pointer to **NullableString** |  | [optional] 
-**UseWorkspaceBrand** | Pointer to **bool** |  | [optional] 
-**VerifyCommand** | Pointer to **NullableString** |  | [optional] 
+**BranchPrefix** | Pointer to **NullableString** |  | [optional]
+**Brief** | Pointer to **NullableString** |  | [optional]
+**ClaudeMd** | Pointer to **string** |  | [optional]
+**CostCapMicros** | Pointer to **NullableInt64** |  | [optional]
+**CycleCap** | Pointer to **NullableInt32** |  | [optional]
+**InitialProposalRequired** | Pointer to **bool** |  | [optional]
+**MachineSize** | Pointer to **NullableString** |  | [optional]
+**MaxRevisions** | Pointer to **NullableInt32** |  | [optional]
+**Name** | Pointer to **string** |  | [optional]
+**PreviewCommand** | Pointer to **NullableString** |  | [optional]
+**PreviewPort** | Pointer to **NullableInt32** |  | [optional]
+**Runtime** | Pointer to [**CreateProjectRuntime**](CreateProjectRuntime.md) |  | [optional]
+**Sources** | Pointer to [**UpdateProjectSources**](UpdateProjectSources.md) |  | [optional]
+**Stack** | Pointer to **string** |  | [optional]
+**Tier** | Pointer to **NullableString** |  | [optional]
+**UseWorkspaceBrand** | Pointer to **bool** |  | [optional]
+**VerifyCommand** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -29,17 +29,15 @@ Name | Type | Description | Notes
 `func NewUpdateProject() *UpdateProject`
 
 NewUpdateProject instantiates a new UpdateProject object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateProjectWithDefaults
 
 `func NewUpdateProjectWithDefaults() *UpdateProject`
 
 NewUpdateProjectWithDefaults instantiates a new UpdateProject object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBranchPrefix
 
@@ -231,31 +229,41 @@ SetInitialProposalRequired sets InitialProposalRequired field to given value.
 
 HasInitialProposalRequired returns a boolean if a field has been set.
 
-### GetIntake
+### GetMachineSize
 
-`func (o *UpdateProject) GetIntake() UpdateProjectIntake`
+`func (o *UpdateProject) GetMachineSize() string`
 
-GetIntake returns the Intake field if non-nil, zero value otherwise.
+GetMachineSize returns the MachineSize field if non-nil, zero value otherwise.
 
-### GetIntakeOk
+### GetMachineSizeOk
 
-`func (o *UpdateProject) GetIntakeOk() (*UpdateProjectIntake, bool)`
+`func (o *UpdateProject) GetMachineSizeOk() (*string, bool)`
 
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
+GetMachineSizeOk returns a tuple with the MachineSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIntake
+### SetMachineSize
 
-`func (o *UpdateProject) SetIntake(v UpdateProjectIntake)`
+`func (o *UpdateProject) SetMachineSize(v string)`
 
-SetIntake sets Intake field to given value.
+SetMachineSize sets MachineSize field to given value.
 
-### HasIntake
+### HasMachineSize
 
-`func (o *UpdateProject) HasIntake() bool`
+`func (o *UpdateProject) HasMachineSize() bool`
 
-HasIntake returns a boolean if a field has been set.
+HasMachineSize returns a boolean if a field has been set.
 
+### SetMachineSizeNil
+
+`func (o *UpdateProject) SetMachineSizeNil(b bool)`
+
+ SetMachineSizeNil sets the value for MachineSize to be an explicit nil
+
+### UnsetMachineSize
+`func (o *UpdateProject) UnsetMachineSize()`
+
+UnsetMachineSize ensures that no value is present for MachineSize, not even an explicit nil
 ### GetMaxRevisions
 
 `func (o *UpdateProject) GetMaxRevisions() int32`
@@ -411,41 +419,31 @@ SetRuntime sets Runtime field to given value.
 
 HasRuntime returns a boolean if a field has been set.
 
-### GetSandboxSize
+### GetSources
 
-`func (o *UpdateProject) GetSandboxSize() string`
+`func (o *UpdateProject) GetSources() UpdateProjectSources`
 
-GetSandboxSize returns the SandboxSize field if non-nil, zero value otherwise.
+GetSources returns the Sources field if non-nil, zero value otherwise.
 
-### GetSandboxSizeOk
+### GetSourcesOk
 
-`func (o *UpdateProject) GetSandboxSizeOk() (*string, bool)`
+`func (o *UpdateProject) GetSourcesOk() (*UpdateProjectSources, bool)`
 
-GetSandboxSizeOk returns a tuple with the SandboxSize field if it's non-nil, zero value otherwise
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSandboxSize
+### SetSources
 
-`func (o *UpdateProject) SetSandboxSize(v string)`
+`func (o *UpdateProject) SetSources(v UpdateProjectSources)`
 
-SetSandboxSize sets SandboxSize field to given value.
+SetSources sets Sources field to given value.
 
-### HasSandboxSize
+### HasSources
 
-`func (o *UpdateProject) HasSandboxSize() bool`
+`func (o *UpdateProject) HasSources() bool`
 
-HasSandboxSize returns a boolean if a field has been set.
+HasSources returns a boolean if a field has been set.
 
-### SetSandboxSizeNil
-
-`func (o *UpdateProject) SetSandboxSizeNil(b bool)`
-
- SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
-
-### UnsetSandboxSize
-`func (o *UpdateProject) UnsetSandboxSize()`
-
-UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
 ### GetStack
 
 `func (o *UpdateProject) GetStack() string`

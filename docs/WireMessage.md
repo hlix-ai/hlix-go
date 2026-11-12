@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentId** | **NullableString** |  | 
-**Author** | [**NullableClientRequestDetailMessagesInnerAuthor**](ClientRequestDetailMessagesInnerAuthor.md) |  | 
-**Content** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **NullableString** |  | 
-**Delivery** | Pointer to **string** |  | [optional] 
-**Id** | **string** |  | 
-**Metadata** | [**ClientRequestDetailMessagesInnerMetadata**](ClientRequestDetailMessagesInnerMetadata.md) |  | 
-**Parts** | Pointer to [**[]ClientRequestDetailMessagesInnerPartsInner**](ClientRequestDetailMessagesInnerPartsInner.md) |  | [optional] 
-**ReplyTo** | Pointer to **string** |  | [optional] 
-**Role** | **string** |  | 
-**Status** | Pointer to **string** |  | [optional] 
+**AgentId** | **NullableString** |  |
+**Author** | [**NullableClientRequestDetailMessagesInnerAuthor**](ClientRequestDetailMessagesInnerAuthor.md) |  |
+**Content** | **string** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **NullableString** |  |
+**Delivery** | Pointer to **string** |  | [optional]
+**Id** | **string** |  |
+**Metadata** | [**ClientRequestDetailMessagesInnerMetadata**](ClientRequestDetailMessagesInnerMetadata.md) |  |
+**Parts** | Pointer to [**[]ClientRequestDetailMessagesInnerPartsInner**](ClientRequestDetailMessagesInnerPartsInner.md) |  | [optional]
+**ReplyTo** | Pointer to **string** |  | [optional]
+**Role** | **string** |  |
+**Status** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewWireMessage(agentId NullableString, author NullableClientRequestDetailMessagesInnerAuthor, content string, createdAt string, cycleId NullableString, id string, metadata ClientRequestDetailMessagesInnerMetadata, role string, ) *WireMessage`
 
 NewWireMessage instantiates a new WireMessage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWireMessageWithDefaults
 
 `func NewWireMessageWithDefaults() *WireMessage`
 
 NewWireMessageWithDefaults instantiates a new WireMessage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentId
 

@@ -1,12 +1,12 @@
-# \MentionsAPI
+# MentionsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetProjectMentionRoster**](MentionsAPI.md#GetProjectMentionRoster) | **Get** /v1/api/projects/{projectId}/mention-roster | List who this project&#39;s conversations can mention
-[**ListUnreadMentions**](MentionsAPI.md#ListUnreadMentions) | **Get** /v1/api/mentions | List the caller&#39;s unread mentions
-[**MarkMentionsRead**](MentionsAPI.md#MarkMentionsRead) | **Post** /v1/api/mentions/read | Mark the caller&#39;s mentions read
+[**GetProjectMentionRoster**](MentionsAPI.md#getprojectmentionroster) | **Get** /v1/api/projects/{projectId}/mention-roster | List who this project&#39;s conversations can mention
+[**ListUnreadMentions**](MentionsAPI.md#listunreadmentions) | **Get** /v1/api/mentions | List the caller&#39;s unread mentions
+[**MarkMentionsRead**](MentionsAPI.md#markmentionsread) | **Post** /v1/api/mentions/read | Mark the caller&#39;s mentions read
 
 
 
@@ -17,6 +17,8 @@ Method | HTTP request | Description
 List who this project's conversations can mention
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -29,13 +31,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MentionsAPI.GetProjectMentionRoster(context.Background(), projectId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.MentionsAPI.GetProjectMentionRoster(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MentionsAPI.GetProjectMentionRoster``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,18 +55,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectMentionRosterRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectMentionRosterRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -70,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -90,6 +94,8 @@ List the caller's unread mentions
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -101,13 +107,16 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	limit := "limit_example" // string | Page size, clamped to 1–500; 100 when omitted or not an integer. (optional)
 	offset := "offset_example" // string | Mentions to skip, newest first. `total` counts every unread mention, so it says how many pages there are. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MentionsAPI.ListUnreadMentions(context.Background()).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MentionsAPI.ListUnreadMentions(ctx).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MentionsAPI.ListUnreadMentions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,14 +132,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListUnreadMentionsRequest struct via the builder pattern
+Pass optional parameters through the `apiListUnreadMentionsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. | 
- **offset** | **string** | Mentions to skip, newest first. &#x60;total&#x60; counts every unread mention, so it says how many pages there are. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. |
+ **offset** | **string** | Mentions to skip, newest first. &#x60;total&#x60; counts every unread mention, so it says how many pages there are. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -138,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -158,10 +167,13 @@ Mark the caller's mentions read
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -169,12 +181,18 @@ import (
 )
 
 func main() {
-	mentionRead := *openapiclient.NewMentionRead([]string{"Ids_example"}) // MentionRead | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var mentionRead openapiclient.MentionRead
+	if err := json.Unmarshal([]byte("{\"ids\":[\"text\"]}"), &mentionRead); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MentionsAPI.MarkMentionsRead(context.Background()).MentionRead(mentionRead).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MentionsAPI.MarkMentionsRead(ctx).MentionRead(mentionRead).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MentionsAPI.MarkMentionsRead``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,13 +208,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiMarkMentionsReadRequest struct via the builder pattern
+Pass optional parameters through the `apiMarkMentionsReadRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mentionRead** | [**MentionRead**](MentionRead.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **mentionRead** | [**MentionRead**](MentionRead.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -204,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

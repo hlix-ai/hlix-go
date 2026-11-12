@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**Description** | **string** |  | 
-**Enabled** | **bool** |  | 
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectIds** | **[]string** |  | 
-**Slug** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**Content** | **string** |  |
+**CreatedAt** | **string** |  |
+**Description** | **string** |  |
+**Enabled** | **bool** |  |
+**Id** | **string** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProjectIds** | **[]string** |  |
+**Slug** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewCustomSkill(content string, createdAt string, description string, enabled bool, id string, name string, organizationId string, projectIds []string, slug string, updatedAt string, ) *CustomSkill`
 
 NewCustomSkill instantiates a new CustomSkill object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCustomSkillWithDefaults
 
 `func NewCustomSkillWithDefaults() *CustomSkill`
 
 NewCustomSkillWithDefaults instantiates a new CustomSkill object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetContent
 

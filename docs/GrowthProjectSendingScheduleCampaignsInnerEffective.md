@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CountryOverrides** | [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  | 
-**SendDays** | **[]int32** |  | 
-**SendEndHour** | **int32** |  | 
-**SendStartHour** | **int32** |  | 
-**TimeZone** | **NullableString** |  | 
+**CountryOverrides** | [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  |
+**SendDays** | **[]int32** |  |
+**SendEndHour** | **int32** |  |
+**SendStartHour** | **int32** |  |
+**TimeZone** | **NullableString** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewGrowthProjectSendingScheduleCampaignsInnerEffective(countryOverrides map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue, sendDays []int32, sendEndHour int32, sendStartHour int32, timeZone NullableString, ) *GrowthProjectSendingScheduleCampaignsInnerEffective`
 
 NewGrowthProjectSendingScheduleCampaignsInnerEffective instantiates a new GrowthProjectSendingScheduleCampaignsInnerEffective object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProjectSendingScheduleCampaignsInnerEffectiveWithDefaults
 
 `func NewGrowthProjectSendingScheduleCampaignsInnerEffectiveWithDefaults() *GrowthProjectSendingScheduleCampaignsInnerEffective`
 
 NewGrowthProjectSendingScheduleCampaignsInnerEffectiveWithDefaults instantiates a new GrowthProjectSendingScheduleCampaignsInnerEffective object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCountryOverrides
 

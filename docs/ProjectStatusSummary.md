@@ -4,37 +4,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentCycle** | [**NullableProjectStatusSummaryCurrentCycle**](ProjectStatusSummaryCurrentCycle.md) |  | 
-**Cycles** | [**[]ProjectStatusSummaryCyclesInner**](ProjectStatusSummaryCyclesInner.md) |  | 
-**Declined** | [**[]ProjectStatusSummaryDeclinedInner**](ProjectStatusSummaryDeclinedInner.md) |  | 
-**Delivery** | [**ProjectStatusSummaryDelivery**](ProjectStatusSummaryDelivery.md) |  | 
-**LastActivityAt** | **NullableString** |  | 
-**NeedsYou** | [**[]ProjectStatusSummaryNeedsYouInner**](ProjectStatusSummaryNeedsYouInner.md) |  | 
-**PausedReason** | **NullableString** |  | 
-**PendingProposals** | **float32** |  | 
-**Phase** | **string** |  | 
-**PreviewUrl** | **NullableString** |  | 
-**Progress** | [**ProjectStatusSummaryProgress**](ProjectStatusSummaryProgress.md) |  | 
-**Project** | [**HlixCodeModelsModelsInner**](HlixCodeModelsModelsInner.md) |  | 
+**Attention** | [**[]AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  |
+**CurrentCycle** | [**NullableProjectStatusSummaryCurrentCycle**](ProjectStatusSummaryCurrentCycle.md) |  |
+**Cycles** | [**[]ProjectStatusSummaryCyclesInner**](ProjectStatusSummaryCyclesInner.md) |  |
+**Declined** | [**[]ProjectStatusSummaryDeclinedInner**](ProjectStatusSummaryDeclinedInner.md) |  |
+**Delivery** | [**ProjectStatusSummaryDelivery**](ProjectStatusSummaryDelivery.md) |  |
+**LastActivityAt** | **NullableString** |  |
+**NeedsYou** | [**[]ProjectStatusSummaryNeedsYouInner**](ProjectStatusSummaryNeedsYouInner.md) |  |
+**PauseReason** | **NullableString** |  |
+**PausedReason** | **NullableString** |  |
+**PendingProposals** | **float32** |  |
+**PreviewUrl** | **NullableString** |  |
+**Progress** | [**ProjectStatusSummaryProgress**](ProjectStatusSummaryProgress.md) |  |
+**Project** | [**HlixCodeModelsModelsInner**](HlixCodeModelsModelsInner.md) |  |
+**Status** | **string** |  |
 
 ## Methods
 
 ### NewProjectStatusSummary
 
-`func NewProjectStatusSummary(currentCycle NullableProjectStatusSummaryCurrentCycle, cycles []ProjectStatusSummaryCyclesInner, declined []ProjectStatusSummaryDeclinedInner, delivery ProjectStatusSummaryDelivery, lastActivityAt NullableString, needsYou []ProjectStatusSummaryNeedsYouInner, pausedReason NullableString, pendingProposals float32, phase string, previewUrl NullableString, progress ProjectStatusSummaryProgress, project HlixCodeModelsModelsInner, ) *ProjectStatusSummary`
+`func NewProjectStatusSummary(attention []AgencyOverviewReportAttentionInnerAttentionItem, currentCycle NullableProjectStatusSummaryCurrentCycle, cycles []ProjectStatusSummaryCyclesInner, declined []ProjectStatusSummaryDeclinedInner, delivery ProjectStatusSummaryDelivery, lastActivityAt NullableString, needsYou []ProjectStatusSummaryNeedsYouInner, pauseReason NullableString, pausedReason NullableString, pendingProposals float32, previewUrl NullableString, progress ProjectStatusSummaryProgress, project HlixCodeModelsModelsInner, status string, ) *ProjectStatusSummary`
 
 NewProjectStatusSummary instantiates a new ProjectStatusSummary object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectStatusSummaryWithDefaults
 
 `func NewProjectStatusSummaryWithDefaults() *ProjectStatusSummary`
 
 NewProjectStatusSummaryWithDefaults instantiates a new ProjectStatusSummary object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetAttention
+
+`func (o *ProjectStatusSummary) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttention returns the Attention field if non-nil, zero value otherwise.
+
+### GetAttentionOk
+
+`func (o *ProjectStatusSummary) GetAttentionOk() (*[]AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionOk returns a tuple with the Attention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttention
+
+`func (o *ProjectStatusSummary) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttention sets Attention field to given value.
+
 
 ### GetCurrentCycle
 
@@ -176,6 +196,36 @@ and a boolean to check if the value has been set.
 SetNeedsYou sets NeedsYou field to given value.
 
 
+### GetPauseReason
+
+`func (o *ProjectStatusSummary) GetPauseReason() string`
+
+GetPauseReason returns the PauseReason field if non-nil, zero value otherwise.
+
+### GetPauseReasonOk
+
+`func (o *ProjectStatusSummary) GetPauseReasonOk() (*string, bool)`
+
+GetPauseReasonOk returns a tuple with the PauseReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPauseReason
+
+`func (o *ProjectStatusSummary) SetPauseReason(v string)`
+
+SetPauseReason sets PauseReason field to given value.
+
+
+### SetPauseReasonNil
+
+`func (o *ProjectStatusSummary) SetPauseReasonNil(b bool)`
+
+ SetPauseReasonNil sets the value for PauseReason to be an explicit nil
+
+### UnsetPauseReason
+`func (o *ProjectStatusSummary) UnsetPauseReason()`
+
+UnsetPauseReason ensures that no value is present for PauseReason, not even an explicit nil
 ### GetPausedReason
 
 `func (o *ProjectStatusSummary) GetPausedReason() string`
@@ -224,26 +274,6 @@ and a boolean to check if the value has been set.
 `func (o *ProjectStatusSummary) SetPendingProposals(v float32)`
 
 SetPendingProposals sets PendingProposals field to given value.
-
-
-### GetPhase
-
-`func (o *ProjectStatusSummary) GetPhase() string`
-
-GetPhase returns the Phase field if non-nil, zero value otherwise.
-
-### GetPhaseOk
-
-`func (o *ProjectStatusSummary) GetPhaseOk() (*string, bool)`
-
-GetPhaseOk returns a tuple with the Phase field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPhase
-
-`func (o *ProjectStatusSummary) SetPhase(v string)`
-
-SetPhase sets Phase field to given value.
 
 
 ### GetPreviewUrl
@@ -314,6 +344,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectStatusSummary) SetProject(v HlixCodeModelsModelsInner)`
 
 SetProject sets Project field to given value.
+
+
+### GetStatus
+
+`func (o *ProjectStatusSummary) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ProjectStatusSummary) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ProjectStatusSummary) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 

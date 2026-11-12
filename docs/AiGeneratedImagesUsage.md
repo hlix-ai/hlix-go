@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CachedTokens** | Pointer to **float32** |  | [optional] 
-**CostMicros** | Pointer to **int64** |  | [optional] 
-**InputTokens** | **float32** |  | 
-**OutputTokens** | **float32** |  | 
-**ServerToolCostMicros** | Pointer to **int64** |  | [optional] 
-**ServerToolRequests** | Pointer to **float32** |  | [optional] 
+**CachedTokens** | Pointer to **float32** |  | [optional]
+**CostMicros** | Pointer to **int64** |  | [optional]
+**InputTokens** | **float32** |  |
+**OutputTokens** | **float32** |  |
+**ServerToolCostMicros** | Pointer to **int64** |  | [optional]
+**ServerToolRequests** | Pointer to **float32** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewAiGeneratedImagesUsage(inputTokens float32, outputTokens float32, ) *AiGeneratedImagesUsage`
 
 NewAiGeneratedImagesUsage instantiates a new AiGeneratedImagesUsage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiGeneratedImagesUsageWithDefaults
 
 `func NewAiGeneratedImagesUsageWithDefaults() *AiGeneratedImagesUsage`
 
 NewAiGeneratedImagesUsageWithDefaults instantiates a new AiGeneratedImagesUsage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCachedTokens
 

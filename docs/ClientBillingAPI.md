@@ -1,14 +1,14 @@
-# \ClientBillingAPI
+# ClientBillingAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AdjustClientBillable**](ClientBillingAPI.md#AdjustClientBillable) | **Post** /v1/api/client-billing/billables/{id}/adjust | Append a correction to a charge
-[**CreateClientBillable**](ClientBillingAPI.md#CreateClientBillable) | **Post** /v1/api/client-billing/billables | Record a billable
-[**GetClientBillable**](ClientBillingAPI.md#GetClientBillable) | **Get** /v1/api/client-billing/billables/{id} | Get one ledger row
-[**ListClientBillables**](ClientBillingAPI.md#ListClientBillables) | **Get** /v1/api/client-billing/billables | List the ledger
-[**VoidClientBillable**](ClientBillingAPI.md#VoidClientBillable) | **Post** /v1/api/client-billing/billables/{id}/void | Reverse a charge
+[**AdjustClientBillable**](ClientBillingAPI.md#adjustclientbillable) | **Post** /v1/api/client-billing/billables/{id}/adjust | Append a correction to a charge
+[**CreateClientBillable**](ClientBillingAPI.md#createclientbillable) | **Post** /v1/api/client-billing/billables | Record a billable
+[**GetClientBillable**](ClientBillingAPI.md#getclientbillable) | **Get** /v1/api/client-billing/billables/{id} | Get one ledger row
+[**ListClientBillables**](ClientBillingAPI.md#listclientbillables) | **Get** /v1/api/client-billing/billables | List the ledger
+[**VoidClientBillable**](ClientBillingAPI.md#voidclientbillable) | **Post** /v1/api/client-billing/billables/{id}/void | Reverse a charge
 
 
 
@@ -20,10 +20,13 @@ Append a correction to a charge
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -31,13 +34,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	adjustBillable := *openapiclient.NewAdjustBillable("Description_example", float32(123), "Unit_example", int64(123)) // AdjustBillable | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var adjustBillable openapiclient.AdjustBillable
+	if err := json.Unmarshal([]byte("{\"description\":\"text\",\"quantity\":1,\"unit\":\"text\",\"unitPriceMicros\":1}"), &adjustBillable); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingAPI.AdjustClientBillable(context.Background(), id).AdjustBillable(adjustBillable).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingAPI.AdjustClientBillable(ctx, id).AdjustBillable(adjustBillable).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingAPI.AdjustClientBillable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,18 +62,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAdjustClientBillableRequest struct via the builder pattern
+Pass optional parameters through the `apiAdjustClientBillableRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adjustBillable** | [**AdjustBillable**](AdjustBillable.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **adjustBillable** | [**AdjustBillable**](AdjustBillable.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -72,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -92,6 +101,8 @@ Record a billable
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -103,12 +114,15 @@ import (
 )
 
 func main() {
-	createBillable := openapiclient.CreateBillable{CreateBillableOneOf: openapiclient.NewCreateBillableOneOf("ClientAccountId_example", "Currency_example", "Description_example", float32(123), "Source_example", "Unit_example", int64(123))} // CreateBillable | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	createBillable := openapiclient.CreateBillable{CreateBillableOneOf: openapiclient.NewCreateBillableOneOf("ClientAccountId_example", "Currency_example", "Description_example", float32(123), "Source_example", "Unit_example", int64(123))} // CreateBillable |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingAPI.CreateClientBillable(context.Background()).CreateBillable(createBillable).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingAPI.CreateClientBillable(ctx).CreateBillable(createBillable).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingAPI.CreateClientBillable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,13 +138,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateClientBillableRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateClientBillableRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createBillable** | [**CreateBillable**](CreateBillable.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createBillable** | [**CreateBillable**](CreateBillable.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -138,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -158,6 +172,8 @@ Get one ledger row
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -169,12 +185,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingAPI.GetClientBillable(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingAPI.GetClientBillable(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingAPI.GetClientBillable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,17 +209,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetClientBillableRequest struct via the builder pattern
+Pass optional parameters through the `apiGetClientBillableRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -208,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -228,6 +247,8 @@ List the ledger
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -239,13 +260,16 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	clientAccountId := "clientAccountId_example" // string | Only this customer's rows. (optional)
-	projectId := "projectId_example" // string | Only this project's rows. A client collaborator asking about a project it cannot reach is REFUSED rather than answered with an empty list — 'not yours' must not read as 'nothing billed yet'. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	projectId := "projectId_example" // string | Limit results to this project. A client collaborator without project access receives an access error rather than an empty ledger. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingAPI.ListClientBillables(context.Background()).ClientAccountId(clientAccountId).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingAPI.ListClientBillables(ctx).ClientAccountId(clientAccountId).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingAPI.ListClientBillables``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,14 +285,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListClientBillablesRequest struct via the builder pattern
+Pass optional parameters through the `apiListClientBillablesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientAccountId** | **string** | Only this customer&#39;s rows. | 
- **projectId** | **string** | Only this project&#39;s rows. A client collaborator asking about a project it cannot reach is REFUSED rather than answered with an empty list — &#39;not yours&#39; must not read as &#39;nothing billed yet&#39;. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **clientAccountId** | **string** | Only this customer&#39;s rows. |
+ **projectId** | **string** | Limit results to this project. A client collaborator without project access receives an access error rather than an empty ledger. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -276,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -296,10 +320,13 @@ Reverse a charge
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -307,13 +334,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	voidBillable := *openapiclient.NewVoidBillable("Reason_example") // VoidBillable | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var voidBillable openapiclient.VoidBillable
+	if err := json.Unmarshal([]byte("{\"reason\":\"text\"}"), &voidBillable); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClientBillingAPI.VoidClientBillable(context.Background(), id).VoidBillable(voidBillable).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ClientBillingAPI.VoidClientBillable(ctx, id).VoidBillable(voidBillable).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClientBillingAPI.VoidClientBillable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -329,18 +362,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiVoidClientBillableRequest struct via the builder pattern
+Pass optional parameters through the `apiVoidClientBillableRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **voidBillable** | [**VoidBillable**](VoidBillable.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **voidBillable** | [**VoidBillable**](VoidBillable.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -348,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

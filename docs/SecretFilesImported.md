@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Imported** | [**[]SecretFilesImportedImportedInner**](SecretFilesImportedImportedInner.md) |  | 
-**Rejected** | **[]string** |  | 
-**Skipped** | [**[]SecretFilesImportedSkippedInner**](SecretFilesImportedSkippedInner.md) |  | 
-**Warnings** | **[]string** |  | 
-**Written** | **int32** |  | 
+**Imported** | [**[]SecretFilesImportedImportedInner**](SecretFilesImportedImportedInner.md) |  |
+**Rejected** | **[]string** |  |
+**Skipped** | [**[]SecretFilesImportedSkippedInner**](SecretFilesImportedSkippedInner.md) |  |
+**Warnings** | **[]string** |  |
+**Written** | **int32** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewSecretFilesImported(imported []SecretFilesImportedImportedInner, rejected []string, skipped []SecretFilesImportedSkippedInner, warnings []string, written int32, ) *SecretFilesImported`
 
 NewSecretFilesImported instantiates a new SecretFilesImported object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSecretFilesImportedWithDefaults
 
 `func NewSecretFilesImportedWithDefaults() *SecretFilesImported`
 
 NewSecretFilesImportedWithDefaults instantiates a new SecretFilesImported object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetImported
 

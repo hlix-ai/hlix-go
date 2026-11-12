@@ -4,28 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CycleId** | **NullableString** |  | 
-**Ok** | **bool** |  | 
-**ProposalId** | **string** |  | 
+**CycleId** | **NullableString** |  |
+**Ok** | **bool** |  | [default to true]
+**RequestId** | **string** |  |
 
 ## Methods
 
 ### NewLinearStartResponse
 
-`func NewLinearStartResponse(cycleId NullableString, ok bool, proposalId string, ) *LinearStartResponse`
+`func NewLinearStartResponse(cycleId NullableString, ok bool, requestId string, ) *LinearStartResponse`
 
 NewLinearStartResponse instantiates a new LinearStartResponse object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewLinearStartResponseWithDefaults
 
 `func NewLinearStartResponseWithDefaults() *LinearStartResponse`
 
 NewLinearStartResponseWithDefaults instantiates a new LinearStartResponse object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycleId
 
@@ -77,24 +75,24 @@ and a boolean to check if the value has been set.
 SetOk sets Ok field to given value.
 
 
-### GetProposalId
+### GetRequestId
 
-`func (o *LinearStartResponse) GetProposalId() string`
+`func (o *LinearStartResponse) GetRequestId() string`
 
-GetProposalId returns the ProposalId field if non-nil, zero value otherwise.
+GetRequestId returns the RequestId field if non-nil, zero value otherwise.
 
-### GetProposalIdOk
+### GetRequestIdOk
 
-`func (o *LinearStartResponse) GetProposalIdOk() (*string, bool)`
+`func (o *LinearStartResponse) GetRequestIdOk() (*string, bool)`
 
-GetProposalIdOk returns a tuple with the ProposalId field if it's non-nil, zero value otherwise
+GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProposalId
+### SetRequestId
 
-`func (o *LinearStartResponse) SetProposalId(v string)`
+`func (o *LinearStartResponse) SetRequestId(v string)`
 
-SetProposalId sets ProposalId field to given value.
+SetRequestId sets RequestId field to given value.
 
 
 

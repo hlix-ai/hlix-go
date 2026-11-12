@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActorId** | **NullableString** |  | 
-**ActorType** | **string** |  | 
-**EntityId** | **string** |  | 
-**EntityType** | **string** |  | 
-**EventType** | **string** |  | 
-**Id** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Payload** | **interface{}** |  | 
-**SpanId** | **NullableString** |  | 
-**Timestamp** | **string** |  | 
-**TraceId** | **NullableString** |  | 
+**ActorId** | **NullableString** |  |
+**ActorType** | **string** |  |
+**EntityId** | **string** |  |
+**EntityType** | **string** |  |
+**EventType** | **string** |  |
+**Id** | **string** |  |
+**OrganizationId** | **string** |  |
+**Payload** | **interface{}** |  |
+**SpanId** | **NullableString** |  |
+**Timestamp** | **string** |  |
+**TraceId** | **NullableString** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewAuditEntryDetailCorrelatedEventsInner(actorId NullableString, actorType string, entityId string, entityType string, eventType string, id string, organizationId string, payload interface{}, spanId NullableString, timestamp string, traceId NullableString, ) *AuditEntryDetailCorrelatedEventsInner`
 
 NewAuditEntryDetailCorrelatedEventsInner instantiates a new AuditEntryDetailCorrelatedEventsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAuditEntryDetailCorrelatedEventsInnerWithDefaults
 
 `func NewAuditEntryDetailCorrelatedEventsInnerWithDefaults() *AuditEntryDetailCorrelatedEventsInner`
 
 NewAuditEntryDetailCorrelatedEventsInnerWithDefaults instantiates a new AuditEntryDetailCorrelatedEventsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActorId
 

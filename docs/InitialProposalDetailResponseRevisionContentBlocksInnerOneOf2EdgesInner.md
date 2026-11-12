@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Label** | **NullableString** |  | 
-**Source** | **string** |  | 
-**Target** | **string** |  | 
+**Id** | **string** |  |
+**Label** | **NullableString** |  |
+**Source** | **string** |  |
+**Target** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner(id string, label NullableString, source string, target string, ) *InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner`
 
 NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner instantiates a new InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInnerWithDefaults
 
 `func NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInnerWithDefaults() *InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner`
 
 NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInnerWithDefaults instantiates a new InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2EdgesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetId
 

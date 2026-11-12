@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | Pointer to **map[string]interface{}** | For an Infisical config, the fields to change (clientId, clientSecret, projectId, environment, siteUrl, secretPath, recursive); a field left out keeps its stored value. For a manual config, the whole config. | [optional] 
-**EnvFilter** | Pointer to **NullableString** |  | [optional] 
-**IsActive** | Pointer to **bool** |  | [optional] 
-**Label** | Pointer to **string** |  | [optional] 
+**Config** | Pointer to **map[string]interface{}** | For an Infisical config, the fields to change (clientId, clientSecret, projectId, environment, siteUrl, secretPath, recursive); a field left out keeps its stored value. For a manual config, the whole config. | [optional]
+**EnvFilter** | Pointer to **NullableString** |  | [optional]
+**IsActive** | Pointer to **bool** |  | [optional]
+**Label** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewUpdateSecretsConfig() *UpdateSecretsConfig`
 
 NewUpdateSecretsConfig instantiates a new UpdateSecretsConfig object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateSecretsConfigWithDefaults
 
 `func NewUpdateSecretsConfigWithDefaults() *UpdateSecretsConfig`
 
 NewUpdateSecretsConfigWithDefaults instantiates a new UpdateSecretsConfig object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetConfig
 

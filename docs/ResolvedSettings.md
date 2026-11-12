@@ -4,27 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cycle** | [**ResolvedSettingsCycle**](ResolvedSettingsCycle.md) |  | 
-**Operator** | [**ResolvedSettingsOperator**](ResolvedSettingsOperator.md) |  | 
+**Cycle** | [**ResolvedSettingsCycle**](ResolvedSettingsCycle.md) |  |
+**ProjectManager** | [**ResolvedSettingsProjectManager**](ResolvedSettingsProjectManager.md) |  |
 
 ## Methods
 
 ### NewResolvedSettings
 
-`func NewResolvedSettings(cycle ResolvedSettingsCycle, operator ResolvedSettingsOperator, ) *ResolvedSettings`
+`func NewResolvedSettings(cycle ResolvedSettingsCycle, projectManager ResolvedSettingsProjectManager, ) *ResolvedSettings`
 
 NewResolvedSettings instantiates a new ResolvedSettings object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewResolvedSettingsWithDefaults
 
 `func NewResolvedSettingsWithDefaults() *ResolvedSettings`
 
 NewResolvedSettingsWithDefaults instantiates a new ResolvedSettings object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycle
 
@@ -46,24 +44,24 @@ and a boolean to check if the value has been set.
 SetCycle sets Cycle field to given value.
 
 
-### GetOperator
+### GetProjectManager
 
-`func (o *ResolvedSettings) GetOperator() ResolvedSettingsOperator`
+`func (o *ResolvedSettings) GetProjectManager() ResolvedSettingsProjectManager`
 
-GetOperator returns the Operator field if non-nil, zero value otherwise.
+GetProjectManager returns the ProjectManager field if non-nil, zero value otherwise.
 
-### GetOperatorOk
+### GetProjectManagerOk
 
-`func (o *ResolvedSettings) GetOperatorOk() (*ResolvedSettingsOperator, bool)`
+`func (o *ResolvedSettings) GetProjectManagerOk() (*ResolvedSettingsProjectManager, bool)`
 
-GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
+GetProjectManagerOk returns a tuple with the ProjectManager field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOperator
+### SetProjectManager
 
-`func (o *ResolvedSettings) SetOperator(v ResolvedSettingsOperator)`
+`func (o *ResolvedSettings) SetProjectManager(v ResolvedSettingsProjectManager)`
 
-SetOperator sets Operator field to given value.
+SetProjectManager sets ProjectManager field to given value.
 
 
 

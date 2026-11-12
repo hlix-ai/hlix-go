@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultBranch** | Pointer to **string** |  | [optional] 
-**Label** | Pointer to **NullableString** |  | [optional] 
-**PreviewCommand** | Pointer to **NullableString** |  | [optional] 
-**PreviewPort** | Pointer to **NullableInt32** |  | [optional] 
-**SetupCommand** | Pointer to **NullableString** |  | [optional] 
-**VerifyCommand** | Pointer to **NullableString** |  | [optional] 
+**DefaultBranch** | Pointer to **string** |  | [optional]
+**Label** | Pointer to **NullableString** |  | [optional]
+**PreviewCommand** | Pointer to **NullableString** |  | [optional]
+**PreviewPort** | Pointer to **NullableInt32** |  | [optional]
+**SetupCommand** | Pointer to **NullableString** |  | [optional]
+**VerifyCommand** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewUpdateProjectRepo() *UpdateProjectRepo`
 
 NewUpdateProjectRepo instantiates a new UpdateProjectRepo object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateProjectRepoWithDefaults
 
 `func NewUpdateProjectRepoWithDefaults() *UpdateProjectRepo`
 
 NewUpdateProjectRepoWithDefaults instantiates a new UpdateProjectRepo object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDefaultBranch
 

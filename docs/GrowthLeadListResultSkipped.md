@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Duplicate** | Pointer to **int32** |  | [optional] 
-**NoCompany** | Pointer to **int32** |  | [optional] 
-**NoName** | Pointer to **int32** |  | [optional] 
-**OptedOut** | Pointer to **int32** |  | [optional] 
-**RegionExcluded** | Pointer to **int32** |  | [optional] 
-**Suppressed** | Pointer to **int32** |  | [optional] 
+**Duplicate** | Pointer to **int32** |  | [optional]
+**NoCompany** | Pointer to **int32** |  | [optional]
+**NoName** | Pointer to **int32** |  | [optional]
+**OptedOut** | Pointer to **int32** |  | [optional]
+**RegionExcluded** | Pointer to **int32** |  | [optional]
+**Suppressed** | Pointer to **int32** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewGrowthLeadListResultSkipped() *GrowthLeadListResultSkipped`
 
 NewGrowthLeadListResultSkipped instantiates a new GrowthLeadListResultSkipped object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthLeadListResultSkippedWithDefaults
 
 `func NewGrowthLeadListResultSkippedWithDefaults() *GrowthLeadListResultSkipped`
 
 NewGrowthLeadListResultSkippedWithDefaults instantiates a new GrowthLeadListResultSkipped object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDuplicate
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,16 +21,17 @@ var _ MappedNullable = &WorkspaceUsageRunsInner{}
 // WorkspaceUsageRunsInner struct for WorkspaceUsageRunsInner
 type WorkspaceUsageRunsInner struct {
 	AccountingSource NullableString `json:"accountingSource"`
+	AgentKind string `json:"agentKind"`
 	BilledTo NullableString `json:"billedTo"`
 	CoderAccountId NullableString `json:"coderAccountId"`
+	// What this run is priced at in micros (Hlix-funded runs at cost plus markup). In metered billing it is what the workspace is charged and what the meter is sent; in task billing the workspace pays per accepted task, so it is the price equivalent of the usage, not a charge. A run on the workspace's own key shows its own cost, flagged by billedTo; a run on a coding login has none.
 	CostMicros NullableInt64 `json:"costMicros"`
 	CredentialKind NullableString `json:"credentialKind"`
 	FundingMode NullableString `json:"fundingMode"`
 	Id string `json:"id"`
 	Model string `json:"model"`
-	Persona NullableString `json:"persona"`
 	ProjectName NullableString `json:"projectName"`
-	Role string `json:"role"`
+	PromptKey NullableString `json:"promptKey"`
 	StartedAt string `json:"startedAt"`
 	TokensIn NullableInt32 `json:"tokensIn"`
 	TokensOut NullableInt32 `json:"tokensOut"`
@@ -44,9 +45,10 @@ type _WorkspaceUsageRunsInner WorkspaceUsageRunsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkspaceUsageRunsInner(accountingSource NullableString, billedTo NullableString, coderAccountId NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, persona NullableString, projectName NullableString, role string, startedAt string, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString) *WorkspaceUsageRunsInner {
+func NewWorkspaceUsageRunsInner(accountingSource NullableString, agentKind string, billedTo NullableString, coderAccountId NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, projectName NullableString, promptKey NullableString, startedAt string, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString) *WorkspaceUsageRunsInner {
 	this := WorkspaceUsageRunsInner{}
 	this.AccountingSource = accountingSource
+	this.AgentKind = agentKind
 	this.BilledTo = billedTo
 	this.CoderAccountId = coderAccountId
 	this.CostMicros = costMicros
@@ -54,9 +56,8 @@ func NewWorkspaceUsageRunsInner(accountingSource NullableString, billedTo Nullab
 	this.FundingMode = fundingMode
 	this.Id = id
 	this.Model = model
-	this.Persona = persona
 	this.ProjectName = projectName
-	this.Role = role
+	this.PromptKey = promptKey
 	this.StartedAt = startedAt
 	this.TokensIn = tokensIn
 	this.TokensOut = tokensOut
@@ -96,6 +97,30 @@ func (o *WorkspaceUsageRunsInner) GetAccountingSourceOk() (*string, bool) {
 // SetAccountingSource sets field value
 func (o *WorkspaceUsageRunsInner) SetAccountingSource(v string) {
 	o.AccountingSource.Set(&v)
+}
+
+// GetAgentKind returns the AgentKind field value
+func (o *WorkspaceUsageRunsInner) GetAgentKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AgentKind
+}
+
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *WorkspaceUsageRunsInner) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *WorkspaceUsageRunsInner) SetAgentKind(v string) {
+	o.AgentKind = v
 }
 
 // GetBilledTo returns the BilledTo field value
@@ -276,32 +301,6 @@ func (o *WorkspaceUsageRunsInner) SetModel(v string) {
 	o.Model = v
 }
 
-// GetPersona returns the Persona field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *WorkspaceUsageRunsInner) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Persona.Get()
-}
-
-// GetPersonaOk returns a tuple with the Persona field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WorkspaceUsageRunsInner) GetPersonaOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Persona.Get(), o.Persona.IsSet()
-}
-
-// SetPersona sets field value
-func (o *WorkspaceUsageRunsInner) SetPersona(v string) {
-	o.Persona.Set(&v)
-}
-
 // GetProjectName returns the ProjectName field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *WorkspaceUsageRunsInner) GetProjectName() string {
@@ -328,28 +327,30 @@ func (o *WorkspaceUsageRunsInner) SetProjectName(v string) {
 	o.ProjectName.Set(&v)
 }
 
-// GetRole returns the Role field value
-func (o *WorkspaceUsageRunsInner) GetRole() string {
-	if o == nil {
+// GetPromptKey returns the PromptKey field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *WorkspaceUsageRunsInner) GetPromptKey() string {
+	if o == nil || o.PromptKey.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Role
+	return *o.PromptKey.Get()
 }
 
-// GetRoleOk returns a tuple with the Role field value
+// GetPromptKeyOk returns a tuple with the PromptKey field value
 // and a boolean to check if the value has been set.
-func (o *WorkspaceUsageRunsInner) GetRoleOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WorkspaceUsageRunsInner) GetPromptKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Role, true
+	return o.PromptKey.Get(), o.PromptKey.IsSet()
 }
 
-// SetRole sets field value
-func (o *WorkspaceUsageRunsInner) SetRole(v string) {
-	o.Role = v
+// SetPromptKey sets field value
+func (o *WorkspaceUsageRunsInner) SetPromptKey(v string) {
+	o.PromptKey.Set(&v)
 }
 
 // GetStartedAt returns the StartedAt field value
@@ -465,6 +466,7 @@ func (o WorkspaceUsageRunsInner) MarshalJSON() ([]byte, error) {
 func (o WorkspaceUsageRunsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accountingSource"] = o.AccountingSource.Get()
+	toSerialize["agentKind"] = o.AgentKind
 	toSerialize["billedTo"] = o.BilledTo.Get()
 	toSerialize["coderAccountId"] = o.CoderAccountId.Get()
 	toSerialize["costMicros"] = o.CostMicros.Get()
@@ -472,9 +474,8 @@ func (o WorkspaceUsageRunsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize["fundingMode"] = o.FundingMode.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["model"] = o.Model
-	toSerialize["persona"] = o.Persona.Get()
 	toSerialize["projectName"] = o.ProjectName.Get()
-	toSerialize["role"] = o.Role
+	toSerialize["promptKey"] = o.PromptKey.Get()
 	toSerialize["startedAt"] = o.StartedAt
 	toSerialize["tokensIn"] = o.TokensIn.Get()
 	toSerialize["tokensOut"] = o.TokensOut.Get()
@@ -493,6 +494,7 @@ func (o *WorkspaceUsageRunsInner) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"accountingSource",
+		"agentKind",
 		"billedTo",
 		"coderAccountId",
 		"costMicros",
@@ -500,9 +502,8 @@ func (o *WorkspaceUsageRunsInner) UnmarshalJSON(data []byte) (err error) {
 		"fundingMode",
 		"id",
 		"model",
-		"persona",
 		"projectName",
-		"role",
+		"promptKey",
 		"startedAt",
 		"tokensIn",
 		"tokensOut",
@@ -537,6 +538,7 @@ func (o *WorkspaceUsageRunsInner) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accountingSource")
+		delete(additionalProperties, "agentKind")
 		delete(additionalProperties, "billedTo")
 		delete(additionalProperties, "coderAccountId")
 		delete(additionalProperties, "costMicros")
@@ -544,9 +546,8 @@ func (o *WorkspaceUsageRunsInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fundingMode")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "model")
-		delete(additionalProperties, "persona")
 		delete(additionalProperties, "projectName")
-		delete(additionalProperties, "role")
+		delete(additionalProperties, "promptKey")
 		delete(additionalProperties, "startedAt")
 		delete(additionalProperties, "tokensIn")
 		delete(additionalProperties, "tokensOut")

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BookingUrl** | Pointer to **NullableString** |  | [optional] 
-**CountrySendingOverrides** | Pointer to [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  | [optional] 
-**FollowUpDays** | Pointer to **[]interface{}** |  | [optional] 
-**MailboxDailyMax** | Pointer to **NullableInt32** |  | [optional] 
-**MonthlyCapMicros** | Pointer to **NullableInt64** |  | [optional] 
-**SendDays** | Pointer to **[]int32** |  | [optional] 
-**SendEndHour** | Pointer to **int32** |  | [optional] 
-**SendStartHour** | Pointer to **int32** |  | [optional] 
-**StopOnReply** | Pointer to **bool** |  | [optional] 
-**TimeZone** | Pointer to **NullableString** |  | [optional] 
+**BookingUrl** | Pointer to **NullableString** |  | [optional]
+**CountrySendingOverrides** | Pointer to [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  | [optional]
+**FollowUpDays** | Pointer to **[]interface{}** |  | [optional]
+**MailboxDailyMax** | Pointer to **NullableInt32** |  | [optional]
+**MonthlyCapMicros** | Pointer to **NullableInt64** |  | [optional]
+**SendDays** | Pointer to **[]int32** |  | [optional]
+**SendEndHour** | Pointer to **int32** |  | [optional]
+**SendStartHour** | Pointer to **int32** |  | [optional]
+**StopOnReply** | Pointer to **bool** |  | [optional]
+**TimeZone** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewUpdateGrowthSettings() *UpdateGrowthSettings`
 
 NewUpdateGrowthSettings instantiates a new UpdateGrowthSettings object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateGrowthSettingsWithDefaults
 
 `func NewUpdateGrowthSettingsWithDefaults() *UpdateGrowthSettings`
 
 NewUpdateGrowthSettingsWithDefaults instantiates a new UpdateGrowthSettings object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBookingUrl
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**Credits** | **int32** |  | 
-**CycleId** | **string** |  | 
-**Id** | **string** |  | 
-**ProjectId** | **string** |  | 
-**Reason** | **string** |  | 
-**Round** | **int32** |  | 
-**Size** | **NullableString** |  | 
-**Status** | **string** |  | 
-**TaskId** | **string** |  | 
-**TaskTitle** | **NullableString** |  | 
-**Tier** | **string** |  | 
+**CreatedAt** | **string** |  |
+**Credits** | **int32** |  |
+**CycleId** | **string** |  |
+**Id** | **string** |  |
+**ProjectId** | **string** |  |
+**Reason** | **string** |  |
+**Round** | **int32** |  |
+**Size** | **NullableString** |  |
+**Status** | **string** |  |
+**TaskId** | **string** |  |
+**TaskTitle** | **NullableString** |  |
+**Tier** | **string** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewProjectTaskChargesChargesInner(createdAt string, credits int32, cycleId string, id string, projectId string, reason string, round int32, size NullableString, status string, taskId string, taskTitle NullableString, tier string, ) *ProjectTaskChargesChargesInner`
 
 NewProjectTaskChargesChargesInner instantiates a new ProjectTaskChargesChargesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectTaskChargesChargesInnerWithDefaults
 
 `func NewProjectTaskChargesChargesInnerWithDefaults() *ProjectTaskChargesChargesInner`
 
 NewProjectTaskChargesChargesInnerWithDefaults instantiates a new ProjectTaskChargesChargesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreatedAt
 

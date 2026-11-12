@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Config** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**EnvFilter** | **NullableString** |  | 
-**Id** | **string** |  | 
-**IsActive** | **bool** |  | 
-**Label** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **string** |  | 
-**Provider** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**Config** | **string** |  |
+**CreatedAt** | **string** |  |
+**EnvFilter** | **NullableString** |  |
+**Id** | **string** |  |
+**IsActive** | **bool** |  |
+**Label** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **string** |  |
+**Provider** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewSecretsConfig(config string, createdAt string, envFilter NullableString, id string, isActive bool, label string, organizationId string, projectId string, provider string, updatedAt string, ) *SecretsConfig`
 
 NewSecretsConfig instantiates a new SecretsConfig object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSecretsConfigWithDefaults
 
 `func NewSecretsConfigWithDefaults() *SecretsConfig`
 
 NewSecretsConfigWithDefaults instantiates a new SecretsConfig object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetConfig
 

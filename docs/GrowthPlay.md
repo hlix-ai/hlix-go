@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Angle** | **NullableString** |  | 
-**AutoSendReplies** | **bool** |  | 
-**BudgetPinned** | **bool** |  | 
-**Confidence** | **NullableFloat32** |  | 
-**CreatedAt** | **string** |  | 
-**Currency** | **string** |  | 
-**DailyBudgetMicros** | **int64** |  | 
-**ExampleClients** | **[]string** |  | 
-**ExcludeDe** | **bool** |  | 
-**ExcludeEu** | **bool** |  | 
-**FirstEmail** | [**NullableGrowthPlayFirstEmail**](GrowthPlayFirstEmail.md) |  | 
-**FitLabel** | **NullableString** |  | 
-**GdprAckAt** | **NullableString** |  | 
-**GdprAckByUserId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Keywords** | **[]string** |  | 
-**Language** | **string** |  | 
-**LastLeadPassAt** | **NullableString** |  | 
-**Name** | **string** |  | 
-**NegativeCriteria** | **[]string** |  | 
-**OrganizationId** | **string** |  | 
-**PositiveCriteria** | **[]string** |  | 
-**ProjectId** | **string** |  | 
-**ReviewFirstN** | **int32** |  | 
-**SendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Sequence** | [**NullableCreateGrowthPlaySequence**](CreateGrowthPlaySequence.md) |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Who** | **map[string]interface{}** |  | 
-**WhyNow** | [**NullableGrowthPlayWhyNow**](GrowthPlayWhyNow.md) |  | 
+**Angle** | **NullableString** |  |
+**AutoSendReplies** | **bool** |  |
+**BudgetPinned** | **bool** |  |
+**Confidence** | **NullableFloat32** |  |
+**CreatedAt** | **string** |  |
+**Currency** | **string** |  |
+**DailyBudgetMicros** | **int64** |  |
+**ExampleClients** | **[]string** |  |
+**ExcludeDe** | **bool** |  |
+**ExcludeEu** | **bool** |  |
+**FirstEmail** | [**NullableGrowthPlayFirstEmail**](GrowthPlayFirstEmail.md) |  |
+**FitLabel** | **NullableString** |  |
+**GdprAckAt** | **NullableString** |  |
+**GdprAckByUserId** | **NullableString** |  |
+**Id** | **string** |  |
+**Keywords** | **[]string** |  |
+**Language** | **string** |  |
+**LastLeadPassAt** | **NullableString** |  |
+**Name** | **string** |  |
+**NegativeCriteria** | **[]string** |  |
+**OrganizationId** | **string** |  |
+**PositiveCriteria** | **[]string** |  |
+**ProjectId** | **string** |  |
+**ReviewFirstN** | **int32** |  |
+**SendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Sequence** | [**NullableCreateGrowthPlaySequence**](CreateGrowthPlaySequence.md) |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Who** | **map[string]interface{}** |  |
+**WhyNow** | [**NullableGrowthPlayWhyNow**](GrowthPlayWhyNow.md) |  |
 
 ## Methods
 
@@ -42,17 +42,15 @@ Name | Type | Description | Notes
 `func NewGrowthPlay(angle NullableString, autoSendReplies bool, budgetPinned bool, confidence NullableFloat32, createdAt string, currency string, dailyBudgetMicros int64, exampleClients []string, excludeDe bool, excludeEu bool, firstEmail NullableGrowthPlayFirstEmail, fitLabel NullableString, gdprAckAt NullableString, gdprAckByUserId NullableString, id string, keywords []string, language string, lastLeadPassAt NullableString, name string, negativeCriteria []string, organizationId string, positiveCriteria []string, projectId string, reviewFirstN int32, sendingSchedule NullableCreateGrowthPlaySendingSchedule, sequence NullableCreateGrowthPlaySequence, status string, updatedAt string, who map[string]interface{}, whyNow NullableGrowthPlayWhyNow, ) *GrowthPlay`
 
 NewGrowthPlay instantiates a new GrowthPlay object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthPlayWithDefaults
 
 `func NewGrowthPlayWithDefaults() *GrowthPlay`
 
 NewGrowthPlayWithDefaults instantiates a new GrowthPlay object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAngle
 

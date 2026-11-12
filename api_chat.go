@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,6 +23,220 @@ import (
 
 // ChatAPIService ChatAPI service
 type ChatAPIService service
+
+type ApiAnswerChatApprovalRequest struct {
+	ctx context.Context
+	ApiService *ChatAPIService
+	requestId string
+	conversationApproval *ConversationApproval
+	xOrganizationId *string
+	xClientPortal *string
+}
+
+func (r ApiAnswerChatApprovalRequest) ConversationApproval(conversationApproval ConversationApproval) ApiAnswerChatApprovalRequest {
+	r.conversationApproval = &conversationApproval
+	return r
+}
+
+// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
+func (r ApiAnswerChatApprovalRequest) XOrganizationId(xOrganizationId string) ApiAnswerChatApprovalRequest {
+	r.xOrganizationId = &xOrganizationId
+	return r
+}
+
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiAnswerChatApprovalRequest) XClientPortal(xClientPortal string) ApiAnswerChatApprovalRequest {
+	r.xClientPortal = &xClientPortal
+	return r
+}
+
+func (r ApiAnswerChatApprovalRequest) Execute() (*ConversationApprovalResult, *http.Response, error) {
+	return r.ApiService.AnswerChatApprovalExecute(r)
+}
+
+/*
+AnswerChatApproval Answer an approval the agent asked for
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param requestId
+ @return ApiAnswerChatApprovalRequest
+*/
+func (a *ChatAPIService) AnswerChatApproval(ctx context.Context, requestId string) ApiAnswerChatApprovalRequest {
+	return ApiAnswerChatApprovalRequest{
+		ApiService: a,
+		ctx: ctx,
+		requestId: requestId,
+	}
+}
+
+// Execute executes the request
+//  @return ConversationApprovalResult
+func (a *ChatAPIService) AnswerChatApprovalExecute(r ApiAnswerChatApprovalRequest) (*ConversationApprovalResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConversationApprovalResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.AnswerChatApproval")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/api/chat/approvals/{requestId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"requestId"+"}", url.PathEscape(parameterValueToString(r.requestId, "requestId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.conversationApproval == nil {
+		return localVarReturnValue, nil, reportError("conversationApproval is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganizationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
+	}
+	if r.xClientPortal != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.conversationApproval
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CreateAgent400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiCheckUrgentChatMessageRequest struct {
 	ctx context.Context
@@ -119,6 +333,20 @@ func (a *ChatAPIService) CheckUrgentChatMessageExecute(r ApiCheckUrgentChatMessa
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -199,70 +427,70 @@ func (a *ChatAPIService) CheckUrgentChatMessageExecute(r ApiCheckUrgentChatMessa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateChatSessionRequest struct {
+type ApiConnectChatSocketRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
-	chatSessionCreate *ChatSessionCreate
+	conversationConnect *ConversationConnect
 	xOrganizationId *string
 	xClientPortal *string
 }
 
-func (r ApiCreateChatSessionRequest) ChatSessionCreate(chatSessionCreate ChatSessionCreate) ApiCreateChatSessionRequest {
-	r.chatSessionCreate = &chatSessionCreate
+func (r ApiConnectChatSocketRequest) ConversationConnect(conversationConnect ConversationConnect) ApiConnectChatSocketRequest {
+	r.conversationConnect = &conversationConnect
 	return r
 }
 
 // The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
-func (r ApiCreateChatSessionRequest) XOrganizationId(xOrganizationId string) ApiCreateChatSessionRequest {
+func (r ApiConnectChatSocketRequest) XOrganizationId(xOrganizationId string) ApiConnectChatSocketRequest {
 	r.xOrganizationId = &xOrganizationId
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
-func (r ApiCreateChatSessionRequest) XClientPortal(xClientPortal string) ApiCreateChatSessionRequest {
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiConnectChatSocketRequest) XClientPortal(xClientPortal string) ApiConnectChatSocketRequest {
 	r.xClientPortal = &xClientPortal
 	return r
 }
 
-func (r ApiCreateChatSessionRequest) Execute() (*ChatSessionCreated, *http.Response, error) {
-	return r.ApiService.CreateChatSessionExecute(r)
+func (r ApiConnectChatSocketRequest) Execute() (*ConversationConnection, *http.Response, error) {
+	return r.ApiService.ConnectChatSocketExecute(r)
 }
 
 /*
-CreateChatSession Start a chat session with an agent, or fork one at a message
+ConnectChatSocket Get the proof a conversation's socket upgrade presents
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateChatSessionRequest
+ @return ApiConnectChatSocketRequest
 */
-func (a *ChatAPIService) CreateChatSession(ctx context.Context) ApiCreateChatSessionRequest {
-	return ApiCreateChatSessionRequest{
+func (a *ChatAPIService) ConnectChatSocket(ctx context.Context) ApiConnectChatSocketRequest {
+	return ApiConnectChatSocketRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChatSessionCreated
-func (a *ChatAPIService) CreateChatSessionExecute(r ApiCreateChatSessionRequest) (*ChatSessionCreated, *http.Response, error) {
+//  @return ConversationConnection
+func (a *ChatAPIService) ConnectChatSocketExecute(r ApiConnectChatSocketRequest) (*ConversationConnection, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChatSessionCreated
+		localVarReturnValue  *ConversationConnection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.CreateChatSession")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ConnectChatSocket")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/api/chat/sessions"
+	localVarPath := localBasePath + "/v1/api/chat/connect"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.chatSessionCreate == nil {
-		return localVarReturnValue, nil, reportError("chatSessionCreate is required and must be specified")
+	if r.conversationConnect == nil {
+		return localVarReturnValue, nil, reportError("conversationConnect is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -289,7 +517,7 @@ func (a *ChatAPIService) CreateChatSessionExecute(r ApiCreateChatSessionRequest)
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.chatSessionCreate
+	localVarPostBody = r.conversationConnect
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -301,6 +529,20 @@ func (a *ChatAPIService) CreateChatSessionExecute(r ApiCreateChatSessionRequest)
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -368,17 +610,6 @@ func (a *ChatAPIService) CreateChatSessionExecute(r ApiCreateChatSessionRequest)
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -395,98 +626,67 @@ func (a *ChatAPIService) CreateChatSessionExecute(r ApiCreateChatSessionRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetChatTurnRequest struct {
+type ApiConnectProjectStreamRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
-	turnId string
-	projectId *string
-	activeCycleId *string
-	taskId *string
+	id string
 	xOrganizationId *string
 	xClientPortal *string
 }
 
-// The project the turn was sent to.
-func (r ApiGetChatTurnRequest) ProjectId(projectId string) ApiGetChatTurnRequest {
-	r.projectId = &projectId
-	return r
-}
-
-// The cycle, when the turn was sent to one.
-func (r ApiGetChatTurnRequest) ActiveCycleId(activeCycleId string) ApiGetChatTurnRequest {
-	r.activeCycleId = &activeCycleId
-	return r
-}
-
-// The task, when the turn was sent to one.
-func (r ApiGetChatTurnRequest) TaskId(taskId string) ApiGetChatTurnRequest {
-	r.taskId = &taskId
-	return r
-}
-
 // The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
-func (r ApiGetChatTurnRequest) XOrganizationId(xOrganizationId string) ApiGetChatTurnRequest {
+func (r ApiConnectProjectStreamRequest) XOrganizationId(xOrganizationId string) ApiConnectProjectStreamRequest {
 	r.xOrganizationId = &xOrganizationId
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
-func (r ApiGetChatTurnRequest) XClientPortal(xClientPortal string) ApiGetChatTurnRequest {
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiConnectProjectStreamRequest) XClientPortal(xClientPortal string) ApiConnectProjectStreamRequest {
 	r.xClientPortal = &xClientPortal
 	return r
 }
 
-func (r ApiGetChatTurnRequest) Execute() (*ChatTurnResult, *http.Response, error) {
-	return r.ApiService.GetChatTurnExecute(r)
+func (r ApiConnectProjectStreamRequest) Execute() (*ConversationConnection, *http.Response, error) {
+	return r.ApiService.ConnectProjectStreamExecute(r)
 }
 
 /*
-GetChatTurn Read where a sent message stands and the agent's answer
+ConnectProjectStream Get the proof a project stream's socket upgrade presents
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param turnId
- @return ApiGetChatTurnRequest
+ @param id
+ @return ApiConnectProjectStreamRequest
 */
-func (a *ChatAPIService) GetChatTurn(ctx context.Context, turnId string) ApiGetChatTurnRequest {
-	return ApiGetChatTurnRequest{
+func (a *ChatAPIService) ConnectProjectStream(ctx context.Context, id string) ApiConnectProjectStreamRequest {
+	return ApiConnectProjectStreamRequest{
 		ApiService: a,
 		ctx: ctx,
-		turnId: turnId,
+		id: id,
 	}
 }
 
 // Execute executes the request
-//  @return ChatTurnResult
-func (a *ChatAPIService) GetChatTurnExecute(r ApiGetChatTurnRequest) (*ChatTurnResult, *http.Response, error) {
+//  @return ConversationConnection
+func (a *ChatAPIService) ConnectProjectStreamExecute(r ApiConnectProjectStreamRequest) (*ConversationConnection, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChatTurnResult
+		localVarReturnValue  *ConversationConnection
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.GetChatTurn")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ConnectProjectStream")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/api/chat/turns/{turnId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"turnId"+"}", url.PathEscape(parameterValueToString(r.turnId, "turnId")), -1)
+	localVarPath := localBasePath + "/v1/api/projects/{id}/stream/connect"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.projectId == nil {
-		return localVarReturnValue, nil, reportError("projectId is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
-	if r.activeCycleId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "activeCycleId", r.activeCycleId, "form", "")
-	}
-	if r.taskId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "taskId", r.taskId, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -524,6 +724,20 @@ func (a *ChatAPIService) GetChatTurnExecute(r ApiGetChatTurnRequest) (*ChatTurnR
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -547,7 +761,206 @@ func (a *ChatAPIService) GetChatTurnExecute(r ApiGetChatTurnRequest) (*ChatTurnR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ValidationError
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateChatRequest struct {
+	ctx context.Context
+	ApiService *ChatAPIService
+	conversationChatCreate *ConversationChatCreate
+	xOrganizationId *string
+	xClientPortal *string
+}
+
+func (r ApiCreateChatRequest) ConversationChatCreate(conversationChatCreate ConversationChatCreate) ApiCreateChatRequest {
+	r.conversationChatCreate = &conversationChatCreate
+	return r
+}
+
+// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
+func (r ApiCreateChatRequest) XOrganizationId(xOrganizationId string) ApiCreateChatRequest {
+	r.xOrganizationId = &xOrganizationId
+	return r
+}
+
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiCreateChatRequest) XClientPortal(xClientPortal string) ApiCreateChatRequest {
+	r.xClientPortal = &xClientPortal
+	return r
+}
+
+func (r ApiCreateChatRequest) Execute() (*ConversationChatCreated, *http.Response, error) {
+	return r.ApiService.CreateChatExecute(r)
+}
+
+/*
+CreateChat Start a chat session with an agent
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateChatRequest
+*/
+func (a *ChatAPIService) CreateChat(ctx context.Context) ApiCreateChatRequest {
+	return ApiCreateChatRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ConversationChatCreated
+func (a *ChatAPIService) CreateChatExecute(r ApiCreateChatRequest) (*ConversationChatCreated, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConversationChatCreated
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.CreateChat")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/api/chats"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.conversationChatCreate == nil {
+		return localVarReturnValue, nil, reportError("conversationChatCreate is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganizationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
+	}
+	if r.xClientPortal != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
+	}
+	// body params
+	localVarPostBody = r.conversationChatCreate
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CreateAgent400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -652,7 +1065,7 @@ func (r ApiListChatDirectoryRequest) XOrganizationId(xOrganizationId string) Api
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiListChatDirectoryRequest) XClientPortal(xClientPortal string) ApiListChatDirectoryRequest {
 	r.xClientPortal = &xClientPortal
 	return r
@@ -748,6 +1161,20 @@ func (a *ChatAPIService) ListChatDirectoryExecute(r ApiListChatDirectoryRequest)
 			}
 		}
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -831,7 +1258,29 @@ func (a *ChatAPIService) ListChatDirectoryExecute(r ApiListChatDirectoryRequest)
 type ApiListChatMessagesRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
+	chatId *string
+	limit *string
+	before *string
 	xOrganizationId *string
+	xClientPortal *string
+}
+
+// The conversation&#39;s address.
+func (r ApiListChatMessagesRequest) ChatId(chatId string) ApiListChatMessagesRequest {
+	r.chatId = &chatId
+	return r
+}
+
+// How many transcript entries one page holds, 1 to 200. Default 50.
+func (r ApiListChatMessagesRequest) Limit(limit string) ApiListChatMessagesRequest {
+	r.limit = &limit
+	return r
+}
+
+// The &#x60;next&#x60; of the page you have: read the messages before it.
+func (r ApiListChatMessagesRequest) Before(before string) ApiListChatMessagesRequest {
+	r.before = &before
+	return r
 }
 
 // The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
@@ -840,12 +1289,18 @@ func (r ApiListChatMessagesRequest) XOrganizationId(xOrganizationId string) ApiL
 	return r
 }
 
-func (r ApiListChatMessagesRequest) Execute() ([]WireMessage, *http.Response, error) {
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiListChatMessagesRequest) XClientPortal(xClientPortal string) ApiListChatMessagesRequest {
+	r.xClientPortal = &xClientPortal
+	return r
+}
+
+func (r ApiListChatMessagesRequest) Execute() (*ConversationMessages, *http.Response, error) {
 	return r.ApiService.ListChatMessagesExecute(r)
 }
 
 /*
-ListChatMessages Read the projectless chat transcript
+ListChatMessages Read a conversation's messages, newest page first
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListChatMessagesRequest
@@ -858,13 +1313,13 @@ func (a *ChatAPIService) ListChatMessages(ctx context.Context) ApiListChatMessag
 }
 
 // Execute executes the request
-//  @return []WireMessage
-func (a *ChatAPIService) ListChatMessagesExecute(r ApiListChatMessagesRequest) ([]WireMessage, *http.Response, error) {
+//  @return ConversationMessages
+func (a *ChatAPIService) ListChatMessagesExecute(r ApiListChatMessagesRequest) (*ConversationMessages, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []WireMessage
+		localVarReturnValue  *ConversationMessages
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ListChatMessages")
@@ -877,406 +1332,16 @@ func (a *ChatAPIService) ListChatMessagesExecute(r ApiListChatMessagesRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	if r.chatId == nil {
+		return localVarReturnValue, nil, reportError("chatId is required and must be specified")
 	}
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganizationId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListChatSessionMessagesRequest struct {
-	ctx context.Context
-	ApiService *ChatAPIService
-	id string
-	threadId *string
-	xOrganizationId *string
-	xClientPortal *string
-}
-
-// The session live address returned when it was created or listed.
-func (r ApiListChatSessionMessagesRequest) ThreadId(threadId string) ApiListChatSessionMessagesRequest {
-	r.threadId = &threadId
-	return r
-}
-
-// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
-func (r ApiListChatSessionMessagesRequest) XOrganizationId(xOrganizationId string) ApiListChatSessionMessagesRequest {
-	r.xOrganizationId = &xOrganizationId
-	return r
-}
-
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
-func (r ApiListChatSessionMessagesRequest) XClientPortal(xClientPortal string) ApiListChatSessionMessagesRequest {
-	r.xClientPortal = &xClientPortal
-	return r
-}
-
-func (r ApiListChatSessionMessagesRequest) Execute() ([]WireMessage, *http.Response, error) {
-	return r.ApiService.ListChatSessionMessagesExecute(r)
-}
-
-/*
-ListChatSessionMessages Read one chat session's history
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiListChatSessionMessagesRequest
-*/
-func (a *ChatAPIService) ListChatSessionMessages(ctx context.Context, id string) ApiListChatSessionMessagesRequest {
-	return ApiListChatSessionMessagesRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return []WireMessage
-func (a *ChatAPIService) ListChatSessionMessagesExecute(r ApiListChatSessionMessagesRequest) ([]WireMessage, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []WireMessage
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ListChatSessionMessages")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/api/chat/sessions/{id}/messages"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.threadId == nil {
-		return localVarReturnValue, nil, reportError("threadId is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "threadId", r.threadId, "form", "")
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.xOrganizationId != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
-	}
-	if r.xClientPortal != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListChatSessionsRequest struct {
-	ctx context.Context
-	ApiService *ChatAPIService
-	projectId *string
-	agentId *string
-	limit *string
-	cursor *string
-	xOrganizationId *string
-	xClientPortal *string
-}
-
-// The project whose manager (or, with &#x60;agentId&#x60;, team agent) the sessions are with. Omitted: your own workspace assistant.
-func (r ApiListChatSessionsRequest) ProjectId(projectId string) ApiListChatSessionsRequest {
-	r.projectId = &projectId
-	return r
-}
-
-// The team agent, within &#x60;projectId&#x60;.
-func (r ApiListChatSessionsRequest) AgentId(agentId string) ApiListChatSessionsRequest {
-	r.agentId = &agentId
-	return r
-}
-
-// How many sessions one page holds, 1 to 100. Default 50.
-func (r ApiListChatSessionsRequest) Limit(limit string) ApiListChatSessionsRequest {
-	r.limit = &limit
-	return r
-}
-
-// The &#x60;nextCursor&#x60; of the page you have: read the next, older sessions. A session started between two reads can appear on both pages; merge them by &#x60;id&#x60;.
-func (r ApiListChatSessionsRequest) Cursor(cursor string) ApiListChatSessionsRequest {
-	r.cursor = &cursor
-	return r
-}
-
-// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
-func (r ApiListChatSessionsRequest) XOrganizationId(xOrganizationId string) ApiListChatSessionsRequest {
-	r.xOrganizationId = &xOrganizationId
-	return r
-}
-
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
-func (r ApiListChatSessionsRequest) XClientPortal(xClientPortal string) ApiListChatSessionsRequest {
-	r.xClientPortal = &xClientPortal
-	return r
-}
-
-func (r ApiListChatSessionsRequest) Execute() (*ChatSessionList, *http.Response, error) {
-	return r.ApiService.ListChatSessionsExecute(r)
-}
-
-/*
-ListChatSessions List your chat sessions with one agent
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListChatSessionsRequest
-*/
-func (a *ChatAPIService) ListChatSessions(ctx context.Context) ApiListChatSessionsRequest {
-	return ApiListChatSessionsRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ChatSessionList
-func (a *ChatAPIService) ListChatSessionsExecute(r ApiListChatSessionsRequest) (*ChatSessionList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChatSessionList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ListChatSessions")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/api/chat/sessions"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
-	}
-	if r.agentId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "agentId", r.agentId, "form", "")
-	}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "chatId", r.chatId, "form", "")
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
-	if r.cursor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
+	if r.before != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1312,6 +1377,20 @@ func (a *ChatAPIService) ListChatSessionsExecute(r ApiListChatSessionsRequest) (
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1395,16 +1474,215 @@ func (a *ChatAPIService) ListChatSessionsExecute(r ApiListChatSessionsRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiSendChatTurnRequest struct {
+type ApiListChatsRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
-	chatSend *ChatSend
+	chatId *string
 	xOrganizationId *string
 	xClientPortal *string
 }
 
-func (r ApiSendChatTurnRequest) ChatSend(chatSend ChatSend) ApiSendChatTurnRequest {
-	r.chatSend = &chatSend
+// The conversation&#39;s address, or one of its sessions&#39;.
+func (r ApiListChatsRequest) ChatId(chatId string) ApiListChatsRequest {
+	r.chatId = &chatId
+	return r
+}
+
+// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
+func (r ApiListChatsRequest) XOrganizationId(xOrganizationId string) ApiListChatsRequest {
+	r.xOrganizationId = &xOrganizationId
+	return r
+}
+
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiListChatsRequest) XClientPortal(xClientPortal string) ApiListChatsRequest {
+	r.xClientPortal = &xClientPortal
+	return r
+}
+
+func (r ApiListChatsRequest) Execute() (*ConversationChats, *http.Response, error) {
+	return r.ApiService.ListChatsExecute(r)
+}
+
+/*
+ListChats List the chat sessions of a conversation you may see
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListChatsRequest
+*/
+func (a *ChatAPIService) ListChats(ctx context.Context) ApiListChatsRequest {
+	return ApiListChatsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ConversationChats
+func (a *ChatAPIService) ListChatsExecute(r ApiListChatsRequest) (*ConversationChats, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ConversationChats
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.ListChats")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/api/chats"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.chatId == nil {
+		return localVarReturnValue, nil, reportError("chatId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "chatId", r.chatId, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganizationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
+	}
+	if r.xClientPortal != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSendChatTurnRequest struct {
+	ctx context.Context
+	ApiService *ChatAPIService
+	conversationSend *ConversationSend
+	xOrganizationId *string
+	xClientPortal *string
+}
+
+func (r ApiSendChatTurnRequest) ConversationSend(conversationSend ConversationSend) ApiSendChatTurnRequest {
+	r.conversationSend = &conversationSend
 	return r
 }
 
@@ -1414,18 +1692,18 @@ func (r ApiSendChatTurnRequest) XOrganizationId(xOrganizationId string) ApiSendC
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiSendChatTurnRequest) XClientPortal(xClientPortal string) ApiSendChatTurnRequest {
 	r.xClientPortal = &xClientPortal
 	return r
 }
 
-func (r ApiSendChatTurnRequest) Execute() (*ChatTurnAccepted, *http.Response, error) {
+func (r ApiSendChatTurnRequest) Execute() (*ConversationReceipt, *http.Response, error) {
 	return r.ApiService.SendChatTurnExecute(r)
 }
 
 /*
-SendChatTurn Send a message to a project and return while the agent works
+SendChatTurn Send a message to a conversation and return while the agent works
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSendChatTurnRequest
@@ -1438,13 +1716,13 @@ func (a *ChatAPIService) SendChatTurn(ctx context.Context) ApiSendChatTurnReques
 }
 
 // Execute executes the request
-//  @return ChatTurnAccepted
-func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ChatTurnAccepted, *http.Response, error) {
+//  @return ConversationReceipt
+func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ConversationReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChatTurnAccepted
+		localVarReturnValue  *ConversationReceipt
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.SendChatTurn")
@@ -1457,8 +1735,8 @@ func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ChatTur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.chatSend == nil {
-		return localVarReturnValue, nil, reportError("chatSend is required and must be specified")
+	if r.conversationSend == nil {
+		return localVarReturnValue, nil, reportError("conversationSend is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1485,7 +1763,7 @@ func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ChatTur
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.chatSend
+	localVarPostBody = r.conversationSend
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1497,6 +1775,20 @@ func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ChatTur
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1577,17 +1869,6 @@ func (a *ChatAPIService) SendChatTurnExecute(r ApiSendChatTurnRequest) (*ChatTur
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1617,12 +1898,12 @@ type ApiSetPrivateChatModelRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
 	id string
-	privateChatModel *PrivateChatModel
+	conversationModel *ConversationModel
 	xOrganizationId *string
 }
 
-func (r ApiSetPrivateChatModelRequest) PrivateChatModel(privateChatModel PrivateChatModel) ApiSetPrivateChatModelRequest {
-	r.privateChatModel = &privateChatModel
+func (r ApiSetPrivateChatModelRequest) ConversationModel(conversationModel ConversationModel) ApiSetPrivateChatModelRequest {
+	r.conversationModel = &conversationModel
 	return r
 }
 
@@ -1666,14 +1947,14 @@ func (a *ChatAPIService) SetPrivateChatModelExecute(r ApiSetPrivateChatModelRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/api/chat/sessions/{id}/model"
+	localVarPath := localBasePath + "/v1/api/chats/{id}/model"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.privateChatModel == nil {
-		return localVarReturnValue, nil, reportError("privateChatModel is required and must be specified")
+	if r.conversationModel == nil {
+		return localVarReturnValue, nil, reportError("conversationModel is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1697,7 +1978,7 @@ func (a *ChatAPIService) SetPrivateChatModelExecute(r ApiSetPrivateChatModelRequ
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.privateChatModel
+	localVarPostBody = r.conversationModel
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1709,6 +1990,20 @@ func (a *ChatAPIService) SetPrivateChatModelExecute(r ApiSetPrivateChatModelRequ
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1795,13 +2090,13 @@ func (a *ChatAPIService) SetPrivateChatModelExecute(r ApiSetPrivateChatModelRequ
 type ApiStopChatTurnRequest struct {
 	ctx context.Context
 	ApiService *ChatAPIService
-	chatStop *ChatStop
+	conversationStop *ConversationStop
 	xOrganizationId *string
 	xClientPortal *string
 }
 
-func (r ApiStopChatTurnRequest) ChatStop(chatStop ChatStop) ApiStopChatTurnRequest {
-	r.chatStop = &chatStop
+func (r ApiStopChatTurnRequest) ConversationStop(conversationStop ConversationStop) ApiStopChatTurnRequest {
+	r.conversationStop = &conversationStop
 	return r
 }
 
@@ -1811,18 +2106,18 @@ func (r ApiStopChatTurnRequest) XOrganizationId(xOrganizationId string) ApiStopC
 	return r
 }
 
-// Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied.
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
 func (r ApiStopChatTurnRequest) XClientPortal(xClientPortal string) ApiStopChatTurnRequest {
 	r.xClientPortal = &xClientPortal
 	return r
 }
 
-func (r ApiStopChatTurnRequest) Execute() (*ChatStopResponse, *http.Response, error) {
+func (r ApiStopChatTurnRequest) Execute() (*ConversationStopResponse, *http.Response, error) {
 	return r.ApiService.StopChatTurnExecute(r)
 }
 
 /*
-StopChatTurn Request cancellation of your exact model turn across replicas
+StopChatTurn Stop the turn a conversation is running
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiStopChatTurnRequest
@@ -1835,13 +2130,13 @@ func (a *ChatAPIService) StopChatTurn(ctx context.Context) ApiStopChatTurnReques
 }
 
 // Execute executes the request
-//  @return ChatStopResponse
-func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ChatStopResponse, *http.Response, error) {
+//  @return ConversationStopResponse
+func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ConversationStopResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChatStopResponse
+		localVarReturnValue  *ConversationStopResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.StopChatTurn")
@@ -1854,8 +2149,8 @@ func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ChatSto
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.chatStop == nil {
-		return localVarReturnValue, nil, reportError("chatStop is required and must be specified")
+	if r.conversationStop == nil {
+		return localVarReturnValue, nil, reportError("conversationStop is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1882,7 +2177,7 @@ func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ChatSto
 		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
 	}
 	// body params
-	localVarPostBody = r.chatStop
+	localVarPostBody = r.conversationStop
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1894,6 +2189,20 @@ func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ChatSto
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}
@@ -1921,6 +2230,225 @@ func (a *ChatAPIService) StopChatTurnExecute(r ApiStopChatTurnRequest) (*ChatSto
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v CreateAgent400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiStreamChatEventsRequest struct {
+	ctx context.Context
+	ApiService *ChatAPIService
+	chatId *string
+	from *string
+	gen *string
+	xOrganizationId *string
+	xClientPortal *string
+}
+
+// The conversation&#39;s address.
+func (r ApiStreamChatEventsRequest) ChatId(chatId string) ApiStreamChatEventsRequest {
+	r.chatId = &chatId
+	return r
+}
+
+// The next event the client wants; &#x60;Last-Event-ID&#x60; says the same after a reconnect.
+func (r ApiStreamChatEventsRequest) From(from string) ApiStreamChatEventsRequest {
+	r.from = &from
+	return r
+}
+
+// The stream generation &#x60;from&#x60; belongs to; a stale one starts from a snapshot.
+func (r ApiStreamChatEventsRequest) Gen(gen string) ApiStreamChatEventsRequest {
+	r.gen = &gen
+	return r
+}
+
+// The workspace (organization) to act in. Omitted, the session&#39;s active organization is used.
+func (r ApiStreamChatEventsRequest) XOrganizationId(xOrganizationId string) ApiStreamChatEventsRequest {
+	r.xOrganizationId = &xOrganizationId
+	return r
+}
+
+// The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access.
+func (r ApiStreamChatEventsRequest) XClientPortal(xClientPortal string) ApiStreamChatEventsRequest {
+	r.xClientPortal = &xClientPortal
+	return r
+}
+
+func (r ApiStreamChatEventsRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.StreamChatEventsExecute(r)
+}
+
+/*
+StreamChatEvents Follow a conversation as Server-Sent Events
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiStreamChatEventsRequest
+*/
+func (a *ChatAPIService) StreamChatEvents(ctx context.Context) ApiStreamChatEventsRequest {
+	return ApiStreamChatEventsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *ChatAPIService) StreamChatEventsExecute(r ApiStreamChatEventsRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChatAPIService.StreamChatEvents")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/api/chat/events"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.chatId == nil {
+		return localVarReturnValue, nil, reportError("chatId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "chatId", r.chatId, "form", "")
+	if r.from != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
+	}
+	if r.gen != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gen", r.gen, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/event-stream", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xOrganizationId != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Organization-Id", r.xOrganizationId, "simple", "")
+	}
+	if r.xClientPortal != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Client-Portal", r.xClientPortal, "simple", "")
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2082,6 +2610,20 @@ func (a *ChatAPIService) UploadChatAttachmentExecute(r ApiUploadChatAttachmentRe
 					key = apiKey.Key
 				}
 				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["sessionCookie"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Cookie"] = key
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,6 +22,7 @@ var _ MappedNullable = &MentionInboxItemsInner{}
 type MentionInboxItemsInner struct {
 	AgentId NullableString `json:"agentId"`
 	Author MentionInboxItemsInnerAuthor `json:"author"`
+	ChatId string `json:"chatId"`
 	CreatedAt string `json:"createdAt"`
 	CycleId NullableString `json:"cycleId"`
 	Id string `json:"id"`
@@ -30,7 +31,6 @@ type MentionInboxItemsInner struct {
 	ProjectName NullableString `json:"projectName"`
 	Snippet string `json:"snippet"`
 	TaskId NullableString `json:"taskId"`
-	ThreadId string `json:"threadId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,10 +40,11 @@ type _MentionInboxItemsInner MentionInboxItemsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMentionInboxItemsInner(agentId NullableString, author MentionInboxItemsInnerAuthor, createdAt string, cycleId NullableString, id string, messageId string, projectId NullableString, projectName NullableString, snippet string, taskId NullableString, threadId string) *MentionInboxItemsInner {
+func NewMentionInboxItemsInner(agentId NullableString, author MentionInboxItemsInnerAuthor, chatId string, createdAt string, cycleId NullableString, id string, messageId string, projectId NullableString, projectName NullableString, snippet string, taskId NullableString) *MentionInboxItemsInner {
 	this := MentionInboxItemsInner{}
 	this.AgentId = agentId
 	this.Author = author
+	this.ChatId = chatId
 	this.CreatedAt = createdAt
 	this.CycleId = cycleId
 	this.Id = id
@@ -52,7 +53,6 @@ func NewMentionInboxItemsInner(agentId NullableString, author MentionInboxItemsI
 	this.ProjectName = projectName
 	this.Snippet = snippet
 	this.TaskId = taskId
-	this.ThreadId = threadId
 	return &this
 }
 
@@ -112,6 +112,30 @@ func (o *MentionInboxItemsInner) GetAuthorOk() (*MentionInboxItemsInnerAuthor, b
 // SetAuthor sets field value
 func (o *MentionInboxItemsInner) SetAuthor(v MentionInboxItemsInnerAuthor) {
 	o.Author = v
+}
+
+// GetChatId returns the ChatId field value
+func (o *MentionInboxItemsInner) GetChatId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ChatId
+}
+
+// GetChatIdOk returns a tuple with the ChatId field value
+// and a boolean to check if the value has been set.
+func (o *MentionInboxItemsInner) GetChatIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ChatId, true
+}
+
+// SetChatId sets field value
+func (o *MentionInboxItemsInner) SetChatId(v string) {
+	o.ChatId = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -314,30 +338,6 @@ func (o *MentionInboxItemsInner) SetTaskId(v string) {
 	o.TaskId.Set(&v)
 }
 
-// GetThreadId returns the ThreadId field value
-func (o *MentionInboxItemsInner) GetThreadId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ThreadId
-}
-
-// GetThreadIdOk returns a tuple with the ThreadId field value
-// and a boolean to check if the value has been set.
-func (o *MentionInboxItemsInner) GetThreadIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ThreadId, true
-}
-
-// SetThreadId sets field value
-func (o *MentionInboxItemsInner) SetThreadId(v string) {
-	o.ThreadId = v
-}
-
 func (o MentionInboxItemsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -350,6 +350,7 @@ func (o MentionInboxItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["agentId"] = o.AgentId.Get()
 	toSerialize["author"] = o.Author
+	toSerialize["chatId"] = o.ChatId
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["cycleId"] = o.CycleId.Get()
 	toSerialize["id"] = o.Id
@@ -358,7 +359,6 @@ func (o MentionInboxItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize["projectName"] = o.ProjectName.Get()
 	toSerialize["snippet"] = o.Snippet
 	toSerialize["taskId"] = o.TaskId.Get()
-	toSerialize["threadId"] = o.ThreadId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -374,6 +374,7 @@ func (o *MentionInboxItemsInner) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"agentId",
 		"author",
+		"chatId",
 		"createdAt",
 		"cycleId",
 		"id",
@@ -382,7 +383,6 @@ func (o *MentionInboxItemsInner) UnmarshalJSON(data []byte) (err error) {
 		"projectName",
 		"snippet",
 		"taskId",
-		"threadId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -414,6 +414,7 @@ func (o *MentionInboxItemsInner) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "agentId")
 		delete(additionalProperties, "author")
+		delete(additionalProperties, "chatId")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "cycleId")
 		delete(additionalProperties, "id")
@@ -422,7 +423,6 @@ func (o *MentionInboxItemsInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "projectName")
 		delete(additionalProperties, "snippet")
 		delete(additionalProperties, "taskId")
-		delete(additionalProperties, "threadId")
 		o.AdditionalProperties = additionalProperties
 	}
 

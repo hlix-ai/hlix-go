@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreditedMillicents** | **NullableFloat32** |  | 
-**CurrentPeriodEnd** | **NullableString** |  | 
-**IncludedCreditMillicents** | **NullableFloat32** |  | 
-**MeteredMillicents** | **NullableFloat32** |  | 
-**OrgCapMillicents** | **NullableFloat32** |  | 
-**PlanName** | **NullableString** |  | 
-**PlanSlug** | **NullableString** |  | 
-**RolledOverMillicents** | **NullableFloat32** |  | 
-**Status** | **NullableString** |  | 
+**CreditedMillicents** | **NullableFloat32** |  |
+**CurrentPeriodEnd** | **NullableString** |  |
+**IncludedCreditMillicents** | **NullableFloat32** |  |
+**MeteredMillicents** | **NullableFloat32** |  |
+**OrgCapMillicents** | **NullableFloat32** |  |
+**PlanName** | **NullableString** |  |
+**PlanSlug** | **NullableString** |  |
+**RolledOverMillicents** | **NullableFloat32** |  |
+**Status** | **NullableString** |  |
 
 ## Methods
 
@@ -21,17 +21,15 @@ Name | Type | Description | Notes
 `func NewOrgBillingStateEntitlementAnyOf1Subscription(creditedMillicents NullableFloat32, currentPeriodEnd NullableString, includedCreditMillicents NullableFloat32, meteredMillicents NullableFloat32, orgCapMillicents NullableFloat32, planName NullableString, planSlug NullableString, rolledOverMillicents NullableFloat32, status NullableString, ) *OrgBillingStateEntitlementAnyOf1Subscription`
 
 NewOrgBillingStateEntitlementAnyOf1Subscription instantiates a new OrgBillingStateEntitlementAnyOf1Subscription object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewOrgBillingStateEntitlementAnyOf1SubscriptionWithDefaults
 
 `func NewOrgBillingStateEntitlementAnyOf1SubscriptionWithDefaults() *OrgBillingStateEntitlementAnyOf1Subscription`
 
 NewOrgBillingStateEntitlementAnyOf1SubscriptionWithDefaults instantiates a new OrgBillingStateEntitlementAnyOf1Subscription object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreditedMillicents
 

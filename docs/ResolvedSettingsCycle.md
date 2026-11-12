@@ -4,33 +4,81 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Effort** | **NullableString** |  | 
-**Funding** | [**ResolvedSettingsCycleFunding**](ResolvedSettingsCycleFunding.md) |  | 
-**Harness** | **string** |  | 
-**HarnessScopeId** | **NullableString** |  | 
-**MaxParallelCycles** | **NullableInt32** |  | 
-**Model** | **NullableString** |  | 
-**Source** | [**ResolvedSettingsCycleSource**](ResolvedSettingsCycleSource.md) |  | 
+**Coder** | **string** |  |
+**CoderScopeId** | **NullableString** |  |
+**Effort** | **NullableString** |  |
+**Funding** | [**ResolvedSettingsCycleFunding**](ResolvedSettingsCycleFunding.md) |  |
+**MaxParallelCycles** | **NullableInt32** |  |
+**Model** | **NullableString** |  |
+**Source** | [**ResolvedSettingsCycleSource**](ResolvedSettingsCycleSource.md) |  |
 
 ## Methods
 
 ### NewResolvedSettingsCycle
 
-`func NewResolvedSettingsCycle(effort NullableString, funding ResolvedSettingsCycleFunding, harness string, harnessScopeId NullableString, maxParallelCycles NullableInt32, model NullableString, source ResolvedSettingsCycleSource, ) *ResolvedSettingsCycle`
+`func NewResolvedSettingsCycle(coder string, coderScopeId NullableString, effort NullableString, funding ResolvedSettingsCycleFunding, maxParallelCycles NullableInt32, model NullableString, source ResolvedSettingsCycleSource, ) *ResolvedSettingsCycle`
 
 NewResolvedSettingsCycle instantiates a new ResolvedSettingsCycle object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewResolvedSettingsCycleWithDefaults
 
 `func NewResolvedSettingsCycleWithDefaults() *ResolvedSettingsCycle`
 
 NewResolvedSettingsCycleWithDefaults instantiates a new ResolvedSettingsCycle object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
+### GetCoder
+
+`func (o *ResolvedSettingsCycle) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *ResolvedSettingsCycle) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *ResolvedSettingsCycle) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+
+### GetCoderScopeId
+
+`func (o *ResolvedSettingsCycle) GetCoderScopeId() string`
+
+GetCoderScopeId returns the CoderScopeId field if non-nil, zero value otherwise.
+
+### GetCoderScopeIdOk
+
+`func (o *ResolvedSettingsCycle) GetCoderScopeIdOk() (*string, bool)`
+
+GetCoderScopeIdOk returns a tuple with the CoderScopeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoderScopeId
+
+`func (o *ResolvedSettingsCycle) SetCoderScopeId(v string)`
+
+SetCoderScopeId sets CoderScopeId field to given value.
+
+
+### SetCoderScopeIdNil
+
+`func (o *ResolvedSettingsCycle) SetCoderScopeIdNil(b bool)`
+
+ SetCoderScopeIdNil sets the value for CoderScopeId to be an explicit nil
+
+### UnsetCoderScopeId
+`func (o *ResolvedSettingsCycle) UnsetCoderScopeId()`
+
+UnsetCoderScopeId ensures that no value is present for CoderScopeId, not even an explicit nil
 ### GetEffort
 
 `func (o *ResolvedSettingsCycle) GetEffort() string`
@@ -81,56 +129,6 @@ and a boolean to check if the value has been set.
 SetFunding sets Funding field to given value.
 
 
-### GetHarness
-
-`func (o *ResolvedSettingsCycle) GetHarness() string`
-
-GetHarness returns the Harness field if non-nil, zero value otherwise.
-
-### GetHarnessOk
-
-`func (o *ResolvedSettingsCycle) GetHarnessOk() (*string, bool)`
-
-GetHarnessOk returns a tuple with the Harness field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHarness
-
-`func (o *ResolvedSettingsCycle) SetHarness(v string)`
-
-SetHarness sets Harness field to given value.
-
-
-### GetHarnessScopeId
-
-`func (o *ResolvedSettingsCycle) GetHarnessScopeId() string`
-
-GetHarnessScopeId returns the HarnessScopeId field if non-nil, zero value otherwise.
-
-### GetHarnessScopeIdOk
-
-`func (o *ResolvedSettingsCycle) GetHarnessScopeIdOk() (*string, bool)`
-
-GetHarnessScopeIdOk returns a tuple with the HarnessScopeId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHarnessScopeId
-
-`func (o *ResolvedSettingsCycle) SetHarnessScopeId(v string)`
-
-SetHarnessScopeId sets HarnessScopeId field to given value.
-
-
-### SetHarnessScopeIdNil
-
-`func (o *ResolvedSettingsCycle) SetHarnessScopeIdNil(b bool)`
-
- SetHarnessScopeIdNil sets the value for HarnessScopeId to be an explicit nil
-
-### UnsetHarnessScopeId
-`func (o *ResolvedSettingsCycle) UnsetHarnessScopeId()`
-
-UnsetHarnessScopeId ensures that no value is present for HarnessScopeId, not even an explicit nil
 ### GetMaxParallelCycles
 
 `func (o *ResolvedSettingsCycle) GetMaxParallelCycles() int32`

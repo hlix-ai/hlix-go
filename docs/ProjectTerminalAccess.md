@@ -4,13 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Available** | **bool** |  | 
-**EnvironmentState** | Pointer to **string** |  | [optional] 
-**ExpiresAt** | Pointer to **string** |  | [optional] 
-**Reason** | Pointer to **string** |  | [optional] 
-**SshCommand** | Pointer to **string** |  | [optional] 
-**SshExpiresAt** | Pointer to **string** |  | [optional] 
-**WebTerminalUrl** | Pointer to **string** |  | [optional] 
+**Available** | **bool** |  |
+**EnvironmentState** | Pointer to **string** |  | [optional]
+**ExpiresAt** | Pointer to **string** |  | [optional]
+**Reason** | Pointer to **string** |  | [optional]
+**WebTerminalUrl** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -19,17 +17,15 @@ Name | Type | Description | Notes
 `func NewProjectTerminalAccess(available bool, ) *ProjectTerminalAccess`
 
 NewProjectTerminalAccess instantiates a new ProjectTerminalAccess object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectTerminalAccessWithDefaults
 
 `func NewProjectTerminalAccessWithDefaults() *ProjectTerminalAccess`
 
 NewProjectTerminalAccessWithDefaults instantiates a new ProjectTerminalAccess object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAvailable
 
@@ -125,56 +121,6 @@ SetReason sets Reason field to given value.
 `func (o *ProjectTerminalAccess) HasReason() bool`
 
 HasReason returns a boolean if a field has been set.
-
-### GetSshCommand
-
-`func (o *ProjectTerminalAccess) GetSshCommand() string`
-
-GetSshCommand returns the SshCommand field if non-nil, zero value otherwise.
-
-### GetSshCommandOk
-
-`func (o *ProjectTerminalAccess) GetSshCommandOk() (*string, bool)`
-
-GetSshCommandOk returns a tuple with the SshCommand field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSshCommand
-
-`func (o *ProjectTerminalAccess) SetSshCommand(v string)`
-
-SetSshCommand sets SshCommand field to given value.
-
-### HasSshCommand
-
-`func (o *ProjectTerminalAccess) HasSshCommand() bool`
-
-HasSshCommand returns a boolean if a field has been set.
-
-### GetSshExpiresAt
-
-`func (o *ProjectTerminalAccess) GetSshExpiresAt() string`
-
-GetSshExpiresAt returns the SshExpiresAt field if non-nil, zero value otherwise.
-
-### GetSshExpiresAtOk
-
-`func (o *ProjectTerminalAccess) GetSshExpiresAtOk() (*string, bool)`
-
-GetSshExpiresAtOk returns a tuple with the SshExpiresAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSshExpiresAt
-
-`func (o *ProjectTerminalAccess) SetSshExpiresAt(v string)`
-
-SetSshExpiresAt sets SshExpiresAt field to given value.
-
-### HasSshExpiresAt
-
-`func (o *ProjectTerminalAccess) HasSshExpiresAt() bool`
-
-HasSshExpiresAt returns a boolean if a field has been set.
 
 ### GetWebTerminalUrl
 

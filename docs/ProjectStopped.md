@@ -4,47 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InterruptedCycles** | **[]string** |  | 
-**Status** | **string** |  | 
+**Status** | **string** |  |
+**StoppedCycles** | **[]string** |  |
 
 ## Methods
 
 ### NewProjectStopped
 
-`func NewProjectStopped(interruptedCycles []string, status string, ) *ProjectStopped`
+`func NewProjectStopped(status string, stoppedCycles []string, ) *ProjectStopped`
 
 NewProjectStopped instantiates a new ProjectStopped object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectStoppedWithDefaults
 
 `func NewProjectStoppedWithDefaults() *ProjectStopped`
 
 NewProjectStoppedWithDefaults instantiates a new ProjectStopped object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetInterruptedCycles
-
-`func (o *ProjectStopped) GetInterruptedCycles() []string`
-
-GetInterruptedCycles returns the InterruptedCycles field if non-nil, zero value otherwise.
-
-### GetInterruptedCyclesOk
-
-`func (o *ProjectStopped) GetInterruptedCyclesOk() (*[]string, bool)`
-
-GetInterruptedCyclesOk returns a tuple with the InterruptedCycles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInterruptedCycles
-
-`func (o *ProjectStopped) SetInterruptedCycles(v []string)`
-
-SetInterruptedCycles sets InterruptedCycles field to given value.
-
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetStatus
 
@@ -64,6 +42,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectStopped) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetStoppedCycles
+
+`func (o *ProjectStopped) GetStoppedCycles() []string`
+
+GetStoppedCycles returns the StoppedCycles field if non-nil, zero value otherwise.
+
+### GetStoppedCyclesOk
+
+`func (o *ProjectStopped) GetStoppedCyclesOk() (*[]string, bool)`
+
+GetStoppedCyclesOk returns a tuple with the StoppedCycles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStoppedCycles
+
+`func (o *ProjectStopped) SetStoppedCycles(v []string)`
+
+SetStoppedCycles sets StoppedCycles field to given value.
 
 
 

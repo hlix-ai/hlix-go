@@ -1,17 +1,17 @@
-# \McpServersAPI
+# McpServersAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ConnectMcpServer**](McpServersAPI.md#ConnectMcpServer) | **Post** /v1/api/mcp-servers/{id}/connect | Start hosted OAuth for a remote MCP connection
-[**CreateMcpServer**](McpServersAPI.md#CreateMcpServer) | **Post** /v1/api/mcp-servers | Register an MCP server
-[**DeleteMcpServer**](McpServersAPI.md#DeleteMcpServer) | **Delete** /v1/api/mcp-servers/{id} | Delete an MCP server
-[**DisconnectMcpServer**](McpServersAPI.md#DisconnectMcpServer) | **Post** /v1/api/mcp-servers/{id}/disconnect | Disconnect OAuth and invalidate discovered tools
-[**DiscoverMcpServer**](McpServersAPI.md#DiscoverMcpServer) | **Post** /v1/api/mcp-servers/{id}/discover | Discover and save the remote server tool catalog
-[**GetMcpServer**](McpServersAPI.md#GetMcpServer) | **Get** /v1/api/mcp-servers/{id} | Get one MCP server
-[**ListMcpServers**](McpServersAPI.md#ListMcpServers) | **Get** /v1/api/mcp-servers | List MCP servers in workspace or project scope
-[**UpdateMcpServer**](McpServersAPI.md#UpdateMcpServer) | **Patch** /v1/api/mcp-servers/{id} | Update an MCP server
+[**ConnectMcpServer**](McpServersAPI.md#connectmcpserver) | **Post** /v1/api/mcp-servers/{id}/connect | Start hosted OAuth for a remote MCP connection
+[**CreateMcpServer**](McpServersAPI.md#createmcpserver) | **Post** /v1/api/mcp-servers | Register an MCP server
+[**DeleteMcpServer**](McpServersAPI.md#deletemcpserver) | **Delete** /v1/api/mcp-servers/{id} | Delete an MCP server
+[**DisconnectMcpServer**](McpServersAPI.md#disconnectmcpserver) | **Post** /v1/api/mcp-servers/{id}/disconnect | Disconnect OAuth and invalidate discovered tools
+[**DiscoverMcpServer**](McpServersAPI.md#discovermcpserver) | **Post** /v1/api/mcp-servers/{id}/discover | Discover and save the remote server tool catalog
+[**GetMcpServer**](McpServersAPI.md#getmcpserver) | **Get** /v1/api/mcp-servers/{id} | Get one MCP server
+[**ListMcpServers**](McpServersAPI.md#listmcpservers) | **Get** /v1/api/mcp-servers | List MCP servers in workspace or project scope
+[**UpdateMcpServer**](McpServersAPI.md#updatemcpserver) | **Patch** /v1/api/mcp-servers/{id} | Update an MCP server
 
 
 
@@ -22,6 +22,8 @@ Method | HTTP request | Description
 Start hosted OAuth for a remote MCP connection
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -34,12 +36,14 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.Background()
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
+	configuration.AddDefaultHeader("Cookie", os.Getenv("HLIX_SESSION_COOKIE"))
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.ConnectMcpServer(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.ConnectMcpServer(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.ConnectMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,17 +59,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiConnectMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiConnectMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -73,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+Signed-in user session; API keys are not accepted. Set `HLIX_SESSION_COOKIE` to the complete issued Cookie header.
 
 ### HTTP request headers
 
@@ -93,10 +97,13 @@ Register an MCP server
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -104,12 +111,18 @@ import (
 )
 
 func main() {
-	createMcpServer := *openapiclient.NewCreateMcpServer("Name_example", "Transport_example") // CreateMcpServer | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createMcpServer openapiclient.CreateMcpServer
+	if err := json.Unmarshal([]byte("{\"name\":\"text\",\"transport\":\"stdio\"}"), &createMcpServer); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.CreateMcpServer(context.Background()).CreateMcpServer(createMcpServer).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.CreateMcpServer(ctx).CreateMcpServer(createMcpServer).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.CreateMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,13 +138,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createMcpServer** | [**CreateMcpServer**](CreateMcpServer.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createMcpServer** | [**CreateMcpServer**](CreateMcpServer.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -139,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -159,6 +172,8 @@ Delete an MCP server
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -170,12 +185,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.DeleteMcpServer(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.DeleteMcpServer(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.DeleteMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -191,17 +209,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -209,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -229,6 +247,8 @@ Disconnect OAuth and invalidate discovered tools
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -240,12 +260,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.DisconnectMcpServer(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.DisconnectMcpServer(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.DisconnectMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,17 +284,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDisconnectMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiDisconnectMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -279,7 +302,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -299,6 +322,8 @@ Discover and save the remote server tool catalog
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -310,12 +335,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.DiscoverMcpServer(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.DiscoverMcpServer(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.DiscoverMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -331,17 +359,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDiscoverMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiDiscoverMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -349,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -369,6 +397,8 @@ Get one MCP server
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -380,12 +410,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.GetMcpServer(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.GetMcpServer(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.GetMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -401,17 +434,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiGetMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -419,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -439,6 +472,8 @@ List MCP servers in workspace or project scope
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -450,12 +485,15 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	projectId := "projectId_example" // string | List only connections belonging to this project. Omitted lists workspace connections. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.ListMcpServers(context.Background()).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.ListMcpServers(ctx).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.ListMcpServers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -471,13 +509,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListMcpServersRequest struct via the builder pattern
+Pass optional parameters through the `apiListMcpServersRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | List only connections belonging to this project. Omitted lists workspace connections. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **projectId** | **string** | List only connections belonging to this project. Omitted lists workspace connections. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -485,7 +523,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -505,10 +543,13 @@ Update an MCP server
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -516,13 +557,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	updateMcpServer := *openapiclient.NewUpdateMcpServer() // UpdateMcpServer | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var updateMcpServer openapiclient.UpdateMcpServer
+	if err := json.Unmarshal([]byte("{}"), &updateMcpServer); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.McpServersAPI.UpdateMcpServer(context.Background(), id).UpdateMcpServer(updateMcpServer).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.McpServersAPI.UpdateMcpServer(ctx, id).UpdateMcpServer(updateMcpServer).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `McpServersAPI.UpdateMcpServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -538,18 +585,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateMcpServerRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateMcpServerRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateMcpServer** | [**UpdateMcpServer**](UpdateMcpServer.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updateMcpServer** | [**UpdateMcpServer**](UpdateMcpServer.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -557,7 +604,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,10 +20,10 @@ var _ MappedNullable = &ProjectBoardCyclesInnerActiveRun{}
 
 // ProjectBoardCyclesInnerActiveRun struct for ProjectBoardCyclesInnerActiveRun
 type ProjectBoardCyclesInnerActiveRun struct {
-	Harness NullableString `json:"harness,omitempty"`
+	Coder NullableString `json:"coder,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Iteration float32 `json:"iteration"`
-	Persona NullableString `json:"persona"`
+	Role NullableString `json:"role"`
 	StartedAt string `json:"startedAt"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,10 +34,10 @@ type _ProjectBoardCyclesInnerActiveRun ProjectBoardCyclesInnerActiveRun
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectBoardCyclesInnerActiveRun(iteration float32, persona NullableString, startedAt string) *ProjectBoardCyclesInnerActiveRun {
+func NewProjectBoardCyclesInnerActiveRun(iteration float32, role NullableString, startedAt string) *ProjectBoardCyclesInnerActiveRun {
 	this := ProjectBoardCyclesInnerActiveRun{}
 	this.Iteration = iteration
-	this.Persona = persona
+	this.Role = role
 	this.StartedAt = startedAt
 	return &this
 }
@@ -50,46 +50,46 @@ func NewProjectBoardCyclesInnerActiveRunWithDefaults() *ProjectBoardCyclesInnerA
 	return &this
 }
 
-// GetHarness returns the Harness field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectBoardCyclesInnerActiveRun) GetHarness() string {
-	if o == nil || IsNil(o.Harness.Get()) {
+// GetCoder returns the Coder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ProjectBoardCyclesInnerActiveRun) GetCoder() string {
+	if o == nil || IsNil(o.Coder.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Harness.Get()
+	return *o.Coder.Get()
 }
 
-// GetHarnessOk returns a tuple with the Harness field value if set, nil otherwise
+// GetCoderOk returns a tuple with the Coder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectBoardCyclesInnerActiveRun) GetHarnessOk() (*string, bool) {
+func (o *ProjectBoardCyclesInnerActiveRun) GetCoderOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Harness.Get(), o.Harness.IsSet()
+	return o.Coder.Get(), o.Coder.IsSet()
 }
 
-// HasHarness returns a boolean if a field has been set.
-func (o *ProjectBoardCyclesInnerActiveRun) HasHarness() bool {
-	if o != nil && o.Harness.IsSet() {
+// HasCoder returns a boolean if a field has been set.
+func (o *ProjectBoardCyclesInnerActiveRun) HasCoder() bool {
+	if o != nil && o.Coder.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetHarness gets a reference to the given NullableString and assigns it to the Harness field.
-func (o *ProjectBoardCyclesInnerActiveRun) SetHarness(v string) {
-	o.Harness.Set(&v)
+// SetCoder gets a reference to the given NullableString and assigns it to the Coder field.
+func (o *ProjectBoardCyclesInnerActiveRun) SetCoder(v string) {
+	o.Coder.Set(&v)
 }
-// SetHarnessNil sets the value for Harness to be an explicit nil
-func (o *ProjectBoardCyclesInnerActiveRun) SetHarnessNil() {
-	o.Harness.Set(nil)
+// SetCoderNil sets the value for Coder to be an explicit nil
+func (o *ProjectBoardCyclesInnerActiveRun) SetCoderNil() {
+	o.Coder.Set(nil)
 }
 
-// UnsetHarness ensures that no value is present for Harness, not even an explicit nil
-func (o *ProjectBoardCyclesInnerActiveRun) UnsetHarness() {
-	o.Harness.Unset()
+// UnsetCoder ensures that no value is present for Coder, not even an explicit nil
+func (o *ProjectBoardCyclesInnerActiveRun) UnsetCoder() {
+	o.Coder.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -148,30 +148,30 @@ func (o *ProjectBoardCyclesInnerActiveRun) SetIteration(v float32) {
 	o.Iteration = v
 }
 
-// GetPersona returns the Persona field value
+// GetRole returns the Role field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ProjectBoardCyclesInnerActiveRun) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
+func (o *ProjectBoardCyclesInnerActiveRun) GetRole() string {
+	if o == nil || o.Role.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Persona.Get()
+	return *o.Role.Get()
 }
 
-// GetPersonaOk returns a tuple with the Persona field value
+// GetRoleOk returns a tuple with the Role field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectBoardCyclesInnerActiveRun) GetPersonaOk() (*string, bool) {
+func (o *ProjectBoardCyclesInnerActiveRun) GetRoleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Persona.Get(), o.Persona.IsSet()
+	return o.Role.Get(), o.Role.IsSet()
 }
 
-// SetPersona sets field value
-func (o *ProjectBoardCyclesInnerActiveRun) SetPersona(v string) {
-	o.Persona.Set(&v)
+// SetRole sets field value
+func (o *ProjectBoardCyclesInnerActiveRun) SetRole(v string) {
+	o.Role.Set(&v)
 }
 
 // GetStartedAt returns the StartedAt field value
@@ -208,14 +208,14 @@ func (o ProjectBoardCyclesInnerActiveRun) MarshalJSON() ([]byte, error) {
 
 func (o ProjectBoardCyclesInnerActiveRun) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Harness.IsSet() {
-		toSerialize["harness"] = o.Harness.Get()
+	if o.Coder.IsSet() {
+		toSerialize["coder"] = o.Coder.Get()
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
 	toSerialize["iteration"] = o.Iteration
-	toSerialize["persona"] = o.Persona.Get()
+	toSerialize["role"] = o.Role.Get()
 	toSerialize["startedAt"] = o.StartedAt
 
 	for key, value := range o.AdditionalProperties {
@@ -231,7 +231,7 @@ func (o *ProjectBoardCyclesInnerActiveRun) UnmarshalJSON(data []byte) (err error
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"iteration",
-		"persona",
+		"role",
 		"startedAt",
 	}
 
@@ -262,10 +262,10 @@ func (o *ProjectBoardCyclesInnerActiveRun) UnmarshalJSON(data []byte) (err error
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "harness")
+		delete(additionalProperties, "coder")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "iteration")
-		delete(additionalProperties, "persona")
+		delete(additionalProperties, "role")
 		delete(additionalProperties, "startedAt")
 		o.AdditionalProperties = additionalProperties
 	}

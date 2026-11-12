@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveTurnId** | Pointer to **NullableString** |  | [optional] 
-**Messages** | [**[]ClientRequestDetailMessagesInner**](ClientRequestDetailMessagesInner.md) |  | 
-**NextCursor** | **NullableString** |  | 
+**ActiveTurnId** | Pointer to **NullableString** |  | [optional]
+**Messages** | [**[]ClientRequestDetailMessagesInner**](ClientRequestDetailMessagesInner.md) |  |
+**NextCursor** | **NullableString** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewWireMessagePage(messages []ClientRequestDetailMessagesInner, nextCursor NullableString, ) *WireMessagePage`
 
 NewWireMessagePage instantiates a new WireMessagePage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWireMessagePageWithDefaults
 
 `func NewWireMessagePageWithDefaults() *WireMessagePage`
 
 NewWireMessagePageWithDefaults instantiates a new WireMessagePage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveTurnId
 

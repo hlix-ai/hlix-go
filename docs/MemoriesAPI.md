@@ -1,17 +1,17 @@
-# \MemoriesAPI
+# MemoriesAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateMemory**](MemoriesAPI.md#CreateMemory) | **Post** /v1/api/memories | Write a memory
-[**DeleteMemory**](MemoriesAPI.md#DeleteMemory) | **Delete** /v1/api/memories/{id} | Delete a memory
-[**ExtractCycleMemories**](MemoriesAPI.md#ExtractCycleMemories) | **Post** /v1/api/memories/extract/{cycleId} | Extract memories from a finished cycle
-[**GetMemory**](MemoriesAPI.md#GetMemory) | **Get** /v1/api/memories/{id} | Get one memory
-[**GetProjectKnowledge**](MemoriesAPI.md#GetProjectKnowledge) | **Get** /v1/api/memories/project/{projectId} | Read learned knowledge and recording availability for one project
-[**ListMemories**](MemoriesAPI.md#ListMemories) | **Get** /v1/api/memories | List the workspace&#39;s memories
-[**SearchMemories**](MemoriesAPI.md#SearchMemories) | **Get** /v1/api/memories/search/{scope}/{scopeId} | Search one scope by meaning
-[**UpdateMemory**](MemoriesAPI.md#UpdateMemory) | **Patch** /v1/api/memories/{id} | Update a memory
+[**CreateMemory**](MemoriesAPI.md#creatememory) | **Post** /v1/api/memories | Write a memory
+[**DeleteMemory**](MemoriesAPI.md#deletememory) | **Delete** /v1/api/memories/{id} | Delete a memory
+[**ExtractCycleMemories**](MemoriesAPI.md#extractcyclememories) | **Post** /v1/api/memories/extract/{cycleId} | Extract memories from a finished cycle
+[**GetMemory**](MemoriesAPI.md#getmemory) | **Get** /v1/api/memories/{id} | Get one memory
+[**GetProjectKnowledge**](MemoriesAPI.md#getprojectknowledge) | **Get** /v1/api/memories/project/{projectId} | Read learned knowledge and recording availability for one project
+[**ListMemories**](MemoriesAPI.md#listmemories) | **Get** /v1/api/memories | List the workspace&#39;s memories
+[**SearchMemories**](MemoriesAPI.md#searchmemories) | **Get** /v1/api/memories/search/{scope}/{scopeId} | Search one scope by meaning
+[**UpdateMemory**](MemoriesAPI.md#updatememory) | **Patch** /v1/api/memories/{id} | Update a memory
 
 
 
@@ -23,10 +23,13 @@ Write a memory
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -34,12 +37,18 @@ import (
 )
 
 func main() {
-	createMemory := *openapiclient.NewCreateMemory("Category_example", "Key_example", "Scope_example", "ScopeId_example", "Value_example") // CreateMemory | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createMemory openapiclient.CreateMemory
+	if err := json.Unmarshal([]byte("{\"category\":\"convention\",\"key\":\"text\",\"scope\":\"org\",\"scopeId\":\"text\",\"value\":\"text\"}"), &createMemory); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.CreateMemory(context.Background()).CreateMemory(createMemory).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.CreateMemory(ctx).CreateMemory(createMemory).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.CreateMemory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,13 +64,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateMemoryRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateMemoryRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createMemory** | [**CreateMemory**](CreateMemory.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createMemory** | [**CreateMemory**](CreateMemory.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -69,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -89,6 +98,8 @@ Delete a memory
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -100,14 +111,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	scope := "scope_example" // string | `org` | `project` | `cycle` | `task` | `agent`. (optional)
 	scopeId := "scopeId_example" // string | The scoped entity's id. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.DeleteMemory(context.Background(), id).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.DeleteMemory(ctx, id).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.DeleteMemory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,19 +137,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteMemoryRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteMemoryRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. | 
- **scopeId** | **string** | The scoped entity&#39;s id. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. |
+ **scopeId** | **string** | The scoped entity&#39;s id. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -143,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -163,6 +177,8 @@ Extract memories from a finished cycle
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -174,12 +190,15 @@ import (
 )
 
 func main() {
-	cycleId := "cycleId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	cycleId := "cycleId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.ExtractCycleMemories(context.Background(), cycleId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.ExtractCycleMemories(ctx, cycleId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.ExtractCycleMemories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -195,17 +214,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**cycleId** | **string** |  | 
+**cycleId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiExtractCycleMemoriesRequest struct via the builder pattern
+Pass optional parameters through the `apiExtractCycleMemoriesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -213,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -233,6 +252,8 @@ Get one memory
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -244,14 +265,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	scope := "scope_example" // string | `org` | `project` | `cycle` | `task` | `agent`. (optional)
 	scopeId := "scopeId_example" // string | The scoped entity's id. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.GetMemory(context.Background(), id).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.GetMemory(ctx, id).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.GetMemory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,19 +291,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetMemoryRequest struct via the builder pattern
+Pass optional parameters through the `apiGetMemoryRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. | 
- **scopeId** | **string** | The scoped entity&#39;s id. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. |
+ **scopeId** | **string** | The scoped entity&#39;s id. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -287,7 +311,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -307,6 +331,8 @@ Read learned knowledge and recording availability for one project
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -318,12 +344,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.GetProjectKnowledge(context.Background(), projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.GetProjectKnowledge(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.GetProjectKnowledge``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,17 +368,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectKnowledgeRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectKnowledgeRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -357,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -377,6 +406,8 @@ List the workspace's memories
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -388,17 +419,20 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	scope := "scope_example" // string | `org` | `project` | `cycle` | `task` | `agent`. (optional)
 	scopeId := "scopeId_example" // string | The scoped entity's id. (optional)
 	status := "status_example" // string | `tentative` | `approved` | `archived`. (optional)
-	q := "q_example" // string | Substring filter. This is a plain narrowing, NOT the semantic search — that is `/memories/search/{scope}/{scopeId}`, and only it returns `score`. (optional)
+	q := "q_example" // string | Filter memory text by substring. For semantic search with similarity scores, use `/memories/search/{scope}/{scopeId}`. (optional)
 	limit := "limit_example" // string | Page size, clamped to 1–500; 100 when omitted or not an integer. (optional)
 	offset := "offset_example" // string | Rows to skip. Ask for the next page with `offset` + `limit` until a page comes back shorter than `limit`. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.ListMemories(context.Background()).Scope(scope).ScopeId(scopeId).Status(status).Q(q).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.ListMemories(ctx).Scope(scope).ScopeId(scopeId).Status(status).Q(q).Limit(limit).Offset(offset).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.ListMemories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -414,18 +448,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListMemoriesRequest struct via the builder pattern
+Pass optional parameters through the `apiListMemoriesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. | 
- **scopeId** | **string** | The scoped entity&#39;s id. | 
- **status** | **string** | &#x60;tentative&#x60; | &#x60;approved&#x60; | &#x60;archived&#x60;. | 
- **q** | **string** | Substring filter. This is a plain narrowing, NOT the semantic search — that is &#x60;/memories/search/{scope}/{scopeId}&#x60;, and only it returns &#x60;score&#x60;. | 
- **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. | 
- **offset** | **string** | Rows to skip. Ask for the next page with &#x60;offset&#x60; + &#x60;limit&#x60; until a page comes back shorter than &#x60;limit&#x60;. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. |
+ **scopeId** | **string** | The scoped entity&#39;s id. |
+ **status** | **string** | &#x60;tentative&#x60; | &#x60;approved&#x60; | &#x60;archived&#x60;. |
+ **q** | **string** | Filter memory text by substring. For semantic search with similarity scores, use &#x60;/memories/search/{scope}/{scopeId}&#x60;. |
+ **limit** | **string** | Page size, clamped to 1–500; 100 when omitted or not an integer. |
+ **offset** | **string** | Rows to skip. Ask for the next page with &#x60;offset&#x60; + &#x60;limit&#x60; until a page comes back shorter than &#x60;limit&#x60;. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -433,7 +467,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -453,6 +487,8 @@ Search one scope by meaning
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -464,16 +500,19 @@ import (
 )
 
 func main() {
-	scope := "scope_example" // string | 
-	scopeId := "scopeId_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	scope := "scope_example" // string |
+	scopeId := "scopeId_example" // string |
 	q := "q_example" // string | The text to rank against. Omitted, the scope's memories come back unranked. (optional)
 	status := "status_example" // string | `tentative` | `approved` | `archived`. (optional)
 	limit := "limit_example" // string | Page size, clamped to 1–500. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.SearchMemories(context.Background(), scope, scopeId).Q(q).Status(status).Limit(limit).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.SearchMemories(ctx, scope, scopeId).Q(q).Status(status).Limit(limit).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.SearchMemories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -489,22 +528,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**scope** | **string** |  | 
-**scopeId** | **string** |  | 
+**scope** | **string** |  |
+**scopeId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSearchMemoriesRequest struct via the builder pattern
+Pass optional parameters through the `apiSearchMemoriesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **q** | **string** | The text to rank against. Omitted, the scope&#39;s memories come back unranked. | 
- **status** | **string** | &#x60;tentative&#x60; | &#x60;approved&#x60; | &#x60;archived&#x60;. | 
- **limit** | **string** | Page size, clamped to 1–500. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **q** | **string** | The text to rank against. Omitted, the scope&#39;s memories come back unranked. |
+ **status** | **string** | &#x60;tentative&#x60; | &#x60;approved&#x60; | &#x60;archived&#x60;. |
+ **limit** | **string** | Page size, clamped to 1–500. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -512,7 +551,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -532,10 +571,13 @@ Update a memory
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -543,15 +585,21 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	updateMemory := *openapiclient.NewUpdateMemory() // UpdateMemory | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var updateMemory openapiclient.UpdateMemory
+	if err := json.Unmarshal([]byte("{}"), &updateMemory); err != nil {
+		panic(err)
+	}
 	scope := "scope_example" // string | `org` | `project` | `cycle` | `task` | `agent`. (optional)
 	scopeId := "scopeId_example" // string | The scoped entity's id. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MemoriesAPI.UpdateMemory(context.Background(), id).UpdateMemory(updateMemory).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.MemoriesAPI.UpdateMemory(ctx, id).UpdateMemory(updateMemory).Scope(scope).ScopeId(scopeId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MemoriesAPI.UpdateMemory``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -567,20 +615,20 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateMemoryRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateMemoryRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateMemory** | [**UpdateMemory**](UpdateMemory.md) |  | 
- **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. | 
- **scopeId** | **string** | The scoped entity&#39;s id. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updateMemory** | [**UpdateMemory**](UpdateMemory.md) |  |
+ **scope** | **string** | &#x60;org&#x60; | &#x60;project&#x60; | &#x60;cycle&#x60; | &#x60;task&#x60; | &#x60;agent&#x60;. |
+ **scopeId** | **string** | The scoped entity&#39;s id. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -588,7 +636,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

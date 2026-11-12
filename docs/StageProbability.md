@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Percent** | **NullableInt32** |  | 
+**Percent** | **NullableInt32** |  |
 
 ## Methods
 
@@ -13,17 +13,15 @@ Name | Type | Description | Notes
 `func NewStageProbability(percent NullableInt32, ) *StageProbability`
 
 NewStageProbability instantiates a new StageProbability object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewStageProbabilityWithDefaults
 
 `func NewStageProbabilityWithDefaults() *StageProbability`
 
 NewStageProbabilityWithDefaults instantiates a new StageProbability object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetPercent
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -29,7 +29,7 @@ type ClientRequestListRequestsInner struct {
 	CycleId NullableString `json:"cycleId"`
 	Id string `json:"id"`
 	ProjectId string `json:"projectId"`
-	ProposalId NullableString `json:"proposalId"`
+	RequestId NullableString `json:"requestId"`
 	RequesterUserId string `json:"requesterUserId"`
 	Status string `json:"status"`
 	Title string `json:"title"`
@@ -44,7 +44,7 @@ type _ClientRequestListRequestsInner ClientRequestListRequestsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewClientRequestListRequestsInner(approvedRevision NullableInt32, attachments []ClientRequestDetailAttachmentsInner, canApprove bool, canRespond bool, createdAt string, currentPlan NullableClientRequestDetailCurrentPlan, cycleId NullableString, id string, projectId string, proposalId NullableString, requesterUserId string, status string, title string, turnPending bool, updatedAt string) *ClientRequestListRequestsInner {
+func NewClientRequestListRequestsInner(approvedRevision NullableInt32, attachments []ClientRequestDetailAttachmentsInner, canApprove bool, canRespond bool, createdAt string, currentPlan NullableClientRequestDetailCurrentPlan, cycleId NullableString, id string, projectId string, requestId NullableString, requesterUserId string, status string, title string, turnPending bool, updatedAt string) *ClientRequestListRequestsInner {
 	this := ClientRequestListRequestsInner{}
 	this.ApprovedRevision = approvedRevision
 	this.Attachments = attachments
@@ -55,7 +55,7 @@ func NewClientRequestListRequestsInner(approvedRevision NullableInt32, attachmen
 	this.CycleId = cycleId
 	this.Id = id
 	this.ProjectId = projectId
-	this.ProposalId = proposalId
+	this.RequestId = requestId
 	this.RequesterUserId = requesterUserId
 	this.Status = status
 	this.Title = title
@@ -294,30 +294,30 @@ func (o *ClientRequestListRequestsInner) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
-// GetProposalId returns the ProposalId field value
+// GetRequestId returns the RequestId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ClientRequestListRequestsInner) GetProposalId() string {
-	if o == nil || o.ProposalId.Get() == nil {
+func (o *ClientRequestListRequestsInner) GetRequestId() string {
+	if o == nil || o.RequestId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.ProposalId.Get()
+	return *o.RequestId.Get()
 }
 
-// GetProposalIdOk returns a tuple with the ProposalId field value
+// GetRequestIdOk returns a tuple with the RequestId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ClientRequestListRequestsInner) GetProposalIdOk() (*string, bool) {
+func (o *ClientRequestListRequestsInner) GetRequestIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ProposalId.Get(), o.ProposalId.IsSet()
+	return o.RequestId.Get(), o.RequestId.IsSet()
 }
 
-// SetProposalId sets field value
-func (o *ClientRequestListRequestsInner) SetProposalId(v string) {
-	o.ProposalId.Set(&v)
+// SetRequestId sets field value
+func (o *ClientRequestListRequestsInner) SetRequestId(v string) {
+	o.RequestId.Set(&v)
 }
 
 // GetRequesterUserId returns the RequesterUserId field value
@@ -459,7 +459,7 @@ func (o ClientRequestListRequestsInner) ToMap() (map[string]interface{}, error) 
 	toSerialize["cycleId"] = o.CycleId.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["projectId"] = o.ProjectId
-	toSerialize["proposalId"] = o.ProposalId.Get()
+	toSerialize["requestId"] = o.RequestId.Get()
 	toSerialize["requesterUserId"] = o.RequesterUserId
 	toSerialize["status"] = o.Status
 	toSerialize["title"] = o.Title
@@ -487,7 +487,7 @@ func (o *ClientRequestListRequestsInner) UnmarshalJSON(data []byte) (err error) 
 		"cycleId",
 		"id",
 		"projectId",
-		"proposalId",
+		"requestId",
 		"requesterUserId",
 		"status",
 		"title",
@@ -531,7 +531,7 @@ func (o *ClientRequestListRequestsInner) UnmarshalJSON(data []byte) (err error) 
 		delete(additionalProperties, "cycleId")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "projectId")
-		delete(additionalProperties, "proposalId")
+		delete(additionalProperties, "requestId")
 		delete(additionalProperties, "requesterUserId")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "title")

@@ -1,12 +1,12 @@
-# \ImportsAPI
+# ImportsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ImportProjectAgent**](ImportsAPI.md#ImportProjectAgent) | **Post** /v1/api/projects/{id}/resources/agent | Create a project-scoped agent from local instructions
-[**ImportProjectMcp**](ImportsAPI.md#ImportProjectMcp) | **Post** /v1/api/projects/{id}/resources/mcp | Explicitly activate a validated MCP server for one project
-[**ImportProjectSkill**](ImportsAPI.md#ImportProjectSkill) | **Post** /v1/api/projects/{id}/resources/skill | Explicitly activate a quarantined skill for one project
+[**ImportProjectAgent**](ImportsAPI.md#importprojectagent) | **Post** /v1/api/projects/{id}/resources/agent | Create a project-scoped agent from local instructions
+[**ImportProjectMcp**](ImportsAPI.md#importprojectmcp) | **Post** /v1/api/projects/{id}/resources/mcp | Explicitly activate a validated MCP server for one project
+[**ImportProjectSkill**](ImportsAPI.md#importprojectskill) | **Post** /v1/api/projects/{id}/resources/skill | Activate a skill for one project
 
 
 
@@ -18,10 +18,13 @@ Create a project-scoped agent from local instructions
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -29,13 +32,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	importAgent := *openapiclient.NewImportAgent("Instructions_example", "Name_example") // ImportAgent | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var importAgent openapiclient.ImportAgent
+	if err := json.Unmarshal([]byte("{\"instructions\":\"text\",\"name\":\"text\"}"), &importAgent); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportsAPI.ImportProjectAgent(context.Background(), id).ImportAgent(importAgent).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ImportsAPI.ImportProjectAgent(ctx, id).ImportAgent(importAgent).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportsAPI.ImportProjectAgent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,18 +60,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiImportProjectAgentRequest struct via the builder pattern
+Pass optional parameters through the `apiImportProjectAgentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **importAgent** | [**ImportAgent**](ImportAgent.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **importAgent** | [**ImportAgent**](ImportAgent.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -70,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -90,10 +99,13 @@ Explicitly activate a validated MCP server for one project
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -101,13 +113,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	importMcp := *openapiclient.NewImportMcp("Name_example", "Transport_example") // ImportMcp | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var importMcp openapiclient.ImportMcp
+	if err := json.Unmarshal([]byte("{\"name\":\"text\",\"transport\":\"stdio\"}"), &importMcp); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportsAPI.ImportProjectMcp(context.Background(), id).ImportMcp(importMcp).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ImportsAPI.ImportProjectMcp(ctx, id).ImportMcp(importMcp).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportsAPI.ImportProjectMcp``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,18 +141,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiImportProjectMcpRequest struct via the builder pattern
+Pass optional parameters through the `apiImportProjectMcpRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **importMcp** | [**ImportMcp**](ImportMcp.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **importMcp** | [**ImportMcp**](ImportMcp.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -142,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -158,14 +176,17 @@ Name | Type | Description  | Notes
 
 > ImportedSkill ImportProjectSkill(ctx, id).ImportSkill(importSkill).XOrganizationId(xOrganizationId).Execute()
 
-Explicitly activate a quarantined skill for one project
+Activate a skill for one project
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -173,13 +194,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	importSkill := *openapiclient.NewImportSkill("Content_example", "Slug_example") // ImportSkill | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var importSkill openapiclient.ImportSkill
+	if err := json.Unmarshal([]byte("{\"content\":\"text\",\"slug\":\"text\"}"), &importSkill); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ImportsAPI.ImportProjectSkill(context.Background(), id).ImportSkill(importSkill).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ImportsAPI.ImportProjectSkill(ctx, id).ImportSkill(importSkill).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ImportsAPI.ImportProjectSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -195,18 +222,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiImportProjectSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiImportProjectSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **importSkill** | [**ImportSkill**](ImportSkill.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **importSkill** | [**ImportSkill**](ImportSkill.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -214,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

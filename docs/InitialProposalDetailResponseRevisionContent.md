@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Blocks** | [**[]InitialProposalDetailResponseRevisionContentBlocksInner**](InitialProposalDetailResponseRevisionContentBlocksInner.md) |  | 
-**Brand** | [**InitialProposalDetailResponseRevisionContentBrand**](InitialProposalDetailResponseRevisionContentBrand.md) |  | 
-**CustomerName** | **NullableString** |  | 
-**Cycles** | [**[]InitialProposalDetailResponseRevisionContentCyclesInner**](InitialProposalDetailResponseRevisionContentCyclesInner.md) |  | 
-**InitialScopeCredits** | **NullableInt32** |  | 
-**QuoteComplete** | **bool** |  | 
-**Title** | **string** |  | 
+**Blocks** | [**[]InitialProposalDetailResponseRevisionContentBlocksInner**](InitialProposalDetailResponseRevisionContentBlocksInner.md) |  |
+**Brand** | [**InitialProposalDetailResponseRevisionContentBrand**](InitialProposalDetailResponseRevisionContentBrand.md) |  |
+**CustomerName** | **NullableString** |  |
+**Cycles** | [**[]InitialProposalDetailResponseRevisionContentCyclesInner**](InitialProposalDetailResponseRevisionContentCyclesInner.md) |  |
+**InitialScopeCredits** | **NullableInt32** |  |
+**QuoteComplete** | **bool** |  |
+**Title** | **string** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewInitialProposalDetailResponseRevisionContent(blocks []InitialProposalDetailResponseRevisionContentBlocksInner, brand InitialProposalDetailResponseRevisionContentBrand, customerName NullableString, cycles []InitialProposalDetailResponseRevisionContentCyclesInner, initialScopeCredits NullableInt32, quoteComplete bool, title string, ) *InitialProposalDetailResponseRevisionContent`
 
 NewInitialProposalDetailResponseRevisionContent instantiates a new InitialProposalDetailResponseRevisionContent object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewInitialProposalDetailResponseRevisionContentWithDefaults
 
 `func NewInitialProposalDetailResponseRevisionContentWithDefaults() *InitialProposalDetailResponseRevisionContent`
 
 NewInitialProposalDetailResponseRevisionContentWithDefaults instantiates a new InitialProposalDetailResponseRevisionContent object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBlocks
 

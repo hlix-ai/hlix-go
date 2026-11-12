@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Critical** | Pointer to **bool** |  | [optional] 
-**Engine** | Pointer to **string** | How to read the PDF. Omit unless you know: &#x60;text&#x60; (the default) converts a PDF whose words are already text. Use &#x60;ocr&#x60; when the pages are images of a document, and &#x60;native&#x60; when the meaning is in the layout or the figures rather than the words. | [optional] 
-**ProjectId** | Pointer to **string** |  | [optional] 
-**Scanned** | Pointer to **bool** |  | [optional] 
-**Source** | [**ParseDocumentSource**](ParseDocumentSource.md) |  | 
-**Visual** | Pointer to **bool** |  | [optional] 
+**Critical** | Pointer to **bool** |  | [optional]
+**Engine** | Pointer to **string** | PDF reading mode: &#x60;text&#x60; (default) extracts existing text, &#x60;ocr&#x60; reads scanned pages, and &#x60;native&#x60; interprets page layout and figures. | [optional]
+**ProjectId** | Pointer to **string** |  | [optional]
+**Scanned** | Pointer to **bool** |  | [optional]
+**Source** | [**ParseDocumentSource**](ParseDocumentSource.md) |  |
+**Visual** | Pointer to **bool** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewParseDocument(source ParseDocumentSource, ) *ParseDocument`
 
 NewParseDocument instantiates a new ParseDocument object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewParseDocumentWithDefaults
 
 `func NewParseDocumentWithDefaults() *ParseDocument`
 
 NewParseDocumentWithDefaults instantiates a new ParseDocument object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCritical
 

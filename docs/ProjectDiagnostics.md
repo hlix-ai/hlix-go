@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostCapMicros** | **NullableInt64** |  | 
-**CostToDateMicros** | **NullableInt64** |  | 
-**InFlightCycleIds** | **[]string** |  | 
-**Iteration** | **float32** |  | 
-**MaxRevisions** | **float32** |  | 
-**NextDecision** | **string** |  | 
-**Roadmap** | [**[]ProjectDiagnosticsRoadmapInner**](ProjectDiagnosticsRoadmapInner.md) |  | 
-**Status** | **string** |  | 
+**CostCapMicros** | **NullableInt64** |  |
+**CostToDateMicros** | **NullableInt64** |  |
+**InFlightCycleIds** | **[]string** |  |
+**Iteration** | **float32** |  |
+**MaxRevisions** | **float32** |  |
+**NextDecision** | **string** |  |
+**Roadmap** | [**[]ProjectDiagnosticsRoadmapInner**](ProjectDiagnosticsRoadmapInner.md) |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewProjectDiagnostics(costCapMicros NullableInt64, costToDateMicros NullableInt64, inFlightCycleIds []string, iteration float32, maxRevisions float32, nextDecision string, roadmap []ProjectDiagnosticsRoadmapInner, status string, ) *ProjectDiagnostics`
 
 NewProjectDiagnostics instantiates a new ProjectDiagnostics object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectDiagnosticsWithDefaults
 
 `func NewProjectDiagnosticsWithDefaults() *ProjectDiagnostics`
 
 NewProjectDiagnosticsWithDefaults instantiates a new ProjectDiagnostics object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCostCapMicros
 

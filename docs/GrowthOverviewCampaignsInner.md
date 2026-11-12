@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BudgetPinned** | **bool** |  | 
-**DailyBudgetMicros** | **int64** |  | 
-**EmailsPerDay** | **int32** |  | 
-**HotLeads** | **int32** |  | 
-**Name** | **string** |  | 
-**PlayId** | **string** |  | 
-**Replies** | **int32** |  | 
-**Sent** | **int32** |  | 
-**SpentMicros** | **int64** |  | 
-**Status** | **string** |  | 
+**BudgetPinned** | **bool** |  |
+**DailyBudgetMicros** | **int64** |  |
+**EmailsPerDay** | **int32** |  |
+**HotLeads** | **int32** |  |
+**Name** | **string** |  |
+**PlayId** | **string** |  |
+**Replies** | **int32** |  |
+**Sent** | **int32** |  |
+**SpentMicros** | **int64** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewGrowthOverviewCampaignsInner(budgetPinned bool, dailyBudgetMicros int64, emailsPerDay int32, hotLeads int32, name string, playId string, replies int32, sent int32, spentMicros int64, status string, ) *GrowthOverviewCampaignsInner`
 
 NewGrowthOverviewCampaignsInner instantiates a new GrowthOverviewCampaignsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthOverviewCampaignsInnerWithDefaults
 
 `func NewGrowthOverviewCampaignsInnerWithDefaults() *GrowthOverviewCampaignsInner`
 
 NewGrowthOverviewCampaignsInnerWithDefaults instantiates a new GrowthOverviewCampaignsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBudgetPinned
 

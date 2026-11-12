@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**P50** | **NullableFloat32** |  | 
-**P90** | **NullableFloat32** |  | 
-**SampleSize** | **int32** |  | 
+**P50** | **NullableFloat32** |  |
+**P90** | **NullableFloat32** |  |
+**SampleSize** | **int32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewCycleMetricsCycleTimeMs(p50 NullableFloat32, p90 NullableFloat32, sampleSize int32, ) *CycleMetricsCycleTimeMs`
 
 NewCycleMetricsCycleTimeMs instantiates a new CycleMetricsCycleTimeMs object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleMetricsCycleTimeMsWithDefaults
 
 `func NewCycleMetricsCycleTimeMsWithDefaults() *CycleMetricsCycleTimeMs`
 
 NewCycleMetricsCycleTimeMsWithDefaults instantiates a new CycleMetricsCycleTimeMs object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetP50
 

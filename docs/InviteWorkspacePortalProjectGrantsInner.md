@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanAccessCanvas** | Pointer to **bool** |  | [optional] 
-**CanSteer** | Pointer to **bool** |  | [optional] [default to false]
-**ProjectId** | **string** |  | 
+**CanAccessCanvas** | Pointer to **bool** |  | [optional]
+**CanMessage** | Pointer to **bool** |  | [optional] [default to false]
+**ProjectId** | **string** |  |
 **ShowProjectInsights** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewInviteWorkspacePortalProjectGrantsInner(projectId string, ) *InviteWorkspacePortalProjectGrantsInner`
 
 NewInviteWorkspacePortalProjectGrantsInner instantiates a new InviteWorkspacePortalProjectGrantsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewInviteWorkspacePortalProjectGrantsInnerWithDefaults
 
 `func NewInviteWorkspacePortalProjectGrantsInnerWithDefaults() *InviteWorkspacePortalProjectGrantsInner`
 
 NewInviteWorkspacePortalProjectGrantsInnerWithDefaults instantiates a new InviteWorkspacePortalProjectGrantsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCanAccessCanvas
 
@@ -53,30 +51,30 @@ SetCanAccessCanvas sets CanAccessCanvas field to given value.
 
 HasCanAccessCanvas returns a boolean if a field has been set.
 
-### GetCanSteer
+### GetCanMessage
 
-`func (o *InviteWorkspacePortalProjectGrantsInner) GetCanSteer() bool`
+`func (o *InviteWorkspacePortalProjectGrantsInner) GetCanMessage() bool`
 
-GetCanSteer returns the CanSteer field if non-nil, zero value otherwise.
+GetCanMessage returns the CanMessage field if non-nil, zero value otherwise.
 
-### GetCanSteerOk
+### GetCanMessageOk
 
-`func (o *InviteWorkspacePortalProjectGrantsInner) GetCanSteerOk() (*bool, bool)`
+`func (o *InviteWorkspacePortalProjectGrantsInner) GetCanMessageOk() (*bool, bool)`
 
-GetCanSteerOk returns a tuple with the CanSteer field if it's non-nil, zero value otherwise
+GetCanMessageOk returns a tuple with the CanMessage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCanSteer
+### SetCanMessage
 
-`func (o *InviteWorkspacePortalProjectGrantsInner) SetCanSteer(v bool)`
+`func (o *InviteWorkspacePortalProjectGrantsInner) SetCanMessage(v bool)`
 
-SetCanSteer sets CanSteer field to given value.
+SetCanMessage sets CanMessage field to given value.
 
-### HasCanSteer
+### HasCanMessage
 
-`func (o *InviteWorkspacePortalProjectGrantsInner) HasCanSteer() bool`
+`func (o *InviteWorkspacePortalProjectGrantsInner) HasCanMessage() bool`
 
-HasCanSteer returns a boolean if a field has been set.
+HasCanMessage returns a boolean if a field has been set.
 
 ### GetProjectId
 

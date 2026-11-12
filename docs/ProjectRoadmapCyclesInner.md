@@ -4,43 +4,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agents** | Pointer to [**[]ProjectRoadmapCyclesInnerAgentsInner**](ProjectRoadmapCyclesInnerAgentsInner.md) |  | [optional] 
-**CostMicros** | **NullableInt64** |  | 
-**CycleId** | **NullableString** |  | 
-**DisplayId** | Pointer to **string** |  | [optional] 
-**ElapsedMs** | Pointer to **NullableFloat32** |  | [optional] 
-**Lane** | **NullableString** |  | 
-**LinearIssueIdentifier** | **NullableString** |  | 
-**LinearIssueUrl** | **NullableString** |  | 
-**Order** | **int32** |  | 
-**Owner** | Pointer to [**NullableProjectRoadmapCyclesInnerOwner**](ProjectRoadmapCyclesInnerOwner.md) |  | [optional] 
-**Quick** | **bool** |  | 
-**RequestedByUserId** | **NullableString** |  | 
-**Setup** | **bool** |  | 
-**Source** | **NullableString** |  | 
-**Status** | **string** |  | 
-**TaskDone** | **int32** |  | 
-**TaskTotal** | **int32** |  | 
-**Title** | **string** |  | 
+**Agents** | Pointer to [**[]ProjectRoadmapCyclesInnerAgentsInner**](ProjectRoadmapCyclesInnerAgentsInner.md) |  | [optional]
+**CostMicros** | **NullableInt64** |  |
+**CycleId** | **NullableString** |  |
+**DisplayId** | Pointer to **string** |  | [optional]
+**ElapsedMs** | Pointer to **NullableFloat32** |  | [optional]
+**Handling** | **NullableString** |  |
+**LinearIssueIdentifier** | **NullableString** |  |
+**LinearIssueUrl** | **NullableString** |  |
+**Order** | **int32** |  |
+**Owner** | Pointer to [**NullableDesktopControlledBy**](DesktopControlledBy.md) |  | [optional]
+**Quick** | **bool** |  |
+**RequestedByUserId** | **NullableString** |  |
+**Setup** | **bool** |  |
+**Source** | **NullableString** |  |
+**Status** | **string** |  |
+**TaskDone** | **int32** |  |
+**TaskTotal** | **int32** |  |
+**Title** | **string** |  |
 
 ## Methods
 
 ### NewProjectRoadmapCyclesInner
 
-`func NewProjectRoadmapCyclesInner(costMicros NullableInt64, cycleId NullableString, lane NullableString, linearIssueIdentifier NullableString, linearIssueUrl NullableString, order int32, quick bool, requestedByUserId NullableString, setup bool, source NullableString, status string, taskDone int32, taskTotal int32, title string, ) *ProjectRoadmapCyclesInner`
+`func NewProjectRoadmapCyclesInner(costMicros NullableInt64, cycleId NullableString, handling NullableString, linearIssueIdentifier NullableString, linearIssueUrl NullableString, order int32, quick bool, requestedByUserId NullableString, setup bool, source NullableString, status string, taskDone int32, taskTotal int32, title string, ) *ProjectRoadmapCyclesInner`
 
 NewProjectRoadmapCyclesInner instantiates a new ProjectRoadmapCyclesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectRoadmapCyclesInnerWithDefaults
 
 `func NewProjectRoadmapCyclesInnerWithDefaults() *ProjectRoadmapCyclesInner`
 
 NewProjectRoadmapCyclesInnerWithDefaults instantiates a new ProjectRoadmapCyclesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgents
 
@@ -187,36 +185,36 @@ HasElapsedMs returns a boolean if a field has been set.
 `func (o *ProjectRoadmapCyclesInner) UnsetElapsedMs()`
 
 UnsetElapsedMs ensures that no value is present for ElapsedMs, not even an explicit nil
-### GetLane
+### GetHandling
 
-`func (o *ProjectRoadmapCyclesInner) GetLane() string`
+`func (o *ProjectRoadmapCyclesInner) GetHandling() string`
 
-GetLane returns the Lane field if non-nil, zero value otherwise.
+GetHandling returns the Handling field if non-nil, zero value otherwise.
 
-### GetLaneOk
+### GetHandlingOk
 
-`func (o *ProjectRoadmapCyclesInner) GetLaneOk() (*string, bool)`
+`func (o *ProjectRoadmapCyclesInner) GetHandlingOk() (*string, bool)`
 
-GetLaneOk returns a tuple with the Lane field if it's non-nil, zero value otherwise
+GetHandlingOk returns a tuple with the Handling field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLane
+### SetHandling
 
-`func (o *ProjectRoadmapCyclesInner) SetLane(v string)`
+`func (o *ProjectRoadmapCyclesInner) SetHandling(v string)`
 
-SetLane sets Lane field to given value.
+SetHandling sets Handling field to given value.
 
 
-### SetLaneNil
+### SetHandlingNil
 
-`func (o *ProjectRoadmapCyclesInner) SetLaneNil(b bool)`
+`func (o *ProjectRoadmapCyclesInner) SetHandlingNil(b bool)`
 
- SetLaneNil sets the value for Lane to be an explicit nil
+ SetHandlingNil sets the value for Handling to be an explicit nil
 
-### UnsetLane
-`func (o *ProjectRoadmapCyclesInner) UnsetLane()`
+### UnsetHandling
+`func (o *ProjectRoadmapCyclesInner) UnsetHandling()`
 
-UnsetLane ensures that no value is present for Lane, not even an explicit nil
+UnsetHandling ensures that no value is present for Handling, not even an explicit nil
 ### GetLinearIssueIdentifier
 
 `func (o *ProjectRoadmapCyclesInner) GetLinearIssueIdentifier() string`
@@ -299,20 +297,20 @@ SetOrder sets Order field to given value.
 
 ### GetOwner
 
-`func (o *ProjectRoadmapCyclesInner) GetOwner() ProjectRoadmapCyclesInnerOwner`
+`func (o *ProjectRoadmapCyclesInner) GetOwner() DesktopControlledBy`
 
 GetOwner returns the Owner field if non-nil, zero value otherwise.
 
 ### GetOwnerOk
 
-`func (o *ProjectRoadmapCyclesInner) GetOwnerOk() (*ProjectRoadmapCyclesInnerOwner, bool)`
+`func (o *ProjectRoadmapCyclesInner) GetOwnerOk() (*DesktopControlledBy, bool)`
 
 GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwner
 
-`func (o *ProjectRoadmapCyclesInner) SetOwner(v ProjectRoadmapCyclesInnerOwner)`
+`func (o *ProjectRoadmapCyclesInner) SetOwner(v DesktopControlledBy)`
 
 SetOwner sets Owner field to given value.
 

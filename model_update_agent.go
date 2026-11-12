@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,14 +22,14 @@ type UpdateAgent struct {
 	AvatarImageKey NullableString `json:"avatarImageKey,omitempty"`
 	AvatarKey NullableString `json:"avatarKey,omitempty"`
 	AvatarUrl NullableString `json:"avatarUrl,omitempty"`
+	Coder NullableString `json:"coder,omitempty"`
 	Description NullableString `json:"description,omitempty"`
 	Duty *string `json:"duty,omitempty"`
 	Instructions NullableString `json:"instructions,omitempty"`
 	ModelOverride NullableString `json:"modelOverride,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Pipeline *string `json:"pipeline,omitempty"`
 	ProjectId NullableString `json:"projectId,omitempty"`
-	RuntimeKind NullableString `json:"runtimeKind,omitempty"`
+	ReviewSet *string `json:"reviewSet,omitempty"`
 	RuntimeVersion NullableString `json:"runtimeVersion,omitempty"`
 }
 
@@ -174,6 +174,48 @@ func (o *UpdateAgent) SetAvatarUrlNil() {
 // UnsetAvatarUrl ensures that no value is present for AvatarUrl, not even an explicit nil
 func (o *UpdateAgent) UnsetAvatarUrl() {
 	o.AvatarUrl.Unset()
+}
+
+// GetCoder returns the Coder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateAgent) GetCoder() string {
+	if o == nil || IsNil(o.Coder.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Coder.Get()
+}
+
+// GetCoderOk returns a tuple with the Coder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateAgent) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Coder.Get(), o.Coder.IsSet()
+}
+
+// HasCoder returns a boolean if a field has been set.
+func (o *UpdateAgent) HasCoder() bool {
+	if o != nil && o.Coder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoder gets a reference to the given NullableString and assigns it to the Coder field.
+func (o *UpdateAgent) SetCoder(v string) {
+	o.Coder.Set(&v)
+}
+// SetCoderNil sets the value for Coder to be an explicit nil
+func (o *UpdateAgent) SetCoderNil() {
+	o.Coder.Set(nil)
+}
+
+// UnsetCoder ensures that no value is present for Coder, not even an explicit nil
+func (o *UpdateAgent) UnsetCoder() {
+	o.Coder.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -366,38 +408,6 @@ func (o *UpdateAgent) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPipeline returns the Pipeline field value if set, zero value otherwise.
-func (o *UpdateAgent) GetPipeline() string {
-	if o == nil || IsNil(o.Pipeline) {
-		var ret string
-		return ret
-	}
-	return *o.Pipeline
-}
-
-// GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateAgent) GetPipelineOk() (*string, bool) {
-	if o == nil || IsNil(o.Pipeline) {
-		return nil, false
-	}
-	return o.Pipeline, true
-}
-
-// HasPipeline returns a boolean if a field has been set.
-func (o *UpdateAgent) HasPipeline() bool {
-	if o != nil && !IsNil(o.Pipeline) {
-		return true
-	}
-
-	return false
-}
-
-// SetPipeline gets a reference to the given string and assigns it to the Pipeline field.
-func (o *UpdateAgent) SetPipeline(v string) {
-	o.Pipeline = &v
-}
-
 // GetProjectId returns the ProjectId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateAgent) GetProjectId() string {
 	if o == nil || IsNil(o.ProjectId.Get()) {
@@ -440,46 +450,36 @@ func (o *UpdateAgent) UnsetProjectId() {
 	o.ProjectId.Unset()
 }
 
-// GetRuntimeKind returns the RuntimeKind field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateAgent) GetRuntimeKind() string {
-	if o == nil || IsNil(o.RuntimeKind.Get()) {
+// GetReviewSet returns the ReviewSet field value if set, zero value otherwise.
+func (o *UpdateAgent) GetReviewSet() string {
+	if o == nil || IsNil(o.ReviewSet) {
 		var ret string
 		return ret
 	}
-	return *o.RuntimeKind.Get()
+	return *o.ReviewSet
 }
 
-// GetRuntimeKindOk returns a tuple with the RuntimeKind field value if set, nil otherwise
+// GetReviewSetOk returns a tuple with the ReviewSet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateAgent) GetRuntimeKindOk() (*string, bool) {
-	if o == nil {
+func (o *UpdateAgent) GetReviewSetOk() (*string, bool) {
+	if o == nil || IsNil(o.ReviewSet) {
 		return nil, false
 	}
-	return o.RuntimeKind.Get(), o.RuntimeKind.IsSet()
+	return o.ReviewSet, true
 }
 
-// HasRuntimeKind returns a boolean if a field has been set.
-func (o *UpdateAgent) HasRuntimeKind() bool {
-	if o != nil && o.RuntimeKind.IsSet() {
+// HasReviewSet returns a boolean if a field has been set.
+func (o *UpdateAgent) HasReviewSet() bool {
+	if o != nil && !IsNil(o.ReviewSet) {
 		return true
 	}
 
 	return false
 }
 
-// SetRuntimeKind gets a reference to the given NullableString and assigns it to the RuntimeKind field.
-func (o *UpdateAgent) SetRuntimeKind(v string) {
-	o.RuntimeKind.Set(&v)
-}
-// SetRuntimeKindNil sets the value for RuntimeKind to be an explicit nil
-func (o *UpdateAgent) SetRuntimeKindNil() {
-	o.RuntimeKind.Set(nil)
-}
-
-// UnsetRuntimeKind ensures that no value is present for RuntimeKind, not even an explicit nil
-func (o *UpdateAgent) UnsetRuntimeKind() {
-	o.RuntimeKind.Unset()
+// SetReviewSet gets a reference to the given string and assigns it to the ReviewSet field.
+func (o *UpdateAgent) SetReviewSet(v string) {
+	o.ReviewSet = &v
 }
 
 // GetRuntimeVersion returns the RuntimeVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -543,6 +543,9 @@ func (o UpdateAgent) ToMap() (map[string]interface{}, error) {
 	if o.AvatarUrl.IsSet() {
 		toSerialize["avatarUrl"] = o.AvatarUrl.Get()
 	}
+	if o.Coder.IsSet() {
+		toSerialize["coder"] = o.Coder.Get()
+	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -558,14 +561,11 @@ func (o UpdateAgent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Pipeline) {
-		toSerialize["pipeline"] = o.Pipeline
-	}
 	if o.ProjectId.IsSet() {
 		toSerialize["projectId"] = o.ProjectId.Get()
 	}
-	if o.RuntimeKind.IsSet() {
-		toSerialize["runtimeKind"] = o.RuntimeKind.Get()
+	if !IsNil(o.ReviewSet) {
+		toSerialize["reviewSet"] = o.ReviewSet
 	}
 	if o.RuntimeVersion.IsSet() {
 		toSerialize["runtimeVersion"] = o.RuntimeVersion.Get()

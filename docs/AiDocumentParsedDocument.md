@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CorrelationId** | **string** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**Critical** | **bool** |  | 
-**Error** | **NullableString** |  | 
-**ExtractedAt** | **NullableString** |  | 
-**ExtractedChars** | **NullableInt32** |  | 
-**ExtractedKey** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Model** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**PageCount** | **NullableInt32** |  | 
-**ParserEngine** | **string** |  | 
-**ParserHash** | **NullableString** |  | 
-**ParserVersion** | **NullableString** |  | 
-**ProjectId** | **NullableString** |  | 
-**Quality** | **map[string]interface{}** |  | 
-**SourceHash** | **string** |  | 
-**SourceKey** | **NullableString** |  | 
-**SourceKind** | **string** |  | 
-**SourceRef** | **string** |  | 
-**Status** | **string** |  | 
-**Validation** | **map[string]interface{}** |  | 
+**CorrelationId** | **string** |  |
+**CostMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**Critical** | **bool** |  |
+**Error** | **NullableString** |  |
+**ExtractedAt** | **NullableString** |  |
+**ExtractedChars** | **NullableInt32** |  |
+**ExtractedKey** | **NullableString** |  |
+**Id** | **string** |  |
+**Model** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**PageCount** | **NullableInt32** |  |
+**ParserEngine** | **string** |  |
+**ParserHash** | **NullableString** |  |
+**ParserVersion** | **NullableString** |  |
+**ProjectId** | **NullableString** |  |
+**Quality** | **map[string]interface{}** |  |
+**SourceHash** | **string** |  |
+**SourceKey** | **NullableString** |  |
+**SourceKind** | **string** |  |
+**SourceRef** | **string** |  |
+**Status** | **string** |  |
+**Validation** | **map[string]interface{}** |  |
 
 ## Methods
 
@@ -35,17 +35,15 @@ Name | Type | Description | Notes
 `func NewAiDocumentParsedDocument(correlationId string, costMicros NullableInt64, createdAt string, critical bool, error_ NullableString, extractedAt NullableString, extractedChars NullableInt32, extractedKey NullableString, id string, model NullableString, organizationId string, pageCount NullableInt32, parserEngine string, parserHash NullableString, parserVersion NullableString, projectId NullableString, quality map[string]interface{}, sourceHash string, sourceKey NullableString, sourceKind string, sourceRef string, status string, validation map[string]interface{}, ) *AiDocumentParsedDocument`
 
 NewAiDocumentParsedDocument instantiates a new AiDocumentParsedDocument object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiDocumentParsedDocumentWithDefaults
 
 `func NewAiDocumentParsedDocumentWithDefaults() *AiDocumentParsedDocument`
 
 NewAiDocumentParsedDocumentWithDefaults instantiates a new AiDocumentParsedDocument object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCorrelationId
 

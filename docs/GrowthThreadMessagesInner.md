@@ -4,31 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovedAt** | **NullableString** |  | 
-**ApprovedByUserId** | **NullableString** |  | 
-**Body** | **string** |  | 
-**ChargeMicros** | **NullableInt64** |  | 
-**ClaimedAt** | **NullableString** |  | 
-**Classification** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**DeliveryUnknown** | **bool** |  | 
-**Direction** | **string** |  | 
-**DueAt** | **NullableString** |  | 
-**Error** | **NullableString** |  | 
-**Facts** | [**[]GrowthMessageFactsInner**](GrowthMessageFactsInner.md) |  | 
-**FromEmail** | **NullableString** |  | 
-**HeldReason** | **NullableString** |  | 
-**Id** | **string** |  | 
-**InternetMessageId** | **NullableString** |  | 
-**LeadId** | **NullableString** |  | 
-**MailboxId** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**ProviderMessageId** | **NullableString** |  | 
-**SentAt** | **NullableString** |  | 
-**Status** | **string** |  | 
-**Step** | **NullableInt32** |  | 
-**Subject** | **NullableString** |  | 
-**ThreadRef** | **NullableString** |  | 
+**ApprovedAt** | **NullableString** |  |
+**ApprovedByUserId** | **NullableString** |  |
+**Body** | **string** |  |
+**ChargeMicros** | **NullableInt64** |  |
+**ClaimedAt** | **NullableString** |  |
+**Classification** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**DeliveryUnknown** | **bool** |  |
+**Direction** | **string** |  |
+**DueAt** | **NullableString** |  |
+**Error** | **NullableString** |  |
+**Facts** | [**[]GrowthMessageFactsInner**](GrowthMessageFactsInner.md) |  |
+**FromEmail** | **NullableString** |  |
+**HeldReason** | **NullableString** |  |
+**Id** | **string** |  |
+**InternetMessageId** | **NullableString** |  |
+**LeadId** | **NullableString** |  |
+**MailboxId** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**ProviderMessageId** | **NullableString** |  |
+**SentAt** | **NullableString** |  |
+**Status** | **string** |  |
+**Step** | **NullableInt32** |  |
+**Subject** | **NullableString** |  |
+**ThreadRef** | **NullableString** |  |
 
 ## Methods
 
@@ -37,17 +37,15 @@ Name | Type | Description | Notes
 `func NewGrowthThreadMessagesInner(approvedAt NullableString, approvedByUserId NullableString, body string, chargeMicros NullableInt64, claimedAt NullableString, classification NullableString, createdAt string, deliveryUnknown bool, direction string, dueAt NullableString, error_ NullableString, facts []GrowthMessageFactsInner, fromEmail NullableString, heldReason NullableString, id string, internetMessageId NullableString, leadId NullableString, mailboxId NullableString, organizationId string, providerMessageId NullableString, sentAt NullableString, status string, step NullableInt32, subject NullableString, threadRef NullableString, ) *GrowthThreadMessagesInner`
 
 NewGrowthThreadMessagesInner instantiates a new GrowthThreadMessagesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthThreadMessagesInnerWithDefaults
 
 `func NewGrowthThreadMessagesInnerWithDefaults() *GrowthThreadMessagesInner`
 
 NewGrowthThreadMessagesInnerWithDefaults instantiates a new GrowthThreadMessagesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApprovedAt
 

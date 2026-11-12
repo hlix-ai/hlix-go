@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cycle** | [**SequenceCycle**](SequenceCycle.md) |  | 
-**Events** | [**[]SequenceEventsInner**](SequenceEventsInner.md) |  | 
-**Explainer** | [**SequenceExplainer**](SequenceExplainer.md) |  | 
-**Narration** | [**[]SequenceNarrationInner**](SequenceNarrationInner.md) |  | 
-**Progress** | [**[]SequenceProgressInner**](SequenceProgressInner.md) |  | 
-**Status** | [**SequenceStatus**](SequenceStatus.md) |  | 
-**Team** | [**SequenceTeam**](SequenceTeam.md) |  | 
-**TimeOnTask** | [**[]SequenceTimeOnTaskInner**](SequenceTimeOnTaskInner.md) |  | 
+**Cycle** | [**SequenceCycle**](SequenceCycle.md) |  |
+**Events** | [**[]SequenceEventsInner**](SequenceEventsInner.md) |  |
+**Explainer** | [**SequenceExplainer**](SequenceExplainer.md) |  |
+**Narration** | [**[]SequenceNarrationInner**](SequenceNarrationInner.md) |  |
+**Progress** | [**[]SequenceProgressInner**](SequenceProgressInner.md) |  |
+**Status** | [**SequenceStatus**](SequenceStatus.md) |  |
+**Team** | [**SequenceTeam**](SequenceTeam.md) |  |
+**TimeOnTask** | [**[]SequenceTimeOnTaskInner**](SequenceTimeOnTaskInner.md) |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewSequence(cycle SequenceCycle, events []SequenceEventsInner, explainer SequenceExplainer, narration []SequenceNarrationInner, progress []SequenceProgressInner, status SequenceStatus, team SequenceTeam, timeOnTask []SequenceTimeOnTaskInner, ) *Sequence`
 
 NewSequence instantiates a new Sequence object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSequenceWithDefaults
 
 `func NewSequenceWithDefaults() *Sequence`
 
 NewSequenceWithDefaults instantiates a new Sequence object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycle
 

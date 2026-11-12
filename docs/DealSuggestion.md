@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DraftBody** | **NullableString** |  | 
-**DraftSubject** | **NullableString** |  | 
-**Step** | **string** |  | 
+**DraftBody** | **NullableString** |  |
+**DraftSubject** | **NullableString** |  |
+**Step** | **string** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewDealSuggestion(draftBody NullableString, draftSubject NullableString, step string, ) *DealSuggestion`
 
 NewDealSuggestion instantiates a new DealSuggestion object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDealSuggestionWithDefaults
 
 `func NewDealSuggestionWithDefaults() *DealSuggestion`
 
 NewDealSuggestionWithDefaults instantiates a new DealSuggestion object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDraftBody
 

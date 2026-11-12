@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompletedCount** | **int32** |  | 
-**CorrelationId** | **string** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**Endpoint** | **string** |  | 
-**Error** | **NullableString** |  | 
-**FailedCount** | **int32** |  | 
-**FinalizedAt** | **NullableString** |  | 
-**Id** | **string** |  | 
-**IdempotencyKey** | **string** |  | 
-**Kind** | **string** |  | 
-**Model** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProviderBatchId** | **NullableString** |  | 
-**RequestCount** | **int32** |  | 
-**SensitiveDataApproved** | **bool** |  | 
-**Status** | **string** |  | 
-**SubmittedAt** | **NullableString** |  | 
-**Usage** | **map[string]interface{}** |  | 
+**CompletedCount** | **int32** |  |
+**CorrelationId** | **string** |  |
+**CostMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**Endpoint** | **string** |  |
+**Error** | **NullableString** |  |
+**FailedCount** | **int32** |  |
+**FinalizedAt** | **NullableString** |  |
+**Id** | **string** |  |
+**IdempotencyKey** | **string** |  |
+**Kind** | **string** |  |
+**Model** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProviderBatchId** | **NullableString** |  |
+**RequestCount** | **int32** |  |
+**SensitiveDataApproved** | **bool** |  |
+**Status** | **string** |  |
+**SubmittedAt** | **NullableString** |  |
+**Usage** | **map[string]interface{}** |  |
 
 ## Methods
 
@@ -31,17 +31,15 @@ Name | Type | Description | Notes
 `func NewAiBatchAcceptedJob(completedCount int32, correlationId string, costMicros NullableInt64, createdAt string, endpoint string, error_ NullableString, failedCount int32, finalizedAt NullableString, id string, idempotencyKey string, kind string, model string, organizationId string, providerBatchId NullableString, requestCount int32, sensitiveDataApproved bool, status string, submittedAt NullableString, usage map[string]interface{}, ) *AiBatchAcceptedJob`
 
 NewAiBatchAcceptedJob instantiates a new AiBatchAcceptedJob object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiBatchAcceptedJobWithDefaults
 
 `func NewAiBatchAcceptedJobWithDefaults() *AiBatchAcceptedJob`
 
 NewAiBatchAcceptedJobWithDefaults instantiates a new AiBatchAcceptedJob object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompletedCount
 

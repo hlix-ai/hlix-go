@@ -4,38 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssigneeName** | **NullableString** |  | 
-**CycleId** | **NullableString** |  | 
-**Description** | **string** |  | 
-**Error** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Identifier** | **string** |  | 
-**PriorityLabel** | **string** |  | 
-**ProposalId** | **NullableString** |  | 
-**StateName** | **string** |  | 
-**Status** | **string** |  | 
-**Title** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Url** | **string** |  | 
+**AssigneeName** | **NullableString** |  |
+**CycleId** | **NullableString** |  |
+**Description** | **string** |  |
+**Error** | **NullableString** |  |
+**Id** | **string** |  |
+**Identifier** | **string** |  |
+**PriorityLabel** | **string** |  |
+**RequestId** | **NullableString** |  |
+**StateName** | **string** |  |
+**Status** | **string** |  |
+**Title** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Url** | **string** |  |
 
 ## Methods
 
 ### NewLinearIssueResponseIssue
 
-`func NewLinearIssueResponseIssue(assigneeName NullableString, cycleId NullableString, description string, error_ NullableString, id string, identifier string, priorityLabel string, proposalId NullableString, stateName string, status string, title string, updatedAt string, url string, ) *LinearIssueResponseIssue`
+`func NewLinearIssueResponseIssue(assigneeName NullableString, cycleId NullableString, description string, error_ NullableString, id string, identifier string, priorityLabel string, requestId NullableString, stateName string, status string, title string, updatedAt string, url string, ) *LinearIssueResponseIssue`
 
 NewLinearIssueResponseIssue instantiates a new LinearIssueResponseIssue object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewLinearIssueResponseIssueWithDefaults
 
 `func NewLinearIssueResponseIssueWithDefaults() *LinearIssueResponseIssue`
 
 NewLinearIssueResponseIssueWithDefaults instantiates a new LinearIssueResponseIssue object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAssigneeName
 
@@ -207,36 +205,36 @@ and a boolean to check if the value has been set.
 SetPriorityLabel sets PriorityLabel field to given value.
 
 
-### GetProposalId
+### GetRequestId
 
-`func (o *LinearIssueResponseIssue) GetProposalId() string`
+`func (o *LinearIssueResponseIssue) GetRequestId() string`
 
-GetProposalId returns the ProposalId field if non-nil, zero value otherwise.
+GetRequestId returns the RequestId field if non-nil, zero value otherwise.
 
-### GetProposalIdOk
+### GetRequestIdOk
 
-`func (o *LinearIssueResponseIssue) GetProposalIdOk() (*string, bool)`
+`func (o *LinearIssueResponseIssue) GetRequestIdOk() (*string, bool)`
 
-GetProposalIdOk returns a tuple with the ProposalId field if it's non-nil, zero value otherwise
+GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProposalId
+### SetRequestId
 
-`func (o *LinearIssueResponseIssue) SetProposalId(v string)`
+`func (o *LinearIssueResponseIssue) SetRequestId(v string)`
 
-SetProposalId sets ProposalId field to given value.
+SetRequestId sets RequestId field to given value.
 
 
-### SetProposalIdNil
+### SetRequestIdNil
 
-`func (o *LinearIssueResponseIssue) SetProposalIdNil(b bool)`
+`func (o *LinearIssueResponseIssue) SetRequestIdNil(b bool)`
 
- SetProposalIdNil sets the value for ProposalId to be an explicit nil
+ SetRequestIdNil sets the value for RequestId to be an explicit nil
 
-### UnsetProposalId
-`func (o *LinearIssueResponseIssue) UnsetProposalId()`
+### UnsetRequestId
+`func (o *LinearIssueResponseIssue) UnsetRequestId()`
 
-UnsetProposalId ensures that no value is present for ProposalId, not even an explicit nil
+UnsetRequestId ensures that no value is present for RequestId, not even an explicit nil
 ### GetStateName
 
 `func (o *LinearIssueResponseIssue) GetStateName() string`

@@ -4,36 +4,64 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | **string** |  | 
-**Effort** | **NullableString** |  | 
-**Funding** | [**NullableCoreSettingsRowFunding**](CoreSettingsRowFunding.md) |  | 
-**Harness** | **NullableString** |  | 
-**Id** | **string** |  | 
-**MaxParallelCycles** | **NullableInt32** |  | 
-**Model** | **NullableString** |  | 
-**ProjectId** | **NullableString** |  | 
-**Slot** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**Coder** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Effort** | **NullableString** |  |
+**Funding** | [**NullableCoreSettingsRowFunding**](CoreSettingsRowFunding.md) |  |
+**Id** | **string** |  |
+**MaxParallelCycles** | **NullableInt32** |  |
+**Model** | **NullableString** |  |
+**ProjectId** | **NullableString** |  |
+**Slot** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
 ### NewCoreSettingsRow
 
-`func NewCoreSettingsRow(createdAt string, effort NullableString, funding NullableCoreSettingsRowFunding, harness NullableString, id string, maxParallelCycles NullableInt32, model NullableString, projectId NullableString, slot string, updatedAt string, ) *CoreSettingsRow`
+`func NewCoreSettingsRow(coder NullableString, createdAt string, effort NullableString, funding NullableCoreSettingsRowFunding, id string, maxParallelCycles NullableInt32, model NullableString, projectId NullableString, slot string, updatedAt string, ) *CoreSettingsRow`
 
 NewCoreSettingsRow instantiates a new CoreSettingsRow object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCoreSettingsRowWithDefaults
 
 `func NewCoreSettingsRowWithDefaults() *CoreSettingsRow`
 
 NewCoreSettingsRowWithDefaults instantiates a new CoreSettingsRow object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
+### GetCoder
+
+`func (o *CoreSettingsRow) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *CoreSettingsRow) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *CoreSettingsRow) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+
+### SetCoderNil
+
+`func (o *CoreSettingsRow) SetCoderNil(b bool)`
+
+ SetCoderNil sets the value for Coder to be an explicit nil
+
+### UnsetCoder
+`func (o *CoreSettingsRow) UnsetCoder()`
+
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *CoreSettingsRow) GetCreatedAt() string`
@@ -114,36 +142,6 @@ SetFunding sets Funding field to given value.
 `func (o *CoreSettingsRow) UnsetFunding()`
 
 UnsetFunding ensures that no value is present for Funding, not even an explicit nil
-### GetHarness
-
-`func (o *CoreSettingsRow) GetHarness() string`
-
-GetHarness returns the Harness field if non-nil, zero value otherwise.
-
-### GetHarnessOk
-
-`func (o *CoreSettingsRow) GetHarnessOk() (*string, bool)`
-
-GetHarnessOk returns a tuple with the Harness field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHarness
-
-`func (o *CoreSettingsRow) SetHarness(v string)`
-
-SetHarness sets Harness field to given value.
-
-
-### SetHarnessNil
-
-`func (o *CoreSettingsRow) SetHarnessNil(b bool)`
-
- SetHarnessNil sets the value for Harness to be an explicit nil
-
-### UnsetHarness
-`func (o *CoreSettingsRow) UnsetHarness()`
-
-UnsetHarness ensures that no value is present for Harness, not even an explicit nil
 ### GetId
 
 `func (o *CoreSettingsRow) GetId() string`

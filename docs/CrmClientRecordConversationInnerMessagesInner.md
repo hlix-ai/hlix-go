@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Body** | **string** |  | 
-**Classification** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**Direction** | **string** |  | 
-**FromEmail** | **NullableString** |  | 
-**Id** | **string** |  | 
-**SentAt** | **NullableString** |  | 
-**Status** | **string** |  | 
-**Subject** | **NullableString** |  | 
+**Body** | **string** |  |
+**Classification** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Direction** | **string** |  |
+**FromEmail** | **NullableString** |  |
+**Id** | **string** |  |
+**SentAt** | **NullableString** |  |
+**Status** | **string** |  |
+**Subject** | **NullableString** |  |
 
 ## Methods
 
@@ -21,17 +21,15 @@ Name | Type | Description | Notes
 `func NewCrmClientRecordConversationInnerMessagesInner(body string, classification NullableString, createdAt string, direction string, fromEmail NullableString, id string, sentAt NullableString, status string, subject NullableString, ) *CrmClientRecordConversationInnerMessagesInner`
 
 NewCrmClientRecordConversationInnerMessagesInner instantiates a new CrmClientRecordConversationInnerMessagesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmClientRecordConversationInnerMessagesInnerWithDefaults
 
 `func NewCrmClientRecordConversationInnerMessagesInnerWithDefaults() *CrmClientRecordConversationInnerMessagesInner`
 
 NewCrmClientRecordConversationInnerMessagesInnerWithDefaults instantiates a new CrmClientRecordConversationInnerMessagesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBody
 

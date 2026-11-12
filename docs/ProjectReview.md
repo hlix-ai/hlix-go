@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanMerge** | **bool** |  | 
-**Journeys** | [**[]ProjectReviewJourneysInner**](ProjectReviewJourneysInner.md) |  | 
-**PassedJourneys** | **int32** |  | 
-**PullRequests** | [**[]ProjectReviewPullRequestsInner**](ProjectReviewPullRequestsInner.md) |  | 
-**TotalJourneys** | **int32** |  | 
-**VerifiedCycles** | **int32** |  | 
+**CanMerge** | **bool** |  |
+**Journeys** | [**[]ProjectReviewJourneysInner**](ProjectReviewJourneysInner.md) |  |
+**PassedJourneys** | **int32** |  |
+**PullRequests** | [**[]ProjectReviewPullRequestsInner**](ProjectReviewPullRequestsInner.md) |  |
+**TotalJourneys** | **int32** |  |
+**VerifiedCycles** | **int32** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewProjectReview(canMerge bool, journeys []ProjectReviewJourneysInner, passedJourneys int32, pullRequests []ProjectReviewPullRequestsInner, totalJourneys int32, verifiedCycles int32, ) *ProjectReview`
 
 NewProjectReview instantiates a new ProjectReview object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectReviewWithDefaults
 
 `func NewProjectReviewWithDefaults() *ProjectReview`
 
 NewProjectReviewWithDefaults instantiates a new ProjectReview object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCanMerge
 

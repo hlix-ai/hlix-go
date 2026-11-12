@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BoxType** | Pointer to **NullableString** |  | [optional] 
-**Color** | Pointer to **NullableString** |  | [optional] 
-**Context** | Pointer to **NullableBool** |  | [optional] 
-**From** | Pointer to [**NullableCanvasAgentOpsOpsInnerOneOfElementTo**](CanvasAgentOpsOpsInnerOneOfElementTo.md) |  | [optional] 
-**H** | Pointer to **NullableFloat32** |  | [optional] 
-**Heads** | Pointer to **NullableString** |  | [optional] 
-**Origin** | Pointer to **NullableString** |  | [optional] 
-**ParentId** | Pointer to **NullableString** |  | [optional] 
-**Route** | Pointer to **NullableString** |  | [optional] 
-**Shape** | Pointer to **NullableString** |  | [optional] 
-**Template** | Pointer to **NullableString** |  | [optional] 
-**Text** | Pointer to **NullableString** |  | [optional] 
-**To** | Pointer to [**NullableCanvasAgentOpsOpsInnerOneOfElementTo**](CanvasAgentOpsOpsInnerOneOfElementTo.md) |  | [optional] 
-**W** | Pointer to **NullableFloat32** |  | [optional] 
-**Widget** | Pointer to **NullableString** |  | [optional] 
-**X** | Pointer to **NullableFloat32** |  | [optional] 
-**Y** | Pointer to **NullableFloat32** |  | [optional] 
-**Z** | Pointer to **NullableFloat32** |  | [optional] 
+**BoxType** | Pointer to **NullableString** |  | [optional]
+**Color** | Pointer to **NullableString** |  | [optional]
+**Context** | Pointer to **NullableBool** |  | [optional]
+**From** | Pointer to [**NullableCanvasAgentOpsOpsInnerOneOfElementTo**](CanvasAgentOpsOpsInnerOneOfElementTo.md) |  | [optional]
+**H** | Pointer to **NullableFloat32** |  | [optional]
+**Heads** | Pointer to **NullableString** |  | [optional]
+**Origin** | Pointer to **NullableString** |  | [optional]
+**ParentId** | Pointer to **NullableString** |  | [optional]
+**Route** | Pointer to **NullableString** |  | [optional]
+**Shape** | Pointer to **NullableString** |  | [optional]
+**Template** | Pointer to **NullableString** |  | [optional]
+**Text** | Pointer to **NullableString** |  | [optional]
+**To** | Pointer to [**NullableCanvasAgentOpsOpsInnerOneOfElementTo**](CanvasAgentOpsOpsInnerOneOfElementTo.md) |  | [optional]
+**W** | Pointer to **NullableFloat32** |  | [optional]
+**Widget** | Pointer to **NullableString** |  | [optional]
+**X** | Pointer to **NullableFloat32** |  | [optional]
+**Y** | Pointer to **NullableFloat32** |  | [optional]
+**Z** | Pointer to **NullableFloat32** |  | [optional]
 
 ## Methods
 
@@ -30,17 +30,15 @@ Name | Type | Description | Notes
 `func NewCanvasAgentOpsOpsInnerOneOf1Set() *CanvasAgentOpsOpsInnerOneOf1Set`
 
 NewCanvasAgentOpsOpsInnerOneOf1Set instantiates a new CanvasAgentOpsOpsInnerOneOf1Set object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCanvasAgentOpsOpsInnerOneOf1SetWithDefaults
 
 `func NewCanvasAgentOpsOpsInnerOneOf1SetWithDefaults() *CanvasAgentOpsOpsInnerOneOf1Set`
 
 NewCanvasAgentOpsOpsInnerOneOf1SetWithDefaults instantiates a new CanvasAgentOpsOpsInnerOneOf1Set object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBoxType
 

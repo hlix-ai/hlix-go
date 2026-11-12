@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CommentIds** | **[]string** |  | 
-**CycleId** | **string** |  | 
-**Feedback** | **string** |  | 
-**HeadSha** | **string** |  | 
-**Iteration** | **float32** |  | 
-**Reason** | **NullableString** |  | 
-**StaleSkipped** | **float32** |  | 
-**Started** | **bool** |  | 
-**TaskId** | **string** |  | 
+**CommentIds** | **[]string** |  |
+**CycleId** | **string** |  |
+**Feedback** | **string** |  |
+**HeadSha** | **string** |  |
+**Iteration** | **float32** |  |
+**Reason** | **NullableString** |  |
+**StaleSkipped** | **float32** |  |
+**Started** | **bool** |  |
+**TaskId** | **string** |  |
 
 ## Methods
 
@@ -21,17 +21,15 @@ Name | Type | Description | Notes
 `func NewReviewRevisionRequest(commentIds []string, cycleId string, feedback string, headSha string, iteration float32, reason NullableString, staleSkipped float32, started bool, taskId string, ) *ReviewRevisionRequest`
 
 NewReviewRevisionRequest instantiates a new ReviewRevisionRequest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewReviewRevisionRequestWithDefaults
 
 `func NewReviewRevisionRequestWithDefaults() *ReviewRevisionRequest`
 
 NewReviewRevisionRequestWithDefaults instantiates a new ReviewRevisionRequest object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCommentIds
 

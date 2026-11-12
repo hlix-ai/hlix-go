@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentRunId** | **string** |  | 
-**Currency** | **string** |  | 
-**Description** | **string** |  | 
+**AgentRunId** | **string** |  |
+**Currency** | **string** |  |
+**Description** | **string** |  |
 **MarkupBps** | Pointer to **int32** |  | [optional] [default to 0]
-**Source** | **string** |  | 
-**TaxClass** | Pointer to **string** |  | [optional] 
+**Source** | **string** |  |
+**TaxClass** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewCreateBillableOneOf2(agentRunId string, currency string, description string, source string, ) *CreateBillableOneOf2`
 
 NewCreateBillableOneOf2 instantiates a new CreateBillableOneOf2 object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateBillableOneOf2WithDefaults
 
 `func NewCreateBillableOneOf2WithDefaults() *CreateBillableOneOf2`
 
 NewCreateBillableOneOf2WithDefaults instantiates a new CreateBillableOneOf2 object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentRunId
 

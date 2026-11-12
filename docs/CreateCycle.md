@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attachments** | Pointer to [**[]AnalyzeMediaSourceAnyOf1**](AnalyzeMediaSourceAnyOf1.md) |  | [optional] 
-**Description** | **string** |  | 
-**ProjectId** | **string** |  | 
-**TargetBranch** | Pointer to **string** |  | [optional] 
-**Title** | **string** |  | 
+**Attachments** | Pointer to [**[]AnalyzeMediaSourceAnyOf1**](AnalyzeMediaSourceAnyOf1.md) |  | [optional]
+**Description** | **string** |  |
+**ProjectId** | **string** |  |
+**TargetBranch** | Pointer to **string** |  | [optional]
+**Title** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewCreateCycle(description string, projectId string, title string, ) *CreateCycle`
 
 NewCreateCycle instantiates a new CreateCycle object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateCycleWithDefaults
 
 `func NewCreateCycleWithDefaults() *CreateCycle`
 
 NewCreateCycleWithDefaults instantiates a new CreateCycle object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAttachments
 

@@ -4,27 +4,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | 
-**ThreadId** | **string** |  | 
+**ChatId** | **string** |  |
+**Message** | **string** |  |
 
 ## Methods
 
 ### NewCycleExecutionStarted
 
-`func NewCycleExecutionStarted(message string, threadId string, ) *CycleExecutionStarted`
+`func NewCycleExecutionStarted(chatId string, message string, ) *CycleExecutionStarted`
 
 NewCycleExecutionStarted instantiates a new CycleExecutionStarted object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleExecutionStartedWithDefaults
 
 `func NewCycleExecutionStartedWithDefaults() *CycleExecutionStarted`
 
 NewCycleExecutionStartedWithDefaults instantiates a new CycleExecutionStarted object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetChatId
+
+`func (o *CycleExecutionStarted) GetChatId() string`
+
+GetChatId returns the ChatId field if non-nil, zero value otherwise.
+
+### GetChatIdOk
+
+`func (o *CycleExecutionStarted) GetChatIdOk() (*string, bool)`
+
+GetChatIdOk returns a tuple with the ChatId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChatId
+
+`func (o *CycleExecutionStarted) SetChatId(v string)`
+
+SetChatId sets ChatId field to given value.
+
 
 ### GetMessage
 
@@ -44,26 +62,6 @@ and a boolean to check if the value has been set.
 `func (o *CycleExecutionStarted) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
-
-
-### GetThreadId
-
-`func (o *CycleExecutionStarted) GetThreadId() string`
-
-GetThreadId returns the ThreadId field if non-nil, zero value otherwise.
-
-### GetThreadIdOk
-
-`func (o *CycleExecutionStarted) GetThreadIdOk() (*string, bool)`
-
-GetThreadIdOk returns a tuple with the ThreadId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThreadId
-
-`func (o *CycleExecutionStarted) SetThreadId(v string)`
-
-SetThreadId sets ThreadId field to given value.
 
 
 

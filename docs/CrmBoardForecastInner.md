@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClosedMonth** | **string** |  | 
-**Count** | **int32** |  | 
-**Currency** | **NullableString** |  | 
-**ExpectedMonth** | **NullableString** |  | 
-**Micros** | **int32** |  | 
-**Stage** | **string** |  | 
+**ClosedMonth** | **string** |  |
+**Count** | **int32** |  |
+**Currency** | **NullableString** |  |
+**ExpectedMonth** | **NullableString** |  |
+**Micros** | **int32** |  |
+**Stage** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewCrmBoardForecastInner(closedMonth string, count int32, currency NullableString, expectedMonth NullableString, micros int32, stage string, ) *CrmBoardForecastInner`
 
 NewCrmBoardForecastInner instantiates a new CrmBoardForecastInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmBoardForecastInnerWithDefaults
 
 `func NewCrmBoardForecastInnerWithDefaults() *CrmBoardForecastInner`
 
 NewCrmBoardForecastInnerWithDefaults instantiates a new CrmBoardForecastInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClosedMonth
 

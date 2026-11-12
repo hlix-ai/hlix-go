@@ -4,78 +4,80 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActiveCycles** | **int32** |  | 
-**AgentCount** | **int32** |  | 
-**ArchivedAt** | **NullableString** |  | 
-**AssignedUserId** | **NullableString** |  | 
-**BranchNames** | **string** |  | 
-**BranchPrefix** | **NullableString** |  | 
-**BranchPrefixLockedAt** | **NullableString** |  | 
-**Brief** | **NullableString** |  | 
-**ClaudeMd** | **NullableString** |  | 
-**ClientAccountId** | **NullableString** |  | 
-**CompletedAtLastRevision** | **int32** |  | 
-**CostCapMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**CustomDomain** | **NullableString** |  | 
-**CycleCap** | **NullableInt32** |  | 
-**CycleCount** | **int32** |  | 
-**CyclesDone** | **int32** |  | 
-**DeliveryStatus** | **NullableString** |  | 
-**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  | 
-**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  | 
-**ExtraUsage** | **NullableString** |  | 
-**GrowthAutopilot** | **bool** |  | 
-**GrowthDailyBudgetMicros** | **NullableInt64** |  | 
-**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Id** | **string** |  | 
-**InitialProposalRequired** | **bool** |  | 
-**Intake** | [**ProjectIntake**](ProjectIntake.md) |  | 
-**Iteration** | **int32** |  | 
-**Kind** | **string** |  | 
-**LastActivityAt** | **NullableString** |  | 
-**LatestCycleStatus** | **NullableString** |  | 
-**MaxRevisions** | **NullableInt32** |  | 
-**MobileTargetsInitialized** | **bool** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**PausedAt** | **NullableString** |  | 
-**PausedByUserId** | **NullableString** |  | 
-**PendingRequests** | **int32** |  | 
-**PrUrl** | **NullableString** |  | 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**Round** | **int32** |  | 
-**RunningAgents** | **int32** |  | 
-**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  | 
-**SandboxSize** | **NullableString** |  | 
-**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  | 
-**Slug** | **string** |  | 
-**Stack** | **string** |  | 
-**StalledRevisions** | **int32** |  | 
-**Tier** | **NullableString** |  | 
-**TotalCostMicros** | **NullableInt64** |  | 
-**UseWorkspaceBrand** | **bool** |  | 
-**VerifyCommand** | **NullableString** |  | 
+**ActiveCycles** | **int32** |  |
+**AgentCount** | **int32** |  |
+**Approvals** | **int32** |  |
+**ArchivedAt** | **NullableString** |  |
+**AssignedUserId** | **NullableString** |  |
+**Attention** | [**[]AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  |
+**BranchNames** | **string** |  |
+**BranchPrefix** | **NullableString** |  |
+**BranchPrefixLockedAt** | **NullableString** |  |
+**Brief** | **NullableString** |  |
+**ClaudeMd** | **NullableString** |  |
+**ClientAccountId** | **NullableString** |  |
+**CompletedAtLastRevision** | **int32** |  |
+**CostCapMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**CustomDomain** | **NullableString** |  |
+**CycleCap** | **NullableInt32** |  |
+**CycleCount** | **int32** |  |
+**CyclesDone** | **int32** |  |
+**DeliveryStatus** | **NullableString** |  |
+**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  |
+**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  |
+**ExtraUsage** | **NullableString** |  |
+**GrowthAutopilot** | **bool** |  |
+**GrowthDailyBudgetMicros** | **NullableInt64** |  |
+**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Id** | **string** |  |
+**InitialProposalRequired** | **bool** |  |
+**Iteration** | **int32** |  |
+**Kind** | **string** |  |
+**LastActivityAt** | **NullableString** |  |
+**LatestCycleStatus** | **NullableString** |  |
+**MachineSize** | **NullableString** |  |
+**MaxRevisions** | **NullableInt32** |  |
+**MobileTargetsInitialized** | **bool** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**PauseReason** | **NullableString** |  |
+**PausedAt** | **NullableString** |  |
+**PausedByUserId** | **NullableString** |  |
+**PrUrl** | **NullableString** |  |
+**PreviewCommand** | **NullableString** |  |
+**PreviewMergedAt** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**Round** | **int32** |  |
+**RunningAgents** | **int32** |  |
+**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  |
+**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  |
+**Slug** | **string** |  |
+**Sources** | [**ProjectSources**](ProjectSources.md) |  |
+**Stack** | **string** |  |
+**StalledRevisions** | **int32** |  |
+**Status** | **string** |  |
+**Tier** | **NullableString** |  |
+**TotalCostMicros** | **NullableInt64** |  |
+**UseWorkspaceBrand** | **bool** |  |
+**VerifyCommand** | **NullableString** |  |
 
 ## Methods
 
 ### NewProjectSummaryRow
 
-`func NewProjectSummaryRow(activeCycles int32, agentCount int32, archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, cycleCount int32, cyclesDone int32, deliveryStatus NullableString, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, lastActivityAt NullableString, latestCycleStatus NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, pendingRequests int32, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, round int32, runningAgents int32, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, totalCostMicros NullableInt64, useWorkspaceBrand bool, verifyCommand NullableString, ) *ProjectSummaryRow`
+`func NewProjectSummaryRow(activeCycles int32, agentCount int32, approvals int32, archivedAt NullableString, assignedUserId NullableString, attention []AgencyOverviewReportAttentionInnerAttentionItem, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, cycleCount int32, cyclesDone int32, deliveryStatus NullableString, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, iteration int32, kind string, lastActivityAt NullableString, latestCycleStatus NullableString, machineSize NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pauseReason NullableString, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewMergedAt NullableString, previewPort NullableInt32, round int32, runningAgents int32, runtime ProjectRuntime, setupReport NullableProjectSetupReport, slug string, sources ProjectSources, stack string, stalledRevisions int32, status string, tier NullableString, totalCostMicros NullableInt64, useWorkspaceBrand bool, verifyCommand NullableString, ) *ProjectSummaryRow`
 
 NewProjectSummaryRow instantiates a new ProjectSummaryRow object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectSummaryRowWithDefaults
 
 `func NewProjectSummaryRowWithDefaults() *ProjectSummaryRow`
 
 NewProjectSummaryRowWithDefaults instantiates a new ProjectSummaryRow object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActiveCycles
 
@@ -115,6 +117,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectSummaryRow) SetAgentCount(v int32)`
 
 SetAgentCount sets AgentCount field to given value.
+
+
+### GetApprovals
+
+`func (o *ProjectSummaryRow) GetApprovals() int32`
+
+GetApprovals returns the Approvals field if non-nil, zero value otherwise.
+
+### GetApprovalsOk
+
+`func (o *ProjectSummaryRow) GetApprovalsOk() (*int32, bool)`
+
+GetApprovalsOk returns a tuple with the Approvals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApprovals
+
+`func (o *ProjectSummaryRow) SetApprovals(v int32)`
+
+SetApprovals sets Approvals field to given value.
 
 
 ### GetArchivedAt
@@ -177,6 +199,26 @@ SetAssignedUserId sets AssignedUserId field to given value.
 `func (o *ProjectSummaryRow) UnsetAssignedUserId()`
 
 UnsetAssignedUserId ensures that no value is present for AssignedUserId, not even an explicit nil
+### GetAttention
+
+`func (o *ProjectSummaryRow) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttention returns the Attention field if non-nil, zero value otherwise.
+
+### GetAttentionOk
+
+`func (o *ProjectSummaryRow) GetAttentionOk() (*[]AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionOk returns a tuple with the Attention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttention
+
+`func (o *ProjectSummaryRow) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttention sets Attention field to given value.
+
+
 ### GetBranchNames
 
 `func (o *ProjectSummaryRow) GetBranchNames() string`
@@ -757,26 +799,6 @@ and a boolean to check if the value has been set.
 SetInitialProposalRequired sets InitialProposalRequired field to given value.
 
 
-### GetIntake
-
-`func (o *ProjectSummaryRow) GetIntake() ProjectIntake`
-
-GetIntake returns the Intake field if non-nil, zero value otherwise.
-
-### GetIntakeOk
-
-`func (o *ProjectSummaryRow) GetIntakeOk() (*ProjectIntake, bool)`
-
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntake
-
-`func (o *ProjectSummaryRow) SetIntake(v ProjectIntake)`
-
-SetIntake sets Intake field to given value.
-
-
 ### GetIteration
 
 `func (o *ProjectSummaryRow) GetIteration() int32`
@@ -877,6 +899,36 @@ SetLatestCycleStatus sets LatestCycleStatus field to given value.
 `func (o *ProjectSummaryRow) UnsetLatestCycleStatus()`
 
 UnsetLatestCycleStatus ensures that no value is present for LatestCycleStatus, not even an explicit nil
+### GetMachineSize
+
+`func (o *ProjectSummaryRow) GetMachineSize() string`
+
+GetMachineSize returns the MachineSize field if non-nil, zero value otherwise.
+
+### GetMachineSizeOk
+
+`func (o *ProjectSummaryRow) GetMachineSizeOk() (*string, bool)`
+
+GetMachineSizeOk returns a tuple with the MachineSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMachineSize
+
+`func (o *ProjectSummaryRow) SetMachineSize(v string)`
+
+SetMachineSize sets MachineSize field to given value.
+
+
+### SetMachineSizeNil
+
+`func (o *ProjectSummaryRow) SetMachineSizeNil(b bool)`
+
+ SetMachineSizeNil sets the value for MachineSize to be an explicit nil
+
+### UnsetMachineSize
+`func (o *ProjectSummaryRow) UnsetMachineSize()`
+
+UnsetMachineSize ensures that no value is present for MachineSize, not even an explicit nil
 ### GetMaxRevisions
 
 `func (o *ProjectSummaryRow) GetMaxRevisions() int32`
@@ -967,6 +1019,36 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
+### GetPauseReason
+
+`func (o *ProjectSummaryRow) GetPauseReason() string`
+
+GetPauseReason returns the PauseReason field if non-nil, zero value otherwise.
+
+### GetPauseReasonOk
+
+`func (o *ProjectSummaryRow) GetPauseReasonOk() (*string, bool)`
+
+GetPauseReasonOk returns a tuple with the PauseReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPauseReason
+
+`func (o *ProjectSummaryRow) SetPauseReason(v string)`
+
+SetPauseReason sets PauseReason field to given value.
+
+
+### SetPauseReasonNil
+
+`func (o *ProjectSummaryRow) SetPauseReasonNil(b bool)`
+
+ SetPauseReasonNil sets the value for PauseReason to be an explicit nil
+
+### UnsetPauseReason
+`func (o *ProjectSummaryRow) UnsetPauseReason()`
+
+UnsetPauseReason ensures that no value is present for PauseReason, not even an explicit nil
 ### GetPausedAt
 
 `func (o *ProjectSummaryRow) GetPausedAt() string`
@@ -1027,26 +1109,6 @@ SetPausedByUserId sets PausedByUserId field to given value.
 `func (o *ProjectSummaryRow) UnsetPausedByUserId()`
 
 UnsetPausedByUserId ensures that no value is present for PausedByUserId, not even an explicit nil
-### GetPendingRequests
-
-`func (o *ProjectSummaryRow) GetPendingRequests() int32`
-
-GetPendingRequests returns the PendingRequests field if non-nil, zero value otherwise.
-
-### GetPendingRequestsOk
-
-`func (o *ProjectSummaryRow) GetPendingRequestsOk() (*int32, bool)`
-
-GetPendingRequestsOk returns a tuple with the PendingRequests field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPendingRequests
-
-`func (o *ProjectSummaryRow) SetPendingRequests(v int32)`
-
-SetPendingRequests sets PendingRequests field to given value.
-
-
 ### GetPrUrl
 
 `func (o *ProjectSummaryRow) GetPrUrl() string`
@@ -1107,6 +1169,36 @@ SetPreviewCommand sets PreviewCommand field to given value.
 `func (o *ProjectSummaryRow) UnsetPreviewCommand()`
 
 UnsetPreviewCommand ensures that no value is present for PreviewCommand, not even an explicit nil
+### GetPreviewMergedAt
+
+`func (o *ProjectSummaryRow) GetPreviewMergedAt() string`
+
+GetPreviewMergedAt returns the PreviewMergedAt field if non-nil, zero value otherwise.
+
+### GetPreviewMergedAtOk
+
+`func (o *ProjectSummaryRow) GetPreviewMergedAtOk() (*string, bool)`
+
+GetPreviewMergedAtOk returns a tuple with the PreviewMergedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviewMergedAt
+
+`func (o *ProjectSummaryRow) SetPreviewMergedAt(v string)`
+
+SetPreviewMergedAt sets PreviewMergedAt field to given value.
+
+
+### SetPreviewMergedAtNil
+
+`func (o *ProjectSummaryRow) SetPreviewMergedAtNil(b bool)`
+
+ SetPreviewMergedAtNil sets the value for PreviewMergedAt to be an explicit nil
+
+### UnsetPreviewMergedAt
+`func (o *ProjectSummaryRow) UnsetPreviewMergedAt()`
+
+UnsetPreviewMergedAt ensures that no value is present for PreviewMergedAt, not even an explicit nil
 ### GetPreviewPort
 
 `func (o *ProjectSummaryRow) GetPreviewPort() int32`
@@ -1197,36 +1289,6 @@ and a boolean to check if the value has been set.
 SetRuntime sets Runtime field to given value.
 
 
-### GetSandboxSize
-
-`func (o *ProjectSummaryRow) GetSandboxSize() string`
-
-GetSandboxSize returns the SandboxSize field if non-nil, zero value otherwise.
-
-### GetSandboxSizeOk
-
-`func (o *ProjectSummaryRow) GetSandboxSizeOk() (*string, bool)`
-
-GetSandboxSizeOk returns a tuple with the SandboxSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSandboxSize
-
-`func (o *ProjectSummaryRow) SetSandboxSize(v string)`
-
-SetSandboxSize sets SandboxSize field to given value.
-
-
-### SetSandboxSizeNil
-
-`func (o *ProjectSummaryRow) SetSandboxSizeNil(b bool)`
-
- SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
-
-### UnsetSandboxSize
-`func (o *ProjectSummaryRow) UnsetSandboxSize()`
-
-UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
 ### GetSetupReport
 
 `func (o *ProjectSummaryRow) GetSetupReport() ProjectSetupReport`
@@ -1277,6 +1339,26 @@ and a boolean to check if the value has been set.
 SetSlug sets Slug field to given value.
 
 
+### GetSources
+
+`func (o *ProjectSummaryRow) GetSources() ProjectSources`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *ProjectSummaryRow) GetSourcesOk() (*ProjectSources, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *ProjectSummaryRow) SetSources(v ProjectSources)`
+
+SetSources sets Sources field to given value.
+
+
 ### GetStack
 
 `func (o *ProjectSummaryRow) GetStack() string`
@@ -1315,6 +1397,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectSummaryRow) SetStalledRevisions(v int32)`
 
 SetStalledRevisions sets StalledRevisions field to given value.
+
+
+### GetStatus
+
+`func (o *ProjectSummaryRow) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ProjectSummaryRow) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ProjectSummaryRow) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetTier

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Currency** | Pointer to **NullableString** |  | [optional] 
-**ExpectedCloseOn** | Pointer to **NullableString** |  | [optional] 
-**LostReason** | Pointer to **string** |  | [optional] 
-**NextStep** | Pointer to **NullableString** |  | [optional] 
-**NextStepAt** | Pointer to **NullableTime** |  | [optional] 
-**OwnerUserId** | Pointer to **NullableString** |  | [optional] 
-**Stage** | Pointer to **string** |  | [optional] 
-**ValueMicros** | Pointer to **NullableInt64** |  | [optional] 
+**Currency** | Pointer to **NullableString** |  | [optional]
+**ExpectedCloseOn** | Pointer to **NullableString** |  | [optional]
+**LostReason** | Pointer to **string** |  | [optional]
+**NextStep** | Pointer to **NullableString** |  | [optional]
+**NextStepAt** | Pointer to **NullableTime** |  | [optional]
+**OwnerUserId** | Pointer to **NullableString** |  | [optional]
+**Stage** | Pointer to **string** |  | [optional]
+**ValueMicros** | Pointer to **NullableInt64** |  | [optional]
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewUpdateDeal() *UpdateDeal`
 
 NewUpdateDeal instantiates a new UpdateDeal object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateDealWithDefaults
 
 `func NewUpdateDealWithDefaults() *UpdateDeal`
 
 NewUpdateDealWithDefaults instantiates a new UpdateDeal object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCurrency
 

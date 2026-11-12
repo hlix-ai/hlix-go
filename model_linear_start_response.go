@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,7 +22,7 @@ var _ MappedNullable = &LinearStartResponse{}
 type LinearStartResponse struct {
 	CycleId NullableString `json:"cycleId"`
 	Ok bool `json:"ok"`
-	ProposalId string `json:"proposalId"`
+	RequestId string `json:"requestId"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -32,11 +32,11 @@ type _LinearStartResponse LinearStartResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLinearStartResponse(cycleId NullableString, ok bool, proposalId string) *LinearStartResponse {
+func NewLinearStartResponse(cycleId NullableString, ok bool, requestId string) *LinearStartResponse {
 	this := LinearStartResponse{}
 	this.CycleId = cycleId
 	this.Ok = ok
-	this.ProposalId = proposalId
+	this.RequestId = requestId
 	return &this
 }
 
@@ -45,6 +45,8 @@ func NewLinearStartResponse(cycleId NullableString, ok bool, proposalId string) 
 // but it doesn't guarantee that properties required by API are set
 func NewLinearStartResponseWithDefaults() *LinearStartResponse {
 	this := LinearStartResponse{}
+	var ok bool = true
+	this.Ok = ok
 	return &this
 }
 
@@ -98,28 +100,28 @@ func (o *LinearStartResponse) SetOk(v bool) {
 	o.Ok = v
 }
 
-// GetProposalId returns the ProposalId field value
-func (o *LinearStartResponse) GetProposalId() string {
+// GetRequestId returns the RequestId field value
+func (o *LinearStartResponse) GetRequestId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ProposalId
+	return o.RequestId
 }
 
-// GetProposalIdOk returns a tuple with the ProposalId field value
+// GetRequestIdOk returns a tuple with the RequestId field value
 // and a boolean to check if the value has been set.
-func (o *LinearStartResponse) GetProposalIdOk() (*string, bool) {
+func (o *LinearStartResponse) GetRequestIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProposalId, true
+	return &o.RequestId, true
 }
 
-// SetProposalId sets field value
-func (o *LinearStartResponse) SetProposalId(v string) {
-	o.ProposalId = v
+// SetRequestId sets field value
+func (o *LinearStartResponse) SetRequestId(v string) {
+	o.RequestId = v
 }
 
 func (o LinearStartResponse) MarshalJSON() ([]byte, error) {
@@ -134,7 +136,7 @@ func (o LinearStartResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cycleId"] = o.CycleId.Get()
 	toSerialize["ok"] = o.Ok
-	toSerialize["proposalId"] = o.ProposalId
+	toSerialize["requestId"] = o.RequestId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -150,7 +152,7 @@ func (o *LinearStartResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"cycleId",
 		"ok",
-		"proposalId",
+		"requestId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -182,7 +184,7 @@ func (o *LinearStartResponse) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cycleId")
 		delete(additionalProperties, "ok")
-		delete(additionalProperties, "proposalId")
+		delete(additionalProperties, "requestId")
 		o.AdditionalProperties = additionalProperties
 	}
 

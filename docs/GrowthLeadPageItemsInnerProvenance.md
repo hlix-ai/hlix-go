@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Company** | [**map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue**](GrowthLeadPageItemsInnerProvenanceCompanyValue.md) |  | 
-**Person** | [**map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue**](GrowthLeadPageItemsInnerProvenanceCompanyValue.md) |  | 
+**Company** | [**map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue**](GrowthLeadPageItemsInnerProvenanceCompanyValue.md) |  |
+**Person** | [**map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue**](GrowthLeadPageItemsInnerProvenanceCompanyValue.md) |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewGrowthLeadPageItemsInnerProvenance(company map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue, person map[string]GrowthLeadPageItemsInnerProvenanceCompanyValue, ) *GrowthLeadPageItemsInnerProvenance`
 
 NewGrowthLeadPageItemsInnerProvenance instantiates a new GrowthLeadPageItemsInnerProvenance object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthLeadPageItemsInnerProvenanceWithDefaults
 
 `func NewGrowthLeadPageItemsInnerProvenanceWithDefaults() *GrowthLeadPageItemsInnerProvenance`
 
 NewGrowthLeadPageItemsInnerProvenanceWithDefaults instantiates a new GrowthLeadPageItemsInnerProvenance object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompany
 

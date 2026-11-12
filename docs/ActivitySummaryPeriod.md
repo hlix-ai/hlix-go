@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Days** | **float32** |  | 
-**From** | **time.Time** |  | 
-**To** | **time.Time** |  | 
+**Days** | **float32** |  |
+**From** | **time.Time** |  |
+**To** | **time.Time** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewActivitySummaryPeriod(days float32, from time.Time, to time.Time, ) *ActivitySummaryPeriod`
 
 NewActivitySummaryPeriod instantiates a new ActivitySummaryPeriod object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewActivitySummaryPeriodWithDefaults
 
 `func NewActivitySummaryPeriodWithDefaults() *ActivitySummaryPeriod`
 
 NewActivitySummaryPeriodWithDefaults instantiates a new ActivitySummaryPeriod object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDays
 

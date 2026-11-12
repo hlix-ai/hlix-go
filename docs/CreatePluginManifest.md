@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **string** |  | 
-**Id** | **string** |  | 
-**Inputs** | [**[]CreatePluginManifestInputsInner**](CreatePluginManifestInputsInner.md) |  | 
-**McpServers** | [**[]CreatePluginManifestMcpServersInner**](CreatePluginManifestMcpServersInner.md) |  | 
-**Name** | **string** |  | 
-**SchemaVersion** | **float32** |  | 
-**Setup** | Pointer to **string** |  | [optional] 
-**Skills** | [**[]CreatePluginManifestSkillsInner**](CreatePluginManifestSkillsInner.md) |  | 
-**Source** | Pointer to [**CreatePluginManifestSource**](CreatePluginManifestSource.md) |  | [optional] 
-**Version** | **string** |  | 
+**Description** | **string** |  |
+**Id** | **string** |  |
+**Inputs** | [**[]CreatePluginManifestInputsInner**](CreatePluginManifestInputsInner.md) |  |
+**McpServers** | [**[]CreatePluginManifestMcpServersInner**](CreatePluginManifestMcpServersInner.md) |  |
+**Name** | **string** |  |
+**SchemaVersion** | **float32** |  |
+**Setup** | Pointer to **string** |  | [optional]
+**Skills** | [**[]CreatePluginManifestSkillsInner**](CreatePluginManifestSkillsInner.md) |  |
+**Source** | Pointer to [**CreatePluginManifestSource**](CreatePluginManifestSource.md) |  | [optional]
+**Version** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewCreatePluginManifest(description string, id string, inputs []CreatePluginManifestInputsInner, mcpServers []CreatePluginManifestMcpServersInner, name string, schemaVersion float32, skills []CreatePluginManifestSkillsInner, version string, ) *CreatePluginManifest`
 
 NewCreatePluginManifest instantiates a new CreatePluginManifest object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreatePluginManifestWithDefaults
 
 `func NewCreatePluginManifestWithDefaults() *CreatePluginManifest`
 
 NewCreatePluginManifestWithDefaults instantiates a new CreatePluginManifest object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDescription
 

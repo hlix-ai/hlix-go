@@ -1,71 +1,32 @@
 # CreateHlixCodeMessage403Response
 
-## Properties
+This model accepts at least one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Error** | [**AnthropicErrorError**](AnthropicErrorError.md) |  | 
-**Type** | **string** |  | 
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| [ApiError](ApiError.md) | `error` |
+| [AnthropicError](AnthropicError.md) | `error`, `type` |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `AnthropicError` | `*AnthropicError` |
+| `ApiError` | `*ApiError` |
 
 ## Methods
 
-### NewCreateHlixCodeMessage403Response
+### UnmarshalJSON
 
-`func NewCreateHlixCodeMessage403Response(error_ AnthropicErrorError, type_ string, ) *CreateHlixCodeMessage403Response`
+`func (dst *CreateHlixCodeMessage403Response) UnmarshalJSON(data []byte) error`
 
-NewCreateHlixCodeMessage403Response instantiates a new CreateHlixCodeMessage403Response object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewCreateHlixCodeMessage403ResponseWithDefaults
-
-`func NewCreateHlixCodeMessage403ResponseWithDefaults() *CreateHlixCodeMessage403Response`
-
-NewCreateHlixCodeMessage403ResponseWithDefaults instantiates a new CreateHlixCodeMessage403Response object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetError
-
-`func (o *CreateHlixCodeMessage403Response) GetError() AnthropicErrorError`
-
-GetError returns the Error field if non-nil, zero value otherwise.
-
-### GetErrorOk
-
-`func (o *CreateHlixCodeMessage403Response) GetErrorOk() (*AnthropicErrorError, bool)`
-
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetError
-
-`func (o *CreateHlixCodeMessage403Response) SetError(v AnthropicErrorError)`
-
-SetError sets Error field to given value.
-
-
-### GetType
-
-`func (o *CreateHlixCodeMessage403Response) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CreateHlixCodeMessage403Response) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CreateHlixCodeMessage403Response) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
+`func (src CreateHlixCodeMessage403Response) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

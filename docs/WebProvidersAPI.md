@@ -1,15 +1,15 @@
-# \WebProvidersAPI
+# WebProvidersAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetHlixCrawlStatus**](WebProvidersAPI.md#GetHlixCrawlStatus) | **Get** /v1/api/web-providers/crawl | Show hlix-crawl usage against the plan allowance
-[**ListWebProviders**](WebProvidersAPI.md#ListWebProviders) | **Get** /v1/api/web-providers | List web-provider credential state
-[**RemoveWebProviderKey**](WebProvidersAPI.md#RemoveWebProviderKey) | **Delete** /v1/api/web-providers/{provider}/key | Remove a stored web-provider key
-[**SaveWebProviderKey**](WebProvidersAPI.md#SaveWebProviderKey) | **Put** /v1/api/web-providers/{provider}/key | Add or replace a web-provider key
-[**ToggleHlixCrawl**](WebProvidersAPI.md#ToggleHlixCrawl) | **Patch** /v1/api/web-providers/crawl | Opt the workspace in or out of hlix-crawl
-[**ToggleWebProvider**](WebProvidersAPI.md#ToggleWebProvider) | **Patch** /v1/api/web-providers/{provider} | Enable or disable a stored web-provider key
+[**GetHlixCrawlStatus**](WebProvidersAPI.md#gethlixcrawlstatus) | **Get** /v1/api/web-providers/crawl | Show hlix-crawl usage against the plan allowance
+[**ListWebProviders**](WebProvidersAPI.md#listwebproviders) | **Get** /v1/api/web-providers | List web-provider credential state
+[**RemoveWebProviderKey**](WebProvidersAPI.md#removewebproviderkey) | **Delete** /v1/api/web-providers/{provider}/key | Remove a stored web-provider key
+[**SaveWebProviderKey**](WebProvidersAPI.md#savewebproviderkey) | **Put** /v1/api/web-providers/{provider}/key | Add or replace a web-provider key
+[**ToggleHlixCrawl**](WebProvidersAPI.md#togglehlixcrawl) | **Patch** /v1/api/web-providers/crawl | Opt the workspace in or out of hlix-crawl
+[**ToggleWebProvider**](WebProvidersAPI.md#togglewebprovider) | **Patch** /v1/api/web-providers/{provider} | Enable or disable a stored web-provider key
 
 
 
@@ -20,6 +20,8 @@ Method | HTTP request | Description
 Show hlix-crawl usage against the plan allowance
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -32,11 +34,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.GetHlixCrawlStatus(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.GetHlixCrawlStatus(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.GetHlixCrawlStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,12 +57,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetHlixCrawlStatusRequest struct via the builder pattern
+Pass optional parameters through the `apiGetHlixCrawlStatusRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -65,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -85,6 +90,8 @@ List web-provider credential state
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -96,11 +103,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.ListWebProviders(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.ListWebProviders(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.ListWebProviders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,12 +126,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWebProvidersRequest struct via the builder pattern
+Pass optional parameters through the `apiListWebProvidersRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -129,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -149,6 +159,8 @@ Remove a stored web-provider key
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -160,12 +172,15 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.RemoveWebProviderKey(context.Background(), provider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.RemoveWebProviderKey(ctx, provider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.RemoveWebProviderKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,17 +196,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveWebProviderKeyRequest struct via the builder pattern
+Pass optional parameters through the `apiRemoveWebProviderKeyRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -199,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -219,10 +234,13 @@ Add or replace a web-provider key
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -230,13 +248,19 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	saveWebProviderKey := *openapiclient.NewSaveWebProviderKey("ApiKey_example") // SaveWebProviderKey | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	var saveWebProviderKey openapiclient.SaveWebProviderKey
+	if err := json.Unmarshal([]byte("{\"apiKey\":\"text\"}"), &saveWebProviderKey); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.SaveWebProviderKey(context.Background(), provider).SaveWebProviderKey(saveWebProviderKey).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.SaveWebProviderKey(ctx, provider).SaveWebProviderKey(saveWebProviderKey).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.SaveWebProviderKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -252,18 +276,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSaveWebProviderKeyRequest struct via the builder pattern
+Pass optional parameters through the `apiSaveWebProviderKeyRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **saveWebProviderKey** | [**SaveWebProviderKey**](SaveWebProviderKey.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **saveWebProviderKey** | [**SaveWebProviderKey**](SaveWebProviderKey.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -271,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -291,10 +315,13 @@ Opt the workspace in or out of hlix-crawl
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -302,12 +329,18 @@ import (
 )
 
 func main() {
-	toggleWebProvider := *openapiclient.NewToggleWebProvider(false) // ToggleWebProvider | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var toggleWebProvider openapiclient.ToggleWebProvider
+	if err := json.Unmarshal([]byte("{\"enabled\":true}"), &toggleWebProvider); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.ToggleHlixCrawl(context.Background()).ToggleWebProvider(toggleWebProvider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.ToggleHlixCrawl(ctx).ToggleWebProvider(toggleWebProvider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.ToggleHlixCrawl``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -323,13 +356,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiToggleHlixCrawlRequest struct via the builder pattern
+Pass optional parameters through the `apiToggleHlixCrawlRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **toggleWebProvider** | [**ToggleWebProvider**](ToggleWebProvider.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **toggleWebProvider** | [**ToggleWebProvider**](ToggleWebProvider.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -337,7 +370,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -357,10 +390,13 @@ Enable or disable a stored web-provider key
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -368,13 +404,19 @@ import (
 )
 
 func main() {
-	provider := "provider_example" // string | 
-	toggleWebProvider := *openapiclient.NewToggleWebProvider(false) // ToggleWebProvider | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	provider := "provider_example" // string |
+	var toggleWebProvider openapiclient.ToggleWebProvider
+	if err := json.Unmarshal([]byte("{\"enabled\":true}"), &toggleWebProvider); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebProvidersAPI.ToggleWebProvider(context.Background(), provider).ToggleWebProvider(toggleWebProvider).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WebProvidersAPI.ToggleWebProvider(ctx, provider).ToggleWebProvider(toggleWebProvider).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebProvidersAPI.ToggleWebProvider``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -390,18 +432,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**provider** | **string** |  | 
+**provider** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiToggleWebProviderRequest struct via the builder pattern
+Pass optional parameters through the `apiToggleWebProviderRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **toggleWebProvider** | [**ToggleWebProvider**](ToggleWebProvider.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **toggleWebProvider** | [**ToggleWebProvider**](ToggleWebProvider.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -409,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

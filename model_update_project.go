@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -25,13 +25,13 @@ type UpdateProject struct {
 	CostCapMicros NullableInt64 `json:"costCapMicros,omitempty"`
 	CycleCap NullableInt32 `json:"cycleCap,omitempty"`
 	InitialProposalRequired *bool `json:"initialProposalRequired,omitempty"`
-	Intake *UpdateProjectIntake `json:"intake,omitempty"`
+	MachineSize NullableString `json:"machineSize,omitempty"`
 	MaxRevisions NullableInt32 `json:"maxRevisions,omitempty"`
 	Name *string `json:"name,omitempty"`
 	PreviewCommand NullableString `json:"previewCommand,omitempty"`
 	PreviewPort NullableInt32 `json:"previewPort,omitempty"`
 	Runtime *CreateProjectRuntime `json:"runtime,omitempty"`
-	SandboxSize NullableString `json:"sandboxSize,omitempty"`
+	Sources *UpdateProjectSources `json:"sources,omitempty"`
 	Stack *string `json:"stack,omitempty"`
 	Tier NullableString `json:"tier,omitempty"`
 	UseWorkspaceBrand *bool `json:"useWorkspaceBrand,omitempty"`
@@ -290,36 +290,46 @@ func (o *UpdateProject) SetInitialProposalRequired(v bool) {
 	o.InitialProposalRequired = &v
 }
 
-// GetIntake returns the Intake field value if set, zero value otherwise.
-func (o *UpdateProject) GetIntake() UpdateProjectIntake {
-	if o == nil || IsNil(o.Intake) {
-		var ret UpdateProjectIntake
+// GetMachineSize returns the MachineSize field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProject) GetMachineSize() string {
+	if o == nil || IsNil(o.MachineSize.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.Intake
+	return *o.MachineSize.Get()
 }
 
-// GetIntakeOk returns a tuple with the Intake field value if set, nil otherwise
+// GetMachineSizeOk returns a tuple with the MachineSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProject) GetIntakeOk() (*UpdateProjectIntake, bool) {
-	if o == nil || IsNil(o.Intake) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProject) GetMachineSizeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Intake, true
+	return o.MachineSize.Get(), o.MachineSize.IsSet()
 }
 
-// HasIntake returns a boolean if a field has been set.
-func (o *UpdateProject) HasIntake() bool {
-	if o != nil && !IsNil(o.Intake) {
+// HasMachineSize returns a boolean if a field has been set.
+func (o *UpdateProject) HasMachineSize() bool {
+	if o != nil && o.MachineSize.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIntake gets a reference to the given UpdateProjectIntake and assigns it to the Intake field.
-func (o *UpdateProject) SetIntake(v UpdateProjectIntake) {
-	o.Intake = &v
+// SetMachineSize gets a reference to the given NullableString and assigns it to the MachineSize field.
+func (o *UpdateProject) SetMachineSize(v string) {
+	o.MachineSize.Set(&v)
+}
+// SetMachineSizeNil sets the value for MachineSize to be an explicit nil
+func (o *UpdateProject) SetMachineSizeNil() {
+	o.MachineSize.Set(nil)
+}
+
+// UnsetMachineSize ensures that no value is present for MachineSize, not even an explicit nil
+func (o *UpdateProject) UnsetMachineSize() {
+	o.MachineSize.Unset()
 }
 
 // GetMaxRevisions returns the MaxRevisions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -512,46 +522,36 @@ func (o *UpdateProject) SetRuntime(v CreateProjectRuntime) {
 	o.Runtime = &v
 }
 
-// GetSandboxSize returns the SandboxSize field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpdateProject) GetSandboxSize() string {
-	if o == nil || IsNil(o.SandboxSize.Get()) {
-		var ret string
+// GetSources returns the Sources field value if set, zero value otherwise.
+func (o *UpdateProject) GetSources() UpdateProjectSources {
+	if o == nil || IsNil(o.Sources) {
+		var ret UpdateProjectSources
 		return ret
 	}
-	return *o.SandboxSize.Get()
+	return *o.Sources
 }
 
-// GetSandboxSizeOk returns a tuple with the SandboxSize field value if set, nil otherwise
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpdateProject) GetSandboxSizeOk() (*string, bool) {
-	if o == nil {
+func (o *UpdateProject) GetSourcesOk() (*UpdateProjectSources, bool) {
+	if o == nil || IsNil(o.Sources) {
 		return nil, false
 	}
-	return o.SandboxSize.Get(), o.SandboxSize.IsSet()
+	return o.Sources, true
 }
 
-// HasSandboxSize returns a boolean if a field has been set.
-func (o *UpdateProject) HasSandboxSize() bool {
-	if o != nil && o.SandboxSize.IsSet() {
+// HasSources returns a boolean if a field has been set.
+func (o *UpdateProject) HasSources() bool {
+	if o != nil && !IsNil(o.Sources) {
 		return true
 	}
 
 	return false
 }
 
-// SetSandboxSize gets a reference to the given NullableString and assigns it to the SandboxSize field.
-func (o *UpdateProject) SetSandboxSize(v string) {
-	o.SandboxSize.Set(&v)
-}
-// SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
-func (o *UpdateProject) SetSandboxSizeNil() {
-	o.SandboxSize.Set(nil)
-}
-
-// UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
-func (o *UpdateProject) UnsetSandboxSize() {
-	o.SandboxSize.Unset()
+// SetSources gets a reference to the given UpdateProjectSources and assigns it to the Sources field.
+func (o *UpdateProject) SetSources(v UpdateProjectSources) {
+	o.Sources = &v
 }
 
 // GetStack returns the Stack field value if set, zero value otherwise.
@@ -730,8 +730,8 @@ func (o UpdateProject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InitialProposalRequired) {
 		toSerialize["initialProposalRequired"] = o.InitialProposalRequired
 	}
-	if !IsNil(o.Intake) {
-		toSerialize["intake"] = o.Intake
+	if o.MachineSize.IsSet() {
+		toSerialize["machineSize"] = o.MachineSize.Get()
 	}
 	if o.MaxRevisions.IsSet() {
 		toSerialize["maxRevisions"] = o.MaxRevisions.Get()
@@ -748,8 +748,8 @@ func (o UpdateProject) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Runtime) {
 		toSerialize["runtime"] = o.Runtime
 	}
-	if o.SandboxSize.IsSet() {
-		toSerialize["sandboxSize"] = o.SandboxSize.Get()
+	if !IsNil(o.Sources) {
+		toSerialize["sources"] = o.Sources
 	}
 	if !IsNil(o.Stack) {
 		toSerialize["stack"] = o.Stack
@@ -791,13 +791,13 @@ func (o *UpdateProject) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "costCapMicros")
 		delete(additionalProperties, "cycleCap")
 		delete(additionalProperties, "initialProposalRequired")
-		delete(additionalProperties, "intake")
+		delete(additionalProperties, "machineSize")
 		delete(additionalProperties, "maxRevisions")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "previewCommand")
 		delete(additionalProperties, "previewPort")
 		delete(additionalProperties, "runtime")
-		delete(additionalProperties, "sandboxSize")
+		delete(additionalProperties, "sources")
 		delete(additionalProperties, "stack")
 		delete(additionalProperties, "tier")
 		delete(additionalProperties, "useWorkspaceBrand")

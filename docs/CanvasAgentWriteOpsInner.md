@@ -1,113 +1,54 @@
 # CanvasAgentWriteOpsInner
 
-## Properties
+This model accepts exactly one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**Element** | [**CanvasAgentViewElementsInner**](CanvasAgentViewElementsInner.md) |  | 
-**Op** | **string** |  | 
-**Id** | **string** |  | 
-**Set** | [**CanvasAgentOpsOpsInnerOneOf1Set**](CanvasAgentOpsOpsInnerOneOf1Set.md) |  | 
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| [CanvasAgentWriteOpsInnerOneOf](CanvasAgentWriteOpsInnerOneOf.md) | `element`, `op` |
+| [CanvasAgentOpsOpsInnerOneOf1](CanvasAgentOpsOpsInnerOneOf1.md) | `id`, `op`, `set` |
+| [CanvasAgentOpsOpsInnerOneOf2](CanvasAgentOpsOpsInnerOneOf2.md) | `id`, `op` |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `CanvasAgentOpsOpsInnerOneOf1` | `*CanvasAgentOpsOpsInnerOneOf1` |
+| `CanvasAgentOpsOpsInnerOneOf2` | `*CanvasAgentOpsOpsInnerOneOf2` |
+| `CanvasAgentWriteOpsInnerOneOf` | `*CanvasAgentWriteOpsInnerOneOf` |
 
 ## Methods
 
-### NewCanvasAgentWriteOpsInner
+### CanvasAgentOpsOpsInnerOneOf1AsCanvasAgentWriteOpsInner
 
-`func NewCanvasAgentWriteOpsInner(element CanvasAgentViewElementsInner, op string, id string, set CanvasAgentOpsOpsInnerOneOf1Set, ) *CanvasAgentWriteOpsInner`
+`func CanvasAgentOpsOpsInnerOneOf1AsCanvasAgentWriteOpsInner(v *CanvasAgentOpsOpsInnerOneOf1) CanvasAgentWriteOpsInner`
 
-NewCanvasAgentWriteOpsInner instantiates a new CanvasAgentWriteOpsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### CanvasAgentOpsOpsInnerOneOf2AsCanvasAgentWriteOpsInner
 
-### NewCanvasAgentWriteOpsInnerWithDefaults
+`func CanvasAgentOpsOpsInnerOneOf2AsCanvasAgentWriteOpsInner(v *CanvasAgentOpsOpsInnerOneOf2) CanvasAgentWriteOpsInner`
 
-`func NewCanvasAgentWriteOpsInnerWithDefaults() *CanvasAgentWriteOpsInner`
+### CanvasAgentWriteOpsInnerOneOfAsCanvasAgentWriteOpsInner
 
-NewCanvasAgentWriteOpsInnerWithDefaults instantiates a new CanvasAgentWriteOpsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+`func CanvasAgentWriteOpsInnerOneOfAsCanvasAgentWriteOpsInner(v *CanvasAgentWriteOpsInnerOneOf) CanvasAgentWriteOpsInner`
 
-### GetElement
+### UnmarshalJSON
 
-`func (o *CanvasAgentWriteOpsInner) GetElement() CanvasAgentViewElementsInner`
+`func (dst *CanvasAgentWriteOpsInner) UnmarshalJSON(data []byte) error`
 
-GetElement returns the Element field if non-nil, zero value otherwise.
+### MarshalJSON
 
-### GetElementOk
+`func (src CanvasAgentWriteOpsInner) MarshalJSON() ([]byte, error)`
 
-`func (o *CanvasAgentWriteOpsInner) GetElementOk() (*CanvasAgentViewElementsInner, bool)`
+### GetActualInstance
 
-GetElementOk returns a tuple with the Element field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+`func (obj *CanvasAgentWriteOpsInner) GetActualInstance() (interface{})`
 
-### SetElement
+### GetActualInstanceValue
 
-`func (o *CanvasAgentWriteOpsInner) SetElement(v CanvasAgentViewElementsInner)`
-
-SetElement sets Element field to given value.
-
-
-### GetOp
-
-`func (o *CanvasAgentWriteOpsInner) GetOp() string`
-
-GetOp returns the Op field if non-nil, zero value otherwise.
-
-### GetOpOk
-
-`func (o *CanvasAgentWriteOpsInner) GetOpOk() (*string, bool)`
-
-GetOpOk returns a tuple with the Op field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOp
-
-`func (o *CanvasAgentWriteOpsInner) SetOp(v string)`
-
-SetOp sets Op field to given value.
-
-
-### GetId
-
-`func (o *CanvasAgentWriteOpsInner) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *CanvasAgentWriteOpsInner) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *CanvasAgentWriteOpsInner) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
-### GetSet
-
-`func (o *CanvasAgentWriteOpsInner) GetSet() CanvasAgentOpsOpsInnerOneOf1Set`
-
-GetSet returns the Set field if non-nil, zero value otherwise.
-
-### GetSetOk
-
-`func (o *CanvasAgentWriteOpsInner) GetSetOk() (*CanvasAgentOpsOpsInnerOneOf1Set, bool)`
-
-GetSetOk returns a tuple with the Set field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSet
-
-`func (o *CanvasAgentWriteOpsInner) SetSet(v CanvasAgentOpsOpsInnerOneOf1Set)`
-
-SetSet sets Set field to given value.
-
-
+`func (obj CanvasAgentWriteOpsInner) GetActualInstanceValue() (interface{})`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcceptanceCriteria** | Pointer to **[]string** |  | [optional] 
-**Approval** | [**DeliverablePackageViewApproval**](DeliverablePackageViewApproval.md) |  | 
+**AcceptanceCriteria** | Pointer to **[]string** |  | [optional]
+**Approval** | [**DeliverablePackageViewApproval**](DeliverablePackageViewApproval.md) |  |
 **ClientStatus** | Pointer to **string** |  | [optional] [default to "draft"]
-**CreatedAt** | **string** |  | 
-**Draft** | Pointer to [**DeliverablePackageViewDraft**](DeliverablePackageViewDraft.md) |  | [optional] 
-**DueDate** | Pointer to **NullableTime** |  | [optional] 
-**EvidenceSource** | **string** |  | 
-**EvidenceSummary** | Pointer to **NullableString** |  | [optional] 
-**GeneratedVideoUrl** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Limitations** | Pointer to **NullableString** |  | [optional] 
-**PresentationSlides** | Pointer to [**[]CreateDeliverablePackagePresentationSlidesInner**](CreateDeliverablePackagePresentationSlidesInner.md) |  | [optional] 
-**PreviewAccessUrl** | **NullableString** |  | 
-**PreviewDeploymentId** | Pointer to **NullableString** |  | [optional] 
-**PreviewGitSha** | **NullableString** |  | 
-**ProjectId** | **string** |  | 
-**PublishedAt** | **NullableString** |  | 
-**SubmittedRevision** | **NullableInt32** |  | 
-**Summary** | Pointer to **NullableString** |  | [optional] 
-**Title** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**VerificationTarget** | **NullableString** |  | 
-**VideoUrl** | Pointer to **NullableString** |  | [optional] 
-**Visibility** | **string** |  | 
+**CreatedAt** | **string** |  |
+**Draft** | Pointer to [**DeliverablePackageViewDraft**](DeliverablePackageViewDraft.md) |  | [optional]
+**DueDate** | Pointer to **NullableTime** |  | [optional]
+**EvidenceSource** | **string** |  |
+**EvidenceSummary** | Pointer to **NullableString** |  | [optional]
+**GeneratedVideoUrl** | **NullableString** |  |
+**Id** | **string** |  |
+**Limitations** | Pointer to **NullableString** |  | [optional]
+**PresentationSlides** | Pointer to [**[]CreateDeliverablePackagePresentationSlidesInner**](CreateDeliverablePackagePresentationSlidesInner.md) |  | [optional]
+**PreviewAccessUrl** | **NullableString** |  |
+**PreviewDeploymentId** | Pointer to **NullableString** |  | [optional]
+**PreviewGitSha** | **NullableString** |  |
+**ProjectId** | **string** |  |
+**PublishedAt** | **NullableString** |  |
+**SubmittedRevision** | **NullableInt32** |  |
+**Summary** | Pointer to **NullableString** |  | [optional]
+**Title** | **string** |  |
+**UpdatedAt** | **string** |  |
+**VerificationTarget** | **NullableString** |  |
+**VideoUrl** | Pointer to **NullableString** |  | [optional]
+**Visibility** | **string** |  |
 
 ## Methods
 
@@ -36,17 +36,15 @@ Name | Type | Description | Notes
 `func NewDeliverablePackageView(approval DeliverablePackageViewApproval, createdAt string, evidenceSource string, generatedVideoUrl NullableString, id string, previewAccessUrl NullableString, previewGitSha NullableString, projectId string, publishedAt NullableString, submittedRevision NullableInt32, title string, updatedAt string, verificationTarget NullableString, visibility string, ) *DeliverablePackageView`
 
 NewDeliverablePackageView instantiates a new DeliverablePackageView object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverablePackageViewWithDefaults
 
 `func NewDeliverablePackageViewWithDefaults() *DeliverablePackageView`
 
 NewDeliverablePackageViewWithDefaults instantiates a new DeliverablePackageView object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAcceptanceCriteria
 

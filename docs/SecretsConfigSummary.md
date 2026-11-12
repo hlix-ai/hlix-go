@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfigSummary** | **map[string]interface{}** |  | 
-**CreatedAt** | **string** |  | 
-**EnvFilter** | **NullableString** |  | 
-**Id** | **string** |  | 
-**IsActive** | **bool** |  | 
-**Label** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **string** |  | 
-**Provider** | **string** |  | 
-**Remote** | [**NullableSecretsConfigSummaryRemote**](SecretsConfigSummaryRemote.md) |  | 
-**UpdatedAt** | **string** |  | 
+**ConfigSummary** | **map[string]interface{}** |  |
+**CreatedAt** | **string** |  |
+**EnvFilter** | **NullableString** |  |
+**Id** | **string** |  |
+**IsActive** | **bool** |  |
+**Label** | **string** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **string** |  |
+**Provider** | **string** |  |
+**Remote** | [**NullableSecretsConfigSummaryRemote**](SecretsConfigSummaryRemote.md) |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewSecretsConfigSummary(configSummary map[string]interface{}, createdAt string, envFilter NullableString, id string, isActive bool, label string, organizationId string, projectId string, provider string, remote NullableSecretsConfigSummaryRemote, updatedAt string, ) *SecretsConfigSummary`
 
 NewSecretsConfigSummary instantiates a new SecretsConfigSummary object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSecretsConfigSummaryWithDefaults
 
 `func NewSecretsConfigSummaryWithDefaults() *SecretsConfigSummary`
 
 NewSecretsConfigSummaryWithDefaults instantiates a new SecretsConfigSummary object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetConfigSummary
 

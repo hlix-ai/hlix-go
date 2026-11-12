@@ -4,78 +4,76 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Persona** | **NullableString** |  | 
-**Role** | **string** |  | 
+**AgentKind** | **string** |  |
+**PromptKey** | **NullableString** |  |
 
 ## Methods
 
 ### NewSequenceTeamNodesInner
 
-`func NewSequenceTeamNodesInner(persona NullableString, role string, ) *SequenceTeamNodesInner`
+`func NewSequenceTeamNodesInner(agentKind string, promptKey NullableString, ) *SequenceTeamNodesInner`
 
 NewSequenceTeamNodesInner instantiates a new SequenceTeamNodesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSequenceTeamNodesInnerWithDefaults
 
 `func NewSequenceTeamNodesInnerWithDefaults() *SequenceTeamNodesInner`
 
 NewSequenceTeamNodesInnerWithDefaults instantiates a new SequenceTeamNodesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
-### GetPersona
+### GetAgentKind
 
-`func (o *SequenceTeamNodesInner) GetPersona() string`
+`func (o *SequenceTeamNodesInner) GetAgentKind() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetAgentKindOk
 
-`func (o *SequenceTeamNodesInner) GetPersonaOk() (*string, bool)`
+`func (o *SequenceTeamNodesInner) GetAgentKindOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetAgentKind
 
-`func (o *SequenceTeamNodesInner) SetPersona(v string)`
+`func (o *SequenceTeamNodesInner) SetAgentKind(v string)`
 
-SetPersona sets Persona field to given value.
+SetAgentKind sets AgentKind field to given value.
 
 
-### SetPersonaNil
+### GetPromptKey
 
-`func (o *SequenceTeamNodesInner) SetPersonaNil(b bool)`
+`func (o *SequenceTeamNodesInner) GetPromptKey() string`
 
- SetPersonaNil sets the value for Persona to be an explicit nil
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### UnsetPersona
-`func (o *SequenceTeamNodesInner) UnsetPersona()`
+### GetPromptKeyOk
 
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
-### GetRole
+`func (o *SequenceTeamNodesInner) GetPromptKeyOk() (*string, bool)`
 
-`func (o *SequenceTeamNodesInner) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *SequenceTeamNodesInner) GetRoleOk() (*string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetPromptKey
 
-`func (o *SequenceTeamNodesInner) SetRole(v string)`
+`func (o *SequenceTeamNodesInner) SetPromptKey(v string)`
 
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *SequenceTeamNodesInner) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *SequenceTeamNodesInner) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

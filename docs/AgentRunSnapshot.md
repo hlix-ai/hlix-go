@@ -4,36 +4,54 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompletedAt** | **NullableString** |  | 
-**Id** | **string** |  | 
-**InputSnapshot** | **NullableString** |  | 
-**Model** | **string** |  | 
-**OutputSnapshot** | **NullableString** |  | 
-**ParentRunId** | **NullableString** |  | 
-**Persona** | **NullableString** |  | 
-**Role** | **string** |  | 
-**StartedAt** | **string** |  | 
-**Status** | **string** |  | 
-**TaskId** | **NullableString** |  | 
+**AgentKind** | **string** |  |
+**CompletedAt** | **NullableString** |  |
+**Id** | **string** |  |
+**InputSnapshot** | **NullableString** |  |
+**Model** | **string** |  |
+**OutputSnapshot** | **NullableString** |  |
+**ParentRunId** | **NullableString** |  |
+**PromptKey** | **NullableString** |  |
+**StartedAt** | **string** |  |
+**Status** | **string** |  |
+**TaskId** | **NullableString** |  |
 
 ## Methods
 
 ### NewAgentRunSnapshot
 
-`func NewAgentRunSnapshot(completedAt NullableString, id string, inputSnapshot NullableString, model string, outputSnapshot NullableString, parentRunId NullableString, persona NullableString, role string, startedAt string, status string, taskId NullableString, ) *AgentRunSnapshot`
+`func NewAgentRunSnapshot(agentKind string, completedAt NullableString, id string, inputSnapshot NullableString, model string, outputSnapshot NullableString, parentRunId NullableString, promptKey NullableString, startedAt string, status string, taskId NullableString, ) *AgentRunSnapshot`
 
 NewAgentRunSnapshot instantiates a new AgentRunSnapshot object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentRunSnapshotWithDefaults
 
 `func NewAgentRunSnapshotWithDefaults() *AgentRunSnapshot`
 
 NewAgentRunSnapshotWithDefaults instantiates a new AgentRunSnapshot object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetAgentKind
+
+`func (o *AgentRunSnapshot) GetAgentKind() string`
+
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
+
+### GetAgentKindOk
+
+`func (o *AgentRunSnapshot) GetAgentKindOk() (*string, bool)`
+
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentKind
+
+`func (o *AgentRunSnapshot) SetAgentKind(v string)`
+
+SetAgentKind sets AgentKind field to given value.
+
 
 ### GetCompletedAt
 
@@ -195,56 +213,36 @@ SetParentRunId sets ParentRunId field to given value.
 `func (o *AgentRunSnapshot) UnsetParentRunId()`
 
 UnsetParentRunId ensures that no value is present for ParentRunId, not even an explicit nil
-### GetPersona
+### GetPromptKey
 
-`func (o *AgentRunSnapshot) GetPersona() string`
+`func (o *AgentRunSnapshot) GetPromptKey() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetPromptKeyOk
 
-`func (o *AgentRunSnapshot) GetPersonaOk() (*string, bool)`
+`func (o *AgentRunSnapshot) GetPromptKeyOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetPromptKey
 
-`func (o *AgentRunSnapshot) SetPersona(v string)`
+`func (o *AgentRunSnapshot) SetPromptKey(v string)`
 
-SetPersona sets Persona field to given value.
-
-
-### SetPersonaNil
-
-`func (o *AgentRunSnapshot) SetPersonaNil(b bool)`
-
- SetPersonaNil sets the value for Persona to be an explicit nil
-
-### UnsetPersona
-`func (o *AgentRunSnapshot) UnsetPersona()`
-
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
-### GetRole
-
-`func (o *AgentRunSnapshot) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *AgentRunSnapshot) GetRoleOk() (*string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRole
-
-`func (o *AgentRunSnapshot) SetRole(v string)`
-
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *AgentRunSnapshot) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *AgentRunSnapshot) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 ### GetStartedAt
 
 `func (o *AgentRunSnapshot) GetStartedAt() string`

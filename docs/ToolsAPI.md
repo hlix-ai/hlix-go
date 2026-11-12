@@ -1,17 +1,17 @@
-# \ToolsAPI
+# ToolsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CallTool**](ToolsAPI.md#CallTool) | **Post** /v1/api/tools/{toolId}/call | Create or revisit a durable tool invocation
-[**DescribeTool**](ToolsAPI.md#DescribeTool) | **Get** /v1/api/tools/{toolId} | Read the accepted input schema and execution policy
-[**GetToolCall**](ToolsAPI.md#GetToolCall) | **Get** /v1/api/tool-calls/{callId} | Read a persisted tool result and cost status
-[**GetToolConnection**](ToolsAPI.md#GetToolConnection) | **Get** /v1/api/tools/connections/treg | Read safe Treg connection state
-[**ListToolCalls**](ToolsAPI.md#ListToolCalls) | **Get** /v1/api/tool-calls | List recent workspace tool invocations
-[**RemoveToolConnection**](ToolsAPI.md#RemoveToolConnection) | **Delete** /v1/api/tools/connections/treg | Remove a workspace Treg connection
-[**SaveToolConnection**](ToolsAPI.md#SaveToolConnection) | **Put** /v1/api/tools/connections/treg | Save a workspace Treg connection
-[**SearchTools**](ToolsAPI.md#SearchTools) | **Get** /v1/api/tools | Search available tools and inspect funding readiness
+[**CallTool**](ToolsAPI.md#calltool) | **Post** /v1/api/tools/{toolId}/call | Create or revisit a durable tool invocation
+[**DescribeTool**](ToolsAPI.md#describetool) | **Get** /v1/api/tools/{toolId} | Read the accepted input schema and execution policy
+[**GetToolCall**](ToolsAPI.md#gettoolcall) | **Get** /v1/api/tool-calls/{callId} | Read a persisted tool result and cost status
+[**GetToolConnection**](ToolsAPI.md#gettoolconnection) | **Get** /v1/api/tools/connections/treg | Read safe Treg connection state
+[**ListToolCalls**](ToolsAPI.md#listtoolcalls) | **Get** /v1/api/tool-calls | List recent workspace tool invocations
+[**RemoveToolConnection**](ToolsAPI.md#removetoolconnection) | **Delete** /v1/api/tools/connections/treg | Remove a workspace Treg connection
+[**SaveToolConnection**](ToolsAPI.md#savetoolconnection) | **Put** /v1/api/tools/connections/treg | Save a workspace Treg connection
+[**SearchTools**](ToolsAPI.md#searchtools) | **Get** /v1/api/tools | Search available tools and inspect funding readiness
 
 
 
@@ -23,10 +23,13 @@ Create or revisit a durable tool invocation
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -34,13 +37,19 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
-	toolCallInput := *openapiclient.NewToolCallInput("IdempotencyKey_example", map[string]interface{}{"key": interface{}(123)}) // ToolCallInput | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	toolId := "toolId_example" // string |
+	var toolCallInput openapiclient.ToolCallInput
+	if err := json.Unmarshal([]byte("{\"idempotencyKey\":\"text\",\"input\":{\"key\":\"value\"}}"), &toolCallInput); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.CallTool(context.Background(), toolId).ToolCallInput(toolCallInput).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.CallTool(ctx, toolId).ToolCallInput(toolCallInput).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.CallTool``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,18 +65,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCallToolRequest struct via the builder pattern
+Pass optional parameters through the `apiCallToolRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **toolCallInput** | [**ToolCallInput**](ToolCallInput.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **toolCallInput** | [**ToolCallInput**](ToolCallInput.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -75,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -95,6 +104,8 @@ Read the accepted input schema and execution policy
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -106,12 +117,15 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	toolId := "toolId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.DescribeTool(context.Background(), toolId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.DescribeTool(ctx, toolId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.DescribeTool``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,17 +141,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDescribeToolRequest struct via the builder pattern
+Pass optional parameters through the `apiDescribeToolRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -145,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -165,6 +179,8 @@ Read a persisted tool result and cost status
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -176,12 +192,15 @@ import (
 )
 
 func main() {
-	callId := "callId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	callId := "callId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.GetToolCall(context.Background(), callId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.GetToolCall(ctx, callId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.GetToolCall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,17 +216,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**callId** | **string** |  | 
+**callId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetToolCallRequest struct via the builder pattern
+Pass optional parameters through the `apiGetToolCallRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -215,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -235,6 +254,8 @@ Read safe Treg connection state
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -246,11 +267,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.GetToolConnection(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.GetToolConnection(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.GetToolConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,12 +290,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetToolConnectionRequest struct via the builder pattern
+Pass optional parameters through the `apiGetToolConnectionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -279,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -299,6 +323,8 @@ List recent workspace tool invocations
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -310,14 +336,17 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	projectId := "projectId_example" // string | Filter by project. (optional)
 	limit := "limit_example" // string | 1–100, defaults to 30. (optional)
 	cursor := "cursor_example" // string | Opaque nextCursor from the previous page. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.ListToolCalls(context.Background()).ProjectId(projectId).Limit(limit).Cursor(cursor).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.ListToolCalls(ctx).ProjectId(projectId).Limit(limit).Cursor(cursor).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ListToolCalls``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -333,15 +362,15 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListToolCallsRequest struct via the builder pattern
+Pass optional parameters through the `apiListToolCallsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Filter by project. | 
- **limit** | **string** | 1–100, defaults to 30. | 
- **cursor** | **string** | Opaque nextCursor from the previous page. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **projectId** | **string** | Filter by project. |
+ **limit** | **string** | 1–100, defaults to 30. |
+ **cursor** | **string** | Opaque nextCursor from the previous page. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -349,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -369,6 +398,8 @@ Remove a workspace Treg connection
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -380,11 +411,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.RemoveToolConnection(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.RemoveToolConnection(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.RemoveToolConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -400,12 +434,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemoveToolConnectionRequest struct via the builder pattern
+Pass optional parameters through the `apiRemoveToolConnectionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -413,7 +447,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -433,10 +467,13 @@ Save a workspace Treg connection
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -444,12 +481,18 @@ import (
 )
 
 func main() {
-	saveToolConnection := *openapiclient.NewSaveToolConnection("ApiKey_example", "OrganizationId_example") // SaveToolConnection | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var saveToolConnection openapiclient.SaveToolConnection
+	if err := json.Unmarshal([]byte("{\"apiKey\":\"text\",\"organizationId\":\"123\"}"), &saveToolConnection); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.SaveToolConnection(context.Background()).SaveToolConnection(saveToolConnection).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.SaveToolConnection(ctx).SaveToolConnection(saveToolConnection).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.SaveToolConnection``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -465,13 +508,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSaveToolConnectionRequest struct via the builder pattern
+Pass optional parameters through the `apiSaveToolConnectionRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **saveToolConnection** | [**SaveToolConnection**](SaveToolConnection.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **saveToolConnection** | [**SaveToolConnection**](SaveToolConnection.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -479,7 +522,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -499,6 +542,8 @@ Search available tools and inspect funding readiness
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -510,14 +555,17 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	query := "query_example" // string | Search text, up to 500 characters. (optional)
 	provider := "provider_example" // string | Provider filter. (optional)
 	limit := "limit_example" // string | 1–100, defaults to 30. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.SearchTools(context.Background()).Query(query).Provider(provider).Limit(limit).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ToolsAPI.SearchTools(ctx).Query(query).Provider(provider).Limit(limit).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.SearchTools``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -533,15 +581,15 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSearchToolsRequest struct via the builder pattern
+Pass optional parameters through the `apiSearchToolsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **string** | Search text, up to 500 characters. | 
- **provider** | **string** | Provider filter. | 
- **limit** | **string** | 1–100, defaults to 30. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **query** | **string** | Search text, up to 500 characters. |
+ **provider** | **string** | Provider filter. |
+ **limit** | **string** | 1–100, defaults to 30. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -549,7 +597,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

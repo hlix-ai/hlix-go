@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientAccount** | [**NullableCrmBoardStagesInnerDealsInnerClientAccount**](CrmBoardStagesInnerDealsInnerClientAccount.md) |  | 
-**ClientAccountId** | **string** |  | 
-**ClosedAt** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**Currency** | **NullableString** |  | 
-**ExpectedCloseOn** | **NullableString** |  | 
-**Id** | **string** |  | 
-**LastActivityAt** | **string** |  | 
-**LostReason** | **NullableString** |  | 
-**NextStep** | **NullableString** |  | 
-**NextStepAt** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**Owner** | [**NullableCrmBoardStagesInnerDealsInnerOwner**](CrmBoardStagesInnerDealsInnerOwner.md) |  | 
-**OwnerUserId** | **NullableString** |  | 
-**PipelineId** | **string** |  | 
-**PrimaryContact** | [**NullableCrmBoardStagesInnerDealsInnerPrimaryContact**](CrmBoardStagesInnerDealsInnerPrimaryContact.md) |  | 
-**SourceKind** | **string** |  | 
-**SourcePlay** | [**NullableCrmBoardStagesInnerDealsInnerSourcePlay**](CrmBoardStagesInnerDealsInnerSourcePlay.md) |  | 
-**SourcePlayId** | **NullableString** |  | 
-**Stage** | **string** |  | 
-**Suggestion** | [**NullableCrmBoardStagesInnerDealsInnerSuggestion**](CrmBoardStagesInnerDealsInnerSuggestion.md) |  | 
-**UpdatedAt** | **string** |  | 
-**ValueMicros** | **NullableInt64** |  | 
-**WonAt** | **NullableString** |  | 
+**ClientAccount** | [**NullableCrmBoardStagesInnerDealsInnerClientAccount**](CrmBoardStagesInnerDealsInnerClientAccount.md) |  |
+**ClientAccountId** | **string** |  |
+**ClosedAt** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Currency** | **NullableString** |  |
+**ExpectedCloseOn** | **NullableString** |  |
+**Id** | **string** |  |
+**LastActivityAt** | **string** |  |
+**LostReason** | **NullableString** |  |
+**NextStep** | **NullableString** |  |
+**NextStepAt** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**Owner** | [**NullableCrmBoardStagesInnerDealsInnerOwner**](CrmBoardStagesInnerDealsInnerOwner.md) |  |
+**OwnerUserId** | **NullableString** |  |
+**PipelineId** | **string** |  |
+**PrimaryContact** | [**NullableCrmBoardStagesInnerDealsInnerPrimaryContact**](CrmBoardStagesInnerDealsInnerPrimaryContact.md) |  |
+**SourceKind** | **string** |  |
+**SourcePlay** | [**NullableCrmBoardStagesInnerDealsInnerSourcePlay**](CrmBoardStagesInnerDealsInnerSourcePlay.md) |  |
+**SourcePlayId** | **NullableString** |  |
+**Stage** | **string** |  |
+**Suggestion** | [**NullableCrmBoardStagesInnerDealsInnerSuggestion**](CrmBoardStagesInnerDealsInnerSuggestion.md) |  |
+**UpdatedAt** | **string** |  |
+**ValueMicros** | **NullableInt64** |  |
+**WonAt** | **NullableString** |  |
 
 ## Methods
 
@@ -36,17 +36,15 @@ Name | Type | Description | Notes
 `func NewCrmBoardStagesInnerDealsInner(clientAccount NullableCrmBoardStagesInnerDealsInnerClientAccount, clientAccountId string, closedAt NullableString, createdAt string, currency NullableString, expectedCloseOn NullableString, id string, lastActivityAt string, lostReason NullableString, nextStep NullableString, nextStepAt NullableString, organizationId string, owner NullableCrmBoardStagesInnerDealsInnerOwner, ownerUserId NullableString, pipelineId string, primaryContact NullableCrmBoardStagesInnerDealsInnerPrimaryContact, sourceKind string, sourcePlay NullableCrmBoardStagesInnerDealsInnerSourcePlay, sourcePlayId NullableString, stage string, suggestion NullableCrmBoardStagesInnerDealsInnerSuggestion, updatedAt string, valueMicros NullableInt64, wonAt NullableString, ) *CrmBoardStagesInnerDealsInner`
 
 NewCrmBoardStagesInnerDealsInner instantiates a new CrmBoardStagesInnerDealsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmBoardStagesInnerDealsInnerWithDefaults
 
 `func NewCrmBoardStagesInnerDealsInnerWithDefaults() *CrmBoardStagesInnerDealsInner`
 
 NewCrmBoardStagesInnerDealsInnerWithDefaults instantiates a new CrmBoardStagesInnerDealsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClientAccount
 

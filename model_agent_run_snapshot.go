@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,14 +20,14 @@ var _ MappedNullable = &AgentRunSnapshot{}
 
 // AgentRunSnapshot struct for AgentRunSnapshot
 type AgentRunSnapshot struct {
+	AgentKind string `json:"agentKind"`
 	CompletedAt NullableString `json:"completedAt"`
 	Id string `json:"id"`
 	InputSnapshot NullableString `json:"inputSnapshot"`
 	Model string `json:"model"`
 	OutputSnapshot NullableString `json:"outputSnapshot"`
 	ParentRunId NullableString `json:"parentRunId"`
-	Persona NullableString `json:"persona"`
-	Role string `json:"role"`
+	PromptKey NullableString `json:"promptKey"`
 	StartedAt string `json:"startedAt"`
 	Status string `json:"status"`
 	TaskId NullableString `json:"taskId"`
@@ -40,16 +40,16 @@ type _AgentRunSnapshot AgentRunSnapshot
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentRunSnapshot(completedAt NullableString, id string, inputSnapshot NullableString, model string, outputSnapshot NullableString, parentRunId NullableString, persona NullableString, role string, startedAt string, status string, taskId NullableString) *AgentRunSnapshot {
+func NewAgentRunSnapshot(agentKind string, completedAt NullableString, id string, inputSnapshot NullableString, model string, outputSnapshot NullableString, parentRunId NullableString, promptKey NullableString, startedAt string, status string, taskId NullableString) *AgentRunSnapshot {
 	this := AgentRunSnapshot{}
+	this.AgentKind = agentKind
 	this.CompletedAt = completedAt
 	this.Id = id
 	this.InputSnapshot = inputSnapshot
 	this.Model = model
 	this.OutputSnapshot = outputSnapshot
 	this.ParentRunId = parentRunId
-	this.Persona = persona
-	this.Role = role
+	this.PromptKey = promptKey
 	this.StartedAt = startedAt
 	this.Status = status
 	this.TaskId = taskId
@@ -62,6 +62,30 @@ func NewAgentRunSnapshot(completedAt NullableString, id string, inputSnapshot Nu
 func NewAgentRunSnapshotWithDefaults() *AgentRunSnapshot {
 	this := AgentRunSnapshot{}
 	return &this
+}
+
+// GetAgentKind returns the AgentKind field value
+func (o *AgentRunSnapshot) GetAgentKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AgentKind
+}
+
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *AgentRunSnapshot) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *AgentRunSnapshot) SetAgentKind(v string) {
+	o.AgentKind = v
 }
 
 // GetCompletedAt returns the CompletedAt field value
@@ -216,54 +240,30 @@ func (o *AgentRunSnapshot) SetParentRunId(v string) {
 	o.ParentRunId.Set(&v)
 }
 
-// GetPersona returns the Persona field value
+// GetPromptKey returns the PromptKey field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *AgentRunSnapshot) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
+func (o *AgentRunSnapshot) GetPromptKey() string {
+	if o == nil || o.PromptKey.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Persona.Get()
+	return *o.PromptKey.Get()
 }
 
-// GetPersonaOk returns a tuple with the Persona field value
+// GetPromptKeyOk returns a tuple with the PromptKey field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AgentRunSnapshot) GetPersonaOk() (*string, bool) {
+func (o *AgentRunSnapshot) GetPromptKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Persona.Get(), o.Persona.IsSet()
+	return o.PromptKey.Get(), o.PromptKey.IsSet()
 }
 
-// SetPersona sets field value
-func (o *AgentRunSnapshot) SetPersona(v string) {
-	o.Persona.Set(&v)
-}
-
-// GetRole returns the Role field value
-func (o *AgentRunSnapshot) GetRole() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Role
-}
-
-// GetRoleOk returns a tuple with the Role field value
-// and a boolean to check if the value has been set.
-func (o *AgentRunSnapshot) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Role, true
-}
-
-// SetRole sets field value
-func (o *AgentRunSnapshot) SetRole(v string) {
-	o.Role = v
+// SetPromptKey sets field value
+func (o *AgentRunSnapshot) SetPromptKey(v string) {
+	o.PromptKey.Set(&v)
 }
 
 // GetStartedAt returns the StartedAt field value
@@ -350,14 +350,14 @@ func (o AgentRunSnapshot) MarshalJSON() ([]byte, error) {
 
 func (o AgentRunSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["agentKind"] = o.AgentKind
 	toSerialize["completedAt"] = o.CompletedAt.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["inputSnapshot"] = o.InputSnapshot.Get()
 	toSerialize["model"] = o.Model
 	toSerialize["outputSnapshot"] = o.OutputSnapshot.Get()
 	toSerialize["parentRunId"] = o.ParentRunId.Get()
-	toSerialize["persona"] = o.Persona.Get()
-	toSerialize["role"] = o.Role
+	toSerialize["promptKey"] = o.PromptKey.Get()
 	toSerialize["startedAt"] = o.StartedAt
 	toSerialize["status"] = o.Status
 	toSerialize["taskId"] = o.TaskId.Get()
@@ -374,14 +374,14 @@ func (o *AgentRunSnapshot) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"agentKind",
 		"completedAt",
 		"id",
 		"inputSnapshot",
 		"model",
 		"outputSnapshot",
 		"parentRunId",
-		"persona",
-		"role",
+		"promptKey",
 		"startedAt",
 		"status",
 		"taskId",
@@ -414,14 +414,14 @@ func (o *AgentRunSnapshot) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "agentKind")
 		delete(additionalProperties, "completedAt")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "inputSnapshot")
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "outputSnapshot")
 		delete(additionalProperties, "parentRunId")
-		delete(additionalProperties, "persona")
-		delete(additionalProperties, "role")
+		delete(additionalProperties, "promptKey")
 		delete(additionalProperties, "startedAt")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "taskId")

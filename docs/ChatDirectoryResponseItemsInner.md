@@ -4,39 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentId** | **NullableString** |  | 
-**ContextName** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Model** | **NullableString** |  | 
-**ProjectId** | **NullableString** |  | 
-**ProjectName** | **NullableString** |  | 
-**SessionId** | **NullableString** |  | 
-**TaskId** | **NullableString** |  | 
-**ThreadId** | Pointer to **string** |  | [optional] 
-**Title** | **NullableString** |  | 
-**UpdatedAt** | **string** |  | 
-**Visibility** | **string** |  | 
+**AgentId** | **NullableString** |  |
+**ChatId** | Pointer to **string** |  | [optional]
+**ChatKey** | **NullableString** |  |
+**ContextName** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **NullableString** |  |
+**Id** | **string** |  |
+**Model** | **NullableString** |  |
+**ProjectId** | **NullableString** |  |
+**ProjectName** | **NullableString** |  |
+**TaskId** | **NullableString** |  |
+**Title** | **NullableString** |  |
+**UpdatedAt** | **string** |  |
+**Visibility** | **string** |  |
 
 ## Methods
 
 ### NewChatDirectoryResponseItemsInner
 
-`func NewChatDirectoryResponseItemsInner(agentId NullableString, contextName NullableString, createdAt string, cycleId NullableString, id string, model NullableString, projectId NullableString, projectName NullableString, sessionId NullableString, taskId NullableString, title NullableString, updatedAt string, visibility string, ) *ChatDirectoryResponseItemsInner`
+`func NewChatDirectoryResponseItemsInner(agentId NullableString, chatKey NullableString, contextName NullableString, createdAt string, cycleId NullableString, id string, model NullableString, projectId NullableString, projectName NullableString, taskId NullableString, title NullableString, updatedAt string, visibility string, ) *ChatDirectoryResponseItemsInner`
 
 NewChatDirectoryResponseItemsInner instantiates a new ChatDirectoryResponseItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewChatDirectoryResponseItemsInnerWithDefaults
 
 `func NewChatDirectoryResponseItemsInnerWithDefaults() *ChatDirectoryResponseItemsInner`
 
 NewChatDirectoryResponseItemsInnerWithDefaults instantiates a new ChatDirectoryResponseItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentId
 
@@ -68,6 +66,61 @@ SetAgentId sets AgentId field to given value.
 `func (o *ChatDirectoryResponseItemsInner) UnsetAgentId()`
 
 UnsetAgentId ensures that no value is present for AgentId, not even an explicit nil
+### GetChatId
+
+`func (o *ChatDirectoryResponseItemsInner) GetChatId() string`
+
+GetChatId returns the ChatId field if non-nil, zero value otherwise.
+
+### GetChatIdOk
+
+`func (o *ChatDirectoryResponseItemsInner) GetChatIdOk() (*string, bool)`
+
+GetChatIdOk returns a tuple with the ChatId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChatId
+
+`func (o *ChatDirectoryResponseItemsInner) SetChatId(v string)`
+
+SetChatId sets ChatId field to given value.
+
+### HasChatId
+
+`func (o *ChatDirectoryResponseItemsInner) HasChatId() bool`
+
+HasChatId returns a boolean if a field has been set.
+
+### GetChatKey
+
+`func (o *ChatDirectoryResponseItemsInner) GetChatKey() string`
+
+GetChatKey returns the ChatKey field if non-nil, zero value otherwise.
+
+### GetChatKeyOk
+
+`func (o *ChatDirectoryResponseItemsInner) GetChatKeyOk() (*string, bool)`
+
+GetChatKeyOk returns a tuple with the ChatKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChatKey
+
+`func (o *ChatDirectoryResponseItemsInner) SetChatKey(v string)`
+
+SetChatKey sets ChatKey field to given value.
+
+
+### SetChatKeyNil
+
+`func (o *ChatDirectoryResponseItemsInner) SetChatKeyNil(b bool)`
+
+ SetChatKeyNil sets the value for ChatKey to be an explicit nil
+
+### UnsetChatKey
+`func (o *ChatDirectoryResponseItemsInner) UnsetChatKey()`
+
+UnsetChatKey ensures that no value is present for ChatKey, not even an explicit nil
 ### GetContextName
 
 `func (o *ChatDirectoryResponseItemsInner) GetContextName() string`
@@ -258,36 +311,6 @@ SetProjectName sets ProjectName field to given value.
 `func (o *ChatDirectoryResponseItemsInner) UnsetProjectName()`
 
 UnsetProjectName ensures that no value is present for ProjectName, not even an explicit nil
-### GetSessionId
-
-`func (o *ChatDirectoryResponseItemsInner) GetSessionId() string`
-
-GetSessionId returns the SessionId field if non-nil, zero value otherwise.
-
-### GetSessionIdOk
-
-`func (o *ChatDirectoryResponseItemsInner) GetSessionIdOk() (*string, bool)`
-
-GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSessionId
-
-`func (o *ChatDirectoryResponseItemsInner) SetSessionId(v string)`
-
-SetSessionId sets SessionId field to given value.
-
-
-### SetSessionIdNil
-
-`func (o *ChatDirectoryResponseItemsInner) SetSessionIdNil(b bool)`
-
- SetSessionIdNil sets the value for SessionId to be an explicit nil
-
-### UnsetSessionId
-`func (o *ChatDirectoryResponseItemsInner) UnsetSessionId()`
-
-UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
 ### GetTaskId
 
 `func (o *ChatDirectoryResponseItemsInner) GetTaskId() string`
@@ -318,31 +341,6 @@ SetTaskId sets TaskId field to given value.
 `func (o *ChatDirectoryResponseItemsInner) UnsetTaskId()`
 
 UnsetTaskId ensures that no value is present for TaskId, not even an explicit nil
-### GetThreadId
-
-`func (o *ChatDirectoryResponseItemsInner) GetThreadId() string`
-
-GetThreadId returns the ThreadId field if non-nil, zero value otherwise.
-
-### GetThreadIdOk
-
-`func (o *ChatDirectoryResponseItemsInner) GetThreadIdOk() (*string, bool)`
-
-GetThreadIdOk returns a tuple with the ThreadId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThreadId
-
-`func (o *ChatDirectoryResponseItemsInner) SetThreadId(v string)`
-
-SetThreadId sets ThreadId field to given value.
-
-### HasThreadId
-
-`func (o *ChatDirectoryResponseItemsInner) HasThreadId() bool`
-
-HasThreadId returns a boolean if a field has been set.
-
 ### GetTitle
 
 `func (o *ChatDirectoryResponseItemsInner) GetTitle() string`

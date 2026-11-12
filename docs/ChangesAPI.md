@@ -1,18 +1,18 @@
-# \ChangesAPI
+# ChangesAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CommitProjectFileEdits**](ChangesAPI.md#CommitProjectFileEdits) | **Post** /v1/api/projects/{id}/files/commit | Commit hand edits to an edit branch
-[**GetProjectChangeFile**](ChangesAPI.md#GetProjectChangeFile) | **Get** /v1/api/projects/{id}/changes/file | Get one changed file&#39;s unified diff
-[**GetProjectChanges**](ChangesAPI.md#GetProjectChanges) | **Get** /v1/api/projects/{id}/changes | Get the project&#39;s changed files and checkpoint commits
-[**GetProjectFileContent**](ChangesAPI.md#GetProjectFileContent) | **Get** /v1/api/projects/{id}/files/content | Get one file of the project&#39;s head tree
-[**ListProjectBranches**](ChangesAPI.md#ListProjectBranches) | **Get** /v1/api/projects/{id}/branches | List the branches of the project the Files surface can read
-[**ListProjectFiles**](ChangesAPI.md#ListProjectFiles) | **Get** /v1/api/projects/{id}/files | List every path in the project&#39;s head tree
-[**MergeProjectEditBranch**](ChangesAPI.md#MergeProjectEditBranch) | **Post** /v1/api/projects/{id}/branches/merge | Merge an edit branch back into the branch it was cut from
-[**SaveProjectWorkingFile**](ChangesAPI.md#SaveProjectWorkingFile) | **Put** /v1/api/projects/{id}/files/working | Save one file into a running cycle&#39;s Cloud Machine
-[**StartProjectEditBranch**](ChangesAPI.md#StartProjectEditBranch) | **Post** /v1/api/projects/{id}/branches | Cut a branch to edit files by hand
+[**CommitProjectFileEdits**](ChangesAPI.md#commitprojectfileedits) | **Post** /v1/api/projects/{id}/files/commit | Commit hand edits to an edit branch
+[**GetProjectChangeFile**](ChangesAPI.md#getprojectchangefile) | **Get** /v1/api/projects/{id}/changes/file | Get one changed file&#39;s unified diff
+[**GetProjectChanges**](ChangesAPI.md#getprojectchanges) | **Get** /v1/api/projects/{id}/changes | Get the project&#39;s changed files and checkpoint commits
+[**GetProjectFileContent**](ChangesAPI.md#getprojectfilecontent) | **Get** /v1/api/projects/{id}/files/content | Get one file of the project&#39;s head tree
+[**ListProjectBranches**](ChangesAPI.md#listprojectbranches) | **Get** /v1/api/projects/{id}/branches | List the branches of the project the Files surface can read
+[**ListProjectFiles**](ChangesAPI.md#listprojectfiles) | **Get** /v1/api/projects/{id}/files | List every path in the project&#39;s head tree
+[**MergeProjectEditBranch**](ChangesAPI.md#mergeprojecteditbranch) | **Post** /v1/api/projects/{id}/branches/merge | Merge an edit branch back into the branch it was cut from
+[**SaveProjectWorkingFile**](ChangesAPI.md#saveprojectworkingfile) | **Put** /v1/api/projects/{id}/files/working | Save one file into a running cycle&#39;s Cloud Machine
+[**StartProjectEditBranch**](ChangesAPI.md#startprojecteditbranch) | **Post** /v1/api/projects/{id}/branches | Cut a branch to edit files by hand
 
 
 
@@ -24,10 +24,13 @@ Commit hand edits to an edit branch
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -35,13 +38,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	commitEdits := *openapiclient.NewCommitEdits([]openapiclient.CommitEditsFilesInner{*openapiclient.NewCommitEditsFilesInner("Content_example", "Path_example")}, "HeadSha_example", "Message_example", "Ref_example") // CommitEdits | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var commitEdits openapiclient.CommitEdits
+	if err := json.Unmarshal([]byte("{\"files\":[{\"content\":\"text\",\"path\":\"text\"}],\"headSha\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"message\":\"text\",\"ref\":\"text\"}"), &commitEdits); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.CommitProjectFileEdits(context.Background(), id).CommitEdits(commitEdits).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.CommitProjectFileEdits(ctx, id).CommitEdits(commitEdits).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.CommitProjectFileEdits``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,18 +66,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCommitProjectFileEditsRequest struct via the builder pattern
+Pass optional parameters through the `apiCommitProjectFileEditsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **commitEdits** | [**CommitEdits**](CommitEdits.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **commitEdits** | [**CommitEdits**](CommitEdits.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -76,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -96,6 +105,8 @@ Get one changed file's unified diff
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -107,17 +118,20 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	path := "path_example" // string | The repository-relative file path.
 	repo := "repo_example" // string | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). (optional)
 	since := "since_example" // string | A 40-character commit sha to compare against instead of the default branch. (optional)
-	cycleId := "cycleId_example" // string | Read from this cycle's RUNNING engineer box instead of the repository. (optional)
+	cycleId := "cycleId_example" // string | Read from this cycle's running build agent Cloud Machine instead of the repository. (optional)
 	ref := "ref_example" // string | Read this branch instead of the project's preview branch. Only a branch `GET /v1/api/projects/:id/branches` lists is accepted; any other name, another project's branch in a shared repository included, is a 404. Naming a branch is agency-only. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.GetProjectChangeFile(context.Background(), id).Path(path).Repo(repo).Since(since).CycleId(cycleId).Ref(ref).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.GetProjectChangeFile(ctx, id).Path(path).Repo(repo).Since(since).CycleId(cycleId).Ref(ref).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.GetProjectChangeFile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,22 +147,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectChangeFileRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectChangeFileRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **path** | **string** | The repository-relative file path. | 
- **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). | 
- **since** | **string** | A 40-character commit sha to compare against instead of the default branch. | 
- **cycleId** | **string** | Read from this cycle&#39;s RUNNING engineer box instead of the repository. | 
- **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **path** | **string** | The repository-relative file path. |
+ **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). |
+ **since** | **string** | A 40-character commit sha to compare against instead of the default branch. |
+ **cycleId** | **string** | Read from this cycle&#39;s running build agent Cloud Machine instead of the repository. |
+ **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -156,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -176,6 +190,8 @@ Get the project's changed files and checkpoint commits
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -187,16 +203,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	repo := "repo_example" // string | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). (optional)
 	since := "since_example" // string | A 40-character commit sha to compare against instead of the default branch. (optional)
 	ref := "ref_example" // string | Read this branch instead of the project's preview branch. Only a branch `GET /v1/api/projects/:id/branches` lists is accepted; any other name, another project's branch in a shared repository included, is a 404. Naming a branch is agency-only. (optional)
 	page := "page_example" // string | Which page of an HLIX Repos repository's change list, from 0 (the default). Each page lists up to 500 files in path order; the response's `nextPage` names the next one. Ignored for GitHub repositories, whose list is not paged. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.GetProjectChanges(context.Background(), id).Repo(repo).Since(since).Ref(ref).Page(page).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.GetProjectChanges(ctx, id).Repo(repo).Since(since).Ref(ref).Page(page).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.GetProjectChanges``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,21 +231,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectChangesRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectChangesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). | 
- **since** | **string** | A 40-character commit sha to compare against instead of the default branch. | 
- **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. | 
- **page** | **string** | Which page of an HLIX Repos repository&#39;s change list, from 0 (the default). Each page lists up to 500 files in path order; the response&#39;s &#x60;nextPage&#x60; names the next one. Ignored for GitHub repositories, whose list is not paged. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). |
+ **since** | **string** | A 40-character commit sha to compare against instead of the default branch. |
+ **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. |
+ **page** | **string** | Which page of an HLIX Repos repository&#39;s change list, from 0 (the default). Each page lists up to 500 files in path order; the response&#39;s &#x60;nextPage&#x60; names the next one. Ignored for GitHub repositories, whose list is not paged. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -234,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -254,6 +273,8 @@ Get one file of the project's head tree
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -265,17 +286,20 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	path := "path_example" // string | The repository-relative file path.
 	repo := "repo_example" // string | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). (optional)
-	cycleId := "cycleId_example" // string | Read from this cycle's RUNNING engineer box instead of the repository. (optional)
+	cycleId := "cycleId_example" // string | Read from this cycle's running build agent Cloud Machine instead of the repository. (optional)
 	ref := "ref_example" // string | Read this branch instead of the project's preview branch. Only a branch `GET /v1/api/projects/:id/branches` lists is accepted; any other name, another project's branch in a shared repository included, is a 404. Naming a branch is agency-only. (optional)
 	at := "at_example" // string | Read the file at this 40-character commit (the one the tree was listed at) instead of the branch head, so a push between listing and reading cannot change the answer. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.GetProjectFileContent(context.Background(), id).Path(path).Repo(repo).CycleId(cycleId).Ref(ref).At(at).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.GetProjectFileContent(ctx, id).Path(path).Repo(repo).CycleId(cycleId).Ref(ref).At(at).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.GetProjectFileContent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -291,22 +315,22 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectFileContentRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectFileContentRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **path** | **string** | The repository-relative file path. | 
- **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). | 
- **cycleId** | **string** | Read from this cycle&#39;s RUNNING engineer box instead of the repository. | 
- **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. | 
- **at** | **string** | Read the file at this 40-character commit (the one the tree was listed at) instead of the branch head, so a push between listing and reading cannot change the answer. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **path** | **string** | The repository-relative file path. |
+ **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). |
+ **cycleId** | **string** | Read from this cycle&#39;s running build agent Cloud Machine instead of the repository. |
+ **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. |
+ **at** | **string** | Read the file at this 40-character commit (the one the tree was listed at) instead of the branch head, so a push between listing and reading cannot change the answer. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -314,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -334,6 +358,8 @@ List the branches of the project the Files surface can read
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -345,13 +371,16 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	repo := "repo_example" // string | Which repository of a multi-repo project. Omitted, the primary one. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.ListProjectBranches(context.Background(), id).Repo(repo).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.ListProjectBranches(ctx, id).Repo(repo).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.ListProjectBranches``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -367,18 +396,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListProjectBranchesRequest struct via the builder pattern
+Pass optional parameters through the `apiListProjectBranchesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **repo** | **string** | Which repository of a multi-repo project. Omitted, the primary one. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **repo** | **string** | Which repository of a multi-repo project. Omitted, the primary one. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -386,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -406,6 +435,8 @@ List every path in the project's head tree
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -417,14 +448,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
 	repo := "repo_example" // string | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). (optional)
 	ref := "ref_example" // string | Read this branch instead of the project's preview branch. Only a branch `GET /v1/api/projects/:id/branches` lists is accepted; any other name, another project's branch in a shared repository included, is a 404. Naming a branch is agency-only. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.ListProjectFiles(context.Background(), id).Repo(repo).Ref(ref).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.ListProjectFiles(ctx, id).Repo(repo).Ref(ref).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.ListProjectFiles``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -440,19 +474,19 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListProjectFilesRequest struct via the builder pattern
+Pass optional parameters through the `apiListProjectFilesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). | 
- **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **repo** | **string** | Which repository of a multi-repo project. Omitted, every repository (the primary one for a single-file read). |
+ **ref** | **string** | Read this branch instead of the project&#39;s preview branch. Only a branch &#x60;GET /v1/api/projects/:id/branches&#x60; lists is accepted; any other name, another project&#39;s branch in a shared repository included, is a 404. Naming a branch is agency-only. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -460,7 +494,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -480,10 +514,13 @@ Merge an edit branch back into the branch it was cut from
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -491,13 +528,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	mergeEditBranch := *openapiclient.NewMergeEditBranch("Ref_example") // MergeEditBranch | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var mergeEditBranch openapiclient.MergeEditBranch
+	if err := json.Unmarshal([]byte("{\"ref\":\"text\"}"), &mergeEditBranch); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.MergeProjectEditBranch(context.Background(), id).MergeEditBranch(mergeEditBranch).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.MergeProjectEditBranch(ctx, id).MergeEditBranch(mergeEditBranch).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.MergeProjectEditBranch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -513,18 +556,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiMergeProjectEditBranchRequest struct via the builder pattern
+Pass optional parameters through the `apiMergeProjectEditBranchRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **mergeEditBranch** | [**MergeEditBranch**](MergeEditBranch.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **mergeEditBranch** | [**MergeEditBranch**](MergeEditBranch.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -532,7 +575,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -552,10 +595,13 @@ Save one file into a running cycle's Cloud Machine
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -563,13 +609,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	writeWorkingFile := *openapiclient.NewWriteWorkingFile("Base_example", "Content_example", "CycleId_example", "Path_example") // WriteWorkingFile | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var writeWorkingFile openapiclient.WriteWorkingFile
+	if err := json.Unmarshal([]byte("{\"base\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"content\":\"text\",\"cycleId\":\"text\",\"path\":\"text\"}"), &writeWorkingFile); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.SaveProjectWorkingFile(context.Background(), id).WriteWorkingFile(writeWorkingFile).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.SaveProjectWorkingFile(ctx, id).WriteWorkingFile(writeWorkingFile).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.SaveProjectWorkingFile``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -585,18 +637,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSaveProjectWorkingFileRequest struct via the builder pattern
+Pass optional parameters through the `apiSaveProjectWorkingFileRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **writeWorkingFile** | [**WriteWorkingFile**](WriteWorkingFile.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **writeWorkingFile** | [**WriteWorkingFile**](WriteWorkingFile.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -604,7 +656,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -624,10 +676,13 @@ Cut a branch to edit files by hand
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -635,13 +690,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	startEditBranch := *openapiclient.NewStartEditBranch("From_example", "FromSha_example") // StartEditBranch | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var startEditBranch openapiclient.StartEditBranch
+	if err := json.Unmarshal([]byte("{\"from\":\"text\",\"fromSha\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}"), &startEditBranch); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChangesAPI.StartProjectEditBranch(context.Background(), id).StartEditBranch(startEditBranch).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.ChangesAPI.StartProjectEditBranch(ctx, id).StartEditBranch(startEditBranch).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChangesAPI.StartProjectEditBranch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -657,18 +718,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStartProjectEditBranchRequest struct via the builder pattern
+Pass optional parameters through the `apiStartProjectEditBranchRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **startEditBranch** | [**StartEditBranch**](StartEditBranch.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **startEditBranch** | [**StartEditBranch**](StartEditBranch.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -676,7 +737,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

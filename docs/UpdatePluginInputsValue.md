@@ -1,29 +1,30 @@
 # UpdatePluginInputsValue
 
-## Properties
+This model accepts at least one of the alternatives below. JSON null is also accepted. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| `string` | — |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `String` | `*string` |
 
 ## Methods
 
-### NewUpdatePluginInputsValue
+### UnmarshalJSON
 
-`func NewUpdatePluginInputsValue() *UpdatePluginInputsValue`
+`func (dst *UpdatePluginInputsValue) UnmarshalJSON(data []byte) error`
 
-NewUpdatePluginInputsValue instantiates a new UpdatePluginInputsValue object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewUpdatePluginInputsValueWithDefaults
-
-`func NewUpdatePluginInputsValueWithDefaults() *UpdatePluginInputsValue`
-
-NewUpdatePluginInputsValueWithDefaults instantiates a new UpdatePluginInputsValue object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
+`func (src UpdatePluginInputsValue) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

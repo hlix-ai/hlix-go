@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Format** | Pointer to **string** |  | [optional] 
-**ProjectId** | Pointer to **string** |  | [optional] 
-**Speed** | Pointer to **float32** |  | [optional] 
-**Text** | **string** |  | 
-**Voice** | **string** |  | 
+**Format** | Pointer to **string** |  | [optional]
+**ProjectId** | Pointer to **string** |  | [optional]
+**Speed** | Pointer to **float32** |  | [optional]
+**Text** | **string** |  |
+**Voice** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewSynthesizeSpeech(text string, voice string, ) *SynthesizeSpeech`
 
 NewSynthesizeSpeech instantiates a new SynthesizeSpeech object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSynthesizeSpeechWithDefaults
 
 `func NewSynthesizeSpeechWithDefaults() *SynthesizeSpeech`
 
 NewSynthesizeSpeechWithDefaults instantiates a new SynthesizeSpeech object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetFormat
 

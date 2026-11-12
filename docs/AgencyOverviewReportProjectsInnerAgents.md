@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostMicros** | **int64** |  | 
-**Failed** | **int32** |  | 
-**Running** | **int32** |  | 
+**CostMicros** | **int64** |  |
+**Failed** | **int32** |  |
+**Running** | **int32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewAgencyOverviewReportProjectsInnerAgents(costMicros int64, failed int32, running int32, ) *AgencyOverviewReportProjectsInnerAgents`
 
 NewAgencyOverviewReportProjectsInnerAgents instantiates a new AgencyOverviewReportProjectsInnerAgents object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportProjectsInnerAgentsWithDefaults
 
 `func NewAgencyOverviewReportProjectsInnerAgentsWithDefaults() *AgencyOverviewReportProjectsInnerAgents`
 
 NewAgencyOverviewReportProjectsInnerAgentsWithDefaults instantiates a new AgencyOverviewReportProjectsInnerAgents object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCostMicros
 

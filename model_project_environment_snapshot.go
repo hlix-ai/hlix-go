@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,11 +20,10 @@ var _ MappedNullable = &ProjectEnvironmentSnapshot{}
 
 // ProjectEnvironmentSnapshot struct for ProjectEnvironmentSnapshot
 type ProjectEnvironmentSnapshot struct {
-	BaseSnapshot string `json:"baseSnapshot"`
 	CreatedAt string `json:"createdAt"`
-	LayoutVersion int32 `json:"layoutVersion"`
+	EnvironmentId string `json:"environmentId"`
+	ImageVersion string `json:"imageVersion"`
 	ManifestHash string `json:"manifestHash"`
-	Name string `json:"name"`
 	RuntimeHash string `json:"runtimeHash"`
 	AdditionalProperties map[string]interface{}
 }
@@ -35,13 +34,12 @@ type _ProjectEnvironmentSnapshot ProjectEnvironmentSnapshot
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectEnvironmentSnapshot(baseSnapshot string, createdAt string, layoutVersion int32, manifestHash string, name string, runtimeHash string) *ProjectEnvironmentSnapshot {
+func NewProjectEnvironmentSnapshot(createdAt string, environmentId string, imageVersion string, manifestHash string, runtimeHash string) *ProjectEnvironmentSnapshot {
 	this := ProjectEnvironmentSnapshot{}
-	this.BaseSnapshot = baseSnapshot
 	this.CreatedAt = createdAt
-	this.LayoutVersion = layoutVersion
+	this.EnvironmentId = environmentId
+	this.ImageVersion = imageVersion
 	this.ManifestHash = manifestHash
-	this.Name = name
 	this.RuntimeHash = runtimeHash
 	return &this
 }
@@ -52,30 +50,6 @@ func NewProjectEnvironmentSnapshot(baseSnapshot string, createdAt string, layout
 func NewProjectEnvironmentSnapshotWithDefaults() *ProjectEnvironmentSnapshot {
 	this := ProjectEnvironmentSnapshot{}
 	return &this
-}
-
-// GetBaseSnapshot returns the BaseSnapshot field value
-func (o *ProjectEnvironmentSnapshot) GetBaseSnapshot() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BaseSnapshot
-}
-
-// GetBaseSnapshotOk returns a tuple with the BaseSnapshot field value
-// and a boolean to check if the value has been set.
-func (o *ProjectEnvironmentSnapshot) GetBaseSnapshotOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BaseSnapshot, true
-}
-
-// SetBaseSnapshot sets field value
-func (o *ProjectEnvironmentSnapshot) SetBaseSnapshot(v string) {
-	o.BaseSnapshot = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -102,28 +76,52 @@ func (o *ProjectEnvironmentSnapshot) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
-// GetLayoutVersion returns the LayoutVersion field value
-func (o *ProjectEnvironmentSnapshot) GetLayoutVersion() int32 {
+// GetEnvironmentId returns the EnvironmentId field value
+func (o *ProjectEnvironmentSnapshot) GetEnvironmentId() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
-	return o.LayoutVersion
+	return o.EnvironmentId
 }
 
-// GetLayoutVersionOk returns a tuple with the LayoutVersion field value
+// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value
 // and a boolean to check if the value has been set.
-func (o *ProjectEnvironmentSnapshot) GetLayoutVersionOk() (*int32, bool) {
+func (o *ProjectEnvironmentSnapshot) GetEnvironmentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LayoutVersion, true
+	return &o.EnvironmentId, true
 }
 
-// SetLayoutVersion sets field value
-func (o *ProjectEnvironmentSnapshot) SetLayoutVersion(v int32) {
-	o.LayoutVersion = v
+// SetEnvironmentId sets field value
+func (o *ProjectEnvironmentSnapshot) SetEnvironmentId(v string) {
+	o.EnvironmentId = v
+}
+
+// GetImageVersion returns the ImageVersion field value
+func (o *ProjectEnvironmentSnapshot) GetImageVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ImageVersion
+}
+
+// GetImageVersionOk returns a tuple with the ImageVersion field value
+// and a boolean to check if the value has been set.
+func (o *ProjectEnvironmentSnapshot) GetImageVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ImageVersion, true
+}
+
+// SetImageVersion sets field value
+func (o *ProjectEnvironmentSnapshot) SetImageVersion(v string) {
+	o.ImageVersion = v
 }
 
 // GetManifestHash returns the ManifestHash field value
@@ -148,30 +146,6 @@ func (o *ProjectEnvironmentSnapshot) GetManifestHashOk() (*string, bool) {
 // SetManifestHash sets field value
 func (o *ProjectEnvironmentSnapshot) SetManifestHash(v string) {
 	o.ManifestHash = v
-}
-
-// GetName returns the Name field value
-func (o *ProjectEnvironmentSnapshot) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ProjectEnvironmentSnapshot) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ProjectEnvironmentSnapshot) SetName(v string) {
-	o.Name = v
 }
 
 // GetRuntimeHash returns the RuntimeHash field value
@@ -208,11 +182,10 @@ func (o ProjectEnvironmentSnapshot) MarshalJSON() ([]byte, error) {
 
 func (o ProjectEnvironmentSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["baseSnapshot"] = o.BaseSnapshot
 	toSerialize["createdAt"] = o.CreatedAt
-	toSerialize["layoutVersion"] = o.LayoutVersion
+	toSerialize["environmentId"] = o.EnvironmentId
+	toSerialize["imageVersion"] = o.ImageVersion
 	toSerialize["manifestHash"] = o.ManifestHash
-	toSerialize["name"] = o.Name
 	toSerialize["runtimeHash"] = o.RuntimeHash
 
 	for key, value := range o.AdditionalProperties {
@@ -227,11 +200,10 @@ func (o *ProjectEnvironmentSnapshot) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"baseSnapshot",
 		"createdAt",
-		"layoutVersion",
+		"environmentId",
+		"imageVersion",
 		"manifestHash",
-		"name",
 		"runtimeHash",
 	}
 
@@ -262,11 +234,10 @@ func (o *ProjectEnvironmentSnapshot) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "baseSnapshot")
 		delete(additionalProperties, "createdAt")
-		delete(additionalProperties, "layoutVersion")
+		delete(additionalProperties, "environmentId")
+		delete(additionalProperties, "imageVersion")
 		delete(additionalProperties, "manifestHash")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "runtimeHash")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AttachmentIds** | **[]string** |  | 
-**CreatedAt** | **string** |  | 
-**Hash** | **string** |  | 
-**Plan** | [**ClientRequestDetailCurrentPlanPlan**](ClientRequestDetailCurrentPlanPlan.md) |  | 
-**Revision** | **int32** |  | 
+**AttachmentIds** | **[]string** |  |
+**CreatedAt** | **string** |  |
+**Hash** | **string** |  |
+**Plan** | [**ClientRequestDetailCurrentPlanPlan**](ClientRequestDetailCurrentPlanPlan.md) |  |
+**Revision** | **int32** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewClientRequestDetailCurrentPlan(attachmentIds []string, createdAt string, hash string, plan ClientRequestDetailCurrentPlanPlan, revision int32, ) *ClientRequestDetailCurrentPlan`
 
 NewClientRequestDetailCurrentPlan instantiates a new ClientRequestDetailCurrentPlan object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientRequestDetailCurrentPlanWithDefaults
 
 `func NewClientRequestDetailCurrentPlanWithDefaults() *ClientRequestDetailCurrentPlan`
 
 NewClientRequestDetailCurrentPlanWithDefaults instantiates a new ClientRequestDetailCurrentPlan object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAttachmentIds
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,6 +21,7 @@ var _ MappedNullable = &AgentRunSummary{}
 // AgentRunSummary struct for AgentRunSummary
 type AgentRunSummary struct {
 	AccountingSource NullableString `json:"accountingSource"`
+	AgentKind string `json:"agentKind"`
 	BilledTo NullableString `json:"billedTo"`
 	CoderAccountId NullableString `json:"coderAccountId"`
 	CompletedAt NullableString `json:"completedAt"`
@@ -29,8 +30,7 @@ type AgentRunSummary struct {
 	FundingMode NullableString `json:"fundingMode"`
 	Id string `json:"id"`
 	Model string `json:"model"`
-	Persona NullableString `json:"persona"`
-	Role string `json:"role"`
+	PromptKey NullableString `json:"promptKey"`
 	StartedAt string `json:"startedAt"`
 	Status string `json:"status"`
 	TaskId NullableString `json:"taskId"`
@@ -46,9 +46,10 @@ type _AgentRunSummary AgentRunSummary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentRunSummary(accountingSource NullableString, billedTo NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, persona NullableString, role string, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString) *AgentRunSummary {
+func NewAgentRunSummary(accountingSource NullableString, agentKind string, billedTo NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, fundingMode NullableString, id string, model string, promptKey NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, usageCompleteness NullableString) *AgentRunSummary {
 	this := AgentRunSummary{}
 	this.AccountingSource = accountingSource
+	this.AgentKind = agentKind
 	this.BilledTo = billedTo
 	this.CoderAccountId = coderAccountId
 	this.CompletedAt = completedAt
@@ -57,8 +58,7 @@ func NewAgentRunSummary(accountingSource NullableString, billedTo NullableString
 	this.FundingMode = fundingMode
 	this.Id = id
 	this.Model = model
-	this.Persona = persona
-	this.Role = role
+	this.PromptKey = promptKey
 	this.StartedAt = startedAt
 	this.Status = status
 	this.TaskId = taskId
@@ -100,6 +100,30 @@ func (o *AgentRunSummary) GetAccountingSourceOk() (*string, bool) {
 // SetAccountingSource sets field value
 func (o *AgentRunSummary) SetAccountingSource(v string) {
 	o.AccountingSource.Set(&v)
+}
+
+// GetAgentKind returns the AgentKind field value
+func (o *AgentRunSummary) GetAgentKind() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AgentKind
+}
+
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *AgentRunSummary) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *AgentRunSummary) SetAgentKind(v string) {
+	o.AgentKind = v
 }
 
 // GetBilledTo returns the BilledTo field value
@@ -306,54 +330,30 @@ func (o *AgentRunSummary) SetModel(v string) {
 	o.Model = v
 }
 
-// GetPersona returns the Persona field value
+// GetPromptKey returns the PromptKey field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *AgentRunSummary) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
+func (o *AgentRunSummary) GetPromptKey() string {
+	if o == nil || o.PromptKey.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Persona.Get()
+	return *o.PromptKey.Get()
 }
 
-// GetPersonaOk returns a tuple with the Persona field value
+// GetPromptKeyOk returns a tuple with the PromptKey field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AgentRunSummary) GetPersonaOk() (*string, bool) {
+func (o *AgentRunSummary) GetPromptKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Persona.Get(), o.Persona.IsSet()
+	return o.PromptKey.Get(), o.PromptKey.IsSet()
 }
 
-// SetPersona sets field value
-func (o *AgentRunSummary) SetPersona(v string) {
-	o.Persona.Set(&v)
-}
-
-// GetRole returns the Role field value
-func (o *AgentRunSummary) GetRole() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Role
-}
-
-// GetRoleOk returns a tuple with the Role field value
-// and a boolean to check if the value has been set.
-func (o *AgentRunSummary) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Role, true
-}
-
-// SetRole sets field value
-func (o *AgentRunSummary) SetRole(v string) {
-	o.Role = v
+// SetPromptKey sets field value
+func (o *AgentRunSummary) SetPromptKey(v string) {
+	o.PromptKey.Set(&v)
 }
 
 // GetStartedAt returns the StartedAt field value
@@ -519,6 +519,7 @@ func (o AgentRunSummary) MarshalJSON() ([]byte, error) {
 func (o AgentRunSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accountingSource"] = o.AccountingSource.Get()
+	toSerialize["agentKind"] = o.AgentKind
 	toSerialize["billedTo"] = o.BilledTo.Get()
 	toSerialize["coderAccountId"] = o.CoderAccountId.Get()
 	toSerialize["completedAt"] = o.CompletedAt.Get()
@@ -527,8 +528,7 @@ func (o AgentRunSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize["fundingMode"] = o.FundingMode.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["model"] = o.Model
-	toSerialize["persona"] = o.Persona.Get()
-	toSerialize["role"] = o.Role
+	toSerialize["promptKey"] = o.PromptKey.Get()
 	toSerialize["startedAt"] = o.StartedAt
 	toSerialize["status"] = o.Status
 	toSerialize["taskId"] = o.TaskId.Get()
@@ -549,6 +549,7 @@ func (o *AgentRunSummary) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"accountingSource",
+		"agentKind",
 		"billedTo",
 		"coderAccountId",
 		"completedAt",
@@ -557,8 +558,7 @@ func (o *AgentRunSummary) UnmarshalJSON(data []byte) (err error) {
 		"fundingMode",
 		"id",
 		"model",
-		"persona",
-		"role",
+		"promptKey",
 		"startedAt",
 		"status",
 		"taskId",
@@ -595,6 +595,7 @@ func (o *AgentRunSummary) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "accountingSource")
+		delete(additionalProperties, "agentKind")
 		delete(additionalProperties, "billedTo")
 		delete(additionalProperties, "coderAccountId")
 		delete(additionalProperties, "completedAt")
@@ -603,8 +604,7 @@ func (o *AgentRunSummary) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "fundingMode")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "model")
-		delete(additionalProperties, "persona")
-		delete(additionalProperties, "role")
+		delete(additionalProperties, "promptKey")
 		delete(additionalProperties, "startedAt")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "taskId")

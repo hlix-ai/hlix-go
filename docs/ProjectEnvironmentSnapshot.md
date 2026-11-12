@@ -4,51 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseSnapshot** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**LayoutVersion** | **int32** |  | 
-**ManifestHash** | **string** |  | 
-**Name** | **string** |  | 
-**RuntimeHash** | **string** |  | 
+**CreatedAt** | **string** |  |
+**EnvironmentId** | **string** |  |
+**ImageVersion** | **string** |  |
+**ManifestHash** | **string** |  |
+**RuntimeHash** | **string** |  |
 
 ## Methods
 
 ### NewProjectEnvironmentSnapshot
 
-`func NewProjectEnvironmentSnapshot(baseSnapshot string, createdAt string, layoutVersion int32, manifestHash string, name string, runtimeHash string, ) *ProjectEnvironmentSnapshot`
+`func NewProjectEnvironmentSnapshot(createdAt string, environmentId string, imageVersion string, manifestHash string, runtimeHash string, ) *ProjectEnvironmentSnapshot`
 
 NewProjectEnvironmentSnapshot instantiates a new ProjectEnvironmentSnapshot object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectEnvironmentSnapshotWithDefaults
 
 `func NewProjectEnvironmentSnapshotWithDefaults() *ProjectEnvironmentSnapshot`
 
 NewProjectEnvironmentSnapshotWithDefaults instantiates a new ProjectEnvironmentSnapshot object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
-### GetBaseSnapshot
-
-`func (o *ProjectEnvironmentSnapshot) GetBaseSnapshot() string`
-
-GetBaseSnapshot returns the BaseSnapshot field if non-nil, zero value otherwise.
-
-### GetBaseSnapshotOk
-
-`func (o *ProjectEnvironmentSnapshot) GetBaseSnapshotOk() (*string, bool)`
-
-GetBaseSnapshotOk returns a tuple with the BaseSnapshot field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseSnapshot
-
-`func (o *ProjectEnvironmentSnapshot) SetBaseSnapshot(v string)`
-
-SetBaseSnapshot sets BaseSnapshot field to given value.
-
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreatedAt
 
@@ -70,24 +47,44 @@ and a boolean to check if the value has been set.
 SetCreatedAt sets CreatedAt field to given value.
 
 
-### GetLayoutVersion
+### GetEnvironmentId
 
-`func (o *ProjectEnvironmentSnapshot) GetLayoutVersion() int32`
+`func (o *ProjectEnvironmentSnapshot) GetEnvironmentId() string`
 
-GetLayoutVersion returns the LayoutVersion field if non-nil, zero value otherwise.
+GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
 
-### GetLayoutVersionOk
+### GetEnvironmentIdOk
 
-`func (o *ProjectEnvironmentSnapshot) GetLayoutVersionOk() (*int32, bool)`
+`func (o *ProjectEnvironmentSnapshot) GetEnvironmentIdOk() (*string, bool)`
 
-GetLayoutVersionOk returns a tuple with the LayoutVersion field if it's non-nil, zero value otherwise
+GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLayoutVersion
+### SetEnvironmentId
 
-`func (o *ProjectEnvironmentSnapshot) SetLayoutVersion(v int32)`
+`func (o *ProjectEnvironmentSnapshot) SetEnvironmentId(v string)`
 
-SetLayoutVersion sets LayoutVersion field to given value.
+SetEnvironmentId sets EnvironmentId field to given value.
+
+
+### GetImageVersion
+
+`func (o *ProjectEnvironmentSnapshot) GetImageVersion() string`
+
+GetImageVersion returns the ImageVersion field if non-nil, zero value otherwise.
+
+### GetImageVersionOk
+
+`func (o *ProjectEnvironmentSnapshot) GetImageVersionOk() (*string, bool)`
+
+GetImageVersionOk returns a tuple with the ImageVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImageVersion
+
+`func (o *ProjectEnvironmentSnapshot) SetImageVersion(v string)`
+
+SetImageVersion sets ImageVersion field to given value.
 
 
 ### GetManifestHash
@@ -108,26 +105,6 @@ and a boolean to check if the value has been set.
 `func (o *ProjectEnvironmentSnapshot) SetManifestHash(v string)`
 
 SetManifestHash sets ManifestHash field to given value.
-
-
-### GetName
-
-`func (o *ProjectEnvironmentSnapshot) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ProjectEnvironmentSnapshot) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ProjectEnvironmentSnapshot) SetName(v string)`
-
-SetName sets Name field to given value.
 
 
 ### GetRuntimeHash

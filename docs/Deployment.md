@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BuildId** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **NullableString** |  | 
-**ErrorMessage** | **NullableString** |  | 
-**ExpiresAt** | **NullableString** |  | 
-**GitBranch** | **NullableString** |  | 
-**GitSha** | **NullableString** |  | 
-**Id** | **string** |  | 
-**ImageUri** | **NullableString** |  | 
-**Kind** | **string** |  | 
-**LastAccessedAt** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **string** |  | 
-**Region** | **string** |  | 
-**Revision** | **NullableString** |  | 
-**ServiceName** | **string** |  | 
-**Slug** | **string** |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Url** | **NullableString** |  | 
+**BuildId** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **NullableString** |  |
+**ErrorMessage** | **NullableString** |  |
+**ExpiresAt** | **NullableString** |  |
+**GitBranch** | **NullableString** |  |
+**GitSha** | **NullableString** |  |
+**Id** | **string** |  |
+**ImageUri** | **NullableString** |  |
+**Kind** | **string** |  |
+**LastAccessedAt** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **string** |  |
+**Region** | **string** |  |
+**Revision** | **NullableString** |  |
+**ServiceName** | **string** |  |
+**Slug** | **string** |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Url** | **NullableString** |  |
 
 ## Methods
 
@@ -32,17 +32,15 @@ Name | Type | Description | Notes
 `func NewDeployment(buildId NullableString, createdAt string, cycleId NullableString, errorMessage NullableString, expiresAt NullableString, gitBranch NullableString, gitSha NullableString, id string, imageUri NullableString, kind string, lastAccessedAt NullableString, organizationId string, projectId string, region string, revision NullableString, serviceName string, slug string, status string, updatedAt string, url NullableString, ) *Deployment`
 
 NewDeployment instantiates a new Deployment object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeploymentWithDefaults
 
 `func NewDeploymentWithDefaults() *Deployment`
 
 NewDeploymentWithDefaults instantiates a new Deployment object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBuildId
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | **NullableString** |  | 
-**Id** | **string** |  | 
-**OccurredAt** | **string** |  | 
-**ProjectId** | **string** |  | 
-**Source** | [**ClientActivityItemSource**](ClientActivityItemSource.md) |  | 
-**Title** | **string** |  | 
-**Type** | **string** |  | 
+**Detail** | **NullableString** |  |
+**Id** | **string** |  |
+**OccurredAt** | **string** |  |
+**ProjectId** | **string** |  |
+**Source** | [**ClientActivityItemSource**](ClientActivityItemSource.md) |  |
+**Title** | **string** |  |
+**Type** | **string** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewClientActivityItem(detail NullableString, id string, occurredAt string, projectId string, source ClientActivityItemSource, title string, type_ string, ) *ClientActivityItem`
 
 NewClientActivityItem instantiates a new ClientActivityItem object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientActivityItemWithDefaults
 
 `func NewClientActivityItemWithDefaults() *ClientActivityItem`
 
 NewClientActivityItemWithDefaults instantiates a new ClientActivityItem object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDetail
 

@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CycleId** | **NullableString** |  | 
-**Detail** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**LeadId** | Pointer to **string** |  | [optional] 
-**OccurredAt** | **string** |  | 
-**ProjectId** | **NullableString** |  | 
-**ProjectName** | **NullableString** |  | 
-**Source** | [**AttentionSummaryItemsInnerSource**](AttentionSummaryItemsInnerSource.md) |  | 
-**Subject** | **NullableString** |  | 
-**TaskId** | **NullableString** |  | 
-**TaskName** | **NullableString** |  | 
-**Title** | **string** |  | 
-**Vault** | Pointer to [**AttentionSummaryItemsInnerVault**](AttentionSummaryItemsInnerVault.md) |  | [optional] 
+**CycleId** | **NullableString** |  |
+**Detail** | **NullableString** |  |
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**LeadId** | Pointer to **string** |  | [optional]
+**OccurredAt** | **string** |  |
+**ProjectId** | **NullableString** |  |
+**ProjectName** | **NullableString** |  |
+**Source** | [**AttentionSummaryItemsInnerSource**](AttentionSummaryItemsInnerSource.md) |  |
+**Subject** | **NullableString** |  |
+**TaskId** | **NullableString** |  |
+**TaskName** | **NullableString** |  |
+**Title** | **string** |  |
+**Vault** | Pointer to [**AttentionSummaryItemsInnerVault**](AttentionSummaryItemsInnerVault.md) |  | [optional]
 
 ## Methods
 
@@ -26,17 +26,15 @@ Name | Type | Description | Notes
 `func NewAttentionSummaryItemsInner(cycleId NullableString, detail NullableString, id string, kind string, occurredAt string, projectId NullableString, projectName NullableString, source AttentionSummaryItemsInnerSource, subject NullableString, taskId NullableString, taskName NullableString, title string, ) *AttentionSummaryItemsInner`
 
 NewAttentionSummaryItemsInner instantiates a new AttentionSummaryItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAttentionSummaryItemsInnerWithDefaults
 
 `func NewAttentionSummaryItemsInnerWithDefaults() *AttentionSummaryItemsInner`
 
 NewAttentionSummaryItemsInnerWithDefaults instantiates a new AttentionSummaryItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycleId
 

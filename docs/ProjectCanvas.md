@@ -4,30 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Activity** | [**[]ProjectCanvasActivityInner**](ProjectCanvasActivityInner.md) |  | 
-**Intake** | [**ProjectCanvasIntake**](ProjectCanvasIntake.md) |  | 
-**Preview** | [**NullableProjectCanvasPreview**](ProjectCanvasPreview.md) |  | 
-**Repositories** | [**[]ProjectCanvasRepositoriesInner**](ProjectCanvasRepositoriesInner.md) |  | 
-**Workspace** | [**NullableProjectCanvasWorkspace**](ProjectCanvasWorkspace.md) |  | 
+**Activity** | [**[]ProjectCanvasActivityInner**](ProjectCanvasActivityInner.md) |  |
+**Preview** | [**NullableProjectCanvasPreview**](ProjectCanvasPreview.md) |  |
+**Repositories** | [**[]ProjectCanvasRepositoriesInner**](ProjectCanvasRepositoriesInner.md) |  |
+**Sources** | [**ProjectCanvasSources**](ProjectCanvasSources.md) |  |
+**Workspace** | [**NullableProjectCanvasWorkspace**](ProjectCanvasWorkspace.md) |  |
 
 ## Methods
 
 ### NewProjectCanvas
 
-`func NewProjectCanvas(activity []ProjectCanvasActivityInner, intake ProjectCanvasIntake, preview NullableProjectCanvasPreview, repositories []ProjectCanvasRepositoriesInner, workspace NullableProjectCanvasWorkspace, ) *ProjectCanvas`
+`func NewProjectCanvas(activity []ProjectCanvasActivityInner, preview NullableProjectCanvasPreview, repositories []ProjectCanvasRepositoriesInner, sources ProjectCanvasSources, workspace NullableProjectCanvasWorkspace, ) *ProjectCanvas`
 
 NewProjectCanvas instantiates a new ProjectCanvas object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectCanvasWithDefaults
 
 `func NewProjectCanvasWithDefaults() *ProjectCanvas`
 
 NewProjectCanvasWithDefaults instantiates a new ProjectCanvas object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActivity
 
@@ -47,26 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *ProjectCanvas) SetActivity(v []ProjectCanvasActivityInner)`
 
 SetActivity sets Activity field to given value.
-
-
-### GetIntake
-
-`func (o *ProjectCanvas) GetIntake() ProjectCanvasIntake`
-
-GetIntake returns the Intake field if non-nil, zero value otherwise.
-
-### GetIntakeOk
-
-`func (o *ProjectCanvas) GetIntakeOk() (*ProjectCanvasIntake, bool)`
-
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntake
-
-`func (o *ProjectCanvas) SetIntake(v ProjectCanvasIntake)`
-
-SetIntake sets Intake field to given value.
 
 
 ### GetPreview
@@ -117,6 +95,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectCanvas) SetRepositories(v []ProjectCanvasRepositoriesInner)`
 
 SetRepositories sets Repositories field to given value.
+
+
+### GetSources
+
+`func (o *ProjectCanvas) GetSources() ProjectCanvasSources`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *ProjectCanvas) GetSourcesOk() (*ProjectCanvasSources, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *ProjectCanvas) SetSources(v ProjectCanvasSources)`
+
+SetSources sets Sources field to given value.
 
 
 ### GetWorkspace

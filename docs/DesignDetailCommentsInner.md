@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorId** | **NullableString** |  | 
-**Body** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**DesignId** | **string** |  | 
-**FrameId** | **string** |  | 
-**Id** | **string** |  | 
-**ParentId** | **NullableString** |  | 
-**Resolved** | **bool** |  | 
-**RevisionId** | **string** |  | 
-**X** | **NullableFloat32** |  | 
-**Y** | **NullableFloat32** |  | 
+**AuthorId** | **NullableString** |  |
+**Body** | **string** |  |
+**CreatedAt** | **string** |  |
+**DesignId** | **string** |  |
+**FrameId** | **string** |  |
+**Id** | **string** |  |
+**ParentId** | **NullableString** |  |
+**Resolved** | **bool** |  |
+**RevisionId** | **string** |  |
+**X** | **NullableFloat32** |  |
+**Y** | **NullableFloat32** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewDesignDetailCommentsInner(authorId NullableString, body string, createdAt string, designId string, frameId string, id string, parentId NullableString, resolved bool, revisionId string, x NullableFloat32, y NullableFloat32, ) *DesignDetailCommentsInner`
 
 NewDesignDetailCommentsInner instantiates a new DesignDetailCommentsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDesignDetailCommentsInnerWithDefaults
 
 `func NewDesignDetailCommentsInnerWithDefaults() *DesignDetailCommentsInner`
 
 NewDesignDetailCommentsInnerWithDefaults instantiates a new DesignDetailCommentsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAuthorId
 

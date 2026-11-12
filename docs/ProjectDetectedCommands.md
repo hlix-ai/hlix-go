@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Apps** | Pointer to [**[]ProjectDetectedCommandsAppsInner**](ProjectDetectedCommandsAppsInner.md) |  | [optional] 
-**Mobile** | Pointer to **bool** |  | [optional] 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**VerifyCommand** | **NullableString** |  | 
+**Apps** | Pointer to [**[]ProjectDetectedCommandsAppsInner**](ProjectDetectedCommandsAppsInner.md) |  | [optional]
+**Mobile** | Pointer to **bool** |  | [optional]
+**PreviewCommand** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**VerifyCommand** | **NullableString** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewProjectDetectedCommands(previewCommand NullableString, previewPort NullableInt32, verifyCommand NullableString, ) *ProjectDetectedCommands`
 
 NewProjectDetectedCommands instantiates a new ProjectDetectedCommands object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectDetectedCommandsWithDefaults
 
 `func NewProjectDetectedCommandsWithDefaults() *ProjectDetectedCommands`
 
 NewProjectDetectedCommandsWithDefaults instantiates a new ProjectDetectedCommands object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApps
 

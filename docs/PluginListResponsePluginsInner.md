@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConfiguredInputs** | **[]string** |  | 
-**CreatedAt** | **string** |  | 
-**Enabled** | **bool** |  | 
-**Id** | **string** |  | 
-**Inputs** | **map[string]string** |  | 
-**Manifest** | [**CreatePluginManifest**](CreatePluginManifest.md) |  | 
-**ProjectIds** | **[]string** |  | 
-**UpdatedAt** | **string** |  | 
+**ConfiguredInputs** | **[]string** |  |
+**CreatedAt** | **string** |  |
+**Enabled** | **bool** |  |
+**Id** | **string** |  |
+**Inputs** | **map[string]string** |  |
+**Manifest** | [**CreatePluginManifest**](CreatePluginManifest.md) |  |
+**ProjectIds** | **[]string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewPluginListResponsePluginsInner(configuredInputs []string, createdAt string, enabled bool, id string, inputs map[string]string, manifest CreatePluginManifest, projectIds []string, updatedAt string, ) *PluginListResponsePluginsInner`
 
 NewPluginListResponsePluginsInner instantiates a new PluginListResponsePluginsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewPluginListResponsePluginsInnerWithDefaults
 
 `func NewPluginListResponsePluginsInnerWithDefaults() *PluginListResponsePluginsInner`
 
 NewPluginListResponsePluginsInnerWithDefaults instantiates a new PluginListResponsePluginsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetConfiguredInputs
 

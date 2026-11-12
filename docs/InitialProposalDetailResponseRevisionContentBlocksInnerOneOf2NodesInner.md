@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **NullableString** |  | 
-**Id** | **string** |  | 
-**Label** | **string** |  | 
+**Description** | **NullableString** |  |
+**Id** | **string** |  |
+**Label** | **string** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner(description NullableString, id string, label string, ) *InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner`
 
 NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner instantiates a new InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInnerWithDefaults
 
 `func NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInnerWithDefaults() *InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner`
 
 NewInitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInnerWithDefaults instantiates a new InitialProposalDetailResponseRevisionContentBlocksInnerOneOf2NodesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDescription
 

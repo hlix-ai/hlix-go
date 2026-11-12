@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,7 +22,6 @@ var _ MappedNullable = &ProjectKnowledge{}
 type ProjectKnowledge struct {
 	Extractions []ProjectKnowledgeExtractionsInner `json:"extractions"`
 	Memories []ProjectKnowledgeMemoriesInner `json:"memories"`
-	MemoryAvailability ProjectKnowledgeMemoryAvailability `json:"memoryAvailability"`
 	ProjectId string `json:"projectId"`
 	AdditionalProperties map[string]interface{}
 }
@@ -33,11 +32,10 @@ type _ProjectKnowledge ProjectKnowledge
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectKnowledge(extractions []ProjectKnowledgeExtractionsInner, memories []ProjectKnowledgeMemoriesInner, memoryAvailability ProjectKnowledgeMemoryAvailability, projectId string) *ProjectKnowledge {
+func NewProjectKnowledge(extractions []ProjectKnowledgeExtractionsInner, memories []ProjectKnowledgeMemoriesInner, projectId string) *ProjectKnowledge {
 	this := ProjectKnowledge{}
 	this.Extractions = extractions
 	this.Memories = memories
-	this.MemoryAvailability = memoryAvailability
 	this.ProjectId = projectId
 	return &this
 }
@@ -98,30 +96,6 @@ func (o *ProjectKnowledge) SetMemories(v []ProjectKnowledgeMemoriesInner) {
 	o.Memories = v
 }
 
-// GetMemoryAvailability returns the MemoryAvailability field value
-func (o *ProjectKnowledge) GetMemoryAvailability() ProjectKnowledgeMemoryAvailability {
-	if o == nil {
-		var ret ProjectKnowledgeMemoryAvailability
-		return ret
-	}
-
-	return o.MemoryAvailability
-}
-
-// GetMemoryAvailabilityOk returns a tuple with the MemoryAvailability field value
-// and a boolean to check if the value has been set.
-func (o *ProjectKnowledge) GetMemoryAvailabilityOk() (*ProjectKnowledgeMemoryAvailability, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MemoryAvailability, true
-}
-
-// SetMemoryAvailability sets field value
-func (o *ProjectKnowledge) SetMemoryAvailability(v ProjectKnowledgeMemoryAvailability) {
-	o.MemoryAvailability = v
-}
-
 // GetProjectId returns the ProjectId field value
 func (o *ProjectKnowledge) GetProjectId() string {
 	if o == nil {
@@ -158,7 +132,6 @@ func (o ProjectKnowledge) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["extractions"] = o.Extractions
 	toSerialize["memories"] = o.Memories
-	toSerialize["memoryAvailability"] = o.MemoryAvailability
 	toSerialize["projectId"] = o.ProjectId
 
 	for key, value := range o.AdditionalProperties {
@@ -175,7 +148,6 @@ func (o *ProjectKnowledge) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"extractions",
 		"memories",
-		"memoryAvailability",
 		"projectId",
 	}
 
@@ -208,7 +180,6 @@ func (o *ProjectKnowledge) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "extractions")
 		delete(additionalProperties, "memories")
-		delete(additionalProperties, "memoryAvailability")
 		delete(additionalProperties, "projectId")
 		o.AdditionalProperties = additionalProperties
 	}

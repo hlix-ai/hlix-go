@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Effective** | [**GrowthProjectSendingScheduleCampaignsInnerEffective**](GrowthProjectSendingScheduleCampaignsInnerEffective.md) |  | 
-**Name** | **string** |  | 
-**PlayId** | **string** |  | 
-**Rows** | [**[]GrowthProjectSendingScheduleCampaignsInnerRowsInner**](GrowthProjectSendingScheduleCampaignsInnerRowsInner.md) |  | 
-**Schedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Source** | **string** |  | 
+**Effective** | [**GrowthProjectSendingScheduleCampaignsInnerEffective**](GrowthProjectSendingScheduleCampaignsInnerEffective.md) |  |
+**Name** | **string** |  |
+**PlayId** | **string** |  |
+**Rows** | [**[]GrowthProjectSendingScheduleCampaignsInnerRowsInner**](GrowthProjectSendingScheduleCampaignsInnerRowsInner.md) |  |
+**Schedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Source** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewGrowthProjectSendingScheduleCampaignsInner(effective GrowthProjectSendingScheduleCampaignsInnerEffective, name string, playId string, rows []GrowthProjectSendingScheduleCampaignsInnerRowsInner, schedule NullableCreateGrowthPlaySendingSchedule, source string, ) *GrowthProjectSendingScheduleCampaignsInner`
 
 NewGrowthProjectSendingScheduleCampaignsInner instantiates a new GrowthProjectSendingScheduleCampaignsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProjectSendingScheduleCampaignsInnerWithDefaults
 
 `func NewGrowthProjectSendingScheduleCampaignsInnerWithDefaults() *GrowthProjectSendingScheduleCampaignsInner`
 
 NewGrowthProjectSendingScheduleCampaignsInnerWithDefaults instantiates a new GrowthProjectSendingScheduleCampaignsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEffective
 

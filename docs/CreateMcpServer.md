@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Args** | Pointer to **[]string** |  | [optional] 
-**Authentication** | Pointer to **string** |  | [optional] 
-**Command** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**Enabled** | Pointer to **bool** |  | [optional] 
-**Env** | Pointer to **map[string]string** |  | [optional] 
-**Name** | **string** |  | 
-**OauthClientId** | Pointer to **NullableString** |  | [optional] 
-**OauthClientSecret** | Pointer to **NullableString** |  | [optional] 
-**ProjectId** | Pointer to **NullableString** |  | [optional] 
-**Transport** | **string** |  | 
-**Url** | Pointer to [**NullableCreateMcpServerUrl**](CreateMcpServerUrl.md) |  | [optional] 
+**Args** | Pointer to **[]string** |  | [optional]
+**Authentication** | Pointer to **string** |  | [optional]
+**Command** | Pointer to **NullableString** |  | [optional]
+**Description** | Pointer to **NullableString** |  | [optional]
+**Enabled** | Pointer to **bool** |  | [optional]
+**Env** | Pointer to **map[string]string** |  | [optional]
+**Name** | **string** |  |
+**OauthClientId** | Pointer to **NullableString** |  | [optional]
+**OauthClientSecret** | Pointer to **NullableString** |  | [optional]
+**ProjectId** | Pointer to **NullableString** |  | [optional]
+**Transport** | **string** |  |
+**Url** | Pointer to [**NullableCreateMcpServerUrl**](CreateMcpServerUrl.md) |  | [optional]
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewCreateMcpServer(name string, transport string, ) *CreateMcpServer`
 
 NewCreateMcpServer instantiates a new CreateMcpServer object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateMcpServerWithDefaults
 
 `func NewCreateMcpServerWithDefaults() *CreateMcpServer`
 
 NewCreateMcpServerWithDefaults instantiates a new CreateMcpServer object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArgs
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FollowUpDays** | **[]interface{}** |  | 
-**FollowUps** | **[]interface{}** |  | 
+**FollowUpDays** | **[]interface{}** |  |
+**FollowUps** | **[]interface{}** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewCreateGrowthPlaySequence(followUpDays []interface{}, followUps []interface{}, ) *CreateGrowthPlaySequence`
 
 NewCreateGrowthPlaySequence instantiates a new CreateGrowthPlaySequence object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateGrowthPlaySequenceWithDefaults
 
 `func NewCreateGrowthPlaySequenceWithDefaults() *CreateGrowthPlaySequence`
 
 NewCreateGrowthPlaySequenceWithDefaults instantiates a new CreateGrowthPlaySequence object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetFollowUpDays
 

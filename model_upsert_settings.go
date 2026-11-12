@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -19,9 +19,9 @@ var _ MappedNullable = &UpsertSettings{}
 
 // UpsertSettings struct for UpsertSettings
 type UpsertSettings struct {
+	Coder NullableString `json:"coder,omitempty"`
 	Effort NullableString `json:"effort,omitempty"`
 	Funding NullableUpsertSettingsFunding `json:"funding,omitempty"`
-	Harness NullableString `json:"harness,omitempty"`
 	MaxParallelCycles NullableInt32 `json:"maxParallelCycles,omitempty"`
 	Model NullableString `json:"model,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -44,6 +44,48 @@ func NewUpsertSettings() *UpsertSettings {
 func NewUpsertSettingsWithDefaults() *UpsertSettings {
 	this := UpsertSettings{}
 	return &this
+}
+
+// GetCoder returns the Coder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpsertSettings) GetCoder() string {
+	if o == nil || IsNil(o.Coder.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Coder.Get()
+}
+
+// GetCoderOk returns a tuple with the Coder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpsertSettings) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Coder.Get(), o.Coder.IsSet()
+}
+
+// HasCoder returns a boolean if a field has been set.
+func (o *UpsertSettings) HasCoder() bool {
+	if o != nil && o.Coder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoder gets a reference to the given NullableString and assigns it to the Coder field.
+func (o *UpsertSettings) SetCoder(v string) {
+	o.Coder.Set(&v)
+}
+// SetCoderNil sets the value for Coder to be an explicit nil
+func (o *UpsertSettings) SetCoderNil() {
+	o.Coder.Set(nil)
+}
+
+// UnsetCoder ensures that no value is present for Coder, not even an explicit nil
+func (o *UpsertSettings) UnsetCoder() {
+	o.Coder.Unset()
 }
 
 // GetEffort returns the Effort field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -128,48 +170,6 @@ func (o *UpsertSettings) SetFundingNil() {
 // UnsetFunding ensures that no value is present for Funding, not even an explicit nil
 func (o *UpsertSettings) UnsetFunding() {
 	o.Funding.Unset()
-}
-
-// GetHarness returns the Harness field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UpsertSettings) GetHarness() string {
-	if o == nil || IsNil(o.Harness.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Harness.Get()
-}
-
-// GetHarnessOk returns a tuple with the Harness field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UpsertSettings) GetHarnessOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Harness.Get(), o.Harness.IsSet()
-}
-
-// HasHarness returns a boolean if a field has been set.
-func (o *UpsertSettings) HasHarness() bool {
-	if o != nil && o.Harness.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHarness gets a reference to the given NullableString and assigns it to the Harness field.
-func (o *UpsertSettings) SetHarness(v string) {
-	o.Harness.Set(&v)
-}
-// SetHarnessNil sets the value for Harness to be an explicit nil
-func (o *UpsertSettings) SetHarnessNil() {
-	o.Harness.Set(nil)
-}
-
-// UnsetHarness ensures that no value is present for Harness, not even an explicit nil
-func (o *UpsertSettings) UnsetHarness() {
-	o.Harness.Unset()
 }
 
 // GetMaxParallelCycles returns the MaxParallelCycles field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -266,14 +266,14 @@ func (o UpsertSettings) MarshalJSON() ([]byte, error) {
 
 func (o UpsertSettings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Coder.IsSet() {
+		toSerialize["coder"] = o.Coder.Get()
+	}
 	if o.Effort.IsSet() {
 		toSerialize["effort"] = o.Effort.Get()
 	}
 	if o.Funding.IsSet() {
 		toSerialize["funding"] = o.Funding.Get()
-	}
-	if o.Harness.IsSet() {
-		toSerialize["harness"] = o.Harness.Get()
 	}
 	if o.MaxParallelCycles.IsSet() {
 		toSerialize["maxParallelCycles"] = o.MaxParallelCycles.Get()
@@ -303,9 +303,9 @@ func (o *UpsertSettings) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "coder")
 		delete(additionalProperties, "effort")
 		delete(additionalProperties, "funding")
-		delete(additionalProperties, "harness")
 		delete(additionalProperties, "maxParallelCycles")
 		delete(additionalProperties, "model")
 		o.AdditionalProperties = additionalProperties

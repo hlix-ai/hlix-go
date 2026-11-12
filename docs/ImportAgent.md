@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**Duty** | Pointer to **string** |  | [optional] 
-**Instructions** | **string** |  | 
-**Name** | **string** |  | 
-**RuntimeKind** | Pointer to **NullableString** |  | [optional] 
+**Coder** | Pointer to **NullableString** |  | [optional]
+**Description** | Pointer to **string** |  | [optional]
+**Duty** | Pointer to **string** |  | [optional]
+**Instructions** | **string** |  |
+**Name** | **string** |  |
 
 ## Methods
 
@@ -17,18 +17,51 @@ Name | Type | Description | Notes
 `func NewImportAgent(instructions string, name string, ) *ImportAgent`
 
 NewImportAgent instantiates a new ImportAgent object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewImportAgentWithDefaults
 
 `func NewImportAgentWithDefaults() *ImportAgent`
 
 NewImportAgentWithDefaults instantiates a new ImportAgent object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
+### GetCoder
+
+`func (o *ImportAgent) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *ImportAgent) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *ImportAgent) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+### HasCoder
+
+`func (o *ImportAgent) HasCoder() bool`
+
+HasCoder returns a boolean if a field has been set.
+
+### SetCoderNil
+
+`func (o *ImportAgent) SetCoderNil(b bool)`
+
+ SetCoderNil sets the value for Coder to be an explicit nil
+
+### UnsetCoder
+`func (o *ImportAgent) UnsetCoder()`
+
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetDescription
 
 `func (o *ImportAgent) GetDescription() string`
@@ -119,41 +152,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetRuntimeKind
-
-`func (o *ImportAgent) GetRuntimeKind() string`
-
-GetRuntimeKind returns the RuntimeKind field if non-nil, zero value otherwise.
-
-### GetRuntimeKindOk
-
-`func (o *ImportAgent) GetRuntimeKindOk() (*string, bool)`
-
-GetRuntimeKindOk returns a tuple with the RuntimeKind field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRuntimeKind
-
-`func (o *ImportAgent) SetRuntimeKind(v string)`
-
-SetRuntimeKind sets RuntimeKind field to given value.
-
-### HasRuntimeKind
-
-`func (o *ImportAgent) HasRuntimeKind() bool`
-
-HasRuntimeKind returns a boolean if a field has been set.
-
-### SetRuntimeKindNil
-
-`func (o *ImportAgent) SetRuntimeKindNil(b bool)`
-
- SetRuntimeKindNil sets the value for RuntimeKind to be an explicit nil
-
-### UnsetRuntimeKind
-`func (o *ImportAgent) UnsetRuntimeKind()`
-
-UnsetRuntimeKind ensures that no value is present for RuntimeKind, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

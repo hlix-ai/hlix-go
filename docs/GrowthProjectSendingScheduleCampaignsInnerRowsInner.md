@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Country** | **NullableString** |  | 
-**DefaultSendDays** | **[]int32** |  | 
-**DefaultTimeZone** | **string** |  | 
-**Overridden** | **bool** |  | 
-**SendDays** | **[]int32** |  | 
-**SendEndHour** | **int32** |  | 
-**SendStartHour** | **int32** |  | 
-**TimeZone** | **string** |  | 
+**Country** | **NullableString** |  |
+**DefaultSendDays** | **[]int32** |  |
+**DefaultTimeZone** | **string** |  |
+**Overridden** | **bool** |  |
+**SendDays** | **[]int32** |  |
+**SendEndHour** | **int32** |  |
+**SendStartHour** | **int32** |  |
+**TimeZone** | **string** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewGrowthProjectSendingScheduleCampaignsInnerRowsInner(country NullableString, defaultSendDays []int32, defaultTimeZone string, overridden bool, sendDays []int32, sendEndHour int32, sendStartHour int32, timeZone string, ) *GrowthProjectSendingScheduleCampaignsInnerRowsInner`
 
 NewGrowthProjectSendingScheduleCampaignsInnerRowsInner instantiates a new GrowthProjectSendingScheduleCampaignsInnerRowsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProjectSendingScheduleCampaignsInnerRowsInnerWithDefaults
 
 `func NewGrowthProjectSendingScheduleCampaignsInnerRowsInnerWithDefaults() *GrowthProjectSendingScheduleCampaignsInnerRowsInner`
 
 NewGrowthProjectSendingScheduleCampaignsInnerRowsInnerWithDefaults instantiates a new GrowthProjectSendingScheduleCampaignsInnerRowsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCountry
 

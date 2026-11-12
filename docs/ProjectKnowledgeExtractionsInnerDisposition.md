@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Reason** | **string** |  | 
-**RejectedCount** | **int32** |  | 
-**SavedCount** | **int32** |  | 
-**SourceCount** | **int32** |  | 
-**Status** | **string** |  | 
+**Reason** | **string** |  |
+**RejectedCount** | **int32** |  |
+**SavedCount** | **int32** |  |
+**SourceCount** | **int32** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewProjectKnowledgeExtractionsInnerDisposition(reason string, rejectedCount int32, savedCount int32, sourceCount int32, status string, ) *ProjectKnowledgeExtractionsInnerDisposition`
 
 NewProjectKnowledgeExtractionsInnerDisposition instantiates a new ProjectKnowledgeExtractionsInnerDisposition object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectKnowledgeExtractionsInnerDispositionWithDefaults
 
 `func NewProjectKnowledgeExtractionsInnerDispositionWithDefaults() *ProjectKnowledgeExtractionsInnerDisposition`
 
 NewProjectKnowledgeExtractionsInnerDispositionWithDefaults instantiates a new ProjectKnowledgeExtractionsInnerDisposition object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetReason
 

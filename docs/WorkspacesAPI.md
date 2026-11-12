@@ -1,10 +1,10 @@
-# \WorkspacesAPI
+# WorkspacesAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListWorkspaces**](WorkspacesAPI.md#ListWorkspaces) | **Get** /v1/api/workspaces | List the workspaces you belong to
+[**ListWorkspaces**](WorkspacesAPI.md#listworkspaces) | **Get** /v1/api/workspaces | List the workspaces you belong to
 
 
 
@@ -15,6 +15,8 @@ Method | HTTP request | Description
 List the workspaces you belong to
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -27,11 +29,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkspacesAPI.ListWorkspaces(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.WorkspacesAPI.ListWorkspaces(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkspacesAPI.ListWorkspaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -47,12 +52,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWorkspacesRequest struct via the builder pattern
+Pass optional parameters through the `apiListWorkspacesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -60,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

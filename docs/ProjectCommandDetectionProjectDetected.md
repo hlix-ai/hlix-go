@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Install** | **NullableString** |  | 
-**Mobile** | Pointer to **bool** |  | [optional] 
-**PackageManager** | **NullableString** |  | 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**VerifyCommand** | **NullableString** |  | 
+**Install** | **NullableString** |  |
+**Mobile** | Pointer to **bool** |  | [optional] [default to true]
+**PackageManager** | **NullableString** |  |
+**PreviewCommand** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**VerifyCommand** | **NullableString** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewProjectCommandDetectionProjectDetected(install NullableString, packageManager NullableString, previewCommand NullableString, previewPort NullableInt32, verifyCommand NullableString, ) *ProjectCommandDetectionProjectDetected`
 
 NewProjectCommandDetectionProjectDetected instantiates a new ProjectCommandDetectionProjectDetected object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectCommandDetectionProjectDetectedWithDefaults
 
 `func NewProjectCommandDetectionProjectDetectedWithDefaults() *ProjectCommandDetectionProjectDetected`
 
 NewProjectCommandDetectionProjectDetectedWithDefaults instantiates a new ProjectCommandDetectionProjectDetected object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetInstall
 

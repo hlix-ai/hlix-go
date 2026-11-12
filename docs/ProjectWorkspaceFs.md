@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Content** | Pointer to **string** |  | [optional] 
-**Dest** | Pointer to **string** |  | [optional] 
+**Content** | Pointer to **string** |  | [optional]
+**Dest** | Pointer to **string** |  | [optional]
 **Encoding** | Pointer to **string** |  | [optional] [default to "utf8"]
-**Op** | **string** |  | 
-**Options** | Pointer to [**ProjectWorkspaceFsOptions**](ProjectWorkspaceFsOptions.md) |  | [optional] 
-**Path** | **string** |  | 
+**Op** | **string** |  |
+**Options** | Pointer to [**ProjectWorkspaceFsOptions**](ProjectWorkspaceFsOptions.md) |  | [optional]
+**Path** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewProjectWorkspaceFs(op string, path string, ) *ProjectWorkspaceFs`
 
 NewProjectWorkspaceFs instantiates a new ProjectWorkspaceFs object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectWorkspaceFsWithDefaults
 
 `func NewProjectWorkspaceFsWithDefaults() *ProjectWorkspaceFs`
 
 NewProjectWorkspaceFsWithDefaults instantiates a new ProjectWorkspaceFs object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetContent
 

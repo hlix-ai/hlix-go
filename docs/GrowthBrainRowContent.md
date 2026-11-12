@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Competitors** | [**[]GrowthBrainCompetitorsInner**](GrowthBrainCompetitorsInner.md) |  | 
-**Languages** | [**[]GrowthBrainLanguagesInner**](GrowthBrainLanguagesInner.md) |  | 
-**NeverSay** | **[]string** |  | 
-**Offer** | [**NullableGrowthBrainOffer**](GrowthBrainOffer.md) |  | 
-**Pricing** | [**NullableGrowthBrainOffer**](GrowthBrainOffer.md) |  | 
-**Proof** | [**[]GrowthBrainLanguagesInner**](GrowthBrainLanguagesInner.md) |  | 
+**Competitors** | [**[]GrowthBrainCompetitorsInner**](GrowthBrainCompetitorsInner.md) |  |
+**Languages** | [**[]GrowthBrainLanguagesInner**](GrowthBrainLanguagesInner.md) |  |
+**NeverSay** | **[]string** |  |
+**Offer** | [**NullableGrowthBrainOffer**](GrowthBrainOffer.md) |  |
+**Pricing** | [**NullableGrowthBrainOffer**](GrowthBrainOffer.md) |  |
+**Proof** | [**[]GrowthBrainLanguagesInner**](GrowthBrainLanguagesInner.md) |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewGrowthBrainRowContent(competitors []GrowthBrainCompetitorsInner, languages []GrowthBrainLanguagesInner, neverSay []string, offer NullableGrowthBrainOffer, pricing NullableGrowthBrainOffer, proof []GrowthBrainLanguagesInner, ) *GrowthBrainRowContent`
 
 NewGrowthBrainRowContent instantiates a new GrowthBrainRowContent object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthBrainRowContentWithDefaults
 
 `func NewGrowthBrainRowContentWithDefaults() *GrowthBrainRowContent`
 
 NewGrowthBrainRowContentWithDefaults instantiates a new GrowthBrainRowContent object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompetitors
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,6 +21,8 @@ var _ MappedNullable = &ChatDirectoryResponseItemsInner{}
 // ChatDirectoryResponseItemsInner struct for ChatDirectoryResponseItemsInner
 type ChatDirectoryResponseItemsInner struct {
 	AgentId NullableString `json:"agentId"`
+	ChatId *string `json:"chatId,omitempty"`
+	ChatKey NullableString `json:"chatKey"`
 	ContextName NullableString `json:"contextName"`
 	CreatedAt string `json:"createdAt"`
 	CycleId NullableString `json:"cycleId"`
@@ -28,9 +30,7 @@ type ChatDirectoryResponseItemsInner struct {
 	Model NullableString `json:"model"`
 	ProjectId NullableString `json:"projectId"`
 	ProjectName NullableString `json:"projectName"`
-	SessionId NullableString `json:"sessionId"`
 	TaskId NullableString `json:"taskId"`
-	ThreadId *string `json:"threadId,omitempty"`
 	Title NullableString `json:"title"`
 	UpdatedAt string `json:"updatedAt"`
 	Visibility string `json:"visibility"`
@@ -43,9 +43,10 @@ type _ChatDirectoryResponseItemsInner ChatDirectoryResponseItemsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatDirectoryResponseItemsInner(agentId NullableString, contextName NullableString, createdAt string, cycleId NullableString, id string, model NullableString, projectId NullableString, projectName NullableString, sessionId NullableString, taskId NullableString, title NullableString, updatedAt string, visibility string) *ChatDirectoryResponseItemsInner {
+func NewChatDirectoryResponseItemsInner(agentId NullableString, chatKey NullableString, contextName NullableString, createdAt string, cycleId NullableString, id string, model NullableString, projectId NullableString, projectName NullableString, taskId NullableString, title NullableString, updatedAt string, visibility string) *ChatDirectoryResponseItemsInner {
 	this := ChatDirectoryResponseItemsInner{}
 	this.AgentId = agentId
+	this.ChatKey = chatKey
 	this.ContextName = contextName
 	this.CreatedAt = createdAt
 	this.CycleId = cycleId
@@ -53,7 +54,6 @@ func NewChatDirectoryResponseItemsInner(agentId NullableString, contextName Null
 	this.Model = model
 	this.ProjectId = projectId
 	this.ProjectName = projectName
-	this.SessionId = sessionId
 	this.TaskId = taskId
 	this.Title = title
 	this.UpdatedAt = updatedAt
@@ -93,6 +93,64 @@ func (o *ChatDirectoryResponseItemsInner) GetAgentIdOk() (*string, bool) {
 // SetAgentId sets field value
 func (o *ChatDirectoryResponseItemsInner) SetAgentId(v string) {
 	o.AgentId.Set(&v)
+}
+
+// GetChatId returns the ChatId field value if set, zero value otherwise.
+func (o *ChatDirectoryResponseItemsInner) GetChatId() string {
+	if o == nil || IsNil(o.ChatId) {
+		var ret string
+		return ret
+	}
+	return *o.ChatId
+}
+
+// GetChatIdOk returns a tuple with the ChatId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChatDirectoryResponseItemsInner) GetChatIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ChatId) {
+		return nil, false
+	}
+	return o.ChatId, true
+}
+
+// HasChatId returns a boolean if a field has been set.
+func (o *ChatDirectoryResponseItemsInner) HasChatId() bool {
+	if o != nil && !IsNil(o.ChatId) {
+		return true
+	}
+
+	return false
+}
+
+// SetChatId gets a reference to the given string and assigns it to the ChatId field.
+func (o *ChatDirectoryResponseItemsInner) SetChatId(v string) {
+	o.ChatId = &v
+}
+
+// GetChatKey returns the ChatKey field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ChatDirectoryResponseItemsInner) GetChatKey() string {
+	if o == nil || o.ChatKey.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.ChatKey.Get()
+}
+
+// GetChatKeyOk returns a tuple with the ChatKey field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChatDirectoryResponseItemsInner) GetChatKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ChatKey.Get(), o.ChatKey.IsSet()
+}
+
+// SetChatKey sets field value
+func (o *ChatDirectoryResponseItemsInner) SetChatKey(v string) {
+	o.ChatKey.Set(&v)
 }
 
 // GetContextName returns the ContextName field value
@@ -273,32 +331,6 @@ func (o *ChatDirectoryResponseItemsInner) SetProjectName(v string) {
 	o.ProjectName.Set(&v)
 }
 
-// GetSessionId returns the SessionId field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *ChatDirectoryResponseItemsInner) GetSessionId() string {
-	if o == nil || o.SessionId.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.SessionId.Get()
-}
-
-// GetSessionIdOk returns a tuple with the SessionId field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ChatDirectoryResponseItemsInner) GetSessionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SessionId.Get(), o.SessionId.IsSet()
-}
-
-// SetSessionId sets field value
-func (o *ChatDirectoryResponseItemsInner) SetSessionId(v string) {
-	o.SessionId.Set(&v)
-}
-
 // GetTaskId returns the TaskId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *ChatDirectoryResponseItemsInner) GetTaskId() string {
@@ -323,38 +355,6 @@ func (o *ChatDirectoryResponseItemsInner) GetTaskIdOk() (*string, bool) {
 // SetTaskId sets field value
 func (o *ChatDirectoryResponseItemsInner) SetTaskId(v string) {
 	o.TaskId.Set(&v)
-}
-
-// GetThreadId returns the ThreadId field value if set, zero value otherwise.
-func (o *ChatDirectoryResponseItemsInner) GetThreadId() string {
-	if o == nil || IsNil(o.ThreadId) {
-		var ret string
-		return ret
-	}
-	return *o.ThreadId
-}
-
-// GetThreadIdOk returns a tuple with the ThreadId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChatDirectoryResponseItemsInner) GetThreadIdOk() (*string, bool) {
-	if o == nil || IsNil(o.ThreadId) {
-		return nil, false
-	}
-	return o.ThreadId, true
-}
-
-// HasThreadId returns a boolean if a field has been set.
-func (o *ChatDirectoryResponseItemsInner) HasThreadId() bool {
-	if o != nil && !IsNil(o.ThreadId) {
-		return true
-	}
-
-	return false
-}
-
-// SetThreadId gets a reference to the given string and assigns it to the ThreadId field.
-func (o *ChatDirectoryResponseItemsInner) SetThreadId(v string) {
-	o.ThreadId = &v
 }
 
 // GetTitle returns the Title field value
@@ -442,6 +442,10 @@ func (o ChatDirectoryResponseItemsInner) MarshalJSON() ([]byte, error) {
 func (o ChatDirectoryResponseItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["agentId"] = o.AgentId.Get()
+	if !IsNil(o.ChatId) {
+		toSerialize["chatId"] = o.ChatId
+	}
+	toSerialize["chatKey"] = o.ChatKey.Get()
 	toSerialize["contextName"] = o.ContextName.Get()
 	toSerialize["createdAt"] = o.CreatedAt
 	toSerialize["cycleId"] = o.CycleId.Get()
@@ -449,11 +453,7 @@ func (o ChatDirectoryResponseItemsInner) ToMap() (map[string]interface{}, error)
 	toSerialize["model"] = o.Model.Get()
 	toSerialize["projectId"] = o.ProjectId.Get()
 	toSerialize["projectName"] = o.ProjectName.Get()
-	toSerialize["sessionId"] = o.SessionId.Get()
 	toSerialize["taskId"] = o.TaskId.Get()
-	if !IsNil(o.ThreadId) {
-		toSerialize["threadId"] = o.ThreadId
-	}
 	toSerialize["title"] = o.Title.Get()
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["visibility"] = o.Visibility
@@ -471,6 +471,7 @@ func (o *ChatDirectoryResponseItemsInner) UnmarshalJSON(data []byte) (err error)
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"agentId",
+		"chatKey",
 		"contextName",
 		"createdAt",
 		"cycleId",
@@ -478,7 +479,6 @@ func (o *ChatDirectoryResponseItemsInner) UnmarshalJSON(data []byte) (err error)
 		"model",
 		"projectId",
 		"projectName",
-		"sessionId",
 		"taskId",
 		"title",
 		"updatedAt",
@@ -513,6 +513,8 @@ func (o *ChatDirectoryResponseItemsInner) UnmarshalJSON(data []byte) (err error)
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "agentId")
+		delete(additionalProperties, "chatId")
+		delete(additionalProperties, "chatKey")
 		delete(additionalProperties, "contextName")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "cycleId")
@@ -520,9 +522,7 @@ func (o *ChatDirectoryResponseItemsInner) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "projectId")
 		delete(additionalProperties, "projectName")
-		delete(additionalProperties, "sessionId")
 		delete(additionalProperties, "taskId")
-		delete(additionalProperties, "threadId")
 		delete(additionalProperties, "title")
 		delete(additionalProperties, "updatedAt")
 		delete(additionalProperties, "visibility")

@@ -1,18 +1,18 @@
-# \LinearAPI
+# LinearAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteProjectLinearBinding**](LinearAPI.md#DeleteProjectLinearBinding) | **Delete** /v1/api/integrations/linear/projects/{projectId} | Disconnect a source without changing existing cycles
-[**GetLinearCatalog**](LinearAPI.md#GetLinearCatalog) | **Get** /v1/api/integrations/linear/{installId}/catalog | List accessible Linear teams, projects and labels
-[**GetProjectLinearBinding**](LinearAPI.md#GetProjectLinearBinding) | **Get** /v1/api/integrations/linear/projects/{projectId} | Read a project&#39;s Linear source
-[**GetProjectLinearIssue**](LinearAPI.md#GetProjectLinearIssue) | **Get** /v1/api/integrations/linear/projects/{projectId}/issues/{issueId} | Read an imported issue with its full Linear context
-[**ListLinearBindings**](LinearAPI.md#ListLinearBindings) | **Get** /v1/api/integrations/linear/bindings | List workspace Linear sources
-[**ListProjectLinearIssues**](LinearAPI.md#ListProjectLinearIssues) | **Get** /v1/api/integrations/linear/projects/{projectId}/issues | List imported Linear issues and their work links
-[**SaveProjectLinearBinding**](LinearAPI.md#SaveProjectLinearBinding) | **Put** /v1/api/integrations/linear/projects/{projectId} | Save source filters and automatic or manual start behavior
-[**StartProjectLinearIssue**](LinearAPI.md#StartProjectLinearIssue) | **Post** /v1/api/integrations/linear/projects/{projectId}/issues/{issueId}/start | Refresh an issue and send it to the project manager
-[**SyncProjectLinearIssues**](LinearAPI.md#SyncProjectLinearIssues) | **Post** /v1/api/integrations/linear/projects/{projectId}/sync | Import current matching open issues
+[**DeleteProjectLinearBinding**](LinearAPI.md#deleteprojectlinearbinding) | **Delete** /v1/api/integrations/linear/projects/{projectId} | Disconnect a source without changing existing cycles
+[**GetLinearCatalog**](LinearAPI.md#getlinearcatalog) | **Get** /v1/api/integrations/linear/{installId}/catalog | List accessible Linear teams, projects and labels
+[**GetProjectLinearBinding**](LinearAPI.md#getprojectlinearbinding) | **Get** /v1/api/integrations/linear/projects/{projectId} | Read a project&#39;s Linear source
+[**GetProjectLinearIssue**](LinearAPI.md#getprojectlinearissue) | **Get** /v1/api/integrations/linear/projects/{projectId}/issues/{issueId} | Read an imported issue with its full Linear context
+[**ListLinearBindings**](LinearAPI.md#listlinearbindings) | **Get** /v1/api/integrations/linear/bindings | List workspace Linear sources
+[**ListProjectLinearIssues**](LinearAPI.md#listprojectlinearissues) | **Get** /v1/api/integrations/linear/projects/{projectId}/issues | List imported Linear issues and their work links
+[**SaveProjectLinearBinding**](LinearAPI.md#saveprojectlinearbinding) | **Put** /v1/api/integrations/linear/projects/{projectId} | Save source filters and automatic or manual start behavior
+[**StartProjectLinearIssue**](LinearAPI.md#startprojectlinearissue) | **Post** /v1/api/integrations/linear/projects/{projectId}/issues/{issueId}/start | Refresh an issue and send it to the project manager
+[**SyncProjectLinearIssues**](LinearAPI.md#syncprojectlinearissues) | **Post** /v1/api/integrations/linear/projects/{projectId}/sync | Import current matching open issues
 
 
 
@@ -23,6 +23,8 @@ Method | HTTP request | Description
 Disconnect a source without changing existing cycles
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -35,12 +37,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.DeleteProjectLinearBinding(context.Background(), projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.DeleteProjectLinearBinding(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.DeleteProjectLinearBinding``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,17 +61,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteProjectLinearBindingRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteProjectLinearBindingRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -74,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -94,6 +99,8 @@ List accessible Linear teams, projects and labels
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -105,13 +112,16 @@ import (
 )
 
 func main() {
-	installId := "installId_example" // string | 
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	installId := "installId_example" // string |
 	teamId := "teamId_example" // string | Team whose projects and labels to list (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.GetLinearCatalog(context.Background(), installId).TeamId(teamId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.GetLinearCatalog(ctx, installId).TeamId(teamId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.GetLinearCatalog``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,18 +137,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**installId** | **string** |  | 
+**installId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetLinearCatalogRequest struct via the builder pattern
+Pass optional parameters through the `apiGetLinearCatalogRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **teamId** | **string** | Team whose projects and labels to list | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **teamId** | **string** | Team whose projects and labels to list |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -146,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -166,6 +176,8 @@ Read a project's Linear source
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -177,12 +189,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.GetProjectLinearBinding(context.Background(), projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.GetProjectLinearBinding(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.GetProjectLinearBinding``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,17 +213,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectLinearBindingRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectLinearBindingRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -216,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -236,6 +251,8 @@ Read an imported issue with its full Linear context
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -247,14 +264,16 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	issueId := "issueId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	issueId := "issueId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.GetProjectLinearIssue(context.Background(), projectId, issueId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.LinearAPI.GetProjectLinearIssue(ctx, projectId, issueId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.GetProjectLinearIssue``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,20 +289,20 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
-**issueId** | **string** |  | 
+**projectId** | **string** |  |
+**issueId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetProjectLinearIssueRequest struct via the builder pattern
+Pass optional parameters through the `apiGetProjectLinearIssueRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -291,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -311,6 +330,8 @@ List workspace Linear sources
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -322,11 +343,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.ListLinearBindings(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.ListLinearBindings(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.ListLinearBindings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,12 +366,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListLinearBindingsRequest struct via the builder pattern
+Pass optional parameters through the `apiListLinearBindingsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -355,7 +379,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -375,6 +399,8 @@ List imported Linear issues and their work links
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -386,13 +412,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.ListProjectLinearIssues(context.Background(), projectId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.LinearAPI.ListProjectLinearIssues(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.ListProjectLinearIssues``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,18 +436,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListProjectLinearIssuesRequest struct via the builder pattern
+Pass optional parameters through the `apiListProjectLinearIssuesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -427,7 +455,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -447,10 +475,13 @@ Save source filters and automatic or manual start behavior
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -458,13 +489,19 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	linearBindingInput := *openapiclient.NewLinearBindingInput(false, "InstallationId_example", "LabelId_example", "LinearProjectId_example", "TeamId_example") // LinearBindingInput | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	var linearBindingInput openapiclient.LinearBindingInput
+	if err := json.Unmarshal([]byte("{\"enabled\":true,\"installationId\":\"text\",\"labelId\":\"text\",\"linearProjectId\":\"text\",\"teamId\":\"text\"}"), &linearBindingInput); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.SaveProjectLinearBinding(context.Background(), projectId).LinearBindingInput(linearBindingInput).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.SaveProjectLinearBinding(ctx, projectId).LinearBindingInput(linearBindingInput).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.SaveProjectLinearBinding``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,18 +517,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSaveProjectLinearBindingRequest struct via the builder pattern
+Pass optional parameters through the `apiSaveProjectLinearBindingRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **linearBindingInput** | [**LinearBindingInput**](LinearBindingInput.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **linearBindingInput** | [**LinearBindingInput**](LinearBindingInput.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -499,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -519,6 +556,8 @@ Refresh an issue and send it to the project manager
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -530,14 +569,16 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	issueId := "issueId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
-	xClientPortal := "xClientPortal_example" // string | Agency organization id for one aggregate client dashboard; server derives only this caller's workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	issueId := "issueId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.StartProjectLinearIssue(context.Background(), projectId, issueId).XOrganizationId(xOrganizationId).XClientPortal(xClientPortal).Execute()
+	resp, r, err := apiClient.LinearAPI.StartProjectLinearIssue(ctx, projectId, issueId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.StartProjectLinearIssue``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -553,20 +594,20 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
-**issueId** | **string** |  | 
+**projectId** | **string** |  |
+**issueId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStartProjectLinearIssueRequest struct via the builder pattern
+Pass optional parameters through the `apiStartProjectLinearIssueRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
- **xClientPortal** | **string** | Agency organization id for one aggregate client dashboard; server derives only this caller&#39;s workspace relationship and owned account seats. Legacy account ids remain narrowly compatible. Real verified user session required for agency context; administration denied. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
+ **xClientPortal** | **string** | The agency Workspace ID for a signed-in client&#39;s portal requests. A verified user session and portal membership are required; API keys cannot authenticate portal access. This header does not grant agency administration access. |
 
 ### Return type
 
@@ -574,7 +615,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -594,6 +635,8 @@ Import current matching open issues
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -605,12 +648,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.LinearAPI.SyncProjectLinearIssues(context.Background(), projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.LinearAPI.SyncProjectLinearIssues(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinearAPI.SyncProjectLinearIssues``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -626,17 +672,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiSyncProjectLinearIssuesRequest struct via the builder pattern
+Pass optional parameters through the `apiSyncProjectLinearIssuesRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -644,7 +690,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

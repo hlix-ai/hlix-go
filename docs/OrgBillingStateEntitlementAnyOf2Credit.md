@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreditCapMicros** | **int64** |  | 
-**CreditUsedMicros** | **int64** |  | 
-**ProjectLimit** | **int32** |  | 
-**ResetsAt** | **string** |  | 
+**CreditCapMicros** | **int64** |  |
+**CreditUsedMicros** | **int64** |  |
+**ProjectLimit** | **int32** |  |
+**ResetsAt** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewOrgBillingStateEntitlementAnyOf2Credit(creditCapMicros int64, creditUsedMicros int64, projectLimit int32, resetsAt string, ) *OrgBillingStateEntitlementAnyOf2Credit`
 
 NewOrgBillingStateEntitlementAnyOf2Credit instantiates a new OrgBillingStateEntitlementAnyOf2Credit object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewOrgBillingStateEntitlementAnyOf2CreditWithDefaults
 
 `func NewOrgBillingStateEntitlementAnyOf2CreditWithDefaults() *OrgBillingStateEntitlementAnyOf2Credit`
 
 NewOrgBillingStateEntitlementAnyOf2CreditWithDefaults instantiates a new OrgBillingStateEntitlementAnyOf2Credit object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreditCapMicros
 

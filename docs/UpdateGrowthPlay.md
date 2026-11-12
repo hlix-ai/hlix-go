@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Angle** | Pointer to **string** |  | [optional] 
-**AutoSendReplies** | Pointer to **bool** |  | [optional] 
-**BudgetPinned** | Pointer to **bool** |  | [optional] 
-**DailyBudgetMicros** | Pointer to **int64** |  | [optional] 
-**ExampleClients** | Pointer to **[]string** |  | [optional] 
-**ExcludeDe** | Pointer to **bool** |  | [optional] 
-**ExcludeEu** | Pointer to **bool** |  | [optional] 
-**FirstEmail** | Pointer to [**CreateGrowthPlayFirstEmail**](CreateGrowthPlayFirstEmail.md) |  | [optional] 
-**GdprAcknowledged** | Pointer to **bool** |  | [optional] 
-**Keywords** | Pointer to **[]string** |  | [optional] 
-**Language** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**NegativeCriteria** | Pointer to **[]string** |  | [optional] 
-**PositiveCriteria** | Pointer to **[]string** |  | [optional] 
-**ReviewFirstN** | Pointer to **int32** |  | [optional] 
-**SendingSchedule** | Pointer to [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | [optional] 
-**Sequence** | Pointer to [**NullableCreateGrowthPlaySequence**](CreateGrowthPlaySequence.md) |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Who** | Pointer to [**CreateGrowthPlayWho**](CreateGrowthPlayWho.md) |  | [optional] 
-**WhyNow** | Pointer to [**CreateGrowthPlayWhyNow**](CreateGrowthPlayWhyNow.md) |  | [optional] 
+**Angle** | Pointer to **string** |  | [optional]
+**AutoSendReplies** | Pointer to **bool** |  | [optional]
+**BudgetPinned** | Pointer to **bool** |  | [optional]
+**DailyBudgetMicros** | Pointer to **int64** |  | [optional]
+**ExampleClients** | Pointer to **[]string** |  | [optional]
+**ExcludeDe** | Pointer to **bool** |  | [optional]
+**ExcludeEu** | Pointer to **bool** |  | [optional]
+**FirstEmail** | Pointer to [**CreateGrowthPlayFirstEmail**](CreateGrowthPlayFirstEmail.md) |  | [optional]
+**GdprAcknowledged** | Pointer to **bool** |  | [optional]
+**Keywords** | Pointer to **[]string** |  | [optional]
+**Language** | Pointer to **string** |  | [optional]
+**Name** | Pointer to **string** |  | [optional]
+**NegativeCriteria** | Pointer to **[]string** |  | [optional]
+**PositiveCriteria** | Pointer to **[]string** |  | [optional]
+**ReviewFirstN** | Pointer to **int32** |  | [optional]
+**SendingSchedule** | Pointer to [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | [optional]
+**Sequence** | Pointer to [**NullableCreateGrowthPlaySequence**](CreateGrowthPlaySequence.md) |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
+**Who** | Pointer to [**CreateGrowthPlayWho**](CreateGrowthPlayWho.md) |  | [optional]
+**WhyNow** | Pointer to [**CreateGrowthPlayWhyNow**](CreateGrowthPlayWhyNow.md) |  | [optional]
 
 ## Methods
 
@@ -32,17 +32,15 @@ Name | Type | Description | Notes
 `func NewUpdateGrowthPlay() *UpdateGrowthPlay`
 
 NewUpdateGrowthPlay instantiates a new UpdateGrowthPlay object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateGrowthPlayWithDefaults
 
 `func NewUpdateGrowthPlayWithDefaults() *UpdateGrowthPlay`
 
 NewUpdateGrowthPlayWithDefaults instantiates a new UpdateGrowthPlay object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAngle
 

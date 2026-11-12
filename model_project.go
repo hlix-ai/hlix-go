@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -41,9 +41,9 @@ type Project struct {
 	GrowthSendingSchedule NullableCreateGrowthPlaySendingSchedule `json:"growthSendingSchedule"`
 	Id string `json:"id"`
 	InitialProposalRequired bool `json:"initialProposalRequired"`
-	Intake ProjectIntake `json:"intake"`
 	Iteration int32 `json:"iteration"`
 	Kind string `json:"kind"`
+	MachineSize NullableString `json:"machineSize"`
 	MaxRevisions NullableInt32 `json:"maxRevisions"`
 	MobileTargetsInitialized bool `json:"mobileTargetsInitialized"`
 	Name string `json:"name"`
@@ -52,13 +52,14 @@ type Project struct {
 	PausedByUserId NullableString `json:"pausedByUserId"`
 	PrUrl NullableString `json:"prUrl"`
 	PreviewCommand NullableString `json:"previewCommand"`
+	PreviewMergedAt NullableString `json:"previewMergedAt"`
 	PreviewPort NullableInt32 `json:"previewPort"`
 	Repos []ProjectReposInner `json:"repos"`
 	Round int32 `json:"round"`
 	Runtime ProjectRuntime `json:"runtime"`
-	SandboxSize NullableString `json:"sandboxSize"`
 	SetupReport NullableProjectSetupReport `json:"setupReport"`
 	Slug string `json:"slug"`
+	Sources ProjectSources `json:"sources"`
 	Stack string `json:"stack"`
 	StalledRevisions int32 `json:"stalledRevisions"`
 	Tier NullableString `json:"tier"`
@@ -73,7 +74,7 @@ type _Project Project
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProject(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString) *Project {
+func NewProject(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, iteration int32, kind string, machineSize NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewMergedAt NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runtime ProjectRuntime, setupReport NullableProjectSetupReport, slug string, sources ProjectSources, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString) *Project {
 	this := Project{}
 	this.ArchivedAt = archivedAt
 	this.AssignedUserId = assignedUserId
@@ -96,9 +97,9 @@ func NewProject(archivedAt NullableString, assignedUserId NullableString, branch
 	this.GrowthSendingSchedule = growthSendingSchedule
 	this.Id = id
 	this.InitialProposalRequired = initialProposalRequired
-	this.Intake = intake
 	this.Iteration = iteration
 	this.Kind = kind
+	this.MachineSize = machineSize
 	this.MaxRevisions = maxRevisions
 	this.MobileTargetsInitialized = mobileTargetsInitialized
 	this.Name = name
@@ -107,13 +108,14 @@ func NewProject(archivedAt NullableString, assignedUserId NullableString, branch
 	this.PausedByUserId = pausedByUserId
 	this.PrUrl = prUrl
 	this.PreviewCommand = previewCommand
+	this.PreviewMergedAt = previewMergedAt
 	this.PreviewPort = previewPort
 	this.Repos = repos
 	this.Round = round
 	this.Runtime = runtime
-	this.SandboxSize = sandboxSize
 	this.SetupReport = setupReport
 	this.Slug = slug
+	this.Sources = sources
 	this.Stack = stack
 	this.StalledRevisions = stalledRevisions
 	this.Tier = tier
@@ -664,30 +666,6 @@ func (o *Project) SetInitialProposalRequired(v bool) {
 	o.InitialProposalRequired = v
 }
 
-// GetIntake returns the Intake field value
-func (o *Project) GetIntake() ProjectIntake {
-	if o == nil {
-		var ret ProjectIntake
-		return ret
-	}
-
-	return o.Intake
-}
-
-// GetIntakeOk returns a tuple with the Intake field value
-// and a boolean to check if the value has been set.
-func (o *Project) GetIntakeOk() (*ProjectIntake, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Intake, true
-}
-
-// SetIntake sets field value
-func (o *Project) SetIntake(v ProjectIntake) {
-	o.Intake = v
-}
-
 // GetIteration returns the Iteration field value
 func (o *Project) GetIteration() int32 {
 	if o == nil {
@@ -734,6 +712,32 @@ func (o *Project) GetKindOk() (*string, bool) {
 // SetKind sets field value
 func (o *Project) SetKind(v string) {
 	o.Kind = v
+}
+
+// GetMachineSize returns the MachineSize field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Project) GetMachineSize() string {
+	if o == nil || o.MachineSize.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.MachineSize.Get()
+}
+
+// GetMachineSizeOk returns a tuple with the MachineSize field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Project) GetMachineSizeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MachineSize.Get(), o.MachineSize.IsSet()
+}
+
+// SetMachineSize sets field value
+func (o *Project) SetMachineSize(v string) {
+	o.MachineSize.Set(&v)
 }
 
 // GetMaxRevisions returns the MaxRevisions field value
@@ -938,6 +942,32 @@ func (o *Project) SetPreviewCommand(v string) {
 	o.PreviewCommand.Set(&v)
 }
 
+// GetPreviewMergedAt returns the PreviewMergedAt field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Project) GetPreviewMergedAt() string {
+	if o == nil || o.PreviewMergedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.PreviewMergedAt.Get()
+}
+
+// GetPreviewMergedAtOk returns a tuple with the PreviewMergedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Project) GetPreviewMergedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PreviewMergedAt.Get(), o.PreviewMergedAt.IsSet()
+}
+
+// SetPreviewMergedAt sets field value
+func (o *Project) SetPreviewMergedAt(v string) {
+	o.PreviewMergedAt.Set(&v)
+}
+
 // GetPreviewPort returns the PreviewPort field value
 // If the value is explicit nil, the zero value for int32 will be returned
 func (o *Project) GetPreviewPort() int32 {
@@ -1036,32 +1066,6 @@ func (o *Project) SetRuntime(v ProjectRuntime) {
 	o.Runtime = v
 }
 
-// GetSandboxSize returns the SandboxSize field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Project) GetSandboxSize() string {
-	if o == nil || o.SandboxSize.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.SandboxSize.Get()
-}
-
-// GetSandboxSizeOk returns a tuple with the SandboxSize field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Project) GetSandboxSizeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SandboxSize.Get(), o.SandboxSize.IsSet()
-}
-
-// SetSandboxSize sets field value
-func (o *Project) SetSandboxSize(v string) {
-	o.SandboxSize.Set(&v)
-}
-
 // GetSetupReport returns the SetupReport field value
 // If the value is explicit nil, the zero value for ProjectSetupReport will be returned
 func (o *Project) GetSetupReport() ProjectSetupReport {
@@ -1110,6 +1114,30 @@ func (o *Project) GetSlugOk() (*string, bool) {
 // SetSlug sets field value
 func (o *Project) SetSlug(v string) {
 	o.Slug = v
+}
+
+// GetSources returns the Sources field value
+func (o *Project) GetSources() ProjectSources {
+	if o == nil {
+		var ret ProjectSources
+		return ret
+	}
+
+	return o.Sources
+}
+
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *Project) GetSourcesOk() (*ProjectSources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
+// SetSources sets field value
+func (o *Project) SetSources(v ProjectSources) {
+	o.Sources = v
 }
 
 // GetStack returns the Stack field value
@@ -1267,9 +1295,9 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize["growthSendingSchedule"] = o.GrowthSendingSchedule.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["initialProposalRequired"] = o.InitialProposalRequired
-	toSerialize["intake"] = o.Intake
 	toSerialize["iteration"] = o.Iteration
 	toSerialize["kind"] = o.Kind
+	toSerialize["machineSize"] = o.MachineSize.Get()
 	toSerialize["maxRevisions"] = o.MaxRevisions.Get()
 	toSerialize["mobileTargetsInitialized"] = o.MobileTargetsInitialized
 	toSerialize["name"] = o.Name
@@ -1278,13 +1306,14 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize["pausedByUserId"] = o.PausedByUserId.Get()
 	toSerialize["prUrl"] = o.PrUrl.Get()
 	toSerialize["previewCommand"] = o.PreviewCommand.Get()
+	toSerialize["previewMergedAt"] = o.PreviewMergedAt.Get()
 	toSerialize["previewPort"] = o.PreviewPort.Get()
 	toSerialize["repos"] = o.Repos
 	toSerialize["round"] = o.Round
 	toSerialize["runtime"] = o.Runtime
-	toSerialize["sandboxSize"] = o.SandboxSize.Get()
 	toSerialize["setupReport"] = o.SetupReport.Get()
 	toSerialize["slug"] = o.Slug
+	toSerialize["sources"] = o.Sources
 	toSerialize["stack"] = o.Stack
 	toSerialize["stalledRevisions"] = o.StalledRevisions
 	toSerialize["tier"] = o.Tier.Get()
@@ -1324,9 +1353,9 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		"growthSendingSchedule",
 		"id",
 		"initialProposalRequired",
-		"intake",
 		"iteration",
 		"kind",
+		"machineSize",
 		"maxRevisions",
 		"mobileTargetsInitialized",
 		"name",
@@ -1335,13 +1364,14 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		"pausedByUserId",
 		"prUrl",
 		"previewCommand",
+		"previewMergedAt",
 		"previewPort",
 		"repos",
 		"round",
 		"runtime",
-		"sandboxSize",
 		"setupReport",
 		"slug",
+		"sources",
 		"stack",
 		"stalledRevisions",
 		"tier",
@@ -1397,9 +1427,9 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "growthSendingSchedule")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "initialProposalRequired")
-		delete(additionalProperties, "intake")
 		delete(additionalProperties, "iteration")
 		delete(additionalProperties, "kind")
+		delete(additionalProperties, "machineSize")
 		delete(additionalProperties, "maxRevisions")
 		delete(additionalProperties, "mobileTargetsInitialized")
 		delete(additionalProperties, "name")
@@ -1408,13 +1438,14 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "pausedByUserId")
 		delete(additionalProperties, "prUrl")
 		delete(additionalProperties, "previewCommand")
+		delete(additionalProperties, "previewMergedAt")
 		delete(additionalProperties, "previewPort")
 		delete(additionalProperties, "repos")
 		delete(additionalProperties, "round")
 		delete(additionalProperties, "runtime")
-		delete(additionalProperties, "sandboxSize")
 		delete(additionalProperties, "setupReport")
 		delete(additionalProperties, "slug")
+		delete(additionalProperties, "sources")
 		delete(additionalProperties, "stack")
 		delete(additionalProperties, "stalledRevisions")
 		delete(additionalProperties, "tier")

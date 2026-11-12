@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Allowance** | **int32** |  | 
-**Enabled** | **bool** |  | 
-**OveragePer100** | **float32** |  | 
-**PlatformAvailable** | **bool** |  | 
-**TermsSource** | **string** |  | 
-**UnavailableReason** | **NullableString** |  | 
-**UsedThisMonth** | **float32** |  | 
+**Allowance** | **int32** |  |
+**Enabled** | **bool** |  |
+**OveragePer100** | **float32** |  |
+**PlatformAvailable** | **bool** |  |
+**TermsSource** | **string** |  |
+**UnavailableReason** | **NullableString** |  |
+**UsedThisMonth** | **float32** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewHlixCrawlStatus(allowance int32, enabled bool, overagePer100 float32, platformAvailable bool, termsSource string, unavailableReason NullableString, usedThisMonth float32, ) *HlixCrawlStatus`
 
 NewHlixCrawlStatus instantiates a new HlixCrawlStatus object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewHlixCrawlStatusWithDefaults
 
 `func NewHlixCrawlStatusWithDefaults() *HlixCrawlStatus`
 
 NewHlixCrawlStatusWithDefaults instantiates a new HlixCrawlStatus object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAllowance
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArchivedAt** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**Name** | **string** |  | 
+**ArchivedAt** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**Name** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewCrmClientRecordProjectsInner(archivedAt NullableString, createdAt string, id string, kind string, name string, ) *CrmClientRecordProjectsInner`
 
 NewCrmClientRecordProjectsInner instantiates a new CrmClientRecordProjectsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmClientRecordProjectsInnerWithDefaults
 
 `func NewCrmClientRecordProjectsInnerWithDefaults() *CrmClientRecordProjectsInner`
 
 NewCrmClientRecordProjectsInnerWithDefaults instantiates a new CrmClientRecordProjectsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArchivedAt
 

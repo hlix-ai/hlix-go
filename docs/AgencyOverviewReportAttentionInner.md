@@ -4,35 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ActionPath** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CustomerId** | Pointer to **string** |  | [optional] 
-**Detail** | **string** |  | 
-**Id** | **string** |  | 
-**InvoiceId** | Pointer to **string** |  | [optional] 
-**Kind** | **string** |  | 
-**ProjectId** | Pointer to **string** |  | [optional] 
-**Severity** | **string** |  | 
-**Title** | **string** |  | 
+**ActionPath** | Pointer to **string** |  | [optional]
+**AttentionItem** | Pointer to [**AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  | [optional]
+**CreatedAt** | **string** |  |
+**CustomerId** | Pointer to **string** |  | [optional]
+**Detail** | **string** |  |
+**Id** | **string** |  |
+**InvoiceId** | Pointer to **string** |  | [optional]
+**Kind** | **string** |  |
+**ProjectId** | Pointer to **string** |  | [optional]
+**Severity** | **string** |  |
+**Title** | **string** |  |
 
 ## Methods
 
 ### NewAgencyOverviewReportAttentionInner
 
-`func NewAgencyOverviewReportAttentionInner(actionPath string, createdAt string, detail string, id string, kind string, severity string, title string, ) *AgencyOverviewReportAttentionInner`
+`func NewAgencyOverviewReportAttentionInner(createdAt string, detail string, id string, kind string, severity string, title string, ) *AgencyOverviewReportAttentionInner`
 
 NewAgencyOverviewReportAttentionInner instantiates a new AgencyOverviewReportAttentionInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyOverviewReportAttentionInnerWithDefaults
 
 `func NewAgencyOverviewReportAttentionInnerWithDefaults() *AgencyOverviewReportAttentionInner`
 
 NewAgencyOverviewReportAttentionInnerWithDefaults instantiates a new AgencyOverviewReportAttentionInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActionPath
 
@@ -53,6 +52,36 @@ and a boolean to check if the value has been set.
 
 SetActionPath sets ActionPath field to given value.
 
+### HasActionPath
+
+`func (o *AgencyOverviewReportAttentionInner) HasActionPath() bool`
+
+HasActionPath returns a boolean if a field has been set.
+
+### GetAttentionItem
+
+`func (o *AgencyOverviewReportAttentionInner) GetAttentionItem() AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttentionItem returns the AttentionItem field if non-nil, zero value otherwise.
+
+### GetAttentionItemOk
+
+`func (o *AgencyOverviewReportAttentionInner) GetAttentionItemOk() (*AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionItemOk returns a tuple with the AttentionItem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttentionItem
+
+`func (o *AgencyOverviewReportAttentionInner) SetAttentionItem(v AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttentionItem sets AttentionItem field to given value.
+
+### HasAttentionItem
+
+`func (o *AgencyOverviewReportAttentionInner) HasAttentionItem() bool`
+
+HasAttentionItem returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

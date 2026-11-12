@@ -4,29 +4,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**RunStatus** | **string** |  | 
-**Status** | **string** |  | 
+**Attention** | [**[]AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  |
+**Id** | **string** |  |
+**Name** | **string** |  |
+**PauseReason** | **NullableString** |  |
+**Status** | **string** |  |
+**StopState** | **string** |  |
 
 ## Methods
 
 ### NewProjectBoardProject
 
-`func NewProjectBoardProject(id string, name string, runStatus string, status string, ) *ProjectBoardProject`
+`func NewProjectBoardProject(attention []AgencyOverviewReportAttentionInnerAttentionItem, id string, name string, pauseReason NullableString, status string, stopState string, ) *ProjectBoardProject`
 
 NewProjectBoardProject instantiates a new ProjectBoardProject object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBoardProjectWithDefaults
 
 `func NewProjectBoardProjectWithDefaults() *ProjectBoardProject`
 
 NewProjectBoardProjectWithDefaults instantiates a new ProjectBoardProject object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetAttention
+
+`func (o *ProjectBoardProject) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttention returns the Attention field if non-nil, zero value otherwise.
+
+### GetAttentionOk
+
+`func (o *ProjectBoardProject) GetAttentionOk() (*[]AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionOk returns a tuple with the Attention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttention
+
+`func (o *ProjectBoardProject) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttention sets Attention field to given value.
+
 
 ### GetId
 
@@ -68,26 +88,36 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetRunStatus
+### GetPauseReason
 
-`func (o *ProjectBoardProject) GetRunStatus() string`
+`func (o *ProjectBoardProject) GetPauseReason() string`
 
-GetRunStatus returns the RunStatus field if non-nil, zero value otherwise.
+GetPauseReason returns the PauseReason field if non-nil, zero value otherwise.
 
-### GetRunStatusOk
+### GetPauseReasonOk
 
-`func (o *ProjectBoardProject) GetRunStatusOk() (*string, bool)`
+`func (o *ProjectBoardProject) GetPauseReasonOk() (*string, bool)`
 
-GetRunStatusOk returns a tuple with the RunStatus field if it's non-nil, zero value otherwise
+GetPauseReasonOk returns a tuple with the PauseReason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRunStatus
+### SetPauseReason
 
-`func (o *ProjectBoardProject) SetRunStatus(v string)`
+`func (o *ProjectBoardProject) SetPauseReason(v string)`
 
-SetRunStatus sets RunStatus field to given value.
+SetPauseReason sets PauseReason field to given value.
 
 
+### SetPauseReasonNil
+
+`func (o *ProjectBoardProject) SetPauseReasonNil(b bool)`
+
+ SetPauseReasonNil sets the value for PauseReason to be an explicit nil
+
+### UnsetPauseReason
+`func (o *ProjectBoardProject) UnsetPauseReason()`
+
+UnsetPauseReason ensures that no value is present for PauseReason, not even an explicit nil
 ### GetStatus
 
 `func (o *ProjectBoardProject) GetStatus() string`
@@ -106,6 +136,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectBoardProject) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetStopState
+
+`func (o *ProjectBoardProject) GetStopState() string`
+
+GetStopState returns the StopState field if non-nil, zero value otherwise.
+
+### GetStopStateOk
+
+`func (o *ProjectBoardProject) GetStopStateOk() (*string, bool)`
+
+GetStopStateOk returns a tuple with the StopState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopState
+
+`func (o *ProjectBoardProject) SetStopState(v string)`
+
+SetStopState sets StopState field to given value.
 
 
 

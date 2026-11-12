@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Deal** | [**NullableGrowthThreadDeal**](GrowthThreadDeal.md) |  | 
-**Lead** | [**GrowthThreadLead**](GrowthThreadLead.md) |  | 
-**Messages** | [**[]GrowthThreadMessagesInner**](GrowthThreadMessagesInner.md) |  | 
+**Deal** | [**NullableGrowthThreadDeal**](GrowthThreadDeal.md) |  |
+**Lead** | [**GrowthThreadLead**](GrowthThreadLead.md) |  |
+**Messages** | [**[]GrowthThreadMessagesInner**](GrowthThreadMessagesInner.md) |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewGrowthThread(deal NullableGrowthThreadDeal, lead GrowthThreadLead, messages []GrowthThreadMessagesInner, ) *GrowthThread`
 
 NewGrowthThread instantiates a new GrowthThread object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthThreadWithDefaults
 
 `func NewGrowthThreadWithDefaults() *GrowthThread`
 
 NewGrowthThreadWithDefaults instantiates a new GrowthThread object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDeal
 

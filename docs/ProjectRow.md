@@ -4,68 +4,67 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArchivedAt** | **NullableString** |  | 
-**AssignedUserId** | **NullableString** |  | 
-**BranchNames** | **string** |  | 
-**BranchPrefix** | **NullableString** |  | 
-**BranchPrefixLockedAt** | **NullableString** |  | 
-**Brief** | **NullableString** |  | 
-**ClaudeMd** | **NullableString** |  | 
-**ClientAccountId** | **NullableString** |  | 
-**CompletedAtLastRevision** | **int32** |  | 
-**CostCapMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**CustomDomain** | **NullableString** |  | 
-**CycleCap** | **NullableInt32** |  | 
-**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  | 
-**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  | 
-**ExtraUsage** | **NullableString** |  | 
-**GrowthAutopilot** | **bool** |  | 
-**GrowthDailyBudgetMicros** | **NullableInt64** |  | 
-**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Id** | **string** |  | 
-**InitialProposalRequired** | **bool** |  | 
-**Intake** | [**ProjectIntake**](ProjectIntake.md) |  | 
-**Iteration** | **int32** |  | 
-**Kind** | **string** |  | 
-**MaxRevisions** | **NullableInt32** |  | 
-**MobileTargetsInitialized** | **bool** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**PausedAt** | **NullableString** |  | 
-**PausedByUserId** | **NullableString** |  | 
-**PrUrl** | **NullableString** |  | 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**Round** | **int32** |  | 
-**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  | 
-**SandboxSize** | **NullableString** |  | 
-**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  | 
-**Slug** | **string** |  | 
-**Stack** | **string** |  | 
-**StalledRevisions** | **int32** |  | 
-**Tier** | **NullableString** |  | 
-**UseWorkspaceBrand** | **bool** |  | 
-**VerifyCommand** | **NullableString** |  | 
+**ArchivedAt** | **NullableString** |  |
+**AssignedUserId** | **NullableString** |  |
+**BranchNames** | **string** |  |
+**BranchPrefix** | **NullableString** |  |
+**BranchPrefixLockedAt** | **NullableString** |  |
+**Brief** | **NullableString** |  |
+**ClaudeMd** | **NullableString** |  |
+**ClientAccountId** | **NullableString** |  |
+**CompletedAtLastRevision** | **int32** |  |
+**CostCapMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**CustomDomain** | **NullableString** |  |
+**CycleCap** | **NullableInt32** |  |
+**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  |
+**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  |
+**ExtraUsage** | **NullableString** |  |
+**GrowthAutopilot** | **bool** |  |
+**GrowthDailyBudgetMicros** | **NullableInt64** |  |
+**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Id** | **string** |  |
+**InitialProposalRequired** | **bool** |  |
+**Iteration** | **int32** |  |
+**Kind** | **string** |  |
+**MachineSize** | **NullableString** |  |
+**MaxRevisions** | **NullableInt32** |  |
+**MobileTargetsInitialized** | **bool** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**PausedAt** | **NullableString** |  |
+**PausedByUserId** | **NullableString** |  |
+**PrUrl** | **NullableString** |  |
+**PreviewCommand** | **NullableString** |  |
+**PreviewMergedAt** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**Round** | **int32** |  |
+**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  |
+**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  |
+**Slug** | **string** |  |
+**Sources** | [**ProjectSources**](ProjectSources.md) |  |
+**Stack** | **string** |  |
+**StalledRevisions** | **int32** |  |
+**Tier** | **NullableString** |  |
+**UseWorkspaceBrand** | **bool** |  |
+**VerifyCommand** | **NullableString** |  |
 
 ## Methods
 
 ### NewProjectRow
 
-`func NewProjectRow(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, round int32, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, ) *ProjectRow`
+`func NewProjectRow(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, iteration int32, kind string, machineSize NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewMergedAt NullableString, previewPort NullableInt32, round int32, runtime ProjectRuntime, setupReport NullableProjectSetupReport, slug string, sources ProjectSources, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, ) *ProjectRow`
 
 NewProjectRow instantiates a new ProjectRow object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectRowWithDefaults
 
 `func NewProjectRowWithDefaults() *ProjectRow`
 
 NewProjectRowWithDefaults instantiates a new ProjectRow object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArchivedAt
 
@@ -637,26 +636,6 @@ and a boolean to check if the value has been set.
 SetInitialProposalRequired sets InitialProposalRequired field to given value.
 
 
-### GetIntake
-
-`func (o *ProjectRow) GetIntake() ProjectIntake`
-
-GetIntake returns the Intake field if non-nil, zero value otherwise.
-
-### GetIntakeOk
-
-`func (o *ProjectRow) GetIntakeOk() (*ProjectIntake, bool)`
-
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntake
-
-`func (o *ProjectRow) SetIntake(v ProjectIntake)`
-
-SetIntake sets Intake field to given value.
-
-
 ### GetIteration
 
 `func (o *ProjectRow) GetIteration() int32`
@@ -697,6 +676,36 @@ and a boolean to check if the value has been set.
 SetKind sets Kind field to given value.
 
 
+### GetMachineSize
+
+`func (o *ProjectRow) GetMachineSize() string`
+
+GetMachineSize returns the MachineSize field if non-nil, zero value otherwise.
+
+### GetMachineSizeOk
+
+`func (o *ProjectRow) GetMachineSizeOk() (*string, bool)`
+
+GetMachineSizeOk returns a tuple with the MachineSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMachineSize
+
+`func (o *ProjectRow) SetMachineSize(v string)`
+
+SetMachineSize sets MachineSize field to given value.
+
+
+### SetMachineSizeNil
+
+`func (o *ProjectRow) SetMachineSizeNil(b bool)`
+
+ SetMachineSizeNil sets the value for MachineSize to be an explicit nil
+
+### UnsetMachineSize
+`func (o *ProjectRow) UnsetMachineSize()`
+
+UnsetMachineSize ensures that no value is present for MachineSize, not even an explicit nil
 ### GetMaxRevisions
 
 `func (o *ProjectRow) GetMaxRevisions() int32`
@@ -907,6 +916,36 @@ SetPreviewCommand sets PreviewCommand field to given value.
 `func (o *ProjectRow) UnsetPreviewCommand()`
 
 UnsetPreviewCommand ensures that no value is present for PreviewCommand, not even an explicit nil
+### GetPreviewMergedAt
+
+`func (o *ProjectRow) GetPreviewMergedAt() string`
+
+GetPreviewMergedAt returns the PreviewMergedAt field if non-nil, zero value otherwise.
+
+### GetPreviewMergedAtOk
+
+`func (o *ProjectRow) GetPreviewMergedAtOk() (*string, bool)`
+
+GetPreviewMergedAtOk returns a tuple with the PreviewMergedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviewMergedAt
+
+`func (o *ProjectRow) SetPreviewMergedAt(v string)`
+
+SetPreviewMergedAt sets PreviewMergedAt field to given value.
+
+
+### SetPreviewMergedAtNil
+
+`func (o *ProjectRow) SetPreviewMergedAtNil(b bool)`
+
+ SetPreviewMergedAtNil sets the value for PreviewMergedAt to be an explicit nil
+
+### UnsetPreviewMergedAt
+`func (o *ProjectRow) UnsetPreviewMergedAt()`
+
+UnsetPreviewMergedAt ensures that no value is present for PreviewMergedAt, not even an explicit nil
 ### GetPreviewPort
 
 `func (o *ProjectRow) GetPreviewPort() int32`
@@ -977,36 +1016,6 @@ and a boolean to check if the value has been set.
 SetRuntime sets Runtime field to given value.
 
 
-### GetSandboxSize
-
-`func (o *ProjectRow) GetSandboxSize() string`
-
-GetSandboxSize returns the SandboxSize field if non-nil, zero value otherwise.
-
-### GetSandboxSizeOk
-
-`func (o *ProjectRow) GetSandboxSizeOk() (*string, bool)`
-
-GetSandboxSizeOk returns a tuple with the SandboxSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSandboxSize
-
-`func (o *ProjectRow) SetSandboxSize(v string)`
-
-SetSandboxSize sets SandboxSize field to given value.
-
-
-### SetSandboxSizeNil
-
-`func (o *ProjectRow) SetSandboxSizeNil(b bool)`
-
- SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
-
-### UnsetSandboxSize
-`func (o *ProjectRow) UnsetSandboxSize()`
-
-UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
 ### GetSetupReport
 
 `func (o *ProjectRow) GetSetupReport() ProjectSetupReport`
@@ -1055,6 +1064,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectRow) SetSlug(v string)`
 
 SetSlug sets Slug field to given value.
+
+
+### GetSources
+
+`func (o *ProjectRow) GetSources() ProjectSources`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *ProjectRow) GetSourcesOk() (*ProjectSources, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *ProjectRow) SetSources(v ProjectSources)`
+
+SetSources sets Sources field to given value.
 
 
 ### GetStack

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | [**CrmClientRecordConversationInnerCampaign**](CrmClientRecordConversationInnerCampaign.md) |  | 
-**ContactId** | **string** |  | 
-**ContactName** | **string** |  | 
-**LeadId** | **string** |  | 
-**Messages** | [**[]CrmClientRecordConversationInnerMessagesInner**](CrmClientRecordConversationInnerMessagesInner.md) |  | 
+**Campaign** | [**CrmClientRecordConversationInnerCampaign**](CrmClientRecordConversationInnerCampaign.md) |  |
+**ContactId** | **string** |  |
+**ContactName** | **string** |  |
+**LeadId** | **string** |  |
+**Messages** | [**[]CrmClientRecordConversationInnerMessagesInner**](CrmClientRecordConversationInnerMessagesInner.md) |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewCrmClientRecordConversationInner(campaign CrmClientRecordConversationInnerCampaign, contactId string, contactName string, leadId string, messages []CrmClientRecordConversationInnerMessagesInner, ) *CrmClientRecordConversationInner`
 
 NewCrmClientRecordConversationInner instantiates a new CrmClientRecordConversationInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCrmClientRecordConversationInnerWithDefaults
 
 `func NewCrmClientRecordConversationInnerWithDefaults() *CrmClientRecordConversationInner`
 
 NewCrmClientRecordConversationInnerWithDefaults instantiates a new CrmClientRecordConversationInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCampaign
 

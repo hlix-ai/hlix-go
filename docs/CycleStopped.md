@@ -4,47 +4,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OrchestratorNotified** | **bool** |  | 
-**Status** | **string** |  | 
-**Stopped** | **bool** |  | 
+**ProjectManagerNotified** | **bool** |  |
+**Status** | **string** |  |
+**Stopped** | **bool** |  | [default to true]
 
 ## Methods
 
 ### NewCycleStopped
 
-`func NewCycleStopped(orchestratorNotified bool, status string, stopped bool, ) *CycleStopped`
+`func NewCycleStopped(projectManagerNotified bool, status string, stopped bool, ) *CycleStopped`
 
 NewCycleStopped instantiates a new CycleStopped object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCycleStoppedWithDefaults
 
 `func NewCycleStoppedWithDefaults() *CycleStopped`
 
 NewCycleStoppedWithDefaults instantiates a new CycleStopped object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
-### GetOrchestratorNotified
+### GetProjectManagerNotified
 
-`func (o *CycleStopped) GetOrchestratorNotified() bool`
+`func (o *CycleStopped) GetProjectManagerNotified() bool`
 
-GetOrchestratorNotified returns the OrchestratorNotified field if non-nil, zero value otherwise.
+GetProjectManagerNotified returns the ProjectManagerNotified field if non-nil, zero value otherwise.
 
-### GetOrchestratorNotifiedOk
+### GetProjectManagerNotifiedOk
 
-`func (o *CycleStopped) GetOrchestratorNotifiedOk() (*bool, bool)`
+`func (o *CycleStopped) GetProjectManagerNotifiedOk() (*bool, bool)`
 
-GetOrchestratorNotifiedOk returns a tuple with the OrchestratorNotified field if it's non-nil, zero value otherwise
+GetProjectManagerNotifiedOk returns a tuple with the ProjectManagerNotified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrchestratorNotified
+### SetProjectManagerNotified
 
-`func (o *CycleStopped) SetOrchestratorNotified(v bool)`
+`func (o *CycleStopped) SetProjectManagerNotified(v bool)`
 
-SetOrchestratorNotified sets OrchestratorNotified field to given value.
+SetProjectManagerNotified sets ProjectManagerNotified field to given value.
 
 
 ### GetStatus

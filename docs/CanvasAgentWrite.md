@@ -4,31 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Applied** | **bool** |  | 
-**ContextChanged** | **bool** |  | 
-**ContextRevision** | **int32** |  | 
-**Ops** | [**[]CanvasAgentWriteOpsInner**](CanvasAgentWriteOpsInner.md) |  | 
-**ProposalId** | **NullableString** |  | 
-**Revision** | **int32** |  | 
+**Applied** | **bool** |  |
+**ApprovalId** | **NullableString** |  |
+**ContextChanged** | **bool** |  |
+**ContextRevision** | **int32** |  |
+**Ops** | [**[]CanvasAgentWriteOpsInner**](CanvasAgentWriteOpsInner.md) |  |
+**Revision** | **int32** |  |
 
 ## Methods
 
 ### NewCanvasAgentWrite
 
-`func NewCanvasAgentWrite(applied bool, contextChanged bool, contextRevision int32, ops []CanvasAgentWriteOpsInner, proposalId NullableString, revision int32, ) *CanvasAgentWrite`
+`func NewCanvasAgentWrite(applied bool, approvalId NullableString, contextChanged bool, contextRevision int32, ops []CanvasAgentWriteOpsInner, revision int32, ) *CanvasAgentWrite`
 
 NewCanvasAgentWrite instantiates a new CanvasAgentWrite object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCanvasAgentWriteWithDefaults
 
 `func NewCanvasAgentWriteWithDefaults() *CanvasAgentWrite`
 
 NewCanvasAgentWriteWithDefaults instantiates a new CanvasAgentWrite object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApplied
 
@@ -50,6 +48,36 @@ and a boolean to check if the value has been set.
 SetApplied sets Applied field to given value.
 
 
+### GetApprovalId
+
+`func (o *CanvasAgentWrite) GetApprovalId() string`
+
+GetApprovalId returns the ApprovalId field if non-nil, zero value otherwise.
+
+### GetApprovalIdOk
+
+`func (o *CanvasAgentWrite) GetApprovalIdOk() (*string, bool)`
+
+GetApprovalIdOk returns a tuple with the ApprovalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApprovalId
+
+`func (o *CanvasAgentWrite) SetApprovalId(v string)`
+
+SetApprovalId sets ApprovalId field to given value.
+
+
+### SetApprovalIdNil
+
+`func (o *CanvasAgentWrite) SetApprovalIdNil(b bool)`
+
+ SetApprovalIdNil sets the value for ApprovalId to be an explicit nil
+
+### UnsetApprovalId
+`func (o *CanvasAgentWrite) UnsetApprovalId()`
+
+UnsetApprovalId ensures that no value is present for ApprovalId, not even an explicit nil
 ### GetContextChanged
 
 `func (o *CanvasAgentWrite) GetContextChanged() bool`
@@ -110,36 +138,6 @@ and a boolean to check if the value has been set.
 SetOps sets Ops field to given value.
 
 
-### GetProposalId
-
-`func (o *CanvasAgentWrite) GetProposalId() string`
-
-GetProposalId returns the ProposalId field if non-nil, zero value otherwise.
-
-### GetProposalIdOk
-
-`func (o *CanvasAgentWrite) GetProposalIdOk() (*string, bool)`
-
-GetProposalIdOk returns a tuple with the ProposalId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProposalId
-
-`func (o *CanvasAgentWrite) SetProposalId(v string)`
-
-SetProposalId sets ProposalId field to given value.
-
-
-### SetProposalIdNil
-
-`func (o *CanvasAgentWrite) SetProposalIdNil(b bool)`
-
- SetProposalIdNil sets the value for ProposalId to be an explicit nil
-
-### UnsetProposalId
-`func (o *CanvasAgentWrite) UnsetProposalId()`
-
-UnsetProposalId ensures that no value is present for ProposalId, not even an explicit nil
 ### GetRevision
 
 `func (o *CanvasAgentWrite) GetRevision() int32`

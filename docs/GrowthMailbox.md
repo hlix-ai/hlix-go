@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** |  | 
-**AllowanceToday** | **int32** |  | 
-**CreatedAt** | **string** |  | 
-**DailyLimit** | **int32** |  | 
-**Id** | **string** |  | 
-**LastError** | **NullableString** |  | 
-**Provider** | **string** |  | 
-**RampStartedAt** | **NullableString** |  | 
-**SentToday** | **int32** |  | 
-**Status** | **string** |  | 
+**Address** | **string** |  |
+**AllowanceToday** | **int32** |  |
+**CreatedAt** | **string** |  |
+**DailyLimit** | **int32** |  |
+**Id** | **string** |  |
+**LastError** | **NullableString** |  |
+**Provider** | **string** |  |
+**RampStartedAt** | **NullableString** |  |
+**SentToday** | **int32** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewGrowthMailbox(address string, allowanceToday int32, createdAt string, dailyLimit int32, id string, lastError NullableString, provider string, rampStartedAt NullableString, sentToday int32, status string, ) *GrowthMailbox`
 
 NewGrowthMailbox instantiates a new GrowthMailbox object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthMailboxWithDefaults
 
 `func NewGrowthMailboxWithDefaults() *GrowthMailbox`
 
 NewGrowthMailboxWithDefaults instantiates a new GrowthMailbox object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAddress
 

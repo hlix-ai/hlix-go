@@ -4,28 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentRuns** | [**[]AuditEntryDetailCorrelatedAgentRunsInner**](AuditEntryDetailCorrelatedAgentRunsInner.md) |  | 
-**Events** | [**[]AuditEntryDetailCorrelatedEventsInner**](AuditEntryDetailCorrelatedEventsInner.md) |  | 
-**Logs** | [**[]AuditEntryDetailCorrelatedLogsInner**](AuditEntryDetailCorrelatedLogsInner.md) |  | 
+**AgentRuns** | [**[]AuditEntryDetailCorrelatedAgentRunsInner**](AuditEntryDetailCorrelatedAgentRunsInner.md) |  |
+**Events** | [**[]AuditEntryDetailCorrelatedEventsInner**](AuditEntryDetailCorrelatedEventsInner.md) |  |
 
 ## Methods
 
 ### NewAuditEntryDetailCorrelated
 
-`func NewAuditEntryDetailCorrelated(agentRuns []AuditEntryDetailCorrelatedAgentRunsInner, events []AuditEntryDetailCorrelatedEventsInner, logs []AuditEntryDetailCorrelatedLogsInner, ) *AuditEntryDetailCorrelated`
+`func NewAuditEntryDetailCorrelated(agentRuns []AuditEntryDetailCorrelatedAgentRunsInner, events []AuditEntryDetailCorrelatedEventsInner, ) *AuditEntryDetailCorrelated`
 
 NewAuditEntryDetailCorrelated instantiates a new AuditEntryDetailCorrelated object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAuditEntryDetailCorrelatedWithDefaults
 
 `func NewAuditEntryDetailCorrelatedWithDefaults() *AuditEntryDetailCorrelated`
 
 NewAuditEntryDetailCorrelatedWithDefaults instantiates a new AuditEntryDetailCorrelated object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentRuns
 
@@ -65,26 +62,6 @@ and a boolean to check if the value has been set.
 `func (o *AuditEntryDetailCorrelated) SetEvents(v []AuditEntryDetailCorrelatedEventsInner)`
 
 SetEvents sets Events field to given value.
-
-
-### GetLogs
-
-`func (o *AuditEntryDetailCorrelated) GetLogs() []AuditEntryDetailCorrelatedLogsInner`
-
-GetLogs returns the Logs field if non-nil, zero value otherwise.
-
-### GetLogsOk
-
-`func (o *AuditEntryDetailCorrelated) GetLogsOk() (*[]AuditEntryDetailCorrelatedLogsInner, bool)`
-
-GetLogsOk returns a tuple with the Logs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogs
-
-`func (o *AuditEntryDetailCorrelated) SetLogs(v []AuditEntryDetailCorrelatedLogsInner)`
-
-SetLogs sets Logs field to given value.
 
 
 

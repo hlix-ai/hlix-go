@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreditsMicros** | **NullableInt64** |  | 
-**Date** | **string** |  | 
-**HasReportedTokens** | **bool** |  | 
-**IncompleteUsageRuns** | **int32** |  | 
-**Tokens** | **float32** |  | 
+**CreditsMicros** | **NullableInt64** |  |
+**Date** | **string** |  |
+**HasReportedTokens** | **bool** |  |
+**IncompleteUsageRuns** | **int32** |  |
+**Tokens** | **float32** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewAgentUsageRollupChartsDailyInner(creditsMicros NullableInt64, date string, hasReportedTokens bool, incompleteUsageRuns int32, tokens float32, ) *AgentUsageRollupChartsDailyInner`
 
 NewAgentUsageRollupChartsDailyInner instantiates a new AgentUsageRollupChartsDailyInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentUsageRollupChartsDailyInnerWithDefaults
 
 `func NewAgentUsageRollupChartsDailyInnerWithDefaults() *AgentUsageRollupChartsDailyInner`
 
 NewAgentUsageRollupChartsDailyInnerWithDefaults instantiates a new AgentUsageRollupChartsDailyInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCreditsMicros
 

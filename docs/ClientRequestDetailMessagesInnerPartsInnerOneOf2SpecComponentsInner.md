@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Component** | **string** |  | 
-**Id** | **string** |  | 
+**Component** | **string** |  |
+**Id** | **string** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner(component string, id string, ) *ClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner`
 
 NewClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner instantiates a new ClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInnerWithDefaults
 
 `func NewClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInnerWithDefaults() *ClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner`
 
 NewClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInnerWithDefaults instantiates a new ClientRequestDetailMessagesInnerPartsInnerOneOf2SpecComponentsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetComponent
 

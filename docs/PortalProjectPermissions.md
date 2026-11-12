@@ -4,28 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanAccessCanvas** | Pointer to **bool** |  | [optional] 
-**CanSteer** | **bool** |  | 
+**CanAccessCanvas** | Pointer to **bool** |  | [optional]
+**CanMessage** | **bool** |  |
 **ShowProjectInsights** | Pointer to **bool** |  | [optional] [default to false]
 
 ## Methods
 
 ### NewPortalProjectPermissions
 
-`func NewPortalProjectPermissions(canSteer bool, ) *PortalProjectPermissions`
+`func NewPortalProjectPermissions(canMessage bool, ) *PortalProjectPermissions`
 
 NewPortalProjectPermissions instantiates a new PortalProjectPermissions object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewPortalProjectPermissionsWithDefaults
 
 `func NewPortalProjectPermissionsWithDefaults() *PortalProjectPermissions`
 
 NewPortalProjectPermissionsWithDefaults instantiates a new PortalProjectPermissions object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCanAccessCanvas
 
@@ -52,24 +50,24 @@ SetCanAccessCanvas sets CanAccessCanvas field to given value.
 
 HasCanAccessCanvas returns a boolean if a field has been set.
 
-### GetCanSteer
+### GetCanMessage
 
-`func (o *PortalProjectPermissions) GetCanSteer() bool`
+`func (o *PortalProjectPermissions) GetCanMessage() bool`
 
-GetCanSteer returns the CanSteer field if non-nil, zero value otherwise.
+GetCanMessage returns the CanMessage field if non-nil, zero value otherwise.
 
-### GetCanSteerOk
+### GetCanMessageOk
 
-`func (o *PortalProjectPermissions) GetCanSteerOk() (*bool, bool)`
+`func (o *PortalProjectPermissions) GetCanMessageOk() (*bool, bool)`
 
-GetCanSteerOk returns a tuple with the CanSteer field if it's non-nil, zero value otherwise
+GetCanMessageOk returns a tuple with the CanMessage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCanSteer
+### SetCanMessage
 
-`func (o *PortalProjectPermissions) SetCanSteer(v bool)`
+`func (o *PortalProjectPermissions) SetCanMessage(v bool)`
 
-SetCanSteer sets CanSteer field to given value.
+SetCanMessage sets CanMessage field to given value.
 
 
 ### GetShowProjectInsights

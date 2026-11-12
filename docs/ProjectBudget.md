@@ -4,32 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Defaults** | [**ProjectBudgetDefaults**](ProjectBudgetDefaults.md) |  | 
-**Effective** | [**ProjectBudgetEffective**](ProjectBudgetEffective.md) |  | 
-**Overrides** | [**ProjectBudgetOverrides**](ProjectBudgetOverrides.md) |  | 
-**SpendIsEnforced** | **bool** |  | 
-**SpendToDateMicros** | **int64** |  | 
-**TotalAgentSpendMicros** | **int64** |  | 
-**UnknownCostRuns** | **int32** |  | 
+**Defaults** | [**ProjectBudgetDefaults**](ProjectBudgetDefaults.md) |  |
+**Effective** | [**ProjectBudgetEffective**](ProjectBudgetEffective.md) |  |
+**EstimatedCostRuns** | **int32** |  |
+**Overrides** | [**ProjectBudgetOverrides**](ProjectBudgetOverrides.md) |  |
+**SpendIsEnforced** | **bool** |  |
+**SpendToDateMicros** | **int64** |  |
+**TotalAgentSpendMicros** | **int64** |  |
+**UnknownCostRuns** | **int32** |  |
 
 ## Methods
 
 ### NewProjectBudget
 
-`func NewProjectBudget(defaults ProjectBudgetDefaults, effective ProjectBudgetEffective, overrides ProjectBudgetOverrides, spendIsEnforced bool, spendToDateMicros int64, totalAgentSpendMicros int64, unknownCostRuns int32, ) *ProjectBudget`
+`func NewProjectBudget(defaults ProjectBudgetDefaults, effective ProjectBudgetEffective, estimatedCostRuns int32, overrides ProjectBudgetOverrides, spendIsEnforced bool, spendToDateMicros int64, totalAgentSpendMicros int64, unknownCostRuns int32, ) *ProjectBudget`
 
 NewProjectBudget instantiates a new ProjectBudget object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBudgetWithDefaults
 
 `func NewProjectBudgetWithDefaults() *ProjectBudget`
 
 NewProjectBudgetWithDefaults instantiates a new ProjectBudget object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDefaults
 
@@ -69,6 +68,26 @@ and a boolean to check if the value has been set.
 `func (o *ProjectBudget) SetEffective(v ProjectBudgetEffective)`
 
 SetEffective sets Effective field to given value.
+
+
+### GetEstimatedCostRuns
+
+`func (o *ProjectBudget) GetEstimatedCostRuns() int32`
+
+GetEstimatedCostRuns returns the EstimatedCostRuns field if non-nil, zero value otherwise.
+
+### GetEstimatedCostRunsOk
+
+`func (o *ProjectBudget) GetEstimatedCostRunsOk() (*int32, bool)`
+
+GetEstimatedCostRunsOk returns a tuple with the EstimatedCostRuns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedCostRuns
+
+`func (o *ProjectBudget) SetEstimatedCostRuns(v int32)`
+
+SetEstimatedCostRuns sets EstimatedCostRuns field to given value.
 
 
 ### GetOverrides

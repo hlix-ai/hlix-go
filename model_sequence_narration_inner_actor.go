@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,8 +20,8 @@ var _ MappedNullable = &SequenceNarrationInnerActor{}
 
 // SequenceNarrationInnerActor struct for SequenceNarrationInnerActor
 type SequenceNarrationInnerActor struct {
-	Persona NullableString `json:"persona"`
-	Role string `json:"role"`
+	AgentKind string `json:"agentKind"`
+	PromptKey NullableString `json:"promptKey"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,10 +31,10 @@ type _SequenceNarrationInnerActor SequenceNarrationInnerActor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSequenceNarrationInnerActor(persona NullableString, role string) *SequenceNarrationInnerActor {
+func NewSequenceNarrationInnerActor(agentKind string, promptKey NullableString) *SequenceNarrationInnerActor {
 	this := SequenceNarrationInnerActor{}
-	this.Persona = persona
-	this.Role = role
+	this.AgentKind = agentKind
+	this.PromptKey = promptKey
 	return &this
 }
 
@@ -46,54 +46,54 @@ func NewSequenceNarrationInnerActorWithDefaults() *SequenceNarrationInnerActor {
 	return &this
 }
 
-// GetPersona returns the Persona field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *SequenceNarrationInnerActor) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
+// GetAgentKind returns the AgentKind field value
+func (o *SequenceNarrationInnerActor) GetAgentKind() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Persona.Get()
+	return o.AgentKind
 }
 
-// GetPersonaOk returns a tuple with the Persona field value
+// GetAgentKindOk returns a tuple with the AgentKind field value
+// and a boolean to check if the value has been set.
+func (o *SequenceNarrationInnerActor) GetAgentKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AgentKind, true
+}
+
+// SetAgentKind sets field value
+func (o *SequenceNarrationInnerActor) SetAgentKind(v string) {
+	o.AgentKind = v
+}
+
+// GetPromptKey returns the PromptKey field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *SequenceNarrationInnerActor) GetPromptKey() string {
+	if o == nil || o.PromptKey.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.PromptKey.Get()
+}
+
+// GetPromptKeyOk returns a tuple with the PromptKey field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SequenceNarrationInnerActor) GetPersonaOk() (*string, bool) {
+func (o *SequenceNarrationInnerActor) GetPromptKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Persona.Get(), o.Persona.IsSet()
+	return o.PromptKey.Get(), o.PromptKey.IsSet()
 }
 
-// SetPersona sets field value
-func (o *SequenceNarrationInnerActor) SetPersona(v string) {
-	o.Persona.Set(&v)
-}
-
-// GetRole returns the Role field value
-func (o *SequenceNarrationInnerActor) GetRole() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Role
-}
-
-// GetRoleOk returns a tuple with the Role field value
-// and a boolean to check if the value has been set.
-func (o *SequenceNarrationInnerActor) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Role, true
-}
-
-// SetRole sets field value
-func (o *SequenceNarrationInnerActor) SetRole(v string) {
-	o.Role = v
+// SetPromptKey sets field value
+func (o *SequenceNarrationInnerActor) SetPromptKey(v string) {
+	o.PromptKey.Set(&v)
 }
 
 func (o SequenceNarrationInnerActor) MarshalJSON() ([]byte, error) {
@@ -106,8 +106,8 @@ func (o SequenceNarrationInnerActor) MarshalJSON() ([]byte, error) {
 
 func (o SequenceNarrationInnerActor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["persona"] = o.Persona.Get()
-	toSerialize["role"] = o.Role
+	toSerialize["agentKind"] = o.AgentKind
+	toSerialize["promptKey"] = o.PromptKey.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -121,8 +121,8 @@ func (o *SequenceNarrationInnerActor) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"persona",
-		"role",
+		"agentKind",
+		"promptKey",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -152,8 +152,8 @@ func (o *SequenceNarrationInnerActor) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "persona")
-		delete(additionalProperties, "role")
+		delete(additionalProperties, "agentKind")
+		delete(additionalProperties, "promptKey")
 		o.AdditionalProperties = additionalProperties
 	}
 

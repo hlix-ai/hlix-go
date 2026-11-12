@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Binary** | **bool** |  | 
-**Patch** | **NullableString** |  | 
-**PatchTruncated** | **bool** |  | 
-**Path** | **string** |  | 
-**RepoKey** | **string** |  | 
+**Binary** | **bool** |  |
+**Patch** | **NullableString** |  |
+**PatchTruncated** | **bool** |  |
+**Path** | **string** |  |
+**RepoKey** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewChangeFilePatch(binary bool, patch NullableString, patchTruncated bool, path string, repoKey string, ) *ChangeFilePatch`
 
 NewChangeFilePatch instantiates a new ChangeFilePatch object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewChangeFilePatchWithDefaults
 
 `func NewChangeFilePatchWithDefaults() *ChangeFilePatch`
 
 NewChangeFilePatchWithDefaults instantiates a new ChangeFilePatch object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBinary
 

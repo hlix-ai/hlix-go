@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,6 +22,7 @@ var _ MappedNullable = &ProjectBudget{}
 type ProjectBudget struct {
 	Defaults ProjectBudgetDefaults `json:"defaults"`
 	Effective ProjectBudgetEffective `json:"effective"`
+	EstimatedCostRuns int32 `json:"estimatedCostRuns"`
 	Overrides ProjectBudgetOverrides `json:"overrides"`
 	SpendIsEnforced bool `json:"spendIsEnforced"`
 	SpendToDateMicros int64 `json:"spendToDateMicros"`
@@ -36,10 +37,11 @@ type _ProjectBudget ProjectBudget
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectBudget(defaults ProjectBudgetDefaults, effective ProjectBudgetEffective, overrides ProjectBudgetOverrides, spendIsEnforced bool, spendToDateMicros int64, totalAgentSpendMicros int64, unknownCostRuns int32) *ProjectBudget {
+func NewProjectBudget(defaults ProjectBudgetDefaults, effective ProjectBudgetEffective, estimatedCostRuns int32, overrides ProjectBudgetOverrides, spendIsEnforced bool, spendToDateMicros int64, totalAgentSpendMicros int64, unknownCostRuns int32) *ProjectBudget {
 	this := ProjectBudget{}
 	this.Defaults = defaults
 	this.Effective = effective
+	this.EstimatedCostRuns = estimatedCostRuns
 	this.Overrides = overrides
 	this.SpendIsEnforced = spendIsEnforced
 	this.SpendToDateMicros = spendToDateMicros
@@ -102,6 +104,30 @@ func (o *ProjectBudget) GetEffectiveOk() (*ProjectBudgetEffective, bool) {
 // SetEffective sets field value
 func (o *ProjectBudget) SetEffective(v ProjectBudgetEffective) {
 	o.Effective = v
+}
+
+// GetEstimatedCostRuns returns the EstimatedCostRuns field value
+func (o *ProjectBudget) GetEstimatedCostRuns() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.EstimatedCostRuns
+}
+
+// GetEstimatedCostRunsOk returns a tuple with the EstimatedCostRuns field value
+// and a boolean to check if the value has been set.
+func (o *ProjectBudget) GetEstimatedCostRunsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EstimatedCostRuns, true
+}
+
+// SetEstimatedCostRuns sets field value
+func (o *ProjectBudget) SetEstimatedCostRuns(v int32) {
+	o.EstimatedCostRuns = v
 }
 
 // GetOverrides returns the Overrides field value
@@ -236,6 +262,7 @@ func (o ProjectBudget) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["defaults"] = o.Defaults
 	toSerialize["effective"] = o.Effective
+	toSerialize["estimatedCostRuns"] = o.EstimatedCostRuns
 	toSerialize["overrides"] = o.Overrides
 	toSerialize["spendIsEnforced"] = o.SpendIsEnforced
 	toSerialize["spendToDateMicros"] = o.SpendToDateMicros
@@ -256,6 +283,7 @@ func (o *ProjectBudget) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"defaults",
 		"effective",
+		"estimatedCostRuns",
 		"overrides",
 		"spendIsEnforced",
 		"spendToDateMicros",
@@ -292,6 +320,7 @@ func (o *ProjectBudget) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "defaults")
 		delete(additionalProperties, "effective")
+		delete(additionalProperties, "estimatedCostRuns")
 		delete(additionalProperties, "overrides")
 		delete(additionalProperties, "spendIsEnforced")
 		delete(additionalProperties, "spendToDateMicros")

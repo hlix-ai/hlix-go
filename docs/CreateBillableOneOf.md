@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientAccountId** | **string** |  | 
-**Currency** | **string** |  | 
-**Description** | **string** |  | 
-**Note** | Pointer to **NullableString** |  | [optional] 
-**OccurredAt** | Pointer to **time.Time** |  | [optional] 
-**ProjectId** | Pointer to **NullableString** |  | [optional] 
-**Quantity** | **float32** |  | 
-**Source** | **string** |  | 
-**TaxClass** | Pointer to **string** |  | [optional] 
-**Unit** | **string** |  | 
-**UnitPriceMicros** | **int64** |  | 
+**ClientAccountId** | **string** |  |
+**Currency** | **string** |  |
+**Description** | **string** |  |
+**Note** | Pointer to **NullableString** |  | [optional]
+**OccurredAt** | Pointer to **time.Time** |  | [optional]
+**ProjectId** | Pointer to **NullableString** |  | [optional]
+**Quantity** | **float32** |  |
+**Source** | **string** |  |
+**TaxClass** | Pointer to **string** |  | [optional]
+**Unit** | **string** |  |
+**UnitPriceMicros** | **int64** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewCreateBillableOneOf(clientAccountId string, currency string, description string, quantity float32, source string, unit string, unitPriceMicros int64, ) *CreateBillableOneOf`
 
 NewCreateBillableOneOf instantiates a new CreateBillableOneOf object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateBillableOneOfWithDefaults
 
 `func NewCreateBillableOneOfWithDefaults() *CreateBillableOneOf`
 
 NewCreateBillableOneOfWithDefaults instantiates a new CreateBillableOneOf object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClientAccountId
 

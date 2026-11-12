@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | [**[]GrowthSuppressionPageItemsInner**](GrowthSuppressionPageItemsInner.md) |  | 
-**Limit** | **int32** |  | 
-**Offset** | **int32** |  | 
-**Total** | **int32** |  | 
+**Items** | [**[]GrowthSuppressionPageItemsInner**](GrowthSuppressionPageItemsInner.md) |  |
+**Limit** | **int32** |  |
+**Offset** | **int32** |  |
+**Total** | **int32** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewGrowthSuppressionPage(items []GrowthSuppressionPageItemsInner, limit int32, offset int32, total int32, ) *GrowthSuppressionPage`
 
 NewGrowthSuppressionPage instantiates a new GrowthSuppressionPage object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthSuppressionPageWithDefaults
 
 `func NewGrowthSuppressionPageWithDefaults() *GrowthSuppressionPage`
 
 NewGrowthSuppressionPageWithDefaults instantiates a new GrowthSuppressionPage object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetItems
 

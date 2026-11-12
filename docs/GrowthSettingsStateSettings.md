@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BookingUrl** | **NullableString** |  | 
-**CountrySendingOverrides** | [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  | 
-**FollowUpDays** | **[]int32** |  | 
-**MailboxDailyMax** | **NullableInt32** |  | 
-**MonthlyCapMicros** | **NullableInt64** |  | 
-**SendDays** | **[]int32** |  | 
-**SendEndHour** | **int32** |  | 
-**SendStartHour** | **int32** |  | 
-**StopOnReply** | **bool** |  | 
-**TimeZone** | **NullableString** |  | 
+**BookingUrl** | **NullableString** |  |
+**CountrySendingOverrides** | [**map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue**](CreateGrowthPlaySendingScheduleCountryOverridesValue.md) |  |
+**FollowUpDays** | **[]int32** |  |
+**MailboxDailyMax** | **NullableInt32** |  |
+**MonthlyCapMicros** | **NullableInt64** |  |
+**SendDays** | **[]int32** |  |
+**SendEndHour** | **int32** |  |
+**SendStartHour** | **int32** |  |
+**StopOnReply** | **bool** |  |
+**TimeZone** | **NullableString** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewGrowthSettingsStateSettings(bookingUrl NullableString, countrySendingOverrides map[string]CreateGrowthPlaySendingScheduleCountryOverridesValue, followUpDays []int32, mailboxDailyMax NullableInt32, monthlyCapMicros NullableInt64, sendDays []int32, sendEndHour int32, sendStartHour int32, stopOnReply bool, timeZone NullableString, ) *GrowthSettingsStateSettings`
 
 NewGrowthSettingsStateSettings instantiates a new GrowthSettingsStateSettings object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthSettingsStateSettingsWithDefaults
 
 `func NewGrowthSettingsStateSettingsWithDefaults() *GrowthSettingsStateSettings`
 
 NewGrowthSettingsStateSettingsWithDefaults instantiates a new GrowthSettingsStateSettings object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBookingUrl
 

@@ -4,40 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovedRevision** | **NullableInt32** |  | 
-**Attachments** | [**[]ClientRequestDetailAttachmentsInner**](ClientRequestDetailAttachmentsInner.md) |  | 
-**CanApprove** | **bool** |  | 
-**CanRespond** | **bool** |  | 
-**CreatedAt** | **string** |  | 
-**CurrentPlan** | [**NullableClientRequestDetailCurrentPlan**](ClientRequestDetailCurrentPlan.md) |  | 
-**CycleId** | **NullableString** |  | 
-**Id** | **string** |  | 
-**ProjectId** | **string** |  | 
-**ProposalId** | **NullableString** |  | 
-**RequesterUserId** | **string** |  | 
-**Status** | **string** |  | 
-**Title** | **string** |  | 
-**TurnPending** | **bool** |  | 
-**UpdatedAt** | **string** |  | 
+**ApprovedRevision** | **NullableInt32** |  |
+**Attachments** | [**[]ClientRequestDetailAttachmentsInner**](ClientRequestDetailAttachmentsInner.md) |  |
+**CanApprove** | **bool** |  |
+**CanRespond** | **bool** |  |
+**CreatedAt** | **string** |  |
+**CurrentPlan** | [**NullableClientRequestDetailCurrentPlan**](ClientRequestDetailCurrentPlan.md) |  |
+**CycleId** | **NullableString** |  |
+**Id** | **string** |  |
+**ProjectId** | **string** |  |
+**RequestId** | **NullableString** |  |
+**RequesterUserId** | **string** |  |
+**Status** | **string** |  |
+**Title** | **string** |  |
+**TurnPending** | **bool** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
 ### NewClientRequestListRequestsInner
 
-`func NewClientRequestListRequestsInner(approvedRevision NullableInt32, attachments []ClientRequestDetailAttachmentsInner, canApprove bool, canRespond bool, createdAt string, currentPlan NullableClientRequestDetailCurrentPlan, cycleId NullableString, id string, projectId string, proposalId NullableString, requesterUserId string, status string, title string, turnPending bool, updatedAt string, ) *ClientRequestListRequestsInner`
+`func NewClientRequestListRequestsInner(approvedRevision NullableInt32, attachments []ClientRequestDetailAttachmentsInner, canApprove bool, canRespond bool, createdAt string, currentPlan NullableClientRequestDetailCurrentPlan, cycleId NullableString, id string, projectId string, requestId NullableString, requesterUserId string, status string, title string, turnPending bool, updatedAt string, ) *ClientRequestListRequestsInner`
 
 NewClientRequestListRequestsInner instantiates a new ClientRequestListRequestsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientRequestListRequestsInnerWithDefaults
 
 `func NewClientRequestListRequestsInnerWithDefaults() *ClientRequestListRequestsInner`
 
 NewClientRequestListRequestsInnerWithDefaults instantiates a new ClientRequestListRequestsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApprovedRevision
 
@@ -249,36 +247,36 @@ and a boolean to check if the value has been set.
 SetProjectId sets ProjectId field to given value.
 
 
-### GetProposalId
+### GetRequestId
 
-`func (o *ClientRequestListRequestsInner) GetProposalId() string`
+`func (o *ClientRequestListRequestsInner) GetRequestId() string`
 
-GetProposalId returns the ProposalId field if non-nil, zero value otherwise.
+GetRequestId returns the RequestId field if non-nil, zero value otherwise.
 
-### GetProposalIdOk
+### GetRequestIdOk
 
-`func (o *ClientRequestListRequestsInner) GetProposalIdOk() (*string, bool)`
+`func (o *ClientRequestListRequestsInner) GetRequestIdOk() (*string, bool)`
 
-GetProposalIdOk returns a tuple with the ProposalId field if it's non-nil, zero value otherwise
+GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProposalId
+### SetRequestId
 
-`func (o *ClientRequestListRequestsInner) SetProposalId(v string)`
+`func (o *ClientRequestListRequestsInner) SetRequestId(v string)`
 
-SetProposalId sets ProposalId field to given value.
+SetRequestId sets RequestId field to given value.
 
 
-### SetProposalIdNil
+### SetRequestIdNil
 
-`func (o *ClientRequestListRequestsInner) SetProposalIdNil(b bool)`
+`func (o *ClientRequestListRequestsInner) SetRequestIdNil(b bool)`
 
- SetProposalIdNil sets the value for ProposalId to be an explicit nil
+ SetRequestIdNil sets the value for RequestId to be an explicit nil
 
-### UnsetProposalId
-`func (o *ClientRequestListRequestsInner) UnsetProposalId()`
+### UnsetRequestId
+`func (o *ClientRequestListRequestsInner) UnsetRequestId()`
 
-UnsetProposalId ensures that no value is present for ProposalId, not even an explicit nil
+UnsetRequestId ensures that no value is present for RequestId, not even an explicit nil
 ### GetRequesterUserId
 
 `func (o *ClientRequestListRequestsInner) GetRequesterUserId() string`

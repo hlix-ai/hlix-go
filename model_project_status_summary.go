@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,18 +20,20 @@ var _ MappedNullable = &ProjectStatusSummary{}
 
 // ProjectStatusSummary struct for ProjectStatusSummary
 type ProjectStatusSummary struct {
+	Attention []AgencyOverviewReportAttentionInnerAttentionItem `json:"attention"`
 	CurrentCycle NullableProjectStatusSummaryCurrentCycle `json:"currentCycle"`
 	Cycles []ProjectStatusSummaryCyclesInner `json:"cycles"`
 	Declined []ProjectStatusSummaryDeclinedInner `json:"declined"`
 	Delivery ProjectStatusSummaryDelivery `json:"delivery"`
 	LastActivityAt NullableString `json:"lastActivityAt"`
 	NeedsYou []ProjectStatusSummaryNeedsYouInner `json:"needsYou"`
+	PauseReason NullableString `json:"pauseReason"`
 	PausedReason NullableString `json:"pausedReason"`
 	PendingProposals float32 `json:"pendingProposals"`
-	Phase string `json:"phase"`
 	PreviewUrl NullableString `json:"previewUrl"`
 	Progress ProjectStatusSummaryProgress `json:"progress"`
 	Project HlixCodeModelsModelsInner `json:"project"`
+	Status string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,20 +43,22 @@ type _ProjectStatusSummary ProjectStatusSummary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectStatusSummary(currentCycle NullableProjectStatusSummaryCurrentCycle, cycles []ProjectStatusSummaryCyclesInner, declined []ProjectStatusSummaryDeclinedInner, delivery ProjectStatusSummaryDelivery, lastActivityAt NullableString, needsYou []ProjectStatusSummaryNeedsYouInner, pausedReason NullableString, pendingProposals float32, phase string, previewUrl NullableString, progress ProjectStatusSummaryProgress, project HlixCodeModelsModelsInner) *ProjectStatusSummary {
+func NewProjectStatusSummary(attention []AgencyOverviewReportAttentionInnerAttentionItem, currentCycle NullableProjectStatusSummaryCurrentCycle, cycles []ProjectStatusSummaryCyclesInner, declined []ProjectStatusSummaryDeclinedInner, delivery ProjectStatusSummaryDelivery, lastActivityAt NullableString, needsYou []ProjectStatusSummaryNeedsYouInner, pauseReason NullableString, pausedReason NullableString, pendingProposals float32, previewUrl NullableString, progress ProjectStatusSummaryProgress, project HlixCodeModelsModelsInner, status string) *ProjectStatusSummary {
 	this := ProjectStatusSummary{}
+	this.Attention = attention
 	this.CurrentCycle = currentCycle
 	this.Cycles = cycles
 	this.Declined = declined
 	this.Delivery = delivery
 	this.LastActivityAt = lastActivityAt
 	this.NeedsYou = needsYou
+	this.PauseReason = pauseReason
 	this.PausedReason = pausedReason
 	this.PendingProposals = pendingProposals
-	this.Phase = phase
 	this.PreviewUrl = previewUrl
 	this.Progress = progress
 	this.Project = project
+	this.Status = status
 	return &this
 }
 
@@ -64,6 +68,30 @@ func NewProjectStatusSummary(currentCycle NullableProjectStatusSummaryCurrentCyc
 func NewProjectStatusSummaryWithDefaults() *ProjectStatusSummary {
 	this := ProjectStatusSummary{}
 	return &this
+}
+
+// GetAttention returns the Attention field value
+func (o *ProjectStatusSummary) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem {
+	if o == nil {
+		var ret []AgencyOverviewReportAttentionInnerAttentionItem
+		return ret
+	}
+
+	return o.Attention
+}
+
+// GetAttentionOk returns a tuple with the Attention field value
+// and a boolean to check if the value has been set.
+func (o *ProjectStatusSummary) GetAttentionOk() ([]AgencyOverviewReportAttentionInnerAttentionItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Attention, true
+}
+
+// SetAttention sets field value
+func (o *ProjectStatusSummary) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem) {
+	o.Attention = v
 }
 
 // GetCurrentCycle returns the CurrentCycle field value
@@ -214,6 +242,32 @@ func (o *ProjectStatusSummary) SetNeedsYou(v []ProjectStatusSummaryNeedsYouInner
 	o.NeedsYou = v
 }
 
+// GetPauseReason returns the PauseReason field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ProjectStatusSummary) GetPauseReason() string {
+	if o == nil || o.PauseReason.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.PauseReason.Get()
+}
+
+// GetPauseReasonOk returns a tuple with the PauseReason field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectStatusSummary) GetPauseReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PauseReason.Get(), o.PauseReason.IsSet()
+}
+
+// SetPauseReason sets field value
+func (o *ProjectStatusSummary) SetPauseReason(v string) {
+	o.PauseReason.Set(&v)
+}
+
 // GetPausedReason returns the PausedReason field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *ProjectStatusSummary) GetPausedReason() string {
@@ -262,30 +316,6 @@ func (o *ProjectStatusSummary) GetPendingProposalsOk() (*float32, bool) {
 // SetPendingProposals sets field value
 func (o *ProjectStatusSummary) SetPendingProposals(v float32) {
 	o.PendingProposals = v
-}
-
-// GetPhase returns the Phase field value
-func (o *ProjectStatusSummary) GetPhase() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Phase
-}
-
-// GetPhaseOk returns a tuple with the Phase field value
-// and a boolean to check if the value has been set.
-func (o *ProjectStatusSummary) GetPhaseOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Phase, true
-}
-
-// SetPhase sets field value
-func (o *ProjectStatusSummary) SetPhase(v string) {
-	o.Phase = v
 }
 
 // GetPreviewUrl returns the PreviewUrl field value
@@ -362,6 +392,30 @@ func (o *ProjectStatusSummary) SetProject(v HlixCodeModelsModelsInner) {
 	o.Project = v
 }
 
+// GetStatus returns the Status field value
+func (o *ProjectStatusSummary) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ProjectStatusSummary) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ProjectStatusSummary) SetStatus(v string) {
+	o.Status = v
+}
+
 func (o ProjectStatusSummary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -372,18 +426,20 @@ func (o ProjectStatusSummary) MarshalJSON() ([]byte, error) {
 
 func (o ProjectStatusSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["attention"] = o.Attention
 	toSerialize["currentCycle"] = o.CurrentCycle.Get()
 	toSerialize["cycles"] = o.Cycles
 	toSerialize["declined"] = o.Declined
 	toSerialize["delivery"] = o.Delivery
 	toSerialize["lastActivityAt"] = o.LastActivityAt.Get()
 	toSerialize["needsYou"] = o.NeedsYou
+	toSerialize["pauseReason"] = o.PauseReason.Get()
 	toSerialize["pausedReason"] = o.PausedReason.Get()
 	toSerialize["pendingProposals"] = o.PendingProposals
-	toSerialize["phase"] = o.Phase
 	toSerialize["previewUrl"] = o.PreviewUrl.Get()
 	toSerialize["progress"] = o.Progress
 	toSerialize["project"] = o.Project
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -397,18 +453,20 @@ func (o *ProjectStatusSummary) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"attention",
 		"currentCycle",
 		"cycles",
 		"declined",
 		"delivery",
 		"lastActivityAt",
 		"needsYou",
+		"pauseReason",
 		"pausedReason",
 		"pendingProposals",
-		"phase",
 		"previewUrl",
 		"progress",
 		"project",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -438,18 +496,20 @@ func (o *ProjectStatusSummary) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "attention")
 		delete(additionalProperties, "currentCycle")
 		delete(additionalProperties, "cycles")
 		delete(additionalProperties, "declined")
 		delete(additionalProperties, "delivery")
 		delete(additionalProperties, "lastActivityAt")
 		delete(additionalProperties, "needsYou")
+		delete(additionalProperties, "pauseReason")
 		delete(additionalProperties, "pausedReason")
 		delete(additionalProperties, "pendingProposals")
-		delete(additionalProperties, "phase")
 		delete(additionalProperties, "previewUrl")
 		delete(additionalProperties, "progress")
 		delete(additionalProperties, "project")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

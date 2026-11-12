@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Command** | **string** |  | 
-**Default** | Pointer to **bool** |  | [optional] 
-**Key** | **string** |  | 
-**Kind** | **string** |  | 
-**Name** | **string** |  | 
-**Path** | **string** |  | 
-**Port** | **int32** |  | 
+**Command** | **string** |  |
+**Default** | Pointer to **bool** |  | [optional] [default to true]
+**Key** | **string** |  |
+**Kind** | **string** |  |
+**Name** | **string** |  |
+**Path** | **string** |  |
+**Port** | **int32** |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewProjectDetectedCommandsAppsInner(command string, key string, kind string, name string, path string, port int32, ) *ProjectDetectedCommandsAppsInner`
 
 NewProjectDetectedCommandsAppsInner instantiates a new ProjectDetectedCommandsAppsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectDetectedCommandsAppsInnerWithDefaults
 
 `func NewProjectDetectedCommandsAppsInnerWithDefaults() *ProjectDetectedCommandsAppsInner`
 
 NewProjectDetectedCommandsAppsInnerWithDefaults instantiates a new ProjectDetectedCommandsAppsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCommand
 

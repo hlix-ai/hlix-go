@@ -4,34 +4,34 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentId** | **NullableString** |  | 
-**BillableCostMicros** | **NullableInt64** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**CurrentStage** | **NullableString** |  | 
-**CycleId** | **NullableString** |  | 
-**DeliveryEvidence** | Pointer to [**CycleDetailTasksInnerDeliveryEvidence**](CycleDetailTasksInnerDeliveryEvidence.md) |  | [optional] 
-**Description** | **string** |  | 
-**DoingSince** | **NullableString** |  | 
-**DoneWhen** | **NullableString** |  | 
-**HeadSha** | **NullableString** |  | 
-**Id** | **string** |  | 
-**ImplementationPlan** | **NullableString** |  | 
-**Iteration** | **int32** |  | 
-**Metadata** | **interface{}** |  | 
-**Note** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**Pipeline** | **interface{}** |  | 
-**ProjectId** | **string** |  | 
-**RepoId** | **NullableString** |  | 
-**RequirementsSummary** | **NullableString** |  | 
-**ReviewFeedback** | **NullableString** |  | 
-**ReviewRounds** | **int32** |  | 
-**SortOrder** | **int32** |  | 
-**Source** | **string** |  | 
-**Status** | **string** |  | 
-**Title** | **NullableString** |  | 
-**UpdatedAt** | **string** |  | 
+**AgentId** | **NullableString** |  |
+**BillableCostMicros** | **NullableInt64** |  |
+**CostMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**CurrentStage** | **NullableString** |  |
+**CycleId** | **NullableString** |  |
+**DeliveryEvidence** | Pointer to [**CycleDetailTasksInnerDeliveryEvidence**](CycleDetailTasksInnerDeliveryEvidence.md) |  | [optional]
+**Description** | **string** |  |
+**DoingSince** | **NullableString** |  |
+**DoneWhen** | **NullableString** |  |
+**HeadSha** | **NullableString** |  |
+**Id** | **string** |  |
+**ImplementationPlan** | **NullableString** |  |
+**Iteration** | **int32** |  |
+**Metadata** | **interface{}** |  |
+**Note** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**Pipeline** | **interface{}** |  |
+**ProjectId** | **string** |  |
+**RepoId** | **NullableString** |  |
+**RequirementsSummary** | **NullableString** |  |
+**ReviewFeedback** | **NullableString** |  |
+**ReviewRounds** | **int32** |  |
+**SortOrder** | **int32** |  |
+**Source** | **string** |  |
+**Status** | **string** |  |
+**Title** | **NullableString** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -40,17 +40,15 @@ Name | Type | Description | Notes
 `func NewTask(agentId NullableString, billableCostMicros NullableInt64, costMicros NullableInt64, createdAt string, currentStage NullableString, cycleId NullableString, description string, doingSince NullableString, doneWhen NullableString, headSha NullableString, id string, implementationPlan NullableString, iteration int32, metadata interface{}, note NullableString, organizationId string, pipeline interface{}, projectId string, repoId NullableString, requirementsSummary NullableString, reviewFeedback NullableString, reviewRounds int32, sortOrder int32, source string, status string, title NullableString, updatedAt string, ) *Task`
 
 NewTask instantiates a new Task object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewTaskWithDefaults
 
 `func NewTaskWithDefaults() *Task`
 
 NewTaskWithDefaults instantiates a new Task object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentId
 

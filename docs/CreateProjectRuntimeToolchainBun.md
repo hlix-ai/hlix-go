@@ -1,29 +1,32 @@
 # CreateProjectRuntimeToolchainBun
 
-## Properties
+This model accepts at least one of the alternatives below. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| `string` | — |
+| `number` | — |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `Float32` | `*float32` |
+| `String` | `*string` |
 
 ## Methods
 
-### NewCreateProjectRuntimeToolchainBun
+### UnmarshalJSON
 
-`func NewCreateProjectRuntimeToolchainBun() *CreateProjectRuntimeToolchainBun`
+`func (dst *CreateProjectRuntimeToolchainBun) UnmarshalJSON(data []byte) error`
 
-NewCreateProjectRuntimeToolchainBun instantiates a new CreateProjectRuntimeToolchainBun object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewCreateProjectRuntimeToolchainBunWithDefaults
-
-`func NewCreateProjectRuntimeToolchainBunWithDefaults() *CreateProjectRuntimeToolchainBun`
-
-NewCreateProjectRuntimeToolchainBunWithDefaults instantiates a new CreateProjectRuntimeToolchainBun object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
+`func (src CreateProjectRuntimeToolchainBun) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,20 +1,20 @@
-# \PacksAPI
+# PacksAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AttachProjectPack**](PacksAPI.md#AttachProjectPack) | **Post** /v1/api/packs/project/{projectId} | Attach a pack to a project
-[**CreateCustomSkill**](PacksAPI.md#CreateCustomSkill) | **Post** /v1/api/packs/custom-skills | Write a custom skill
-[**DeleteCustomSkill**](PacksAPI.md#DeleteCustomSkill) | **Delete** /v1/api/packs/custom-skills/{slug} | Delete a custom skill
-[**DetachProjectPack**](PacksAPI.md#DetachProjectPack) | **Delete** /v1/api/packs/{id} | Detach a pack from a project
-[**GenerateCustomSkill**](PacksAPI.md#GenerateCustomSkill) | **Post** /v1/api/packs/custom-skills/generate | Draft a custom skill from a description (never saves)
-[**GetCustomSkill**](PacksAPI.md#GetCustomSkill) | **Get** /v1/api/packs/custom-skills/{slug} | Get one custom skill
-[**ListAvailablePacks**](PacksAPI.md#ListAvailablePacks) | **Get** /v1/api/packs | List every pack the registry knows
-[**ListCustomSkills**](PacksAPI.md#ListCustomSkills) | **Get** /v1/api/packs/custom-skills | List the workspace&#39;s own skills
-[**ListProjectPacks**](PacksAPI.md#ListProjectPacks) | **Get** /v1/api/packs/project/{projectId} | List a project&#39;s attached packs
-[**UpdateCustomSkill**](PacksAPI.md#UpdateCustomSkill) | **Patch** /v1/api/packs/custom-skills/{slug} | Update a custom skill
-[**UpdateProjectPack**](PacksAPI.md#UpdateProjectPack) | **Patch** /v1/api/packs/{id} | Toggle an attached pack
+[**AttachProjectPack**](PacksAPI.md#attachprojectpack) | **Post** /v1/api/packs/project/{projectId} | Attach a pack to a project
+[**CreateCustomSkill**](PacksAPI.md#createcustomskill) | **Post** /v1/api/packs/custom-skills | Write a custom skill
+[**DeleteCustomSkill**](PacksAPI.md#deletecustomskill) | **Delete** /v1/api/packs/custom-skills/{slug} | Delete a custom skill
+[**DetachProjectPack**](PacksAPI.md#detachprojectpack) | **Delete** /v1/api/packs/{id} | Detach a pack from a project
+[**GenerateCustomSkill**](PacksAPI.md#generatecustomskill) | **Post** /v1/api/packs/custom-skills/generate | Draft a custom skill without saving it
+[**GetCustomSkill**](PacksAPI.md#getcustomskill) | **Get** /v1/api/packs/custom-skills/{slug} | Get one custom skill
+[**ListAvailablePacks**](PacksAPI.md#listavailablepacks) | **Get** /v1/api/packs | List every pack the registry knows
+[**ListCustomSkills**](PacksAPI.md#listcustomskills) | **Get** /v1/api/packs/custom-skills | List the workspace&#39;s own skills
+[**ListProjectPacks**](PacksAPI.md#listprojectpacks) | **Get** /v1/api/packs/project/{projectId} | List a project&#39;s attached packs
+[**UpdateCustomSkill**](PacksAPI.md#updatecustomskill) | **Patch** /v1/api/packs/custom-skills/{slug} | Update a custom skill
+[**UpdateProjectPack**](PacksAPI.md#updateprojectpack) | **Patch** /v1/api/packs/{id} | Toggle an attached pack
 
 
 
@@ -26,10 +26,13 @@ Attach a pack to a project
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -37,13 +40,19 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	activatePack := *openapiclient.NewActivatePack("PackName_example") // ActivatePack | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	var activatePack openapiclient.ActivatePack
+	if err := json.Unmarshal([]byte("{\"packName\":\"text\"}"), &activatePack); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.AttachProjectPack(context.Background(), projectId).ActivatePack(activatePack).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.AttachProjectPack(ctx, projectId).ActivatePack(activatePack).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.AttachProjectPack``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,18 +68,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAttachProjectPackRequest struct via the builder pattern
+Pass optional parameters through the `apiAttachProjectPackRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **activatePack** | [**ActivatePack**](ActivatePack.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **activatePack** | [**ActivatePack**](ActivatePack.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -78,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -98,10 +107,13 @@ Write a custom skill
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -109,12 +121,18 @@ import (
 )
 
 func main() {
-	createCustomSkill := *openapiclient.NewCreateCustomSkill("Content_example", "Description_example", "Name_example", "Slug_example") // CreateCustomSkill | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createCustomSkill openapiclient.CreateCustomSkill
+	if err := json.Unmarshal([]byte("{\"content\":\"text\",\"description\":\"text\",\"name\":\"text\",\"slug\":\"text\"}"), &createCustomSkill); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.CreateCustomSkill(context.Background()).CreateCustomSkill(createCustomSkill).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.CreateCustomSkill(ctx).CreateCustomSkill(createCustomSkill).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.CreateCustomSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,13 +148,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCustomSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiCreateCustomSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createCustomSkill** | [**CreateCustomSkill**](CreateCustomSkill.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createCustomSkill** | [**CreateCustomSkill**](CreateCustomSkill.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -144,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -164,6 +182,8 @@ Delete a custom skill
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -175,12 +195,15 @@ import (
 )
 
 func main() {
-	slug := "slug_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	slug := "slug_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.DeleteCustomSkill(context.Background(), slug).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.DeleteCustomSkill(ctx, slug).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.DeleteCustomSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,17 +219,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**slug** | **string** |  | 
+**slug** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteCustomSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiDeleteCustomSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -214,7 +237,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -234,6 +257,8 @@ Detach a pack from a project
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -245,12 +270,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.DetachProjectPack(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.DetachProjectPack(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.DetachProjectPack``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,17 +294,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDetachProjectPackRequest struct via the builder pattern
+Pass optional parameters through the `apiDetachProjectPackRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -284,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -300,14 +328,17 @@ Name | Type | Description  | Notes
 
 > GeneratedSkillDraft GenerateCustomSkill(ctx).GenerateCustomSkill(generateCustomSkill).XOrganizationId(xOrganizationId).Execute()
 
-Draft a custom skill from a description (never saves)
+Draft a custom skill without saving it
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -315,12 +346,18 @@ import (
 )
 
 func main() {
-	generateCustomSkill := *openapiclient.NewGenerateCustomSkill("Description_example") // GenerateCustomSkill | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var generateCustomSkill openapiclient.GenerateCustomSkill
+	if err := json.Unmarshal([]byte("{\"description\":\"text\"}"), &generateCustomSkill); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.GenerateCustomSkill(context.Background()).GenerateCustomSkill(generateCustomSkill).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.GenerateCustomSkill(ctx).GenerateCustomSkill(generateCustomSkill).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.GenerateCustomSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,13 +373,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGenerateCustomSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiGenerateCustomSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generateCustomSkill** | [**GenerateCustomSkill**](GenerateCustomSkill.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **generateCustomSkill** | [**GenerateCustomSkill**](GenerateCustomSkill.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -350,7 +387,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -370,6 +407,8 @@ Get one custom skill
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -381,12 +420,15 @@ import (
 )
 
 func main() {
-	slug := "slug_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	slug := "slug_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.GetCustomSkill(context.Background(), slug).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.GetCustomSkill(ctx, slug).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.GetCustomSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -402,17 +444,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**slug** | **string** |  | 
+**slug** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetCustomSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiGetCustomSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -420,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -440,6 +482,8 @@ List every pack the registry knows
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -451,12 +495,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | Report attachment against THIS project. Omitted, every entry comes back `isActive: false` — which means \"not asked\", not \"attached to nothing\". (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string | Report attachment state for this project. Without `projectId`, every entry has `isActive: false`; this indicates that no project was selected. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.ListAvailablePacks(context.Background()).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.ListAvailablePacks(ctx).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.ListAvailablePacks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -472,13 +519,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListAvailablePacksRequest struct via the builder pattern
+Pass optional parameters through the `apiListAvailablePacksRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Report attachment against THIS project. Omitted, every entry comes back &#x60;isActive: false&#x60; — which means \&quot;not asked\&quot;, not \&quot;attached to nothing\&quot;. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **projectId** | **string** | Report attachment state for this project. Without &#x60;projectId&#x60;, every entry has &#x60;isActive: false&#x60;; this indicates that no project was selected. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -486,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -506,6 +553,8 @@ List the workspace's own skills
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -517,11 +566,14 @@ import (
 )
 
 func main() {
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.ListCustomSkills(context.Background()).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.ListCustomSkills(ctx).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.ListCustomSkills``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -537,12 +589,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCustomSkillsRequest struct via the builder pattern
+Pass optional parameters through the `apiListCustomSkillsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -550,7 +602,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -570,6 +622,8 @@ List a project's attached packs
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -581,12 +635,15 @@ import (
 )
 
 func main() {
-	projectId := "projectId_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	projectId := "projectId_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.ListProjectPacks(context.Background(), projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.ListProjectPacks(ctx, projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.ListProjectPacks``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -602,17 +659,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**projectId** | **string** |  | 
+**projectId** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListProjectPacksRequest struct via the builder pattern
+Pass optional parameters through the `apiListProjectPacksRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -620,7 +677,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -640,10 +697,13 @@ Update a custom skill
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -651,13 +711,19 @@ import (
 )
 
 func main() {
-	slug := "slug_example" // string | 
-	updateCustomSkill := *openapiclient.NewUpdateCustomSkill() // UpdateCustomSkill | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	slug := "slug_example" // string |
+	var updateCustomSkill openapiclient.UpdateCustomSkill
+	if err := json.Unmarshal([]byte("{}"), &updateCustomSkill); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.UpdateCustomSkill(context.Background(), slug).UpdateCustomSkill(updateCustomSkill).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.UpdateCustomSkill(ctx, slug).UpdateCustomSkill(updateCustomSkill).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.UpdateCustomSkill``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -673,18 +739,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**slug** | **string** |  | 
+**slug** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCustomSkillRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateCustomSkillRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateCustomSkill** | [**UpdateCustomSkill**](UpdateCustomSkill.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updateCustomSkill** | [**UpdateCustomSkill**](UpdateCustomSkill.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -692,7 +758,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -712,10 +778,13 @@ Toggle an attached pack
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -723,13 +792,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	updatePack := *openapiclient.NewUpdatePack(false) // UpdatePack | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var updatePack openapiclient.UpdatePack
+	if err := json.Unmarshal([]byte("{\"isActive\":true}"), &updatePack); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PacksAPI.UpdateProjectPack(context.Background(), id).UpdatePack(updatePack).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PacksAPI.UpdateProjectPack(ctx, id).UpdatePack(updatePack).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PacksAPI.UpdateProjectPack``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -745,18 +820,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateProjectPackRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdateProjectPackRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updatePack** | [**UpdatePack**](UpdatePack.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updatePack** | [**UpdatePack**](UpdatePack.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -764,7 +839,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

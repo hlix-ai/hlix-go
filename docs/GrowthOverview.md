@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Autopilot** | [**GrowthOverviewAutopilot**](GrowthOverviewAutopilot.md) |  | 
-**Budget** | [**GrowthOverviewBudget**](GrowthOverviewBudget.md) |  | 
-**CampaignId** | **NullableString** |  | 
-**Campaigns** | [**[]GrowthOverviewCampaignsInner**](GrowthOverviewCampaignsInner.md) |  | 
-**Days** | [**[]GrowthOverviewDaysInner**](GrowthOverviewDaysInner.md) |  | 
-**Previous** | [**GrowthOverviewPrevious**](GrowthOverviewPrevious.md) |  | 
-**Range** | [**GrowthOverviewRange**](GrowthOverviewRange.md) |  | 
-**Threads** | [**GrowthOverviewThreads**](GrowthOverviewThreads.md) |  | 
-**Totals** | [**GrowthOverviewPrevious**](GrowthOverviewPrevious.md) |  | 
-**UnansweredHotLeads** | **int32** |  | 
-**Week** | [**GrowthOverviewWeek**](GrowthOverviewWeek.md) |  | 
+**Autopilot** | [**GrowthOverviewAutopilot**](GrowthOverviewAutopilot.md) |  |
+**Budget** | [**GrowthOverviewBudget**](GrowthOverviewBudget.md) |  |
+**CampaignId** | **NullableString** |  |
+**Campaigns** | [**[]GrowthOverviewCampaignsInner**](GrowthOverviewCampaignsInner.md) |  |
+**Days** | [**[]GrowthOverviewDaysInner**](GrowthOverviewDaysInner.md) |  |
+**Previous** | [**GrowthOverviewPrevious**](GrowthOverviewPrevious.md) |  |
+**Range** | [**GrowthOverviewRange**](GrowthOverviewRange.md) |  |
+**Threads** | [**GrowthOverviewThreads**](GrowthOverviewThreads.md) |  |
+**Totals** | [**GrowthOverviewPrevious**](GrowthOverviewPrevious.md) |  |
+**UnansweredHotLeads** | **int32** |  |
+**Week** | [**GrowthOverviewWeek**](GrowthOverviewWeek.md) |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewGrowthOverview(autopilot GrowthOverviewAutopilot, budget GrowthOverviewBudget, campaignId NullableString, campaigns []GrowthOverviewCampaignsInner, days []GrowthOverviewDaysInner, previous GrowthOverviewPrevious, range_ GrowthOverviewRange, threads GrowthOverviewThreads, totals GrowthOverviewPrevious, unansweredHotLeads int32, week GrowthOverviewWeek, ) *GrowthOverview`
 
 NewGrowthOverview instantiates a new GrowthOverview object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthOverviewWithDefaults
 
 `func NewGrowthOverviewWithDefaults() *GrowthOverview`
 
 NewGrowthOverviewWithDefaults instantiates a new GrowthOverview object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAutopilot
 

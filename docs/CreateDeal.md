@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientAccountId** | **string** |  | 
-**Currency** | Pointer to **string** |  | [optional] 
-**ExpectedCloseOn** | Pointer to **string** |  | [optional] 
-**NextStep** | Pointer to **string** |  | [optional] 
-**NextStepAt** | Pointer to **time.Time** |  | [optional] 
-**OwnerUserId** | Pointer to **string** |  | [optional] 
-**SourceKind** | **string** |  | 
-**SourcePlayId** | Pointer to **string** |  | [optional] 
-**Stage** | Pointer to **string** |  | [optional] 
-**ValueMicros** | Pointer to **int64** |  | [optional] 
+**ClientAccountId** | **string** |  |
+**Currency** | Pointer to **string** |  | [optional]
+**ExpectedCloseOn** | Pointer to **string** |  | [optional]
+**NextStep** | Pointer to **string** |  | [optional]
+**NextStepAt** | Pointer to **time.Time** |  | [optional]
+**OwnerUserId** | Pointer to **string** |  | [optional]
+**SourceKind** | **string** |  |
+**SourcePlayId** | Pointer to **string** |  | [optional]
+**Stage** | Pointer to **string** |  | [optional]
+**ValueMicros** | Pointer to **int64** |  | [optional]
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewCreateDeal(clientAccountId string, sourceKind string, ) *CreateDeal`
 
 NewCreateDeal instantiates a new CreateDeal object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateDealWithDefaults
 
 `func NewCreateDealWithDefaults() *CreateDeal`
 
 NewCreateDealWithDefaults instantiates a new CreateDeal object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClientAccountId
 

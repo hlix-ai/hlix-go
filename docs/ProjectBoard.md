@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Activity** | [**[]ProjectBoardActivityInner**](ProjectBoardActivityInner.md) |  | 
-**Agents** | [**[]ProjectBoardAgentsInner**](ProjectBoardAgentsInner.md) |  | 
-**Cycles** | [**[]ProjectBoardCyclesInner**](ProjectBoardCyclesInner.md) |  | 
-**LiveGrowthRunIds** | **[]string** |  | 
-**Preview** | [**ProjectBoardPreview**](ProjectBoardPreview.md) |  | 
-**Project** | [**ProjectBoardProject**](ProjectBoardProject.md) |  | 
-**Tasks** | [**[]ProjectBoardTasksInner**](ProjectBoardTasksInner.md) |  | 
+**Activity** | [**[]ProjectBoardActivityInner**](ProjectBoardActivityInner.md) |  |
+**Agents** | [**[]ProjectBoardAgentsInner**](ProjectBoardAgentsInner.md) |  |
+**Cycles** | [**[]ProjectBoardCyclesInner**](ProjectBoardCyclesInner.md) |  |
+**LiveGrowthRunIds** | **[]string** |  |
+**Preview** | [**ProjectBoardPreview**](ProjectBoardPreview.md) |  |
+**Project** | [**ProjectBoardProject**](ProjectBoardProject.md) |  |
+**Tasks** | [**[]ProjectBoardTasksInner**](ProjectBoardTasksInner.md) |  |
 
 ## Methods
 
@@ -19,17 +19,15 @@ Name | Type | Description | Notes
 `func NewProjectBoard(activity []ProjectBoardActivityInner, agents []ProjectBoardAgentsInner, cycles []ProjectBoardCyclesInner, liveGrowthRunIds []string, preview ProjectBoardPreview, project ProjectBoardProject, tasks []ProjectBoardTasksInner, ) *ProjectBoard`
 
 NewProjectBoard instantiates a new ProjectBoard object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBoardWithDefaults
 
 `func NewProjectBoardWithDefaults() *ProjectBoard`
 
 NewProjectBoardWithDefaults instantiates a new ProjectBoard object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetActivity
 

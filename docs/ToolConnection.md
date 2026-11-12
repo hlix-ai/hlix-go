@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** |  | 
-**HasApiKey** | **bool** |  | 
-**OrganizationId** | **NullableString** |  | 
-**PlatformAvailable** | **bool** |  | 
-**Provider** | **string** |  | 
+**Enabled** | **bool** |  |
+**HasApiKey** | **bool** |  |
+**OrganizationId** | **NullableString** |  |
+**PlatformAvailable** | **bool** |  |
+**Provider** | **string** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewToolConnection(enabled bool, hasApiKey bool, organizationId NullableString, platformAvailable bool, provider string, ) *ToolConnection`
 
 NewToolConnection instantiates a new ToolConnection object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewToolConnectionWithDefaults
 
 `func NewToolConnectionWithDefaults() *ToolConnection`
 
 NewToolConnectionWithDefaults instantiates a new ToolConnection object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEnabled
 

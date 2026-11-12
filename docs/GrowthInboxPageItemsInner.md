@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Classification** | **NullableString** |  | 
-**CompanyName** | **NullableString** |  | 
-**Domain** | **string** |  | 
-**Drafts** | **int32** |  | 
-**Email** | **NullableString** |  | 
-**FullName** | **string** |  | 
-**LastActivityAt** | **string** |  | 
-**LastInboundAt** | **NullableString** |  | 
-**LastInboundId** | **NullableString** |  | 
-**LastSentAt** | **NullableString** |  | 
-**LastSubject** | **NullableString** |  | 
-**LeadId** | **string** |  | 
-**LeadStatus** | **string** |  | 
-**NeedsReply** | **bool** |  | 
-**PlayId** | **string** |  | 
-**ReplySnippet** | **NullableString** |  | 
-**Snippet** | **string** |  | 
-**Unknown** | **int32** |  | 
+**Classification** | **NullableString** |  |
+**CompanyName** | **NullableString** |  |
+**Domain** | **string** |  |
+**Drafts** | **int32** |  |
+**Email** | **NullableString** |  |
+**FullName** | **string** |  |
+**LastActivityAt** | **string** |  |
+**LastInboundAt** | **NullableString** |  |
+**LastInboundId** | **NullableString** |  |
+**LastSentAt** | **NullableString** |  |
+**LastSubject** | **NullableString** |  |
+**LeadId** | **string** |  |
+**LeadStatus** | **string** |  |
+**NeedsReply** | **bool** |  |
+**PlayId** | **string** |  |
+**ReplySnippet** | **NullableString** |  |
+**Snippet** | **string** |  |
+**Unknown** | **int32** |  |
 
 ## Methods
 
@@ -30,17 +30,15 @@ Name | Type | Description | Notes
 `func NewGrowthInboxPageItemsInner(classification NullableString, companyName NullableString, domain string, drafts int32, email NullableString, fullName string, lastActivityAt string, lastInboundAt NullableString, lastInboundId NullableString, lastSentAt NullableString, lastSubject NullableString, leadId string, leadStatus string, needsReply bool, playId string, replySnippet NullableString, snippet string, unknown int32, ) *GrowthInboxPageItemsInner`
 
 NewGrowthInboxPageItemsInner instantiates a new GrowthInboxPageItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthInboxPageItemsInnerWithDefaults
 
 `func NewGrowthInboxPageItemsInnerWithDefaults() *GrowthInboxPageItemsInner`
 
 NewGrowthInboxPageItemsInnerWithDefaults instantiates a new GrowthInboxPageItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetClassification
 

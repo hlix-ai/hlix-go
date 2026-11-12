@@ -4,66 +4,64 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Harness** | Pointer to **NullableString** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Iteration** | **float32** |  | 
-**Persona** | **NullableString** |  | 
-**StartedAt** | **string** |  | 
+**Coder** | Pointer to **NullableString** |  | [optional]
+**Id** | Pointer to **string** |  | [optional]
+**Iteration** | **float32** |  |
+**Role** | **NullableString** |  |
+**StartedAt** | **string** |  |
 
 ## Methods
 
 ### NewProjectBoardCyclesInnerActiveRun
 
-`func NewProjectBoardCyclesInnerActiveRun(iteration float32, persona NullableString, startedAt string, ) *ProjectBoardCyclesInnerActiveRun`
+`func NewProjectBoardCyclesInnerActiveRun(iteration float32, role NullableString, startedAt string, ) *ProjectBoardCyclesInnerActiveRun`
 
 NewProjectBoardCyclesInnerActiveRun instantiates a new ProjectBoardCyclesInnerActiveRun object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectBoardCyclesInnerActiveRunWithDefaults
 
 `func NewProjectBoardCyclesInnerActiveRunWithDefaults() *ProjectBoardCyclesInnerActiveRun`
 
 NewProjectBoardCyclesInnerActiveRunWithDefaults instantiates a new ProjectBoardCyclesInnerActiveRun object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
-### GetHarness
+### GetCoder
 
-`func (o *ProjectBoardCyclesInnerActiveRun) GetHarness() string`
+`func (o *ProjectBoardCyclesInnerActiveRun) GetCoder() string`
 
-GetHarness returns the Harness field if non-nil, zero value otherwise.
+GetCoder returns the Coder field if non-nil, zero value otherwise.
 
-### GetHarnessOk
+### GetCoderOk
 
-`func (o *ProjectBoardCyclesInnerActiveRun) GetHarnessOk() (*string, bool)`
+`func (o *ProjectBoardCyclesInnerActiveRun) GetCoderOk() (*string, bool)`
 
-GetHarnessOk returns a tuple with the Harness field if it's non-nil, zero value otherwise
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHarness
+### SetCoder
 
-`func (o *ProjectBoardCyclesInnerActiveRun) SetHarness(v string)`
+`func (o *ProjectBoardCyclesInnerActiveRun) SetCoder(v string)`
 
-SetHarness sets Harness field to given value.
+SetCoder sets Coder field to given value.
 
-### HasHarness
+### HasCoder
 
-`func (o *ProjectBoardCyclesInnerActiveRun) HasHarness() bool`
+`func (o *ProjectBoardCyclesInnerActiveRun) HasCoder() bool`
 
-HasHarness returns a boolean if a field has been set.
+HasCoder returns a boolean if a field has been set.
 
-### SetHarnessNil
+### SetCoderNil
 
-`func (o *ProjectBoardCyclesInnerActiveRun) SetHarnessNil(b bool)`
+`func (o *ProjectBoardCyclesInnerActiveRun) SetCoderNil(b bool)`
 
- SetHarnessNil sets the value for Harness to be an explicit nil
+ SetCoderNil sets the value for Coder to be an explicit nil
 
-### UnsetHarness
-`func (o *ProjectBoardCyclesInnerActiveRun) UnsetHarness()`
+### UnsetCoder
+`func (o *ProjectBoardCyclesInnerActiveRun) UnsetCoder()`
 
-UnsetHarness ensures that no value is present for Harness, not even an explicit nil
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetId
 
 `func (o *ProjectBoardCyclesInnerActiveRun) GetId() string`
@@ -109,36 +107,36 @@ and a boolean to check if the value has been set.
 SetIteration sets Iteration field to given value.
 
 
-### GetPersona
+### GetRole
 
-`func (o *ProjectBoardCyclesInnerActiveRun) GetPersona() string`
+`func (o *ProjectBoardCyclesInnerActiveRun) GetRole() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetRole returns the Role field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetRoleOk
 
-`func (o *ProjectBoardCyclesInnerActiveRun) GetPersonaOk() (*string, bool)`
+`func (o *ProjectBoardCyclesInnerActiveRun) GetRoleOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetRole
 
-`func (o *ProjectBoardCyclesInnerActiveRun) SetPersona(v string)`
+`func (o *ProjectBoardCyclesInnerActiveRun) SetRole(v string)`
 
-SetPersona sets Persona field to given value.
+SetRole sets Role field to given value.
 
 
-### SetPersonaNil
+### SetRoleNil
 
-`func (o *ProjectBoardCyclesInnerActiveRun) SetPersonaNil(b bool)`
+`func (o *ProjectBoardCyclesInnerActiveRun) SetRoleNil(b bool)`
 
- SetPersonaNil sets the value for Persona to be an explicit nil
+ SetRoleNil sets the value for Role to be an explicit nil
 
-### UnsetPersona
-`func (o *ProjectBoardCyclesInnerActiveRun) UnsetPersona()`
+### UnsetRole
+`func (o *ProjectBoardCyclesInnerActiveRun) UnsetRole()`
 
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
+UnsetRole ensures that no value is present for Role, not even an explicit nil
 ### GetStartedAt
 
 `func (o *ProjectBoardCyclesInnerActiveRun) GetStartedAt() string`

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CycleId** | **string** |  | 
-**DependsOnCycleIds** | **[]string** |  | 
-**InitialScopeCredits** | **NullableInt32** |  | 
-**Summary** | **string** |  | 
-**Tasks** | [**[]InitialProposalDetailResponseRevisionContentCyclesInnerTasksInner**](InitialProposalDetailResponseRevisionContentCyclesInnerTasksInner.md) |  | 
-**Title** | **string** |  | 
+**CycleId** | **string** |  |
+**DependsOnCycleIds** | **[]string** |  |
+**InitialScopeCredits** | **NullableInt32** |  |
+**Summary** | **string** |  |
+**Tasks** | [**[]InitialProposalDetailResponseRevisionContentCyclesInnerTasksInner**](InitialProposalDetailResponseRevisionContentCyclesInnerTasksInner.md) |  |
+**Title** | **string** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewInitialProposalDetailResponseRevisionContentCyclesInner(cycleId string, dependsOnCycleIds []string, initialScopeCredits NullableInt32, summary string, tasks []InitialProposalDetailResponseRevisionContentCyclesInnerTasksInner, title string, ) *InitialProposalDetailResponseRevisionContentCyclesInner`
 
 NewInitialProposalDetailResponseRevisionContentCyclesInner instantiates a new InitialProposalDetailResponseRevisionContentCyclesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewInitialProposalDetailResponseRevisionContentCyclesInnerWithDefaults
 
 `func NewInitialProposalDetailResponseRevisionContentCyclesInnerWithDefaults() *InitialProposalDetailResponseRevisionContentCyclesInner`
 
 NewInitialProposalDetailResponseRevisionContentCyclesInnerWithDefaults instantiates a new InitialProposalDetailResponseRevisionContentCyclesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCycleId
 

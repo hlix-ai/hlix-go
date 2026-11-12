@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Services** | [**[]ProjectCanvasWorkspaceServicesInner**](ProjectCanvasWorkspaceServicesInner.md) |  | 
-**State** | **string** |  | 
+**Services** | [**[]ProjectCanvasWorkspaceServicesInner**](ProjectCanvasWorkspaceServicesInner.md) |  |
+**State** | **string** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewProjectCanvasWorkspace(services []ProjectCanvasWorkspaceServicesInner, state string, ) *ProjectCanvasWorkspace`
 
 NewProjectCanvasWorkspace instantiates a new ProjectCanvasWorkspace object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectCanvasWorkspaceWithDefaults
 
 `func NewProjectCanvasWorkspaceWithDefaults() *ProjectCanvasWorkspace`
 
 NewProjectCanvasWorkspaceWithDefaults instantiates a new ProjectCanvasWorkspace object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetServices
 

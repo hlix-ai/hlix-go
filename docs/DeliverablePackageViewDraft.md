@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcceptanceCriteria** | Pointer to **[]string** |  | [optional] 
+**AcceptanceCriteria** | Pointer to **[]string** |  | [optional]
 **ClientStatus** | Pointer to **string** |  | [optional] [default to "draft"]
-**CycleIds** | Pointer to **[]string** |  | [optional] 
-**DueDate** | Pointer to **NullableTime** |  | [optional] 
-**EvidenceSummary** | Pointer to **NullableString** |  | [optional] 
-**Limitations** | Pointer to **NullableString** |  | [optional] 
-**PresentationSlides** | Pointer to [**[]CreateDeliverablePackagePresentationSlidesInner**](CreateDeliverablePackagePresentationSlidesInner.md) |  | [optional] 
-**PreviewDeploymentId** | Pointer to **NullableString** |  | [optional] 
-**PreviewExpectedSha** | Pointer to **NullableString** |  | [optional] 
-**Summary** | Pointer to **NullableString** |  | [optional] 
-**Title** | **string** |  | 
-**VideoUrl** | Pointer to **NullableString** |  | [optional] 
+**CycleIds** | Pointer to **[]string** |  | [optional]
+**DueDate** | Pointer to **NullableTime** |  | [optional]
+**EvidenceSummary** | Pointer to **NullableString** |  | [optional]
+**Limitations** | Pointer to **NullableString** |  | [optional]
+**PresentationSlides** | Pointer to [**[]CreateDeliverablePackagePresentationSlidesInner**](CreateDeliverablePackagePresentationSlidesInner.md) |  | [optional]
+**PreviewDeploymentId** | Pointer to **NullableString** |  | [optional]
+**PreviewExpectedSha** | Pointer to **NullableString** |  | [optional]
+**Summary** | Pointer to **NullableString** |  | [optional]
+**Title** | **string** |  |
+**VideoUrl** | Pointer to **NullableString** |  | [optional]
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewDeliverablePackageViewDraft(title string, ) *DeliverablePackageViewDraft`
 
 NewDeliverablePackageViewDraft instantiates a new DeliverablePackageViewDraft object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverablePackageViewDraftWithDefaults
 
 `func NewDeliverablePackageViewDraftWithDefaults() *DeliverablePackageViewDraft`
 
 NewDeliverablePackageViewDraftWithDefaults instantiates a new DeliverablePackageViewDraft object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAcceptanceCriteria
 

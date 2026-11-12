@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comment** | **NullableString** |  | 
-**ConversationMessageId** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**DecidedAt** | **NullableString** |  | 
-**DecidedBy** | **NullableString** |  | 
-**DeliverableId** | **string** |  | 
-**Deployment** | [**DeliverableDecisionDeployment**](DeliverableDecisionDeployment.md) |  | 
-**Id** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**RequestedBy** | **string** |  | 
-**RequestedReviewerId** | **string** |  | 
-**Revision** | **int32** |  | 
-**RevisionHash** | **string** |  | 
-**Status** | **string** |  | 
-**UpdatedAt** | **string** |  | 
+**Comment** | **NullableString** |  |
+**ConversationMessageId** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**DecidedAt** | **NullableString** |  |
+**DecidedBy** | **NullableString** |  |
+**DeliverableId** | **string** |  |
+**Deployment** | [**DeliverableDecisionDeployment**](DeliverableDecisionDeployment.md) |  |
+**Id** | **string** |  |
+**OrganizationId** | **string** |  |
+**RequestedBy** | **string** |  |
+**RequestedReviewerId** | **string** |  |
+**Revision** | **int32** |  |
+**RevisionHash** | **string** |  |
+**Status** | **string** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
@@ -27,17 +27,15 @@ Name | Type | Description | Notes
 `func NewDeliverableDecision(comment NullableString, conversationMessageId NullableString, createdAt string, decidedAt NullableString, decidedBy NullableString, deliverableId string, deployment DeliverableDecisionDeployment, id string, organizationId string, requestedBy string, requestedReviewerId string, revision int32, revisionHash string, status string, updatedAt string, ) *DeliverableDecision`
 
 NewDeliverableDecision instantiates a new DeliverableDecision object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverableDecisionWithDefaults
 
 `func NewDeliverableDecisionWithDefaults() *DeliverableDecision`
 
 NewDeliverableDecisionWithDefaults instantiates a new DeliverableDecision object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetComment
 

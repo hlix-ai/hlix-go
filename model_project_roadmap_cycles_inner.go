@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -25,11 +25,11 @@ type ProjectRoadmapCyclesInner struct {
 	CycleId NullableString `json:"cycleId"`
 	DisplayId *string `json:"displayId,omitempty"`
 	ElapsedMs NullableFloat32 `json:"elapsedMs,omitempty"`
-	Lane NullableString `json:"lane"`
+	Handling NullableString `json:"handling"`
 	LinearIssueIdentifier NullableString `json:"linearIssueIdentifier"`
 	LinearIssueUrl NullableString `json:"linearIssueUrl"`
 	Order int32 `json:"order"`
-	Owner NullableProjectRoadmapCyclesInnerOwner `json:"owner,omitempty"`
+	Owner NullableDesktopControlledBy `json:"owner,omitempty"`
 	Quick bool `json:"quick"`
 	RequestedByUserId NullableString `json:"requestedByUserId"`
 	Setup bool `json:"setup"`
@@ -47,11 +47,11 @@ type _ProjectRoadmapCyclesInner ProjectRoadmapCyclesInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectRoadmapCyclesInner(costMicros NullableInt64, cycleId NullableString, lane NullableString, linearIssueIdentifier NullableString, linearIssueUrl NullableString, order int32, quick bool, requestedByUserId NullableString, setup bool, source NullableString, status string, taskDone int32, taskTotal int32, title string) *ProjectRoadmapCyclesInner {
+func NewProjectRoadmapCyclesInner(costMicros NullableInt64, cycleId NullableString, handling NullableString, linearIssueIdentifier NullableString, linearIssueUrl NullableString, order int32, quick bool, requestedByUserId NullableString, setup bool, source NullableString, status string, taskDone int32, taskTotal int32, title string) *ProjectRoadmapCyclesInner {
 	this := ProjectRoadmapCyclesInner{}
 	this.CostMicros = costMicros
 	this.CycleId = cycleId
-	this.Lane = lane
+	this.Handling = handling
 	this.LinearIssueIdentifier = linearIssueIdentifier
 	this.LinearIssueUrl = linearIssueUrl
 	this.Order = order
@@ -232,30 +232,30 @@ func (o *ProjectRoadmapCyclesInner) UnsetElapsedMs() {
 	o.ElapsedMs.Unset()
 }
 
-// GetLane returns the Lane field value
+// GetHandling returns the Handling field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ProjectRoadmapCyclesInner) GetLane() string {
-	if o == nil || o.Lane.Get() == nil {
+func (o *ProjectRoadmapCyclesInner) GetHandling() string {
+	if o == nil || o.Handling.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Lane.Get()
+	return *o.Handling.Get()
 }
 
-// GetLaneOk returns a tuple with the Lane field value
+// GetHandlingOk returns a tuple with the Handling field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRoadmapCyclesInner) GetLaneOk() (*string, bool) {
+func (o *ProjectRoadmapCyclesInner) GetHandlingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Lane.Get(), o.Lane.IsSet()
+	return o.Handling.Get(), o.Handling.IsSet()
 }
 
-// SetLane sets field value
-func (o *ProjectRoadmapCyclesInner) SetLane(v string) {
-	o.Lane.Set(&v)
+// SetHandling sets field value
+func (o *ProjectRoadmapCyclesInner) SetHandling(v string) {
+	o.Handling.Set(&v)
 }
 
 // GetLinearIssueIdentifier returns the LinearIssueIdentifier field value
@@ -335,9 +335,9 @@ func (o *ProjectRoadmapCyclesInner) SetOrder(v int32) {
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ProjectRoadmapCyclesInner) GetOwner() ProjectRoadmapCyclesInnerOwner {
+func (o *ProjectRoadmapCyclesInner) GetOwner() DesktopControlledBy {
 	if o == nil || IsNil(o.Owner.Get()) {
-		var ret ProjectRoadmapCyclesInnerOwner
+		var ret DesktopControlledBy
 		return ret
 	}
 	return *o.Owner.Get()
@@ -346,7 +346,7 @@ func (o *ProjectRoadmapCyclesInner) GetOwner() ProjectRoadmapCyclesInnerOwner {
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectRoadmapCyclesInner) GetOwnerOk() (*ProjectRoadmapCyclesInnerOwner, bool) {
+func (o *ProjectRoadmapCyclesInner) GetOwnerOk() (*DesktopControlledBy, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -362,8 +362,8 @@ func (o *ProjectRoadmapCyclesInner) HasOwner() bool {
 	return false
 }
 
-// SetOwner gets a reference to the given NullableProjectRoadmapCyclesInnerOwner and assigns it to the Owner field.
-func (o *ProjectRoadmapCyclesInner) SetOwner(v ProjectRoadmapCyclesInnerOwner) {
+// SetOwner gets a reference to the given NullableDesktopControlledBy and assigns it to the Owner field.
+func (o *ProjectRoadmapCyclesInner) SetOwner(v DesktopControlledBy) {
 	o.Owner.Set(&v)
 }
 // SetOwnerNil sets the value for Owner to be an explicit nil
@@ -593,7 +593,7 @@ func (o ProjectRoadmapCyclesInner) ToMap() (map[string]interface{}, error) {
 	if o.ElapsedMs.IsSet() {
 		toSerialize["elapsedMs"] = o.ElapsedMs.Get()
 	}
-	toSerialize["lane"] = o.Lane.Get()
+	toSerialize["handling"] = o.Handling.Get()
 	toSerialize["linearIssueIdentifier"] = o.LinearIssueIdentifier.Get()
 	toSerialize["linearIssueUrl"] = o.LinearIssueUrl.Get()
 	toSerialize["order"] = o.Order
@@ -623,7 +623,7 @@ func (o *ProjectRoadmapCyclesInner) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"costMicros",
 		"cycleId",
-		"lane",
+		"handling",
 		"linearIssueIdentifier",
 		"linearIssueUrl",
 		"order",
@@ -669,7 +669,7 @@ func (o *ProjectRoadmapCyclesInner) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "cycleId")
 		delete(additionalProperties, "displayId")
 		delete(additionalProperties, "elapsedMs")
-		delete(additionalProperties, "lane")
+		delete(additionalProperties, "handling")
 		delete(additionalProperties, "linearIssueIdentifier")
 		delete(additionalProperties, "linearIssueUrl")
 		delete(additionalProperties, "order")

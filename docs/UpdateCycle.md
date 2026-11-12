@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
-**TargetBranch** | Pointer to **string** |  | [optional] 
-**Title** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional]
+**TargetBranch** | Pointer to **string** |  | [optional]
+**Title** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewUpdateCycle() *UpdateCycle`
 
 NewUpdateCycle instantiates a new UpdateCycle object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdateCycleWithDefaults
 
 `func NewUpdateCycleWithDefaults() *UpdateCycle`
 
 NewUpdateCycleWithDefaults instantiates a new UpdateCycle object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDescription
 

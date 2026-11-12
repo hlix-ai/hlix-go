@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Comments** | [**[]DesignDetailCommentsInner**](DesignDetailCommentsInner.md) |  | 
-**Design** | [**DesignDetailDesign**](DesignDetailDesign.md) |  | 
-**Link** | **string** |  | 
-**Revision** | [**NullableDesignDetailRevision**](DesignDetailRevision.md) |  | 
-**Revisions** | [**[]DesignDetailRevisionsInner**](DesignDetailRevisionsInner.md) |  | 
+**Comments** | [**[]DesignDetailCommentsInner**](DesignDetailCommentsInner.md) |  |
+**Design** | [**DesignDetailDesign**](DesignDetailDesign.md) |  |
+**Link** | **string** |  |
+**Revision** | [**NullableDesignDetailRevision**](DesignDetailRevision.md) |  |
+**Revisions** | [**[]DesignDetailRevisionsInner**](DesignDetailRevisionsInner.md) |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewDesignDetail(comments []DesignDetailCommentsInner, design DesignDetailDesign, link string, revision NullableDesignDetailRevision, revisions []DesignDetailRevisionsInner, ) *DesignDetail`
 
 NewDesignDetail instantiates a new DesignDetail object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDesignDetailWithDefaults
 
 `func NewDesignDetailWithDefaults() *DesignDetail`
 
 NewDesignDetailWithDefaults instantiates a new DesignDetail object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetComments
 

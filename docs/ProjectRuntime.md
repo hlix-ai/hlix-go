@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Agents** | Pointer to **[]string** |  | [optional] 
-**AptPackages** | Pointer to **[]string** |  | [optional] 
-**Deployment** | Pointer to [**CreateProjectRuntimeDeployment**](CreateProjectRuntimeDeployment.md) |  | [optional] 
-**EnvOverrides** | Pointer to **map[string]string** |  | [optional] 
-**Hash** | Pointer to **string** |  | [optional] 
-**ImageTag** | Pointer to **NullableString** |  | [optional] 
-**LinearProjectId** | Pointer to **string** |  | [optional] 
-**LinearTeamId** | Pointer to **string** |  | [optional] 
-**Notes** | Pointer to **[]string** |  | [optional] 
-**Preview** | Pointer to [**CreateProjectRuntimePreview**](CreateProjectRuntimePreview.md) |  | [optional] 
-**Services** | Pointer to [**[]CreateProjectRuntimeServicesInner**](CreateProjectRuntimeServicesInner.md) |  | [optional] 
-**Setup** | Pointer to **string** |  | [optional] 
-**Source** | Pointer to **map[string]string** |  | [optional] 
-**Toolchain** | Pointer to [**CreateProjectRuntimeToolchain**](CreateProjectRuntimeToolchain.md) |  | [optional] 
-**VerifyCommand** | Pointer to **string** |  | [optional] 
+**Agents** | Pointer to **[]string** |  | [optional]
+**AptPackages** | Pointer to **[]string** |  | [optional]
+**Deployment** | Pointer to [**CreateProjectRuntimeDeployment**](CreateProjectRuntimeDeployment.md) |  | [optional]
+**EnvOverrides** | Pointer to **map[string]string** |  | [optional]
+**Hash** | Pointer to **string** |  | [optional]
+**ImageTag** | Pointer to **NullableString** |  | [optional]
+**LinearProjectId** | Pointer to **string** |  | [optional]
+**LinearTeamId** | Pointer to **string** |  | [optional]
+**Notes** | Pointer to **[]string** |  | [optional]
+**Preview** | Pointer to [**CreateProjectRuntimePreview**](CreateProjectRuntimePreview.md) |  | [optional]
+**Services** | Pointer to [**[]CreateProjectRuntimeServicesInner**](CreateProjectRuntimeServicesInner.md) |  | [optional]
+**Setup** | Pointer to **string** |  | [optional]
+**Source** | Pointer to **map[string]string** |  | [optional]
+**Toolchain** | Pointer to [**CreateProjectRuntimeToolchain**](CreateProjectRuntimeToolchain.md) |  | [optional]
+**VerifyCommand** | Pointer to **string** |  | [optional]
 
 ## Methods
 
@@ -27,17 +27,15 @@ Name | Type | Description | Notes
 `func NewProjectRuntime() *ProjectRuntime`
 
 NewProjectRuntime instantiates a new ProjectRuntime object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectRuntimeWithDefaults
 
 `func NewProjectRuntimeWithDefaults() *ProjectRuntime`
 
 NewProjectRuntimeWithDefaults instantiates a new ProjectRuntime object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgents
 

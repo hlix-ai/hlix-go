@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompletedAt** | **NullableString** |  | 
-**CorrelationId** | **string** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**Error** | **NullableString** |  | 
-**Id** | **string** |  | 
-**IdempotencyKey** | **string** |  | 
-**Kind** | **string** |  | 
-**Model** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**OutputKey** | **NullableString** |  | 
-**Params** | **map[string]interface{}** |  | 
-**ProjectId** | **NullableString** |  | 
-**PromptHash** | **string** |  | 
-**PromptPolicyVersion** | **string** |  | 
-**Provider** | **NullableString** |  | 
-**ProviderJobId** | **NullableString** |  | 
-**ReviewState** | **string** |  | 
-**Status** | **string** |  | 
-**SubmittedAt** | **NullableString** |  | 
+**CompletedAt** | **NullableString** |  |
+**CorrelationId** | **string** |  |
+**CostMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**Error** | **NullableString** |  |
+**Id** | **string** |  |
+**IdempotencyKey** | **string** |  |
+**Kind** | **string** |  |
+**Model** | **string** |  |
+**OrganizationId** | **string** |  |
+**OutputKey** | **NullableString** |  |
+**Params** | **map[string]interface{}** |  |
+**ProjectId** | **NullableString** |  |
+**PromptHash** | **string** |  |
+**PromptPolicyVersion** | **string** |  |
+**Provider** | **NullableString** |  |
+**ProviderJobId** | **NullableString** |  |
+**ReviewState** | **string** |  |
+**Status** | **string** |  |
+**SubmittedAt** | **NullableString** |  |
 
 ## Methods
 
@@ -32,17 +32,15 @@ Name | Type | Description | Notes
 `func NewAiMediaJobAcceptedJob(completedAt NullableString, correlationId string, costMicros NullableInt64, createdAt string, error_ NullableString, id string, idempotencyKey string, kind string, model string, organizationId string, outputKey NullableString, params map[string]interface{}, projectId NullableString, promptHash string, promptPolicyVersion string, provider NullableString, providerJobId NullableString, reviewState string, status string, submittedAt NullableString, ) *AiMediaJobAcceptedJob`
 
 NewAiMediaJobAcceptedJob instantiates a new AiMediaJobAcceptedJob object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiMediaJobAcceptedJobWithDefaults
 
 `func NewAiMediaJobAcceptedJobWithDefaults() *AiMediaJobAcceptedJob`
 
 NewAiMediaJobAcceptedJobWithDefaults instantiates a new AiMediaJobAcceptedJob object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCompletedAt
 

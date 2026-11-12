@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExpectedCommitSha** | Pointer to **string** | Require this exact published revision. An unpublished revision returns 409 source_not_published without creating a build. | [optional] 
-**TargetId** | **string** |  | 
+**ExpectedCommitSha** | Pointer to **string** | Require this exact published revision. An unpublished revision returns 409 source_not_published without creating a build. | [optional]
+**TargetId** | **string** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewMobileBuildStart(targetId string, ) *MobileBuildStart`
 
 NewMobileBuildStart instantiates a new MobileBuildStart object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewMobileBuildStartWithDefaults
 
 `func NewMobileBuildStartWithDefaults() *MobileBuildStart`
 
 NewMobileBuildStartWithDefaults instantiates a new MobileBuildStart object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetExpectedCommitSha
 

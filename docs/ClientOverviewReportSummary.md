@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AwaitingYourDecision** | **int32** |  | 
-**OutstandingInvoices** | **int32** |  | 
-**OverdueInvoices** | **int32** |  | 
-**ProjectCount** | **int32** |  | 
-**PublishedDeliverables** | **int32** |  | 
+**AwaitingYourDecision** | **int32** |  |
+**OutstandingInvoices** | **int32** |  |
+**OverdueInvoices** | **int32** |  |
+**ProjectCount** | **int32** |  |
+**PublishedDeliverables** | **int32** |  |
 
 ## Methods
 
@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 `func NewClientOverviewReportSummary(awaitingYourDecision int32, outstandingInvoices int32, overdueInvoices int32, projectCount int32, publishedDeliverables int32, ) *ClientOverviewReportSummary`
 
 NewClientOverviewReportSummary instantiates a new ClientOverviewReportSummary object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewClientOverviewReportSummaryWithDefaults
 
 `func NewClientOverviewReportSummaryWithDefaults() *ClientOverviewReportSummary`
 
 NewClientOverviewReportSummaryWithDefaults instantiates a new ClientOverviewReportSummary object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAwaitingYourDecision
 

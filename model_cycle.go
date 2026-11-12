@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -28,14 +28,13 @@ type Cycle struct {
 	DependsOn []string `json:"dependsOn"`
 	Description string `json:"description"`
 	E2eVideoUrl NullableString `json:"e2eVideoUrl"`
-	FollowUpOfCycleId NullableString `json:"followUpOfCycleId"`
+	Handling NullableString `json:"handling"`
 	Id string `json:"id"`
 	Kind string `json:"kind"`
-	Lane NullableString `json:"lane"`
 	LinearIssueIdentifier NullableString `json:"linearIssueIdentifier"`
 	OrganizationId string `json:"organizationId"`
+	OriginCycleId NullableString `json:"originCycleId"`
 	OutcomeSummary NullableString `json:"outcomeSummary"`
-	Persona NullableString `json:"persona"`
 	PrUrl NullableString `json:"prUrl"`
 	PreviewBranch NullableString `json:"previewBranch"`
 	Priority int32 `json:"priority"`
@@ -45,6 +44,7 @@ type Cycle struct {
 	RepoId NullableString `json:"repoId"`
 	RequestedByUserId NullableString `json:"requestedByUserId"`
 	Revision int32 `json:"revision"`
+	Role NullableString `json:"role"`
 	RunPin NullableCycleRunPin `json:"runPin"`
 	Source NullableString `json:"source"`
 	StageHistory []CycleStageHistoryInner `json:"stageHistory"`
@@ -63,7 +63,7 @@ type _Cycle Cycle
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCycle(assignedUserId NullableString, baseRef NullableString, branchSlug NullableString, createdAt string, createdByRunId NullableString, dependsOn []string, description string, e2eVideoUrl NullableString, followUpOfCycleId NullableString, id string, kind string, lane NullableString, linearIssueIdentifier NullableString, organizationId string, outcomeSummary NullableString, persona NullableString, prUrl NullableString, previewBranch NullableString, priority int32, projectId string, refinedReqs NullableString, replannedThroughRun NullableInt32, repoId NullableString, requestedByUserId NullableString, revision int32, runPin NullableCycleRunPin, source NullableString, stageHistory []CycleStageHistoryInner, status string, targetBranch NullableString, taskTimeoutMinutes int32, title string, totalCostMicros NullableInt64, updatedAt string) *Cycle {
+func NewCycle(assignedUserId NullableString, baseRef NullableString, branchSlug NullableString, createdAt string, createdByRunId NullableString, dependsOn []string, description string, e2eVideoUrl NullableString, handling NullableString, id string, kind string, linearIssueIdentifier NullableString, organizationId string, originCycleId NullableString, outcomeSummary NullableString, prUrl NullableString, previewBranch NullableString, priority int32, projectId string, refinedReqs NullableString, replannedThroughRun NullableInt32, repoId NullableString, requestedByUserId NullableString, revision int32, role NullableString, runPin NullableCycleRunPin, source NullableString, stageHistory []CycleStageHistoryInner, status string, targetBranch NullableString, taskTimeoutMinutes int32, title string, totalCostMicros NullableInt64, updatedAt string) *Cycle {
 	this := Cycle{}
 	this.AssignedUserId = assignedUserId
 	this.BaseRef = baseRef
@@ -73,14 +73,13 @@ func NewCycle(assignedUserId NullableString, baseRef NullableString, branchSlug 
 	this.DependsOn = dependsOn
 	this.Description = description
 	this.E2eVideoUrl = e2eVideoUrl
-	this.FollowUpOfCycleId = followUpOfCycleId
+	this.Handling = handling
 	this.Id = id
 	this.Kind = kind
-	this.Lane = lane
 	this.LinearIssueIdentifier = linearIssueIdentifier
 	this.OrganizationId = organizationId
+	this.OriginCycleId = originCycleId
 	this.OutcomeSummary = outcomeSummary
-	this.Persona = persona
 	this.PrUrl = prUrl
 	this.PreviewBranch = previewBranch
 	this.Priority = priority
@@ -90,6 +89,7 @@ func NewCycle(assignedUserId NullableString, baseRef NullableString, branchSlug 
 	this.RepoId = repoId
 	this.RequestedByUserId = requestedByUserId
 	this.Revision = revision
+	this.Role = role
 	this.RunPin = runPin
 	this.Source = source
 	this.StageHistory = stageHistory
@@ -312,30 +312,30 @@ func (o *Cycle) SetE2eVideoUrl(v string) {
 	o.E2eVideoUrl.Set(&v)
 }
 
-// GetFollowUpOfCycleId returns the FollowUpOfCycleId field value
+// GetHandling returns the Handling field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *Cycle) GetFollowUpOfCycleId() string {
-	if o == nil || o.FollowUpOfCycleId.Get() == nil {
+func (o *Cycle) GetHandling() string {
+	if o == nil || o.Handling.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.FollowUpOfCycleId.Get()
+	return *o.Handling.Get()
 }
 
-// GetFollowUpOfCycleIdOk returns a tuple with the FollowUpOfCycleId field value
+// GetHandlingOk returns a tuple with the Handling field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Cycle) GetFollowUpOfCycleIdOk() (*string, bool) {
+func (o *Cycle) GetHandlingOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.FollowUpOfCycleId.Get(), o.FollowUpOfCycleId.IsSet()
+	return o.Handling.Get(), o.Handling.IsSet()
 }
 
-// SetFollowUpOfCycleId sets field value
-func (o *Cycle) SetFollowUpOfCycleId(v string) {
-	o.FollowUpOfCycleId.Set(&v)
+// SetHandling sets field value
+func (o *Cycle) SetHandling(v string) {
+	o.Handling.Set(&v)
 }
 
 // GetId returns the Id field value
@@ -384,32 +384,6 @@ func (o *Cycle) GetKindOk() (*string, bool) {
 // SetKind sets field value
 func (o *Cycle) SetKind(v string) {
 	o.Kind = v
-}
-
-// GetLane returns the Lane field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Cycle) GetLane() string {
-	if o == nil || o.Lane.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Lane.Get()
-}
-
-// GetLaneOk returns a tuple with the Lane field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Cycle) GetLaneOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Lane.Get(), o.Lane.IsSet()
-}
-
-// SetLane sets field value
-func (o *Cycle) SetLane(v string) {
-	o.Lane.Set(&v)
 }
 
 // GetLinearIssueIdentifier returns the LinearIssueIdentifier field value
@@ -462,6 +436,32 @@ func (o *Cycle) SetOrganizationId(v string) {
 	o.OrganizationId = v
 }
 
+// GetOriginCycleId returns the OriginCycleId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Cycle) GetOriginCycleId() string {
+	if o == nil || o.OriginCycleId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.OriginCycleId.Get()
+}
+
+// GetOriginCycleIdOk returns a tuple with the OriginCycleId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Cycle) GetOriginCycleIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OriginCycleId.Get(), o.OriginCycleId.IsSet()
+}
+
+// SetOriginCycleId sets field value
+func (o *Cycle) SetOriginCycleId(v string) {
+	o.OriginCycleId.Set(&v)
+}
+
 // GetOutcomeSummary returns the OutcomeSummary field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *Cycle) GetOutcomeSummary() string {
@@ -486,32 +486,6 @@ func (o *Cycle) GetOutcomeSummaryOk() (*string, bool) {
 // SetOutcomeSummary sets field value
 func (o *Cycle) SetOutcomeSummary(v string) {
 	o.OutcomeSummary.Set(&v)
-}
-
-// GetPersona returns the Persona field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Cycle) GetPersona() string {
-	if o == nil || o.Persona.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Persona.Get()
-}
-
-// GetPersonaOk returns a tuple with the Persona field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Cycle) GetPersonaOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Persona.Get(), o.Persona.IsSet()
-}
-
-// SetPersona sets field value
-func (o *Cycle) SetPersona(v string) {
-	o.Persona.Set(&v)
 }
 
 // GetPrUrl returns the PrUrl field value
@@ -740,6 +714,32 @@ func (o *Cycle) GetRevisionOk() (*int32, bool) {
 // SetRevision sets field value
 func (o *Cycle) SetRevision(v int32) {
 	o.Revision = v
+}
+
+// GetRole returns the Role field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Cycle) GetRole() string {
+	if o == nil || o.Role.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Role.Get()
+}
+
+// GetRoleOk returns a tuple with the Role field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Cycle) GetRoleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Role.Get(), o.Role.IsSet()
+}
+
+// SetRole sets field value
+func (o *Cycle) SetRole(v string) {
+	o.Role.Set(&v)
 }
 
 // GetRunPin returns the RunPin field value
@@ -984,14 +984,13 @@ func (o Cycle) ToMap() (map[string]interface{}, error) {
 	toSerialize["dependsOn"] = o.DependsOn
 	toSerialize["description"] = o.Description
 	toSerialize["e2eVideoUrl"] = o.E2eVideoUrl.Get()
-	toSerialize["followUpOfCycleId"] = o.FollowUpOfCycleId.Get()
+	toSerialize["handling"] = o.Handling.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["kind"] = o.Kind
-	toSerialize["lane"] = o.Lane.Get()
 	toSerialize["linearIssueIdentifier"] = o.LinearIssueIdentifier.Get()
 	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["originCycleId"] = o.OriginCycleId.Get()
 	toSerialize["outcomeSummary"] = o.OutcomeSummary.Get()
-	toSerialize["persona"] = o.Persona.Get()
 	toSerialize["prUrl"] = o.PrUrl.Get()
 	toSerialize["previewBranch"] = o.PreviewBranch.Get()
 	toSerialize["priority"] = o.Priority
@@ -1001,6 +1000,7 @@ func (o Cycle) ToMap() (map[string]interface{}, error) {
 	toSerialize["repoId"] = o.RepoId.Get()
 	toSerialize["requestedByUserId"] = o.RequestedByUserId.Get()
 	toSerialize["revision"] = o.Revision
+	toSerialize["role"] = o.Role.Get()
 	toSerialize["runPin"] = o.RunPin.Get()
 	toSerialize["source"] = o.Source.Get()
 	toSerialize["stageHistory"] = o.StageHistory
@@ -1031,14 +1031,13 @@ func (o *Cycle) UnmarshalJSON(data []byte) (err error) {
 		"dependsOn",
 		"description",
 		"e2eVideoUrl",
-		"followUpOfCycleId",
+		"handling",
 		"id",
 		"kind",
-		"lane",
 		"linearIssueIdentifier",
 		"organizationId",
+		"originCycleId",
 		"outcomeSummary",
-		"persona",
 		"prUrl",
 		"previewBranch",
 		"priority",
@@ -1048,6 +1047,7 @@ func (o *Cycle) UnmarshalJSON(data []byte) (err error) {
 		"repoId",
 		"requestedByUserId",
 		"revision",
+		"role",
 		"runPin",
 		"source",
 		"stageHistory",
@@ -1094,14 +1094,13 @@ func (o *Cycle) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "dependsOn")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "e2eVideoUrl")
-		delete(additionalProperties, "followUpOfCycleId")
+		delete(additionalProperties, "handling")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "kind")
-		delete(additionalProperties, "lane")
 		delete(additionalProperties, "linearIssueIdentifier")
 		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "originCycleId")
 		delete(additionalProperties, "outcomeSummary")
-		delete(additionalProperties, "persona")
 		delete(additionalProperties, "prUrl")
 		delete(additionalProperties, "previewBranch")
 		delete(additionalProperties, "priority")
@@ -1111,6 +1110,7 @@ func (o *Cycle) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "repoId")
 		delete(additionalProperties, "requestedByUserId")
 		delete(additionalProperties, "revision")
+		delete(additionalProperties, "role")
 		delete(additionalProperties, "runPin")
 		delete(additionalProperties, "source")
 		delete(additionalProperties, "stageHistory")

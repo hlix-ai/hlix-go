@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiUrl** | **NullableString** |  | 
-**AppUrl** | **NullableString** |  | 
-**Available** | **bool** |  | 
-**Id** | **string** |  | 
+**ApiUrl** | **NullableString** |  |
+**AppUrl** | **NullableString** |  |
+**Available** | **bool** |  |
+**Id** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewHostingCatalogRegionsInner(apiUrl NullableString, appUrl NullableString, available bool, id string, ) *HostingCatalogRegionsInner`
 
 NewHostingCatalogRegionsInner instantiates a new HostingCatalogRegionsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewHostingCatalogRegionsInnerWithDefaults
 
 `func NewHostingCatalogRegionsInnerWithDefaults() *HostingCatalogRegionsInner`
 
 NewHostingCatalogRegionsInnerWithDefaults instantiates a new HostingCatalogRegionsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApiUrl
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** |  | 
-**HasApiKey** | **bool** |  | 
-**Metadata** | **map[string]interface{}** |  | 
+**Enabled** | **bool** |  |
+**HasApiKey** | **bool** |  |
+**Metadata** | **map[string]interface{}** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewGrowthProviderOrganization(enabled bool, hasApiKey bool, metadata map[string]interface{}, ) *GrowthProviderOrganization`
 
 NewGrowthProviderOrganization instantiates a new GrowthProviderOrganization object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProviderOrganizationWithDefaults
 
 `func NewGrowthProviderOrganizationWithDefaults() *GrowthProviderOrganization`
 
 NewGrowthProviderOrganizationWithDefaults instantiates a new GrowthProviderOrganization object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEnabled
 

@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,7 +20,8 @@ var _ MappedNullable = &AgencyOverviewReportAttentionInner{}
 
 // AgencyOverviewReportAttentionInner struct for AgencyOverviewReportAttentionInner
 type AgencyOverviewReportAttentionInner struct {
-	ActionPath string `json:"actionPath"`
+	ActionPath *string `json:"actionPath,omitempty"`
+	AttentionItem *AgencyOverviewReportAttentionInnerAttentionItem `json:"attentionItem,omitempty"`
 	CreatedAt string `json:"createdAt"`
 	CustomerId *string `json:"customerId,omitempty"`
 	Detail string `json:"detail"`
@@ -39,9 +40,8 @@ type _AgencyOverviewReportAttentionInner AgencyOverviewReportAttentionInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgencyOverviewReportAttentionInner(actionPath string, createdAt string, detail string, id string, kind string, severity string, title string) *AgencyOverviewReportAttentionInner {
+func NewAgencyOverviewReportAttentionInner(createdAt string, detail string, id string, kind string, severity string, title string) *AgencyOverviewReportAttentionInner {
 	this := AgencyOverviewReportAttentionInner{}
-	this.ActionPath = actionPath
 	this.CreatedAt = createdAt
 	this.Detail = detail
 	this.Id = id
@@ -59,28 +59,68 @@ func NewAgencyOverviewReportAttentionInnerWithDefaults() *AgencyOverviewReportAt
 	return &this
 }
 
-// GetActionPath returns the ActionPath field value
+// GetActionPath returns the ActionPath field value if set, zero value otherwise.
 func (o *AgencyOverviewReportAttentionInner) GetActionPath() string {
-	if o == nil {
+	if o == nil || IsNil(o.ActionPath) {
 		var ret string
 		return ret
 	}
-
-	return o.ActionPath
+	return *o.ActionPath
 }
 
-// GetActionPathOk returns a tuple with the ActionPath field value
+// GetActionPathOk returns a tuple with the ActionPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AgencyOverviewReportAttentionInner) GetActionPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ActionPath) {
 		return nil, false
 	}
-	return &o.ActionPath, true
+	return o.ActionPath, true
 }
 
-// SetActionPath sets field value
+// HasActionPath returns a boolean if a field has been set.
+func (o *AgencyOverviewReportAttentionInner) HasActionPath() bool {
+	if o != nil && !IsNil(o.ActionPath) {
+		return true
+	}
+
+	return false
+}
+
+// SetActionPath gets a reference to the given string and assigns it to the ActionPath field.
 func (o *AgencyOverviewReportAttentionInner) SetActionPath(v string) {
-	o.ActionPath = v
+	o.ActionPath = &v
+}
+
+// GetAttentionItem returns the AttentionItem field value if set, zero value otherwise.
+func (o *AgencyOverviewReportAttentionInner) GetAttentionItem() AgencyOverviewReportAttentionInnerAttentionItem {
+	if o == nil || IsNil(o.AttentionItem) {
+		var ret AgencyOverviewReportAttentionInnerAttentionItem
+		return ret
+	}
+	return *o.AttentionItem
+}
+
+// GetAttentionItemOk returns a tuple with the AttentionItem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AgencyOverviewReportAttentionInner) GetAttentionItemOk() (*AgencyOverviewReportAttentionInnerAttentionItem, bool) {
+	if o == nil || IsNil(o.AttentionItem) {
+		return nil, false
+	}
+	return o.AttentionItem, true
+}
+
+// HasAttentionItem returns a boolean if a field has been set.
+func (o *AgencyOverviewReportAttentionInner) HasAttentionItem() bool {
+	if o != nil && !IsNil(o.AttentionItem) {
+		return true
+	}
+
+	return false
+}
+
+// SetAttentionItem gets a reference to the given AgencyOverviewReportAttentionInnerAttentionItem and assigns it to the AttentionItem field.
+func (o *AgencyOverviewReportAttentionInner) SetAttentionItem(v AgencyOverviewReportAttentionInnerAttentionItem) {
+	o.AttentionItem = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -333,7 +373,12 @@ func (o AgencyOverviewReportAttentionInner) MarshalJSON() ([]byte, error) {
 
 func (o AgencyOverviewReportAttentionInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["actionPath"] = o.ActionPath
+	if !IsNil(o.ActionPath) {
+		toSerialize["actionPath"] = o.ActionPath
+	}
+	if !IsNil(o.AttentionItem) {
+		toSerialize["attentionItem"] = o.AttentionItem
+	}
 	toSerialize["createdAt"] = o.CreatedAt
 	if !IsNil(o.CustomerId) {
 		toSerialize["customerId"] = o.CustomerId
@@ -362,7 +407,6 @@ func (o *AgencyOverviewReportAttentionInner) UnmarshalJSON(data []byte) (err err
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"actionPath",
 		"createdAt",
 		"detail",
 		"id",
@@ -399,6 +443,7 @@ func (o *AgencyOverviewReportAttentionInner) UnmarshalJSON(data []byte) (err err
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "actionPath")
+		delete(additionalProperties, "attentionItem")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "customerId")
 		delete(additionalProperties, "detail")

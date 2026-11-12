@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,6 +23,7 @@ type ResolvedSettingsCycleFunding struct {
 	AccountId NullableString `json:"accountId"`
 	Mode string `json:"mode"`
 	NativeModel NullableString `json:"nativeModel"`
+	ProviderId NullableString `json:"providerId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -124,6 +125,48 @@ func (o *ResolvedSettingsCycleFunding) SetNativeModel(v string) {
 	o.NativeModel.Set(&v)
 }
 
+// GetProviderId returns the ProviderId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ResolvedSettingsCycleFunding) GetProviderId() string {
+	if o == nil || IsNil(o.ProviderId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderId.Get()
+}
+
+// GetProviderIdOk returns a tuple with the ProviderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResolvedSettingsCycleFunding) GetProviderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProviderId.Get(), o.ProviderId.IsSet()
+}
+
+// HasProviderId returns a boolean if a field has been set.
+func (o *ResolvedSettingsCycleFunding) HasProviderId() bool {
+	if o != nil && o.ProviderId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderId gets a reference to the given NullableString and assigns it to the ProviderId field.
+func (o *ResolvedSettingsCycleFunding) SetProviderId(v string) {
+	o.ProviderId.Set(&v)
+}
+// SetProviderIdNil sets the value for ProviderId to be an explicit nil
+func (o *ResolvedSettingsCycleFunding) SetProviderIdNil() {
+	o.ProviderId.Set(nil)
+}
+
+// UnsetProviderId ensures that no value is present for ProviderId, not even an explicit nil
+func (o *ResolvedSettingsCycleFunding) UnsetProviderId() {
+	o.ProviderId.Unset()
+}
+
 func (o ResolvedSettingsCycleFunding) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,6 +180,9 @@ func (o ResolvedSettingsCycleFunding) ToMap() (map[string]interface{}, error) {
 	toSerialize["accountId"] = o.AccountId.Get()
 	toSerialize["mode"] = o.Mode
 	toSerialize["nativeModel"] = o.NativeModel.Get()
+	if o.ProviderId.IsSet() {
+		toSerialize["providerId"] = o.ProviderId.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -185,6 +231,7 @@ func (o *ResolvedSettingsCycleFunding) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "accountId")
 		delete(additionalProperties, "mode")
 		delete(additionalProperties, "nativeModel")
+		delete(additionalProperties, "providerId")
 		o.AdditionalProperties = additionalProperties
 	}
 

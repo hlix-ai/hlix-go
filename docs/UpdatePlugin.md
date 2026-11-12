@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | Pointer to **bool** |  | [optional] 
-**Inputs** | Pointer to [**map[string]UpdatePluginInputsValue**](UpdatePluginInputsValue.md) |  | [optional] 
-**Manifest** | Pointer to [**CreatePluginManifest**](CreatePluginManifest.md) |  | [optional] 
-**ProjectIds** | Pointer to **[]string** |  | [optional] 
+**Enabled** | Pointer to **bool** |  | [optional]
+**Inputs** | Pointer to [**map[string]UpdatePluginInputsValue**](UpdatePluginInputsValue.md) |  | [optional]
+**Manifest** | Pointer to [**CreatePluginManifest**](CreatePluginManifest.md) |  | [optional]
+**ProjectIds** | Pointer to **[]string** |  | [optional]
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewUpdatePlugin() *UpdatePlugin`
 
 NewUpdatePlugin instantiates a new UpdatePlugin object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewUpdatePluginWithDefaults
 
 `func NewUpdatePluginWithDefaults() *UpdatePlugin`
 
 NewUpdatePluginWithDefaults instantiates a new UpdatePlugin object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEnabled
 

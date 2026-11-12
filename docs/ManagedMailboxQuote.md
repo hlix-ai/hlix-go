@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Available** | **bool** |  | 
-**Currency** | **string** |  | 
-**Domains** | [**[]ManagedMailboxOrderQuoteDomainsInner**](ManagedMailboxOrderQuoteDomainsInner.md) |  | 
-**ExpiresAt** | **time.Time** |  | 
-**Items** | [**[]ManagedMailboxOrderQuoteItemsInner**](ManagedMailboxOrderQuoteItemsInner.md) |  | 
-**Locked** | **bool** |  | 
-**ObservedAt** | **time.Time** |  | 
-**QuoteId** | **string** |  | 
-**Recurring** | [**[]ManagedMailboxOrderQuoteItemsInner**](ManagedMailboxOrderQuoteItemsInner.md) |  | 
-**UpfrontBilledMicros** | **int64** |  | 
-**UpfrontCostMicros** | **int64** |  | 
+**Available** | **bool** |  |
+**Currency** | **string** |  |
+**Domains** | [**[]ManagedMailboxOrderQuoteDomainsInner**](ManagedMailboxOrderQuoteDomainsInner.md) |  |
+**ExpiresAt** | **time.Time** |  |
+**Items** | [**[]ManagedMailboxOrderQuoteItemsInner**](ManagedMailboxOrderQuoteItemsInner.md) |  |
+**Locked** | **bool** |  | [default to false]
+**ObservedAt** | **time.Time** |  |
+**QuoteId** | **string** |  |
+**Recurring** | [**[]ManagedMailboxOrderQuoteItemsInner**](ManagedMailboxOrderQuoteItemsInner.md) |  |
+**UpfrontBilledMicros** | **int64** |  |
+**UpfrontCostMicros** | **int64** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewManagedMailboxQuote(available bool, currency string, domains []ManagedMailboxOrderQuoteDomainsInner, expiresAt time.Time, items []ManagedMailboxOrderQuoteItemsInner, locked bool, observedAt time.Time, quoteId string, recurring []ManagedMailboxOrderQuoteItemsInner, upfrontBilledMicros int64, upfrontCostMicros int64, ) *ManagedMailboxQuote`
 
 NewManagedMailboxQuote instantiates a new ManagedMailboxQuote object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewManagedMailboxQuoteWithDefaults
 
 `func NewManagedMailboxQuoteWithDefaults() *ManagedMailboxQuote`
 
 NewManagedMailboxQuoteWithDefaults instantiates a new ManagedMailboxQuote object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAvailable
 

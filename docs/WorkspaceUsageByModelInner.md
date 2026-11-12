@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CostMicros** | **NullableInt64** |  | 
-**Model** | **string** |  | 
-**Runs** | **float32** |  | 
+**CostMicros** | **NullableInt64** | The price in micros of the usage (cost plus markup). In metered billing it is what the workspace is charged and what the meter is sent; in task billing the workspace pays per accepted task, so it is the price equivalent of the usage, not a charge. Requests on the workspace&#39;s own key or login are in no total. Null when a request has no price yet. |
+**Model** | **string** |  |
+**Runs** | **float32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewWorkspaceUsageByModelInner(costMicros NullableInt64, model string, runs float32, ) *WorkspaceUsageByModelInner`
 
 NewWorkspaceUsageByModelInner instantiates a new WorkspaceUsageByModelInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewWorkspaceUsageByModelInnerWithDefaults
 
 `func NewWorkspaceUsageByModelInnerWithDefaults() *WorkspaceUsageByModelInner`
 
 NewWorkspaceUsageByModelInnerWithDefaults instantiates a new WorkspaceUsageByModelInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCostMicros
 

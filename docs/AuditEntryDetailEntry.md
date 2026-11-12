@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | **string** |  | 
-**ActorId** | **NullableString** |  | 
-**ActorLabel** | **NullableString** |  | 
-**ActorType** | **string** |  | 
-**AgentId** | **NullableString** |  | 
-**AttributedUserId** | **NullableString** |  | 
-**Category** | **string** |  | 
-**Changes** | **interface{}** |  | 
-**Id** | **string** |  | 
-**IpAddress** | **NullableString** |  | 
-**Metadata** | **interface{}** |  | 
-**OccurredAt** | **string** |  | 
-**OnBehalfOfId** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**Outcome** | **string** |  | 
-**ParentResourceId** | **NullableString** |  | 
-**ParentResourceType** | **NullableString** |  | 
-**PrevHash** | **NullableString** |  | 
-**Reason** | **NullableString** |  | 
-**RecordedAt** | **string** |  | 
-**RequestId** | **NullableString** |  | 
-**ResourceId** | **NullableString** |  | 
-**ResourceLabel** | **NullableString** |  | 
-**ResourceType** | **string** |  | 
-**RowHash** | **NullableString** |  | 
-**Severity** | **string** |  | 
-**Source** | **string** |  | 
-**SpanId** | **NullableString** |  | 
-**TraceId** | **NullableString** |  | 
-**UserAgent** | **NullableString** |  | 
+**Action** | **string** |  |
+**ActorId** | **NullableString** |  |
+**ActorLabel** | **NullableString** |  |
+**ActorType** | **string** |  |
+**AgentId** | **NullableString** |  |
+**AttributedUserId** | **NullableString** |  |
+**Category** | **string** |  |
+**Changes** | **interface{}** |  |
+**Id** | **string** |  |
+**IpAddress** | **NullableString** |  |
+**Metadata** | **interface{}** |  |
+**OccurredAt** | **string** |  |
+**OnBehalfOfId** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**Outcome** | **string** |  |
+**ParentResourceId** | **NullableString** |  |
+**ParentResourceType** | **NullableString** |  |
+**PrevHash** | **NullableString** |  |
+**Reason** | **NullableString** |  |
+**RecordedAt** | **string** |  |
+**RequestId** | **NullableString** |  |
+**ResourceId** | **NullableString** |  |
+**ResourceLabel** | **NullableString** |  |
+**ResourceType** | **string** |  |
+**RowHash** | **NullableString** |  |
+**Severity** | **string** |  |
+**Source** | **string** |  |
+**SpanId** | **NullableString** |  |
+**TraceId** | **NullableString** |  |
+**UserAgent** | **NullableString** |  |
 
 ## Methods
 
@@ -42,17 +42,15 @@ Name | Type | Description | Notes
 `func NewAuditEntryDetailEntry(action string, actorId NullableString, actorLabel NullableString, actorType string, agentId NullableString, attributedUserId NullableString, category string, changes interface{}, id string, ipAddress NullableString, metadata interface{}, occurredAt string, onBehalfOfId NullableString, organizationId string, outcome string, parentResourceId NullableString, parentResourceType NullableString, prevHash NullableString, reason NullableString, recordedAt string, requestId NullableString, resourceId NullableString, resourceLabel NullableString, resourceType string, rowHash NullableString, severity string, source string, spanId NullableString, traceId NullableString, userAgent NullableString, ) *AuditEntryDetailEntry`
 
 NewAuditEntryDetailEntry instantiates a new AuditEntryDetailEntry object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAuditEntryDetailEntryWithDefaults
 
 `func NewAuditEntryDetailEntryWithDefaults() *AuditEntryDetailEntry`
 
 NewAuditEntryDetailEntryWithDefaults instantiates a new AuditEntryDetailEntry object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAction
 

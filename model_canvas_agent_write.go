@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,10 +21,10 @@ var _ MappedNullable = &CanvasAgentWrite{}
 // CanvasAgentWrite struct for CanvasAgentWrite
 type CanvasAgentWrite struct {
 	Applied bool `json:"applied"`
+	ApprovalId NullableString `json:"approvalId"`
 	ContextChanged bool `json:"contextChanged"`
 	ContextRevision int32 `json:"contextRevision"`
 	Ops []CanvasAgentWriteOpsInner `json:"ops"`
-	ProposalId NullableString `json:"proposalId"`
 	Revision int32 `json:"revision"`
 	AdditionalProperties map[string]interface{}
 }
@@ -35,13 +35,13 @@ type _CanvasAgentWrite CanvasAgentWrite
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCanvasAgentWrite(applied bool, contextChanged bool, contextRevision int32, ops []CanvasAgentWriteOpsInner, proposalId NullableString, revision int32) *CanvasAgentWrite {
+func NewCanvasAgentWrite(applied bool, approvalId NullableString, contextChanged bool, contextRevision int32, ops []CanvasAgentWriteOpsInner, revision int32) *CanvasAgentWrite {
 	this := CanvasAgentWrite{}
 	this.Applied = applied
+	this.ApprovalId = approvalId
 	this.ContextChanged = contextChanged
 	this.ContextRevision = contextRevision
 	this.Ops = ops
-	this.ProposalId = proposalId
 	this.Revision = revision
 	return &this
 }
@@ -76,6 +76,32 @@ func (o *CanvasAgentWrite) GetAppliedOk() (*bool, bool) {
 // SetApplied sets field value
 func (o *CanvasAgentWrite) SetApplied(v bool) {
 	o.Applied = v
+}
+
+// GetApprovalId returns the ApprovalId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CanvasAgentWrite) GetApprovalId() string {
+	if o == nil || o.ApprovalId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.ApprovalId.Get()
+}
+
+// GetApprovalIdOk returns a tuple with the ApprovalId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CanvasAgentWrite) GetApprovalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ApprovalId.Get(), o.ApprovalId.IsSet()
+}
+
+// SetApprovalId sets field value
+func (o *CanvasAgentWrite) SetApprovalId(v string) {
+	o.ApprovalId.Set(&v)
 }
 
 // GetContextChanged returns the ContextChanged field value
@@ -150,32 +176,6 @@ func (o *CanvasAgentWrite) SetOps(v []CanvasAgentWriteOpsInner) {
 	o.Ops = v
 }
 
-// GetProposalId returns the ProposalId field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *CanvasAgentWrite) GetProposalId() string {
-	if o == nil || o.ProposalId.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.ProposalId.Get()
-}
-
-// GetProposalIdOk returns a tuple with the ProposalId field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CanvasAgentWrite) GetProposalIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProposalId.Get(), o.ProposalId.IsSet()
-}
-
-// SetProposalId sets field value
-func (o *CanvasAgentWrite) SetProposalId(v string) {
-	o.ProposalId.Set(&v)
-}
-
 // GetRevision returns the Revision field value
 func (o *CanvasAgentWrite) GetRevision() int32 {
 	if o == nil {
@@ -211,10 +211,10 @@ func (o CanvasAgentWrite) MarshalJSON() ([]byte, error) {
 func (o CanvasAgentWrite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["applied"] = o.Applied
+	toSerialize["approvalId"] = o.ApprovalId.Get()
 	toSerialize["contextChanged"] = o.ContextChanged
 	toSerialize["contextRevision"] = o.ContextRevision
 	toSerialize["ops"] = o.Ops
-	toSerialize["proposalId"] = o.ProposalId.Get()
 	toSerialize["revision"] = o.Revision
 
 	for key, value := range o.AdditionalProperties {
@@ -230,10 +230,10 @@ func (o *CanvasAgentWrite) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"applied",
+		"approvalId",
 		"contextChanged",
 		"contextRevision",
 		"ops",
-		"proposalId",
 		"revision",
 	}
 
@@ -265,10 +265,10 @@ func (o *CanvasAgentWrite) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "applied")
+		delete(additionalProperties, "approvalId")
 		delete(additionalProperties, "contextChanged")
 		delete(additionalProperties, "contextRevision")
 		delete(additionalProperties, "ops")
-		delete(additionalProperties, "proposalId")
 		delete(additionalProperties, "revision")
 		o.AdditionalProperties = additionalProperties
 	}

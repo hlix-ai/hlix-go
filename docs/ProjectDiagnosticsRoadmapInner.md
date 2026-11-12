@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DependsOn** | **[]string** |  | 
-**Id** | **string** |  | 
-**Status** | **string** |  | 
-**Title** | **string** |  | 
+**DependsOn** | **[]string** |  |
+**Id** | **string** |  |
+**Status** | **string** |  |
+**Title** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewProjectDiagnosticsRoadmapInner(dependsOn []string, id string, status string, title string, ) *ProjectDiagnosticsRoadmapInner`
 
 NewProjectDiagnosticsRoadmapInner instantiates a new ProjectDiagnosticsRoadmapInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectDiagnosticsRoadmapInnerWithDefaults
 
 `func NewProjectDiagnosticsRoadmapInnerWithDefaults() *ProjectDiagnosticsRoadmapInner`
 
 NewProjectDiagnosticsRoadmapInnerWithDefaults instantiates a new ProjectDiagnosticsRoadmapInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetDependsOn
 

@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Colors** | [**InitialProposalDetailResponseRevisionContentBrandKitColors**](InitialProposalDetailResponseRevisionContentBrandKitColors.md) |  | 
-**Description** | **NullableString** |  | 
-**ExtractedAt** | **NullableTime** |  | 
-**HeaderMode** | Pointer to **string** |  | [optional] 
-**IconTone** | Pointer to **NullableString** |  | [optional] 
-**IconUrl** | Pointer to **NullableString** |  | [optional] 
-**LogoTone** | Pointer to **NullableString** |  | [optional] 
-**LogoUrl** | **NullableString** |  | 
-**Name** | **string** |  | 
-**Provenance** | Pointer to **map[string]string** |  | [optional] 
-**SourceUrl** | **NullableString** |  | 
-**Tagline** | **NullableString** |  | 
-**Typography** | [**InitialProposalDetailResponseRevisionContentBrandKitTypography**](InitialProposalDetailResponseRevisionContentBrandKitTypography.md) |  | 
-**Voice** | **NullableString** |  | 
-**Warnings** | **[]string** |  | 
+**Colors** | [**InitialProposalDetailResponseRevisionContentBrandKitColors**](InitialProposalDetailResponseRevisionContentBrandKitColors.md) |  |
+**Description** | **NullableString** |  |
+**ExtractedAt** | **NullableTime** |  |
+**HeaderMode** | Pointer to **string** |  | [optional]
+**IconTone** | Pointer to **NullableString** |  | [optional]
+**IconUrl** | Pointer to **NullableString** |  | [optional]
+**LogoTone** | Pointer to **NullableString** |  | [optional]
+**LogoUrl** | **NullableString** |  |
+**Name** | **string** |  |
+**Provenance** | Pointer to **map[string]string** |  | [optional]
+**SourceUrl** | **NullableString** |  |
+**Tagline** | **NullableString** |  |
+**Typography** | [**InitialProposalDetailResponseRevisionContentBrandKitTypography**](InitialProposalDetailResponseRevisionContentBrandKitTypography.md) |  |
+**Voice** | **NullableString** |  |
+**Warnings** | **[]string** |  |
 
 ## Methods
 
@@ -27,17 +27,15 @@ Name | Type | Description | Notes
 `func NewPublishBrandKitDraft(colors InitialProposalDetailResponseRevisionContentBrandKitColors, description NullableString, extractedAt NullableTime, logoUrl NullableString, name string, sourceUrl NullableString, tagline NullableString, typography InitialProposalDetailResponseRevisionContentBrandKitTypography, voice NullableString, warnings []string, ) *PublishBrandKitDraft`
 
 NewPublishBrandKitDraft instantiates a new PublishBrandKitDraft object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewPublishBrandKitDraftWithDefaults
 
 `func NewPublishBrandKitDraftWithDefaults() *PublishBrandKitDraft`
 
 NewPublishBrandKitDraftWithDefaults instantiates a new PublishBrandKitDraft object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetColors
 

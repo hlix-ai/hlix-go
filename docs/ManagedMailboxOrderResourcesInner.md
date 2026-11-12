@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **NullableString** |  | 
-**AuthorizationStatus** | **string** |  | 
-**CancellationRequested** | **bool** |  | 
-**ConnectionStatus** | **string** |  | 
-**Domain** | **string** |  | 
-**HostingStatus** | **string** |  | 
-**Id** | **string** |  | 
-**IssueCode** | **NullableString** |  | 
-**Kind** | **string** |  | 
-**MailboxId** | **NullableString** |  | 
-**OrderId** | **string** |  | 
-**RenewalCycle** | **NullableString** |  | 
-**RenewalDate** | **NullableString** |  | 
-**SendEligible** | **bool** |  | 
-**WarmupStatus** | **string** |  | 
+**Address** | **NullableString** |  |
+**AuthorizationStatus** | **string** |  |
+**CancellationRequested** | **bool** |  |
+**ConnectionStatus** | **string** |  |
+**Domain** | **string** |  |
+**HostingStatus** | **string** |  |
+**Id** | **string** |  |
+**IssueCode** | **NullableString** |  |
+**Kind** | **string** |  |
+**MailboxId** | **NullableString** |  |
+**OrderId** | **string** |  |
+**RenewalCycle** | **NullableString** |  |
+**RenewalDate** | **NullableString** |  |
+**SendEligible** | **bool** |  |
+**WarmupStatus** | **string** |  |
 
 ## Methods
 
@@ -27,17 +27,15 @@ Name | Type | Description | Notes
 `func NewManagedMailboxOrderResourcesInner(address NullableString, authorizationStatus string, cancellationRequested bool, connectionStatus string, domain string, hostingStatus string, id string, issueCode NullableString, kind string, mailboxId NullableString, orderId string, renewalCycle NullableString, renewalDate NullableString, sendEligible bool, warmupStatus string, ) *ManagedMailboxOrderResourcesInner`
 
 NewManagedMailboxOrderResourcesInner instantiates a new ManagedMailboxOrderResourcesInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewManagedMailboxOrderResourcesInnerWithDefaults
 
 `func NewManagedMailboxOrderResourcesInnerWithDefaults() *ManagedMailboxOrderResourcesInner`
 
 NewManagedMailboxOrderResourcesInnerWithDefaults instantiates a new ManagedMailboxOrderResourcesInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAddress
 

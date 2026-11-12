@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,10 +20,10 @@ var _ MappedNullable = &ResolvedSettingsCycle{}
 
 // ResolvedSettingsCycle struct for ResolvedSettingsCycle
 type ResolvedSettingsCycle struct {
+	Coder string `json:"coder"`
+	CoderScopeId NullableString `json:"coderScopeId"`
 	Effort NullableString `json:"effort"`
 	Funding ResolvedSettingsCycleFunding `json:"funding"`
-	Harness string `json:"harness"`
-	HarnessScopeId NullableString `json:"harnessScopeId"`
 	MaxParallelCycles NullableInt32 `json:"maxParallelCycles"`
 	Model NullableString `json:"model"`
 	Source ResolvedSettingsCycleSource `json:"source"`
@@ -36,12 +36,12 @@ type _ResolvedSettingsCycle ResolvedSettingsCycle
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResolvedSettingsCycle(effort NullableString, funding ResolvedSettingsCycleFunding, harness string, harnessScopeId NullableString, maxParallelCycles NullableInt32, model NullableString, source ResolvedSettingsCycleSource) *ResolvedSettingsCycle {
+func NewResolvedSettingsCycle(coder string, coderScopeId NullableString, effort NullableString, funding ResolvedSettingsCycleFunding, maxParallelCycles NullableInt32, model NullableString, source ResolvedSettingsCycleSource) *ResolvedSettingsCycle {
 	this := ResolvedSettingsCycle{}
+	this.Coder = coder
+	this.CoderScopeId = coderScopeId
 	this.Effort = effort
 	this.Funding = funding
-	this.Harness = harness
-	this.HarnessScopeId = harnessScopeId
 	this.MaxParallelCycles = maxParallelCycles
 	this.Model = model
 	this.Source = source
@@ -54,6 +54,56 @@ func NewResolvedSettingsCycle(effort NullableString, funding ResolvedSettingsCyc
 func NewResolvedSettingsCycleWithDefaults() *ResolvedSettingsCycle {
 	this := ResolvedSettingsCycle{}
 	return &this
+}
+
+// GetCoder returns the Coder field value
+func (o *ResolvedSettingsCycle) GetCoder() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Coder
+}
+
+// GetCoderOk returns a tuple with the Coder field value
+// and a boolean to check if the value has been set.
+func (o *ResolvedSettingsCycle) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Coder, true
+}
+
+// SetCoder sets field value
+func (o *ResolvedSettingsCycle) SetCoder(v string) {
+	o.Coder = v
+}
+
+// GetCoderScopeId returns the CoderScopeId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ResolvedSettingsCycle) GetCoderScopeId() string {
+	if o == nil || o.CoderScopeId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.CoderScopeId.Get()
+}
+
+// GetCoderScopeIdOk returns a tuple with the CoderScopeId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResolvedSettingsCycle) GetCoderScopeIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CoderScopeId.Get(), o.CoderScopeId.IsSet()
+}
+
+// SetCoderScopeId sets field value
+func (o *ResolvedSettingsCycle) SetCoderScopeId(v string) {
+	o.CoderScopeId.Set(&v)
 }
 
 // GetEffort returns the Effort field value
@@ -104,56 +154,6 @@ func (o *ResolvedSettingsCycle) GetFundingOk() (*ResolvedSettingsCycleFunding, b
 // SetFunding sets field value
 func (o *ResolvedSettingsCycle) SetFunding(v ResolvedSettingsCycleFunding) {
 	o.Funding = v
-}
-
-// GetHarness returns the Harness field value
-func (o *ResolvedSettingsCycle) GetHarness() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Harness
-}
-
-// GetHarnessOk returns a tuple with the Harness field value
-// and a boolean to check if the value has been set.
-func (o *ResolvedSettingsCycle) GetHarnessOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Harness, true
-}
-
-// SetHarness sets field value
-func (o *ResolvedSettingsCycle) SetHarness(v string) {
-	o.Harness = v
-}
-
-// GetHarnessScopeId returns the HarnessScopeId field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *ResolvedSettingsCycle) GetHarnessScopeId() string {
-	if o == nil || o.HarnessScopeId.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.HarnessScopeId.Get()
-}
-
-// GetHarnessScopeIdOk returns a tuple with the HarnessScopeId field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ResolvedSettingsCycle) GetHarnessScopeIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.HarnessScopeId.Get(), o.HarnessScopeId.IsSet()
-}
-
-// SetHarnessScopeId sets field value
-func (o *ResolvedSettingsCycle) SetHarnessScopeId(v string) {
-	o.HarnessScopeId.Set(&v)
 }
 
 // GetMaxParallelCycles returns the MaxParallelCycles field value
@@ -242,10 +242,10 @@ func (o ResolvedSettingsCycle) MarshalJSON() ([]byte, error) {
 
 func (o ResolvedSettingsCycle) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["coder"] = o.Coder
+	toSerialize["coderScopeId"] = o.CoderScopeId.Get()
 	toSerialize["effort"] = o.Effort.Get()
 	toSerialize["funding"] = o.Funding
-	toSerialize["harness"] = o.Harness
-	toSerialize["harnessScopeId"] = o.HarnessScopeId.Get()
 	toSerialize["maxParallelCycles"] = o.MaxParallelCycles.Get()
 	toSerialize["model"] = o.Model.Get()
 	toSerialize["source"] = o.Source
@@ -262,10 +262,10 @@ func (o *ResolvedSettingsCycle) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"coder",
+		"coderScopeId",
 		"effort",
 		"funding",
-		"harness",
-		"harnessScopeId",
 		"maxParallelCycles",
 		"model",
 		"source",
@@ -298,10 +298,10 @@ func (o *ResolvedSettingsCycle) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "coder")
+		delete(additionalProperties, "coderScopeId")
 		delete(additionalProperties, "effort")
 		delete(additionalProperties, "funding")
-		delete(additionalProperties, "harness")
-		delete(additionalProperties, "harnessScopeId")
 		delete(additionalProperties, "maxParallelCycles")
 		delete(additionalProperties, "model")
 		delete(additionalProperties, "source")

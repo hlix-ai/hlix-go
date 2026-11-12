@@ -4,56 +4,53 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountingSource** | **NullableString** |  | 
-**BilledTo** | **NullableString** |  | 
-**BillingMarkupBps** | **NullableInt32** |  | 
-**BillingProjectKind** | **NullableString** |  | 
-**CoderAccountId** | **NullableString** |  | 
-**CompletedAt** | **NullableString** |  | 
-**CostMicros** | **NullableInt64** |  | 
-**CredentialKind** | **NullableString** |  | 
-**CycleId** | **NullableString** |  | 
-**CycleRunId** | **NullableString** |  | 
-**DurableRunId** | **NullableString** |  | 
-**FundingMode** | **NullableString** |  | 
-**Id** | **string** |  | 
-**InputSnapshot** | **NullableString** |  | 
-**Iteration** | **NullableInt32** |  | 
-**Model** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**OutputSnapshot** | **NullableString** |  | 
-**ParentRunId** | **NullableString** |  | 
-**Persona** | **NullableString** |  | 
-**ProjectId** | **NullableString** |  | 
-**Role** | **string** |  | 
-**SpanId** | **NullableString** |  | 
-**StartedAt** | **string** |  | 
-**Status** | **string** |  | 
-**TaskId** | **NullableString** |  | 
-**TokensIn** | **NullableInt32** |  | 
-**TokensOut** | **NullableInt32** |  | 
-**TraceId** | **NullableString** |  | 
-**UsageCompleteness** | **NullableString** |  | 
-**UsageSequence** | **NullableInt32** |  | 
+**AccountingSource** | **NullableString** |  |
+**AgentKind** | **string** |  |
+**BilledTo** | **NullableString** |  |
+**BillingMarkupBps** | **NullableInt32** |  |
+**BillingProjectKind** | **NullableString** |  |
+**CoderAccountId** | **NullableString** |  |
+**CompletedAt** | **NullableString** |  |
+**CostMicros** | **NullableInt64** |  |
+**CredentialKind** | **NullableString** |  |
+**CycleId** | **NullableString** |  |
+**CycleRunId** | **NullableString** |  |
+**FundingMode** | **NullableString** |  |
+**Id** | **string** |  |
+**InputSnapshot** | **NullableString** |  |
+**Iteration** | **NullableInt32** |  |
+**Model** | **string** |  |
+**OrganizationId** | **string** |  |
+**OutputSnapshot** | **NullableString** |  |
+**ParentRunId** | **NullableString** |  |
+**ProjectId** | **NullableString** |  |
+**PromptKey** | **NullableString** |  |
+**SpanId** | **NullableString** |  |
+**StartedAt** | **string** |  |
+**Status** | **string** |  |
+**TaskId** | **NullableString** |  |
+**TokensIn** | **NullableInt32** |  |
+**TokensOut** | **NullableInt32** |  |
+**TraceId** | **NullableString** |  |
+**UsageCompleteness** | **NullableString** |  |
+**UsageSequence** | **NullableInt32** |  |
 
 ## Methods
 
 ### NewAgentRun
 
-`func NewAgentRun(accountingSource NullableString, billedTo NullableString, billingMarkupBps NullableInt32, billingProjectKind NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, cycleId NullableString, cycleRunId NullableString, durableRunId NullableString, fundingMode NullableString, id string, inputSnapshot NullableString, iteration NullableInt32, model string, organizationId string, outputSnapshot NullableString, parentRunId NullableString, persona NullableString, projectId NullableString, role string, spanId NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, traceId NullableString, usageCompleteness NullableString, usageSequence NullableInt32, ) *AgentRun`
+`func NewAgentRun(accountingSource NullableString, agentKind string, billedTo NullableString, billingMarkupBps NullableInt32, billingProjectKind NullableString, coderAccountId NullableString, completedAt NullableString, costMicros NullableInt64, credentialKind NullableString, cycleId NullableString, cycleRunId NullableString, fundingMode NullableString, id string, inputSnapshot NullableString, iteration NullableInt32, model string, organizationId string, outputSnapshot NullableString, parentRunId NullableString, projectId NullableString, promptKey NullableString, spanId NullableString, startedAt string, status string, taskId NullableString, tokensIn NullableInt32, tokensOut NullableInt32, traceId NullableString, usageCompleteness NullableString, usageSequence NullableInt32, ) *AgentRun`
 
 NewAgentRun instantiates a new AgentRun object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentRunWithDefaults
 
 `func NewAgentRunWithDefaults() *AgentRun`
 
 NewAgentRunWithDefaults instantiates a new AgentRun object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAccountingSource
 
@@ -85,6 +82,26 @@ SetAccountingSource sets AccountingSource field to given value.
 `func (o *AgentRun) UnsetAccountingSource()`
 
 UnsetAccountingSource ensures that no value is present for AccountingSource, not even an explicit nil
+### GetAgentKind
+
+`func (o *AgentRun) GetAgentKind() string`
+
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
+
+### GetAgentKindOk
+
+`func (o *AgentRun) GetAgentKindOk() (*string, bool)`
+
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAgentKind
+
+`func (o *AgentRun) SetAgentKind(v string)`
+
+SetAgentKind sets AgentKind field to given value.
+
+
 ### GetBilledTo
 
 `func (o *AgentRun) GetBilledTo() string`
@@ -355,36 +372,6 @@ SetCycleRunId sets CycleRunId field to given value.
 `func (o *AgentRun) UnsetCycleRunId()`
 
 UnsetCycleRunId ensures that no value is present for CycleRunId, not even an explicit nil
-### GetDurableRunId
-
-`func (o *AgentRun) GetDurableRunId() string`
-
-GetDurableRunId returns the DurableRunId field if non-nil, zero value otherwise.
-
-### GetDurableRunIdOk
-
-`func (o *AgentRun) GetDurableRunIdOk() (*string, bool)`
-
-GetDurableRunIdOk returns a tuple with the DurableRunId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDurableRunId
-
-`func (o *AgentRun) SetDurableRunId(v string)`
-
-SetDurableRunId sets DurableRunId field to given value.
-
-
-### SetDurableRunIdNil
-
-`func (o *AgentRun) SetDurableRunIdNil(b bool)`
-
- SetDurableRunIdNil sets the value for DurableRunId to be an explicit nil
-
-### UnsetDurableRunId
-`func (o *AgentRun) UnsetDurableRunId()`
-
-UnsetDurableRunId ensures that no value is present for DurableRunId, not even an explicit nil
 ### GetFundingMode
 
 `func (o *AgentRun) GetFundingMode() string`
@@ -595,36 +582,6 @@ SetParentRunId sets ParentRunId field to given value.
 `func (o *AgentRun) UnsetParentRunId()`
 
 UnsetParentRunId ensures that no value is present for ParentRunId, not even an explicit nil
-### GetPersona
-
-`func (o *AgentRun) GetPersona() string`
-
-GetPersona returns the Persona field if non-nil, zero value otherwise.
-
-### GetPersonaOk
-
-`func (o *AgentRun) GetPersonaOk() (*string, bool)`
-
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPersona
-
-`func (o *AgentRun) SetPersona(v string)`
-
-SetPersona sets Persona field to given value.
-
-
-### SetPersonaNil
-
-`func (o *AgentRun) SetPersonaNil(b bool)`
-
- SetPersonaNil sets the value for Persona to be an explicit nil
-
-### UnsetPersona
-`func (o *AgentRun) UnsetPersona()`
-
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
 ### GetProjectId
 
 `func (o *AgentRun) GetProjectId() string`
@@ -655,26 +612,36 @@ SetProjectId sets ProjectId field to given value.
 `func (o *AgentRun) UnsetProjectId()`
 
 UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
-### GetRole
+### GetPromptKey
 
-`func (o *AgentRun) GetRole() string`
+`func (o *AgentRun) GetPromptKey() string`
 
-GetRole returns the Role field if non-nil, zero value otherwise.
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### GetRoleOk
+### GetPromptKeyOk
 
-`func (o *AgentRun) GetRoleOk() (*string, bool)`
+`func (o *AgentRun) GetPromptKeyOk() (*string, bool)`
 
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetPromptKey
 
-`func (o *AgentRun) SetRole(v string)`
+`func (o *AgentRun) SetPromptKey(v string)`
 
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *AgentRun) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *AgentRun) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 ### GetSpanId
 
 `func (o *AgentRun) GetSpanId() string`

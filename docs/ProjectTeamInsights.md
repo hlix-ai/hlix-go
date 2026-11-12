@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AgentRuns** | **int32** |  | 
-**CloudMachines** | **int32** |  | 
-**EtaBasis** | **int32** |  | 
-**EtaHighHours** | **NullableFloat32** |  | 
-**EtaLowHours** | **NullableFloat32** |  | 
-**EtaScope** | **NullableString** |  | 
-**FinishedCycles** | **int32** |  | 
-**MachineHours** | **float32** |  | 
-**OpenCycles** | **int32** |  | 
+**AgentRuns** | **int32** |  |
+**CloudMachines** | **int32** |  |
+**EtaBasis** | **int32** |  |
+**EtaHighHours** | **NullableFloat32** |  |
+**EtaLowHours** | **NullableFloat32** |  |
+**EtaScope** | **NullableString** |  |
+**FinishedCycles** | **int32** |  |
+**MachineHours** | **float32** |  |
+**OpenCycles** | **int32** |  |
 
 ## Methods
 
@@ -21,17 +21,15 @@ Name | Type | Description | Notes
 `func NewProjectTeamInsights(agentRuns int32, cloudMachines int32, etaBasis int32, etaHighHours NullableFloat32, etaLowHours NullableFloat32, etaScope NullableString, finishedCycles int32, machineHours float32, openCycles int32, ) *ProjectTeamInsights`
 
 NewProjectTeamInsights instantiates a new ProjectTeamInsights object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectTeamInsightsWithDefaults
 
 `func NewProjectTeamInsightsWithDefaults() *ProjectTeamInsights`
 
 NewProjectTeamInsightsWithDefaults instantiates a new ProjectTeamInsights object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAgentRuns
 

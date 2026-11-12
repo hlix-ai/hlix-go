@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AverageDaysToPayment** | **NullableFloat32** |  | 
-**Collected** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Drafts** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Issued** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Outstanding** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**Overdue** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
-**OverdueAging** | [**AgencyBillingReportBillingOverdueAging**](AgencyBillingReportBillingOverdueAging.md) |  | 
-**Unbilled** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  | 
+**AverageDaysToPayment** | **NullableFloat32** |  |
+**Collected** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Drafts** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Issued** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Outstanding** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**Overdue** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
+**OverdueAging** | [**AgencyBillingReportBillingOverdueAging**](AgencyBillingReportBillingOverdueAging.md) |  |
+**Unbilled** | [**[]AgencyBillingReportBillingCollectedInner**](AgencyBillingReportBillingCollectedInner.md) |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewAgencyBillingReportBilling(averageDaysToPayment NullableFloat32, collected []AgencyBillingReportBillingCollectedInner, drafts []AgencyBillingReportBillingCollectedInner, issued []AgencyBillingReportBillingCollectedInner, outstanding []AgencyBillingReportBillingCollectedInner, overdue []AgencyBillingReportBillingCollectedInner, overdueAging AgencyBillingReportBillingOverdueAging, unbilled []AgencyBillingReportBillingCollectedInner, ) *AgencyBillingReportBilling`
 
 NewAgencyBillingReportBilling instantiates a new AgencyBillingReportBilling object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgencyBillingReportBillingWithDefaults
 
 `func NewAgencyBillingReportBillingWithDefaults() *AgencyBillingReportBilling`
 
 NewAgencyBillingReportBillingWithDefaults instantiates a new AgencyBillingReportBilling object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAverageDaysToPayment
 

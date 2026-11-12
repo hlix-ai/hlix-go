@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovalRef** | Pointer to **string** |  | [optional] 
-**SensitiveDataApproved** | **bool** |  | 
+**ApprovalRef** | Pointer to **string** |  | [optional]
+**SensitiveDataApproved** | **bool** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewSubmitBatchPolicy(sensitiveDataApproved bool, ) *SubmitBatchPolicy`
 
 NewSubmitBatchPolicy instantiates a new SubmitBatchPolicy object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSubmitBatchPolicyWithDefaults
 
 `func NewSubmitBatchPolicyWithDefaults() *SubmitBatchPolicy`
 
 NewSubmitBatchPolicyWithDefaults instantiates a new SubmitBatchPolicy object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApprovalRef
 

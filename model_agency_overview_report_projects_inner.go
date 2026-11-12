@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -23,6 +23,7 @@ type AgencyOverviewReportProjectsInner struct {
 	ActiveWork bool `json:"activeWork"`
 	Agents AgencyOverviewReportProjectsInnerAgents `json:"agents"`
 	Approvals AgencyOverviewReportProjectsInnerApprovals `json:"approvals"`
+	Attention []AgencyOverviewReportAttentionInnerAttentionItem `json:"attention"`
 	ClientAccountId NullableString `json:"clientAccountId"`
 	ClientName NullableString `json:"clientName"`
 	CostCapMicros NullableInt64 `json:"costCapMicros"`
@@ -42,11 +43,12 @@ type _AgencyOverviewReportProjectsInner AgencyOverviewReportProjectsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgencyOverviewReportProjectsInner(activeWork bool, agents AgencyOverviewReportProjectsInnerAgents, approvals AgencyOverviewReportProjectsInnerApprovals, clientAccountId NullableString, clientName NullableString, costCapMicros NullableInt64, cycles AgencyOverviewReportProjectsInnerCycles, deployments AgencyOverviewReportProjectsInnerDeployments, health AgencyOverviewReportProjectsInnerHealth, id string, lastActivityAt NullableString, name string, tasks AgencyOverviewReportProjectsInnerTasks) *AgencyOverviewReportProjectsInner {
+func NewAgencyOverviewReportProjectsInner(activeWork bool, agents AgencyOverviewReportProjectsInnerAgents, approvals AgencyOverviewReportProjectsInnerApprovals, attention []AgencyOverviewReportAttentionInnerAttentionItem, clientAccountId NullableString, clientName NullableString, costCapMicros NullableInt64, cycles AgencyOverviewReportProjectsInnerCycles, deployments AgencyOverviewReportProjectsInnerDeployments, health AgencyOverviewReportProjectsInnerHealth, id string, lastActivityAt NullableString, name string, tasks AgencyOverviewReportProjectsInnerTasks) *AgencyOverviewReportProjectsInner {
 	this := AgencyOverviewReportProjectsInner{}
 	this.ActiveWork = activeWork
 	this.Agents = agents
 	this.Approvals = approvals
+	this.Attention = attention
 	this.ClientAccountId = clientAccountId
 	this.ClientName = clientName
 	this.CostCapMicros = costCapMicros
@@ -138,6 +140,30 @@ func (o *AgencyOverviewReportProjectsInner) GetApprovalsOk() (*AgencyOverviewRep
 // SetApprovals sets field value
 func (o *AgencyOverviewReportProjectsInner) SetApprovals(v AgencyOverviewReportProjectsInnerApprovals) {
 	o.Approvals = v
+}
+
+// GetAttention returns the Attention field value
+func (o *AgencyOverviewReportProjectsInner) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem {
+	if o == nil {
+		var ret []AgencyOverviewReportAttentionInnerAttentionItem
+		return ret
+	}
+
+	return o.Attention
+}
+
+// GetAttentionOk returns a tuple with the Attention field value
+// and a boolean to check if the value has been set.
+func (o *AgencyOverviewReportProjectsInner) GetAttentionOk() ([]AgencyOverviewReportAttentionInnerAttentionItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Attention, true
+}
+
+// SetAttention sets field value
+func (o *AgencyOverviewReportProjectsInner) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem) {
+	o.Attention = v
 }
 
 // GetClientAccountId returns the ClientAccountId field value
@@ -401,6 +427,7 @@ func (o AgencyOverviewReportProjectsInner) ToMap() (map[string]interface{}, erro
 	toSerialize["activeWork"] = o.ActiveWork
 	toSerialize["agents"] = o.Agents
 	toSerialize["approvals"] = o.Approvals
+	toSerialize["attention"] = o.Attention
 	toSerialize["clientAccountId"] = o.ClientAccountId.Get()
 	toSerialize["clientName"] = o.ClientName.Get()
 	toSerialize["costCapMicros"] = o.CostCapMicros.Get()
@@ -427,6 +454,7 @@ func (o *AgencyOverviewReportProjectsInner) UnmarshalJSON(data []byte) (err erro
 		"activeWork",
 		"agents",
 		"approvals",
+		"attention",
 		"clientAccountId",
 		"clientName",
 		"costCapMicros",
@@ -469,6 +497,7 @@ func (o *AgencyOverviewReportProjectsInner) UnmarshalJSON(data []byte) (err erro
 		delete(additionalProperties, "activeWork")
 		delete(additionalProperties, "agents")
 		delete(additionalProperties, "approvals")
+		delete(additionalProperties, "attention")
 		delete(additionalProperties, "clientAccountId")
 		delete(additionalProperties, "clientName")
 		delete(additionalProperties, "costCapMicros")

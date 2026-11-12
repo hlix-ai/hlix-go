@@ -4,46 +4,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AvatarImageKey** | **NullableString** |  | 
-**AvatarKey** | **NullableString** |  | 
-**AvatarUrl** | **NullableString** |  | 
-**ContextOverlay** | **interface{}** |  | 
-**CreatedAt** | **string** |  | 
-**CreatedByUserId** | **NullableString** |  | 
-**Description** | **NullableString** |  | 
-**Duty** | **string** |  | 
-**Id** | **string** |  | 
-**Instructions** | **NullableString** |  | 
-**IsActive** | **bool** |  | 
-**ModelOverride** | **NullableString** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Pipeline** | **string** |  | 
-**PreRunHooks** | **interface{}** |  | 
-**ProjectId** | **NullableString** |  | 
-**RuntimeKind** | **NullableString** |  | 
-**RuntimeVersion** | **NullableString** |  | 
-**ToolConfig** | **interface{}** |  | 
-**UpdatedAt** | **string** |  | 
+**AvatarImageKey** | **NullableString** |  |
+**AvatarKey** | **NullableString** |  |
+**AvatarUrl** | **NullableString** |  |
+**Coder** | **NullableString** |  |
+**ContextOverlay** | **interface{}** |  |
+**CreatedAt** | **string** |  |
+**CreatedByUserId** | **NullableString** |  |
+**Description** | **NullableString** |  |
+**Duty** | **string** |  |
+**Id** | **string** |  |
+**Instructions** | **NullableString** |  |
+**IsActive** | **bool** |  |
+**ModelOverride** | **NullableString** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**PreRunHooks** | **interface{}** |  |
+**ProjectId** | **NullableString** |  |
+**ReviewSet** | **string** |  |
+**RuntimeVersion** | **NullableString** |  |
+**ToolConfig** | **interface{}** |  |
+**UpdatedAt** | **string** |  |
 
 ## Methods
 
 ### NewAgent
 
-`func NewAgent(avatarImageKey NullableString, avatarKey NullableString, avatarUrl NullableString, contextOverlay interface{}, createdAt string, createdByUserId NullableString, description NullableString, duty string, id string, instructions NullableString, isActive bool, modelOverride NullableString, name string, organizationId string, pipeline string, preRunHooks interface{}, projectId NullableString, runtimeKind NullableString, runtimeVersion NullableString, toolConfig interface{}, updatedAt string, ) *Agent`
+`func NewAgent(avatarImageKey NullableString, avatarKey NullableString, avatarUrl NullableString, coder NullableString, contextOverlay interface{}, createdAt string, createdByUserId NullableString, description NullableString, duty string, id string, instructions NullableString, isActive bool, modelOverride NullableString, name string, organizationId string, preRunHooks interface{}, projectId NullableString, reviewSet string, runtimeVersion NullableString, toolConfig interface{}, updatedAt string, ) *Agent`
 
 NewAgent instantiates a new Agent object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAgentWithDefaults
 
 `func NewAgentWithDefaults() *Agent`
 
 NewAgentWithDefaults instantiates a new Agent object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAvatarImageKey
 
@@ -135,6 +133,36 @@ SetAvatarUrl sets AvatarUrl field to given value.
 `func (o *Agent) UnsetAvatarUrl()`
 
 UnsetAvatarUrl ensures that no value is present for AvatarUrl, not even an explicit nil
+### GetCoder
+
+`func (o *Agent) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *Agent) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *Agent) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
+
+### SetCoderNil
+
+`func (o *Agent) SetCoderNil(b bool)`
+
+ SetCoderNil sets the value for Coder to be an explicit nil
+
+### UnsetCoder
+`func (o *Agent) UnsetCoder()`
+
+UnsetCoder ensures that no value is present for Coder, not even an explicit nil
 ### GetContextOverlay
 
 `func (o *Agent) GetContextOverlay() interface{}`
@@ -405,26 +433,6 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
-### GetPipeline
-
-`func (o *Agent) GetPipeline() string`
-
-GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
-
-### GetPipelineOk
-
-`func (o *Agent) GetPipelineOk() (*string, bool)`
-
-GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPipeline
-
-`func (o *Agent) SetPipeline(v string)`
-
-SetPipeline sets Pipeline field to given value.
-
-
 ### GetPreRunHooks
 
 `func (o *Agent) GetPreRunHooks() interface{}`
@@ -485,36 +493,26 @@ SetProjectId sets ProjectId field to given value.
 `func (o *Agent) UnsetProjectId()`
 
 UnsetProjectId ensures that no value is present for ProjectId, not even an explicit nil
-### GetRuntimeKind
+### GetReviewSet
 
-`func (o *Agent) GetRuntimeKind() string`
+`func (o *Agent) GetReviewSet() string`
 
-GetRuntimeKind returns the RuntimeKind field if non-nil, zero value otherwise.
+GetReviewSet returns the ReviewSet field if non-nil, zero value otherwise.
 
-### GetRuntimeKindOk
+### GetReviewSetOk
 
-`func (o *Agent) GetRuntimeKindOk() (*string, bool)`
+`func (o *Agent) GetReviewSetOk() (*string, bool)`
 
-GetRuntimeKindOk returns a tuple with the RuntimeKind field if it's non-nil, zero value otherwise
+GetReviewSetOk returns a tuple with the ReviewSet field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRuntimeKind
+### SetReviewSet
 
-`func (o *Agent) SetRuntimeKind(v string)`
+`func (o *Agent) SetReviewSet(v string)`
 
-SetRuntimeKind sets RuntimeKind field to given value.
+SetReviewSet sets ReviewSet field to given value.
 
 
-### SetRuntimeKindNil
-
-`func (o *Agent) SetRuntimeKindNil(b bool)`
-
- SetRuntimeKindNil sets the value for RuntimeKind to be an explicit nil
-
-### UnsetRuntimeKind
-`func (o *Agent) UnsetRuntimeKind()`
-
-UnsetRuntimeKind ensures that no value is present for RuntimeKind, not even an explicit nil
 ### GetRuntimeVersion
 
 `func (o *Agent) GetRuntimeVersion() string`

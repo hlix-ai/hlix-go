@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EntryFrameId** | **string** |  | 
-**FrameIds** | **[]string** |  | 
-**Id** | **string** |  | 
-**Name** | **string** |  | 
+**EntryFrameId** | **string** |  |
+**FrameIds** | **[]string** |  |
+**Id** | **string** |  |
+**Name** | **string** |  |
 
 ## Methods
 
@@ -16,17 +16,15 @@ Name | Type | Description | Notes
 `func NewDesignDetailRevisionFlowsInner(entryFrameId string, frameIds []string, id string, name string, ) *DesignDetailRevisionFlowsInner`
 
 NewDesignDetailRevisionFlowsInner instantiates a new DesignDetailRevisionFlowsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDesignDetailRevisionFlowsInnerWithDefaults
 
 `func NewDesignDetailRevisionFlowsInnerWithDefaults() *DesignDetailRevisionFlowsInner`
 
 NewDesignDetailRevisionFlowsInnerWithDefaults instantiates a new DesignDetailRevisionFlowsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetEntryFrameId
 

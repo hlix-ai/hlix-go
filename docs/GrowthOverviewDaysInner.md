@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Bounced** | **int32** |  | 
-**Date** | **string** |  | 
-**Delivered** | **int32** |  | 
-**EmailsCharged** | **int32** |  | 
-**HotLeads** | **int32** |  | 
-**SentFirst** | **int32** |  | 
-**SentFollowUp** | **int32** |  | 
-**SpentMicros** | **int64** |  | 
+**Bounced** | **int32** |  |
+**Date** | **string** |  |
+**Delivered** | **int32** |  |
+**EmailsCharged** | **int32** |  |
+**HotLeads** | **int32** |  |
+**SentFirst** | **int32** |  |
+**SentFollowUp** | **int32** |  |
+**SpentMicros** | **int64** |  |
 
 ## Methods
 
@@ -20,17 +20,15 @@ Name | Type | Description | Notes
 `func NewGrowthOverviewDaysInner(bounced int32, date string, delivered int32, emailsCharged int32, hotLeads int32, sentFirst int32, sentFollowUp int32, spentMicros int64, ) *GrowthOverviewDaysInner`
 
 NewGrowthOverviewDaysInner instantiates a new GrowthOverviewDaysInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthOverviewDaysInnerWithDefaults
 
 `func NewGrowthOverviewDaysInnerWithDefaults() *GrowthOverviewDaysInner`
 
 NewGrowthOverviewDaysInnerWithDefaults instantiates a new GrowthOverviewDaysInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBounced
 

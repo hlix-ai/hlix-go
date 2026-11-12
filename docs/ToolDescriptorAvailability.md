@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ready** | **bool** |  | 
-**Reason** | **NullableString** |  | 
+**Ready** | **bool** |  |
+**Reason** | **NullableString** |  |
 
 ## Methods
 
@@ -14,17 +14,15 @@ Name | Type | Description | Notes
 `func NewToolDescriptorAvailability(ready bool, reason NullableString, ) *ToolDescriptorAvailability`
 
 NewToolDescriptorAvailability instantiates a new ToolDescriptorAvailability object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewToolDescriptorAvailabilityWithDefaults
 
 `func NewToolDescriptorAvailabilityWithDefaults() *ToolDescriptorAvailability`
 
 NewToolDescriptorAvailabilityWithDefaults instantiates a new ToolDescriptorAvailability object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetReady
 

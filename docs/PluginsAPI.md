@@ -1,18 +1,18 @@
-# \PluginsAPI
+# PluginsAPI
 
 All URIs are relative to *https://server.hlix.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPlugin**](PluginsAPI.md#GetPlugin) | **Get** /v1/api/plugins/{id} | Read a plugin installation
-[**GetPluginCatalogDetail**](PluginsAPI.md#GetPluginCatalogDetail) | **Get** /v1/api/plugins/catalog/detail | Read MCP Registry details and a public repository README
-[**ImportPluginArchive**](PluginsAPI.md#ImportPluginArchive) | **Post** /v1/api/plugins/import-archive | Preview a standard plugin or Agent Skills ZIP
-[**InstallPlugin**](PluginsAPI.md#InstallPlugin) | **Post** /v1/api/plugins | Install a plugin with encrypted inputs
-[**ListPluginCatalog**](PluginsAPI.md#ListPluginCatalog) | **Get** /v1/api/plugins/catalog | Browse official MCP Registry recipes
-[**ListPlugins**](PluginsAPI.md#ListPlugins) | **Get** /v1/api/plugins | List installed workspace plugins
-[**PreviewPlugin**](PluginsAPI.md#PreviewPlugin) | **Post** /v1/api/plugins/preview | Validate a plugin manifest without installing
-[**RemovePlugin**](PluginsAPI.md#RemovePlugin) | **Delete** /v1/api/plugins/{id} | Remove a plugin from subsequent runs
-[**UpdatePlugin**](PluginsAPI.md#UpdatePlugin) | **Patch** /v1/api/plugins/{id} | Update plugin setup, version or project availability
+[**GetPlugin**](PluginsAPI.md#getplugin) | **Get** /v1/api/plugins/{id} | Read a plugin installation
+[**GetPluginCatalogDetail**](PluginsAPI.md#getplugincatalogdetail) | **Get** /v1/api/plugins/catalog/detail | Read MCP Registry details and a public repository README
+[**ImportPluginArchive**](PluginsAPI.md#importpluginarchive) | **Post** /v1/api/plugins/import-archive | Preview a standard plugin or Agent Skills ZIP
+[**InstallPlugin**](PluginsAPI.md#installplugin) | **Post** /v1/api/plugins | Install a plugin with encrypted inputs
+[**ListPluginCatalog**](PluginsAPI.md#listplugincatalog) | **Get** /v1/api/plugins/catalog | Browse official MCP Registry recipes
+[**ListPlugins**](PluginsAPI.md#listplugins) | **Get** /v1/api/plugins | List installed workspace plugins
+[**PreviewPlugin**](PluginsAPI.md#previewplugin) | **Post** /v1/api/plugins/preview | Validate a plugin manifest without installing
+[**RemovePlugin**](PluginsAPI.md#removeplugin) | **Delete** /v1/api/plugins/{id} | Remove a plugin from subsequent runs
+[**UpdatePlugin**](PluginsAPI.md#updateplugin) | **Patch** /v1/api/plugins/{id} | Update plugin setup, version or project availability
 
 
 
@@ -23,6 +23,8 @@ Method | HTTP request | Description
 Read a plugin installation
 
 ### Example
+
+Replace example resource IDs and request values with your own before running.
 
 ```go
 package main
@@ -35,12 +37,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.GetPlugin(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.GetPlugin(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.GetPlugin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,17 +61,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPluginRequest struct via the builder pattern
+Pass optional parameters through the `apiGetPluginRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -74,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -94,6 +99,8 @@ Read MCP Registry details and a public repository README
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -105,13 +112,16 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	name := "name_example" // string | Canonical MCP Registry server name.
 	version := "version_example" // string | Exact registry version or latest (default). (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.GetPluginCatalogDetail(context.Background()).Name(name).Version(version).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.GetPluginCatalogDetail(ctx).Name(name).Version(version).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.GetPluginCatalogDetail``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,14 +137,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPluginCatalogDetailRequest struct via the builder pattern
+Pass optional parameters through the `apiGetPluginCatalogDetailRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Canonical MCP Registry server name. | 
- **version** | **string** | Exact registry version or latest (default). | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **name** | **string** | Canonical MCP Registry server name. |
+ **version** | **string** | Exact registry version or latest (default). |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -142,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -162,6 +172,8 @@ Preview a standard plugin or Agent Skills ZIP
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -173,12 +185,15 @@ import (
 )
 
 func main() {
-	body := os.NewFile(1234, "some_file") // *os.File | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	body := os.NewFile(1234, "some_file") // *os.File |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.ImportPluginArchive(context.Background()).Body(body).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.ImportPluginArchive(ctx).Body(body).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.ImportPluginArchive``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,13 +209,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiImportPluginArchiveRequest struct via the builder pattern
+Pass optional parameters through the `apiImportPluginArchiveRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | ***os.File** |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **body** | ***os.File** |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -208,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -228,10 +243,13 @@ Install a plugin with encrypted inputs
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -239,12 +257,18 @@ import (
 )
 
 func main() {
-	createPlugin := *openapiclient.NewCreatePlugin(map[string]string{"key": "Inner_example"}, *openapiclient.NewCreatePluginManifest("Description_example", "Id_example", []openapiclient.CreatePluginManifestInputsInner{*openapiclient.NewCreatePluginManifestInputsInner("Key_example", "Label_example", false, false)}, []openapiclient.CreatePluginManifestMcpServersInner{*openapiclient.NewCreatePluginManifestMcpServersInner("Name_example", "Transport_example")}, "Name_example", float32(123), []openapiclient.CreatePluginManifestSkillsInner{*openapiclient.NewCreatePluginManifestSkillsInner([]openapiclient.CreatePluginManifestSkillsInnerFilesInner{*openapiclient.NewCreatePluginManifestSkillsInnerFilesInner("Content_example", "Path_example")}, "Slug_example")}, "Version_example"), []string{"ProjectIds_example"}) // CreatePlugin | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var createPlugin openapiclient.CreatePlugin
+	if err := json.Unmarshal([]byte("{\"inputs\":{\"key\":\"text\"},\"manifest\":{\"description\":\"text\",\"id\":\"text\",\"inputs\":[{\"key\":\"EUR\",\"label\":\"text\",\"required\":true,\"secret\":true}],\"mcpServers\":[{\"name\":\"text\",\"transport\":\"stdio\"}],\"name\":\"text\",\"schemaVersion\":1,\"skills\":[{\"files\":[{\"content\":\"text\",\"path\":\"text\"}],\"slug\":\"text\"}],\"version\":\"text\"},\"projectIds\":[\"123e4567-e89b-42d3-a456-426614174000\"]}"), &createPlugin); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.InstallPlugin(context.Background()).CreatePlugin(createPlugin).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.InstallPlugin(ctx).CreatePlugin(createPlugin).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.InstallPlugin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -260,13 +284,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiInstallPluginRequest struct via the builder pattern
+Pass optional parameters through the `apiInstallPluginRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createPlugin** | [**CreatePlugin**](CreatePlugin.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **createPlugin** | [**CreatePlugin**](CreatePlugin.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -274,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -294,6 +318,8 @@ Browse official MCP Registry recipes
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -305,13 +331,16 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	search := "search_example" // string | Registry search text. (optional)
 	cursor := "cursor_example" // string | Opaque next cursor paired with the same search. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.ListPluginCatalog(context.Background()).Search(search).Cursor(cursor).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.ListPluginCatalog(ctx).Search(search).Cursor(cursor).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.ListPluginCatalog``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -327,14 +356,14 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListPluginCatalogRequest struct via the builder pattern
+Pass optional parameters through the `apiListPluginCatalogRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search** | **string** | Registry search text. | 
- **cursor** | **string** | Opaque next cursor paired with the same search. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **search** | **string** | Registry search text. |
+ **cursor** | **string** | Opaque next cursor paired with the same search. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -342,7 +371,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -362,6 +391,8 @@ List installed workspace plugins
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -373,12 +404,15 @@ import (
 )
 
 func main() {
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
 	projectId := "projectId_example" // string | Only enabled plugins available to this project. (optional)
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.ListPlugins(context.Background()).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.ListPlugins(ctx).ProjectId(projectId).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.ListPlugins``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -394,13 +428,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListPluginsRequest struct via the builder pattern
+Pass optional parameters through the `apiListPluginsRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Only enabled plugins available to this project. | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **projectId** | **string** | Only enabled plugins available to this project. |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -408,7 +442,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -428,10 +462,13 @@ Validate a plugin manifest without installing
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -439,12 +476,18 @@ import (
 )
 
 func main() {
-	previewPlugin := *openapiclient.NewPreviewPlugin(*openapiclient.NewCreatePluginManifest("Description_example", "Id_example", []openapiclient.CreatePluginManifestInputsInner{*openapiclient.NewCreatePluginManifestInputsInner("Key_example", "Label_example", false, false)}, []openapiclient.CreatePluginManifestMcpServersInner{*openapiclient.NewCreatePluginManifestMcpServersInner("Name_example", "Transport_example")}, "Name_example", float32(123), []openapiclient.CreatePluginManifestSkillsInner{*openapiclient.NewCreatePluginManifestSkillsInner([]openapiclient.CreatePluginManifestSkillsInnerFilesInner{*openapiclient.NewCreatePluginManifestSkillsInnerFilesInner("Content_example", "Path_example")}, "Slug_example")}, "Version_example")) // PreviewPlugin | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	var previewPlugin openapiclient.PreviewPlugin
+	if err := json.Unmarshal([]byte("{\"manifest\":{\"description\":\"text\",\"id\":\"text\",\"inputs\":[{\"key\":\"EUR\",\"label\":\"text\",\"required\":true,\"secret\":true}],\"mcpServers\":[{\"name\":\"text\",\"transport\":\"stdio\"}],\"name\":\"text\",\"schemaVersion\":1,\"skills\":[{\"files\":[{\"content\":\"text\",\"path\":\"text\"}],\"slug\":\"text\"}],\"version\":\"text\"}}"), &previewPlugin); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.PreviewPlugin(context.Background()).PreviewPlugin(previewPlugin).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.PreviewPlugin(ctx).PreviewPlugin(previewPlugin).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.PreviewPlugin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -460,13 +503,13 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPreviewPluginRequest struct via the builder pattern
+Pass optional parameters through the `apiPreviewPluginRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **previewPlugin** | [**PreviewPlugin**](PreviewPlugin.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **previewPlugin** | [**PreviewPlugin**](PreviewPlugin.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -474,7 +517,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -494,6 +537,8 @@ Remove a plugin from subsequent runs
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
@@ -505,12 +550,15 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.RemovePlugin(context.Background(), id).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.RemovePlugin(ctx, id).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.RemovePlugin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -526,17 +574,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRemovePluginRequest struct via the builder pattern
+Pass optional parameters through the `apiRemovePluginRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -544,7 +592,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 
@@ -564,10 +612,13 @@ Update plugin setup, version or project availability
 
 ### Example
 
+Replace example resource IDs and request values with your own before running.
+
 ```go
 package main
 
 import (
+	"encoding/json"
 	"context"
 	"fmt"
 	"os"
@@ -575,13 +626,19 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
-	updatePlugin := *openapiclient.NewUpdatePlugin() // UpdatePlugin | 
-	xOrganizationId := "xOrganizationId_example" // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
+	ctx := context.WithValue(context.Background(), openapiclient.ContextAPIKeys, map[string]openapiclient.APIKey{
+		"apiKey": {Key: os.Getenv("HLIX_API_KEY")},
+	})
+	id := "id_example" // string |
+	var updatePlugin openapiclient.UpdatePlugin
+	if err := json.Unmarshal([]byte("{}"), &updatePlugin); err != nil {
+		panic(err)
+	}
+	xOrganizationId := os.Getenv("HLIX_WORKSPACE_ID") // string | The workspace (organization) to act in. Omitted, the session's active organization is used. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PluginsAPI.UpdatePlugin(context.Background(), id).UpdatePlugin(updatePlugin).XOrganizationId(xOrganizationId).Execute()
+	resp, r, err := apiClient.PluginsAPI.UpdatePlugin(ctx, id).UpdatePlugin(updatePlugin).XOrganizationId(xOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PluginsAPI.UpdatePlugin``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -597,18 +654,18 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** |  |
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePluginRequest struct via the builder pattern
+Pass optional parameters through the `apiUpdatePluginRequest` request builder.
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updatePlugin** | [**UpdatePlugin**](UpdatePlugin.md) |  | 
- **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. | 
+ **updatePlugin** | [**UpdatePlugin**](UpdatePlugin.md) |  |
+ **xOrganizationId** | **string** | The workspace (organization) to act in. Omitted, the session&#39;s active organization is used. |
 
 ### Return type
 
@@ -616,7 +673,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[apiKey](../README.md#apikey), [sessionCookie](../README.md#sessioncookie)
 
 ### HTTP request headers
 

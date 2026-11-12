@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Args** | **[]string** |  | 
-**Authentication** | **string** |  | 
-**Command** | **NullableString** |  | 
-**Connection** | [**McpConnectServerConnection**](McpConnectServerConnection.md) |  | 
-**CreatedAt** | **string** |  | 
-**Description** | **NullableString** |  | 
-**Enabled** | **bool** |  | 
-**Env** | **map[string]string** |  | 
-**HasOauthClientSecret** | **bool** |  | 
-**Id** | **string** |  | 
-**Name** | **string** |  | 
-**OauthClientId** | **NullableString** |  | 
-**OrganizationId** | **string** |  | 
-**ProjectId** | **NullableString** |  | 
-**Transport** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Url** | **NullableString** |  | 
+**Args** | **[]string** |  |
+**Authentication** | **string** |  |
+**Command** | **NullableString** |  |
+**Connection** | [**McpConnectServerConnection**](McpConnectServerConnection.md) |  |
+**CreatedAt** | **string** |  |
+**Description** | **NullableString** |  |
+**Enabled** | **bool** |  |
+**Env** | **map[string]string** |  |
+**HasOauthClientSecret** | **bool** |  |
+**Id** | **string** |  |
+**Name** | **string** |  |
+**OauthClientId** | **NullableString** |  |
+**OrganizationId** | **string** |  |
+**ProjectId** | **NullableString** |  |
+**Transport** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Url** | **NullableString** |  |
 
 ## Methods
 
@@ -29,17 +29,15 @@ Name | Type | Description | Notes
 `func NewMcpConnectServer(args []string, authentication string, command NullableString, connection McpConnectServerConnection, createdAt string, description NullableString, enabled bool, env map[string]string, hasOauthClientSecret bool, id string, name string, oauthClientId NullableString, organizationId string, projectId NullableString, transport string, updatedAt string, url NullableString, ) *McpConnectServer`
 
 NewMcpConnectServer instantiates a new McpConnectServer object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewMcpConnectServerWithDefaults
 
 `func NewMcpConnectServerWithDefaults() *McpConnectServer`
 
 NewMcpConnectServerWithDefaults instantiates a new McpConnectServer object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArgs
 

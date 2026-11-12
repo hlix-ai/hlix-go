@@ -4,30 +4,48 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Effort** | **string** |  | 
-**Funding** | **string** |  | 
-**Harness** | **string** |  | 
-**MaxParallelCycles** | **string** |  | 
-**Model** | **string** |  | 
+**Coder** | **string** |  |
+**Effort** | **string** |  |
+**Funding** | **string** |  |
+**MaxParallelCycles** | **string** |  |
+**Model** | **string** |  |
 
 ## Methods
 
 ### NewResolvedSettingsCycleSource
 
-`func NewResolvedSettingsCycleSource(effort string, funding string, harness string, maxParallelCycles string, model string, ) *ResolvedSettingsCycleSource`
+`func NewResolvedSettingsCycleSource(coder string, effort string, funding string, maxParallelCycles string, model string, ) *ResolvedSettingsCycleSource`
 
 NewResolvedSettingsCycleSource instantiates a new ResolvedSettingsCycleSource object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewResolvedSettingsCycleSourceWithDefaults
 
 `func NewResolvedSettingsCycleSourceWithDefaults() *ResolvedSettingsCycleSource`
 
 NewResolvedSettingsCycleSourceWithDefaults instantiates a new ResolvedSettingsCycleSource object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
+
+### GetCoder
+
+`func (o *ResolvedSettingsCycleSource) GetCoder() string`
+
+GetCoder returns the Coder field if non-nil, zero value otherwise.
+
+### GetCoderOk
+
+`func (o *ResolvedSettingsCycleSource) GetCoderOk() (*string, bool)`
+
+GetCoderOk returns a tuple with the Coder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCoder
+
+`func (o *ResolvedSettingsCycleSource) SetCoder(v string)`
+
+SetCoder sets Coder field to given value.
+
 
 ### GetEffort
 
@@ -67,26 +85,6 @@ and a boolean to check if the value has been set.
 `func (o *ResolvedSettingsCycleSource) SetFunding(v string)`
 
 SetFunding sets Funding field to given value.
-
-
-### GetHarness
-
-`func (o *ResolvedSettingsCycleSource) GetHarness() string`
-
-GetHarness returns the Harness field if non-nil, zero value otherwise.
-
-### GetHarnessOk
-
-`func (o *ResolvedSettingsCycleSource) GetHarnessOk() (*string, bool)`
-
-GetHarnessOk returns a tuple with the Harness field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHarness
-
-`func (o *ResolvedSettingsCycleSource) SetHarness(v string)`
-
-SetHarness sets Harness field to given value.
 
 
 ### GetMaxParallelCycles

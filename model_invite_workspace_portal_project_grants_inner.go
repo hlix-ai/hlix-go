@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,7 +22,7 @@ var _ MappedNullable = &InviteWorkspacePortalProjectGrantsInner{}
 // InviteWorkspacePortalProjectGrantsInner struct for InviteWorkspacePortalProjectGrantsInner
 type InviteWorkspacePortalProjectGrantsInner struct {
 	CanAccessCanvas *bool `json:"canAccessCanvas,omitempty"`
-	CanSteer *bool `json:"canSteer,omitempty"`
+	CanMessage *bool `json:"canMessage,omitempty"`
 	ProjectId string `json:"projectId"`
 	ShowProjectInsights *bool `json:"showProjectInsights,omitempty"`
 }
@@ -35,8 +35,8 @@ type _InviteWorkspacePortalProjectGrantsInner InviteWorkspacePortalProjectGrants
 // will change when the set of required properties is changed
 func NewInviteWorkspacePortalProjectGrantsInner(projectId string) *InviteWorkspacePortalProjectGrantsInner {
 	this := InviteWorkspacePortalProjectGrantsInner{}
-	var canSteer bool = false
-	this.CanSteer = &canSteer
+	var canMessage bool = false
+	this.CanMessage = &canMessage
 	this.ProjectId = projectId
 	var showProjectInsights bool = false
 	this.ShowProjectInsights = &showProjectInsights
@@ -48,8 +48,8 @@ func NewInviteWorkspacePortalProjectGrantsInner(projectId string) *InviteWorkspa
 // but it doesn't guarantee that properties required by API are set
 func NewInviteWorkspacePortalProjectGrantsInnerWithDefaults() *InviteWorkspacePortalProjectGrantsInner {
 	this := InviteWorkspacePortalProjectGrantsInner{}
-	var canSteer bool = false
-	this.CanSteer = &canSteer
+	var canMessage bool = false
+	this.CanMessage = &canMessage
 	var showProjectInsights bool = false
 	this.ShowProjectInsights = &showProjectInsights
 	return &this
@@ -87,36 +87,36 @@ func (o *InviteWorkspacePortalProjectGrantsInner) SetCanAccessCanvas(v bool) {
 	o.CanAccessCanvas = &v
 }
 
-// GetCanSteer returns the CanSteer field value if set, zero value otherwise.
-func (o *InviteWorkspacePortalProjectGrantsInner) GetCanSteer() bool {
-	if o == nil || IsNil(o.CanSteer) {
+// GetCanMessage returns the CanMessage field value if set, zero value otherwise.
+func (o *InviteWorkspacePortalProjectGrantsInner) GetCanMessage() bool {
+	if o == nil || IsNil(o.CanMessage) {
 		var ret bool
 		return ret
 	}
-	return *o.CanSteer
+	return *o.CanMessage
 }
 
-// GetCanSteerOk returns a tuple with the CanSteer field value if set, nil otherwise
+// GetCanMessageOk returns a tuple with the CanMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InviteWorkspacePortalProjectGrantsInner) GetCanSteerOk() (*bool, bool) {
-	if o == nil || IsNil(o.CanSteer) {
+func (o *InviteWorkspacePortalProjectGrantsInner) GetCanMessageOk() (*bool, bool) {
+	if o == nil || IsNil(o.CanMessage) {
 		return nil, false
 	}
-	return o.CanSteer, true
+	return o.CanMessage, true
 }
 
-// HasCanSteer returns a boolean if a field has been set.
-func (o *InviteWorkspacePortalProjectGrantsInner) HasCanSteer() bool {
-	if o != nil && !IsNil(o.CanSteer) {
+// HasCanMessage returns a boolean if a field has been set.
+func (o *InviteWorkspacePortalProjectGrantsInner) HasCanMessage() bool {
+	if o != nil && !IsNil(o.CanMessage) {
 		return true
 	}
 
 	return false
 }
 
-// SetCanSteer gets a reference to the given bool and assigns it to the CanSteer field.
-func (o *InviteWorkspacePortalProjectGrantsInner) SetCanSteer(v bool) {
-	o.CanSteer = &v
+// SetCanMessage gets a reference to the given bool and assigns it to the CanMessage field.
+func (o *InviteWorkspacePortalProjectGrantsInner) SetCanMessage(v bool) {
+	o.CanMessage = &v
 }
 
 // GetProjectId returns the ProjectId field value
@@ -188,8 +188,8 @@ func (o InviteWorkspacePortalProjectGrantsInner) ToMap() (map[string]interface{}
 	if !IsNil(o.CanAccessCanvas) {
 		toSerialize["canAccessCanvas"] = o.CanAccessCanvas
 	}
-	if !IsNil(o.CanSteer) {
-		toSerialize["canSteer"] = o.CanSteer
+	if !IsNil(o.CanMessage) {
+		toSerialize["canMessage"] = o.CanMessage
 	}
 	toSerialize["projectId"] = o.ProjectId
 	if !IsNil(o.ShowProjectInsights) {

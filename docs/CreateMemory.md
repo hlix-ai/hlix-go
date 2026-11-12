@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Category** | **string** |  | 
-**Confidence** | Pointer to **float32** |  | [optional] 
-**Key** | **string** |  | 
-**Scope** | **string** |  | 
-**ScopeId** | **string** |  | 
-**Source** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**SupersededReason** | Pointer to **string** |  | [optional] 
-**SupersedesId** | Pointer to **string** |  | [optional] 
-**Value** | **string** |  | 
+**Category** | **string** |  |
+**Confidence** | Pointer to **float32** |  | [optional]
+**Key** | **string** |  |
+**Scope** | **string** |  |
+**ScopeId** | **string** |  |
+**Source** | Pointer to **string** |  | [optional]
+**Status** | Pointer to **string** |  | [optional]
+**SupersededReason** | Pointer to **string** |  | [optional]
+**SupersedesId** | Pointer to **string** |  | [optional]
+**Value** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewCreateMemory(category string, key string, scope string, scopeId string, value string, ) *CreateMemory`
 
 NewCreateMemory instantiates a new CreateMemory object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewCreateMemoryWithDefaults
 
 `func NewCreateMemoryWithDefaults() *CreateMemory`
 
 NewCreateMemoryWithDefaults instantiates a new CreateMemory object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCategory
 

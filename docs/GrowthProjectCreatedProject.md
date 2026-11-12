@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArchivedAt** | **NullableString** |  | 
-**ClientAccountId** | **NullableString** |  | 
-**CreatedAt** | **string** |  | 
-**GrowthAutopilot** | **bool** |  | 
-**GrowthDailyBudgetMicros** | **NullableInt64** |  | 
-**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Id** | **string** |  | 
-**Kind** | **string** |  | 
-**Name** | **string** |  | 
-**Slug** | **string** |  | 
+**ArchivedAt** | **NullableString** |  |
+**ClientAccountId** | **NullableString** |  |
+**CreatedAt** | **string** |  |
+**GrowthAutopilot** | **bool** |  |
+**GrowthDailyBudgetMicros** | **NullableInt64** |  |
+**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Id** | **string** |  |
+**Kind** | **string** |  |
+**Name** | **string** |  |
+**Slug** | **string** |  |
 
 ## Methods
 
@@ -22,17 +22,15 @@ Name | Type | Description | Notes
 `func NewGrowthProjectCreatedProject(archivedAt NullableString, clientAccountId NullableString, createdAt string, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, kind string, name string, slug string, ) *GrowthProjectCreatedProject`
 
 NewGrowthProjectCreatedProject instantiates a new GrowthProjectCreatedProject object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProjectCreatedProjectWithDefaults
 
 `func NewGrowthProjectCreatedProjectWithDefaults() *GrowthProjectCreatedProject`
 
 NewGrowthProjectCreatedProjectWithDefaults instantiates a new GrowthProjectCreatedProject object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArchivedAt
 

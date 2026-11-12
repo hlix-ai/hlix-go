@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Risk** | **NullableString** |  | 
-**SpendMicros** | **NullableInt64** |  | 
-**TasksDone** | **NullableInt32** |  | 
-**TasksTotal** | **NullableInt32** |  | 
-**TestsPassed** | **NullableInt32** |  | 
-**TestsTotal** | **NullableInt32** |  | 
+**Risk** | **NullableString** |  |
+**SpendMicros** | **NullableInt64** |  |
+**TasksDone** | **NullableInt32** |  |
+**TasksTotal** | **NullableInt32** |  |
+**TestsPassed** | **NullableInt32** |  |
+**TestsTotal** | **NullableInt32** |  |
 
 ## Methods
 
@@ -18,17 +18,15 @@ Name | Type | Description | Notes
 `func NewSequenceStatus(risk NullableString, spendMicros NullableInt64, tasksDone NullableInt32, tasksTotal NullableInt32, testsPassed NullableInt32, testsTotal NullableInt32, ) *SequenceStatus`
 
 NewSequenceStatus instantiates a new SequenceStatus object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSequenceStatusWithDefaults
 
 `func NewSequenceStatusWithDefaults() *SequenceStatus`
 
 NewSequenceStatusWithDefaults instantiates a new SequenceStatus object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetRisk
 

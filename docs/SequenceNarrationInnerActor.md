@@ -4,78 +4,76 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Persona** | **NullableString** |  | 
-**Role** | **string** |  | 
+**AgentKind** | **string** |  |
+**PromptKey** | **NullableString** |  |
 
 ## Methods
 
 ### NewSequenceNarrationInnerActor
 
-`func NewSequenceNarrationInnerActor(persona NullableString, role string, ) *SequenceNarrationInnerActor`
+`func NewSequenceNarrationInnerActor(agentKind string, promptKey NullableString, ) *SequenceNarrationInnerActor`
 
 NewSequenceNarrationInnerActor instantiates a new SequenceNarrationInnerActor object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewSequenceNarrationInnerActorWithDefaults
 
 `func NewSequenceNarrationInnerActorWithDefaults() *SequenceNarrationInnerActor`
 
 NewSequenceNarrationInnerActorWithDefaults instantiates a new SequenceNarrationInnerActor object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
-### GetPersona
+### GetAgentKind
 
-`func (o *SequenceNarrationInnerActor) GetPersona() string`
+`func (o *SequenceNarrationInnerActor) GetAgentKind() string`
 
-GetPersona returns the Persona field if non-nil, zero value otherwise.
+GetAgentKind returns the AgentKind field if non-nil, zero value otherwise.
 
-### GetPersonaOk
+### GetAgentKindOk
 
-`func (o *SequenceNarrationInnerActor) GetPersonaOk() (*string, bool)`
+`func (o *SequenceNarrationInnerActor) GetAgentKindOk() (*string, bool)`
 
-GetPersonaOk returns a tuple with the Persona field if it's non-nil, zero value otherwise
+GetAgentKindOk returns a tuple with the AgentKind field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPersona
+### SetAgentKind
 
-`func (o *SequenceNarrationInnerActor) SetPersona(v string)`
+`func (o *SequenceNarrationInnerActor) SetAgentKind(v string)`
 
-SetPersona sets Persona field to given value.
+SetAgentKind sets AgentKind field to given value.
 
 
-### SetPersonaNil
+### GetPromptKey
 
-`func (o *SequenceNarrationInnerActor) SetPersonaNil(b bool)`
+`func (o *SequenceNarrationInnerActor) GetPromptKey() string`
 
- SetPersonaNil sets the value for Persona to be an explicit nil
+GetPromptKey returns the PromptKey field if non-nil, zero value otherwise.
 
-### UnsetPersona
-`func (o *SequenceNarrationInnerActor) UnsetPersona()`
+### GetPromptKeyOk
 
-UnsetPersona ensures that no value is present for Persona, not even an explicit nil
-### GetRole
+`func (o *SequenceNarrationInnerActor) GetPromptKeyOk() (*string, bool)`
 
-`func (o *SequenceNarrationInnerActor) GetRole() string`
-
-GetRole returns the Role field if non-nil, zero value otherwise.
-
-### GetRoleOk
-
-`func (o *SequenceNarrationInnerActor) GetRoleOk() (*string, bool)`
-
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetPromptKeyOk returns a tuple with the PromptKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetPromptKey
 
-`func (o *SequenceNarrationInnerActor) SetRole(v string)`
+`func (o *SequenceNarrationInnerActor) SetPromptKey(v string)`
 
-SetRole sets Role field to given value.
+SetPromptKey sets PromptKey field to given value.
 
 
+### SetPromptKeyNil
+
+`func (o *SequenceNarrationInnerActor) SetPromptKeyNil(b bool)`
+
+ SetPromptKeyNil sets the value for PromptKey to be an explicit nil
+
+### UnsetPromptKey
+`func (o *SequenceNarrationInnerActor) UnsetPromptKey()`
+
+UnsetPromptKey ensures that no value is present for PromptKey, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

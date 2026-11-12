@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApprovedAt** | **NullableString** |  | 
-**CompanyCount** | **int32** |  | 
-**CreatedAt** | **string** |  | 
-**FailedCompanies** | **int32** |  | 
-**Id** | **string** |  | 
-**LeadCount** | **int32** |  | 
-**PlayId** | **string** |  | 
-**PlayName** | **string** |  | 
-**ReadyAt** | **NullableString** |  | 
-**ReleaseAt** | **NullableString** |  | 
-**Status** | **string** |  | 
+**ApprovedAt** | **NullableString** |  |
+**CompanyCount** | **int32** |  |
+**CreatedAt** | **string** |  |
+**FailedCompanies** | **int32** |  |
+**Id** | **string** |  |
+**LeadCount** | **int32** |  |
+**PlayId** | **string** |  |
+**PlayName** | **string** |  |
+**ReadyAt** | **NullableString** |  |
+**ReleaseAt** | **NullableString** |  |
+**Status** | **string** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewGrowthBatchApprovedBatch(approvedAt NullableString, companyCount int32, createdAt string, failedCompanies int32, id string, leadCount int32, playId string, playName string, readyAt NullableString, releaseAt NullableString, status string, ) *GrowthBatchApprovedBatch`
 
 NewGrowthBatchApprovedBatch instantiates a new GrowthBatchApprovedBatch object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthBatchApprovedBatchWithDefaults
 
 `func NewGrowthBatchApprovedBatchWithDefaults() *GrowthBatchApprovedBatch`
 
 NewGrowthBatchApprovedBatchWithDefaults instantiates a new GrowthBatchApprovedBatch object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApprovedAt
 

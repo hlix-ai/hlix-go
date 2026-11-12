@@ -1,29 +1,31 @@
 # CreateMcpServerUrl
 
-## Properties
+This model accepts at least one of the alternatives below. JSON null is also accepted. Required JSON properties apply to the selected alternative.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+## Alternatives
+
+| Alternative | Required JSON properties |
+| --- | --- |
+| `string` | — |
+| `string` | — |
+
+Construct a branch model and assign its pointer field below, or use a wrapping function when one is listed. Use `encoding/json` for JSON serialization.
+
+## Go representation
+
+| Field | Go type |
+| --- | --- |
+| `String` | `*string` |
 
 ## Methods
 
-### NewCreateMcpServerUrl
+### UnmarshalJSON
 
-`func NewCreateMcpServerUrl() *CreateMcpServerUrl`
+`func (dst *CreateMcpServerUrl) UnmarshalJSON(data []byte) error`
 
-NewCreateMcpServerUrl instantiates a new CreateMcpServerUrl object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+### MarshalJSON
 
-### NewCreateMcpServerUrlWithDefaults
-
-`func NewCreateMcpServerUrlWithDefaults() *CreateMcpServerUrl`
-
-NewCreateMcpServerUrlWithDefaults instantiates a new CreateMcpServerUrl object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
-
+`func (src CreateMcpServerUrl) MarshalJSON() ([]byte, error)`
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

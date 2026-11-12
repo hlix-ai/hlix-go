@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BilledMicros** | **int64** |  | 
-**CostStatus** | **string** |  | 
-**EstimatedCostMicros** | **NullableInt64** |  | 
-**Failed** | **int32** |  | 
-**Found** | **int32** |  | 
-**Pending** | **int32** |  | 
-**Provider** | **string** |  | 
-**ProviderCostMicros** | **NullableInt64** |  | 
-**ReservedMicros** | **int64** |  | 
-**SkippedForCap** | **int32** |  | 
-**Tried** | **int32** |  | 
-**Unknown** | **int32** |  | 
-**Verified** | **int32** |  | 
+**BilledMicros** | **int64** |  |
+**CostStatus** | **string** |  |
+**EstimatedCostMicros** | **NullableInt64** |  |
+**Failed** | **int32** |  |
+**Found** | **int32** |  |
+**Pending** | **int32** |  |
+**Provider** | **string** |  |
+**ProviderCostMicros** | **NullableInt64** |  |
+**ReservedMicros** | **int64** |  |
+**SkippedForCap** | **int32** |  |
+**Tried** | **int32** |  |
+**Unknown** | **int32** |  |
+**Verified** | **int32** |  |
 
 ## Methods
 
@@ -25,17 +25,15 @@ Name | Type | Description | Notes
 `func NewGrowthProviderComparisonResultsInner(billedMicros int64, costStatus string, estimatedCostMicros NullableInt64, failed int32, found int32, pending int32, provider string, providerCostMicros NullableInt64, reservedMicros int64, skippedForCap int32, tried int32, unknown int32, verified int32, ) *GrowthProviderComparisonResultsInner`
 
 NewGrowthProviderComparisonResultsInner instantiates a new GrowthProviderComparisonResultsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthProviderComparisonResultsInnerWithDefaults
 
 `func NewGrowthProviderComparisonResultsInnerWithDefaults() *GrowthProviderComparisonResultsInner`
 
 NewGrowthProviderComparisonResultsInnerWithDefaults instantiates a new GrowthProviderComparisonResultsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBilledMicros
 

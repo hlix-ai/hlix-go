@@ -4,74 +4,76 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArchivedAt** | **NullableString** |  | 
-**AssignedUserId** | **NullableString** |  | 
-**BranchNames** | **string** |  | 
-**BranchPrefix** | **NullableString** |  | 
-**BranchPrefixLockedAt** | **NullableString** |  | 
-**Brief** | **NullableString** |  | 
-**ClaudeMd** | **NullableString** |  | 
-**ClientAccountId** | **NullableString** |  | 
-**CompletedAtLastRevision** | **int32** |  | 
-**CostCapMicros** | **NullableInt64** |  | 
-**CreatedAt** | **string** |  | 
-**CustomDomain** | **NullableString** |  | 
-**CycleCap** | **NullableInt32** |  | 
-**DeploymentPreviewsEnabled** | **bool** |  | 
-**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  | 
-**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  | 
-**ExtraUsage** | **NullableString** |  | 
-**GrowthAutopilot** | **bool** |  | 
-**GrowthDailyBudgetMicros** | **NullableInt64** |  | 
-**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  | 
-**Id** | **string** |  | 
-**InitialProposalRequired** | **bool** |  | 
-**Intake** | [**ProjectIntake**](ProjectIntake.md) |  | 
-**Iteration** | **int32** |  | 
-**Kind** | **string** |  | 
-**MaxRevisions** | **NullableInt32** |  | 
-**MobileTargetsInitialized** | **bool** |  | 
-**Name** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**PausedAt** | **NullableString** |  | 
-**PausedByUserId** | **NullableString** |  | 
-**PrUrl** | **NullableString** |  | 
-**PreviewCommand** | **NullableString** |  | 
-**PreviewPort** | **NullableInt32** |  | 
-**Repos** | [**[]ProjectReposInner**](ProjectReposInner.md) |  | 
-**Round** | **int32** |  | 
-**RunStatus** | **string** |  | 
-**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  | 
-**SandboxSize** | **NullableString** |  | 
-**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  | 
-**Slug** | **string** |  | 
-**Stack** | **string** |  | 
-**StalledRevisions** | **int32** |  | 
-**Tier** | **NullableString** |  | 
-**UseWorkspaceBrand** | **bool** |  | 
-**VerifyCommand** | **NullableString** |  | 
-**ViewerCanAccessCanvas** | **bool** |  | 
-**ViewerCanSeeInsights** | **bool** |  | 
-**ViewerCanSteer** | **bool** |  | 
+**ArchivedAt** | **NullableString** |  |
+**AssignedUserId** | **NullableString** |  |
+**Attention** | [**[]AgencyOverviewReportAttentionInnerAttentionItem**](AgencyOverviewReportAttentionInnerAttentionItem.md) |  |
+**BranchNames** | **string** |  |
+**BranchPrefix** | **NullableString** |  |
+**BranchPrefixLockedAt** | **NullableString** |  |
+**Brief** | **NullableString** |  |
+**ClaudeMd** | **NullableString** |  |
+**ClientAccountId** | **NullableString** |  |
+**CompletedAtLastRevision** | **int32** |  |
+**CostCapMicros** | **NullableInt64** |  |
+**CreatedAt** | **string** |  |
+**CustomDomain** | **NullableString** |  |
+**CycleCap** | **NullableInt32** |  |
+**DeploymentPreviewsEnabled** | **bool** |  |
+**DetectedCommands** | [**NullableProjectDetectedCommands**](ProjectDetectedCommands.md) |  |
+**EnvironmentSnapshot** | [**NullableProjectEnvironmentSnapshot**](ProjectEnvironmentSnapshot.md) |  |
+**ExtraUsage** | **NullableString** |  |
+**GrowthAutopilot** | **bool** |  |
+**GrowthDailyBudgetMicros** | **NullableInt64** |  |
+**GrowthSendingSchedule** | [**NullableCreateGrowthPlaySendingSchedule**](CreateGrowthPlaySendingSchedule.md) |  |
+**Id** | **string** |  |
+**InitialProposalRequired** | **bool** |  |
+**Iteration** | **int32** |  |
+**Kind** | **string** |  |
+**MachineSize** | **NullableString** |  |
+**MaxRevisions** | **NullableInt32** |  |
+**MobileTargetsInitialized** | **bool** |  |
+**Name** | **string** |  |
+**OrganizationId** | **string** |  |
+**PauseReason** | **NullableString** |  |
+**PausedAt** | **NullableString** |  |
+**PausedByUserId** | **NullableString** |  |
+**PrUrl** | **NullableString** |  |
+**PreviewCommand** | **NullableString** |  |
+**PreviewMergedAt** | **NullableString** |  |
+**PreviewPort** | **NullableInt32** |  |
+**Repos** | [**[]ProjectReposInner**](ProjectReposInner.md) |  |
+**Round** | **int32** |  |
+**Runtime** | [**ProjectRuntime**](ProjectRuntime.md) |  |
+**SetupReport** | [**NullableProjectSetupReport**](ProjectSetupReport.md) |  |
+**Slug** | **string** |  |
+**Sources** | [**ProjectSources**](ProjectSources.md) |  |
+**Stack** | **string** |  |
+**StalledRevisions** | **int32** |  |
+**Status** | **string** |  |
+**StopState** | **string** |  |
+**Tier** | **NullableString** |  |
+**UseWorkspaceBrand** | **bool** |  |
+**VerifyCommand** | **NullableString** |  |
+**ViewerCanAccessCanvas** | **bool** |  |
+**ViewerCanMessage** | **bool** |  |
+**ViewerCanSeeInsights** | **bool** |  |
 
 ## Methods
 
 ### NewProjectDetail
 
-`func NewProjectDetail(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, deploymentPreviewsEnabled bool, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runStatus string, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, viewerCanAccessCanvas bool, viewerCanSeeInsights bool, viewerCanSteer bool, ) *ProjectDetail`
+`func NewProjectDetail(archivedAt NullableString, assignedUserId NullableString, attention []AgencyOverviewReportAttentionInnerAttentionItem, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, deploymentPreviewsEnabled bool, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, iteration int32, kind string, machineSize NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pauseReason NullableString, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewMergedAt NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runtime ProjectRuntime, setupReport NullableProjectSetupReport, slug string, sources ProjectSources, stack string, stalledRevisions int32, status string, stopState string, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, viewerCanAccessCanvas bool, viewerCanMessage bool, viewerCanSeeInsights bool, ) *ProjectDetail`
 
 NewProjectDetail instantiates a new ProjectDetail object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectDetailWithDefaults
 
 `func NewProjectDetailWithDefaults() *ProjectDetail`
 
 NewProjectDetailWithDefaults instantiates a new ProjectDetail object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetArchivedAt
 
@@ -133,6 +135,26 @@ SetAssignedUserId sets AssignedUserId field to given value.
 `func (o *ProjectDetail) UnsetAssignedUserId()`
 
 UnsetAssignedUserId ensures that no value is present for AssignedUserId, not even an explicit nil
+### GetAttention
+
+`func (o *ProjectDetail) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem`
+
+GetAttention returns the Attention field if non-nil, zero value otherwise.
+
+### GetAttentionOk
+
+`func (o *ProjectDetail) GetAttentionOk() (*[]AgencyOverviewReportAttentionInnerAttentionItem, bool)`
+
+GetAttentionOk returns a tuple with the Attention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttention
+
+`func (o *ProjectDetail) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem)`
+
+SetAttention sets Attention field to given value.
+
+
 ### GetBranchNames
 
 `func (o *ProjectDetail) GetBranchNames() string`
@@ -663,26 +685,6 @@ and a boolean to check if the value has been set.
 SetInitialProposalRequired sets InitialProposalRequired field to given value.
 
 
-### GetIntake
-
-`func (o *ProjectDetail) GetIntake() ProjectIntake`
-
-GetIntake returns the Intake field if non-nil, zero value otherwise.
-
-### GetIntakeOk
-
-`func (o *ProjectDetail) GetIntakeOk() (*ProjectIntake, bool)`
-
-GetIntakeOk returns a tuple with the Intake field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntake
-
-`func (o *ProjectDetail) SetIntake(v ProjectIntake)`
-
-SetIntake sets Intake field to given value.
-
-
 ### GetIteration
 
 `func (o *ProjectDetail) GetIteration() int32`
@@ -723,6 +725,36 @@ and a boolean to check if the value has been set.
 SetKind sets Kind field to given value.
 
 
+### GetMachineSize
+
+`func (o *ProjectDetail) GetMachineSize() string`
+
+GetMachineSize returns the MachineSize field if non-nil, zero value otherwise.
+
+### GetMachineSizeOk
+
+`func (o *ProjectDetail) GetMachineSizeOk() (*string, bool)`
+
+GetMachineSizeOk returns a tuple with the MachineSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMachineSize
+
+`func (o *ProjectDetail) SetMachineSize(v string)`
+
+SetMachineSize sets MachineSize field to given value.
+
+
+### SetMachineSizeNil
+
+`func (o *ProjectDetail) SetMachineSizeNil(b bool)`
+
+ SetMachineSizeNil sets the value for MachineSize to be an explicit nil
+
+### UnsetMachineSize
+`func (o *ProjectDetail) UnsetMachineSize()`
+
+UnsetMachineSize ensures that no value is present for MachineSize, not even an explicit nil
 ### GetMaxRevisions
 
 `func (o *ProjectDetail) GetMaxRevisions() int32`
@@ -813,6 +845,36 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
+### GetPauseReason
+
+`func (o *ProjectDetail) GetPauseReason() string`
+
+GetPauseReason returns the PauseReason field if non-nil, zero value otherwise.
+
+### GetPauseReasonOk
+
+`func (o *ProjectDetail) GetPauseReasonOk() (*string, bool)`
+
+GetPauseReasonOk returns a tuple with the PauseReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPauseReason
+
+`func (o *ProjectDetail) SetPauseReason(v string)`
+
+SetPauseReason sets PauseReason field to given value.
+
+
+### SetPauseReasonNil
+
+`func (o *ProjectDetail) SetPauseReasonNil(b bool)`
+
+ SetPauseReasonNil sets the value for PauseReason to be an explicit nil
+
+### UnsetPauseReason
+`func (o *ProjectDetail) UnsetPauseReason()`
+
+UnsetPauseReason ensures that no value is present for PauseReason, not even an explicit nil
 ### GetPausedAt
 
 `func (o *ProjectDetail) GetPausedAt() string`
@@ -933,6 +995,36 @@ SetPreviewCommand sets PreviewCommand field to given value.
 `func (o *ProjectDetail) UnsetPreviewCommand()`
 
 UnsetPreviewCommand ensures that no value is present for PreviewCommand, not even an explicit nil
+### GetPreviewMergedAt
+
+`func (o *ProjectDetail) GetPreviewMergedAt() string`
+
+GetPreviewMergedAt returns the PreviewMergedAt field if non-nil, zero value otherwise.
+
+### GetPreviewMergedAtOk
+
+`func (o *ProjectDetail) GetPreviewMergedAtOk() (*string, bool)`
+
+GetPreviewMergedAtOk returns a tuple with the PreviewMergedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPreviewMergedAt
+
+`func (o *ProjectDetail) SetPreviewMergedAt(v string)`
+
+SetPreviewMergedAt sets PreviewMergedAt field to given value.
+
+
+### SetPreviewMergedAtNil
+
+`func (o *ProjectDetail) SetPreviewMergedAtNil(b bool)`
+
+ SetPreviewMergedAtNil sets the value for PreviewMergedAt to be an explicit nil
+
+### UnsetPreviewMergedAt
+`func (o *ProjectDetail) UnsetPreviewMergedAt()`
+
+UnsetPreviewMergedAt ensures that no value is present for PreviewMergedAt, not even an explicit nil
 ### GetPreviewPort
 
 `func (o *ProjectDetail) GetPreviewPort() int32`
@@ -1003,26 +1095,6 @@ and a boolean to check if the value has been set.
 SetRound sets Round field to given value.
 
 
-### GetRunStatus
-
-`func (o *ProjectDetail) GetRunStatus() string`
-
-GetRunStatus returns the RunStatus field if non-nil, zero value otherwise.
-
-### GetRunStatusOk
-
-`func (o *ProjectDetail) GetRunStatusOk() (*string, bool)`
-
-GetRunStatusOk returns a tuple with the RunStatus field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunStatus
-
-`func (o *ProjectDetail) SetRunStatus(v string)`
-
-SetRunStatus sets RunStatus field to given value.
-
-
 ### GetRuntime
 
 `func (o *ProjectDetail) GetRuntime() ProjectRuntime`
@@ -1043,36 +1115,6 @@ and a boolean to check if the value has been set.
 SetRuntime sets Runtime field to given value.
 
 
-### GetSandboxSize
-
-`func (o *ProjectDetail) GetSandboxSize() string`
-
-GetSandboxSize returns the SandboxSize field if non-nil, zero value otherwise.
-
-### GetSandboxSizeOk
-
-`func (o *ProjectDetail) GetSandboxSizeOk() (*string, bool)`
-
-GetSandboxSizeOk returns a tuple with the SandboxSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSandboxSize
-
-`func (o *ProjectDetail) SetSandboxSize(v string)`
-
-SetSandboxSize sets SandboxSize field to given value.
-
-
-### SetSandboxSizeNil
-
-`func (o *ProjectDetail) SetSandboxSizeNil(b bool)`
-
- SetSandboxSizeNil sets the value for SandboxSize to be an explicit nil
-
-### UnsetSandboxSize
-`func (o *ProjectDetail) UnsetSandboxSize()`
-
-UnsetSandboxSize ensures that no value is present for SandboxSize, not even an explicit nil
 ### GetSetupReport
 
 `func (o *ProjectDetail) GetSetupReport() ProjectSetupReport`
@@ -1123,6 +1165,26 @@ and a boolean to check if the value has been set.
 SetSlug sets Slug field to given value.
 
 
+### GetSources
+
+`func (o *ProjectDetail) GetSources() ProjectSources`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *ProjectDetail) GetSourcesOk() (*ProjectSources, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *ProjectDetail) SetSources(v ProjectSources)`
+
+SetSources sets Sources field to given value.
+
+
 ### GetStack
 
 `func (o *ProjectDetail) GetStack() string`
@@ -1161,6 +1223,46 @@ and a boolean to check if the value has been set.
 `func (o *ProjectDetail) SetStalledRevisions(v int32)`
 
 SetStalledRevisions sets StalledRevisions field to given value.
+
+
+### GetStatus
+
+`func (o *ProjectDetail) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ProjectDetail) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ProjectDetail) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
+### GetStopState
+
+`func (o *ProjectDetail) GetStopState() string`
+
+GetStopState returns the StopState field if non-nil, zero value otherwise.
+
+### GetStopStateOk
+
+`func (o *ProjectDetail) GetStopStateOk() (*string, bool)`
+
+GetStopStateOk returns a tuple with the StopState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStopState
+
+`func (o *ProjectDetail) SetStopState(v string)`
+
+SetStopState sets StopState field to given value.
 
 
 ### GetTier
@@ -1263,6 +1365,26 @@ and a boolean to check if the value has been set.
 SetViewerCanAccessCanvas sets ViewerCanAccessCanvas field to given value.
 
 
+### GetViewerCanMessage
+
+`func (o *ProjectDetail) GetViewerCanMessage() bool`
+
+GetViewerCanMessage returns the ViewerCanMessage field if non-nil, zero value otherwise.
+
+### GetViewerCanMessageOk
+
+`func (o *ProjectDetail) GetViewerCanMessageOk() (*bool, bool)`
+
+GetViewerCanMessageOk returns a tuple with the ViewerCanMessage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetViewerCanMessage
+
+`func (o *ProjectDetail) SetViewerCanMessage(v bool)`
+
+SetViewerCanMessage sets ViewerCanMessage field to given value.
+
+
 ### GetViewerCanSeeInsights
 
 `func (o *ProjectDetail) GetViewerCanSeeInsights() bool`
@@ -1281,26 +1403,6 @@ and a boolean to check if the value has been set.
 `func (o *ProjectDetail) SetViewerCanSeeInsights(v bool)`
 
 SetViewerCanSeeInsights sets ViewerCanSeeInsights field to given value.
-
-
-### GetViewerCanSteer
-
-`func (o *ProjectDetail) GetViewerCanSteer() bool`
-
-GetViewerCanSteer returns the ViewerCanSteer field if non-nil, zero value otherwise.
-
-### GetViewerCanSteerOk
-
-`func (o *ProjectDetail) GetViewerCanSteerOk() (*bool, bool)`
-
-GetViewerCanSteerOk returns a tuple with the ViewerCanSteer field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetViewerCanSteer
-
-`func (o *ProjectDetail) SetViewerCanSteer(v bool)`
-
-SetViewerCanSteer sets ViewerCanSteer field to given value.
 
 
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BilledMicros** | **int64** |  | 
-**Lookups** | **int32** |  | 
-**Verified** | **int32** |  | 
+**BilledMicros** | **int64** |  |
+**Lookups** | **int32** |  |
+**Verified** | **int32** |  |
 
 ## Methods
 
@@ -15,17 +15,15 @@ Name | Type | Description | Notes
 `func NewGrowthChainStatsChain(billedMicros int64, lookups int32, verified int32, ) *GrowthChainStatsChain`
 
 NewGrowthChainStatsChain instantiates a new GrowthChainStatsChain object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewGrowthChainStatsChainWithDefaults
 
 `func NewGrowthChainStatsChainWithDefaults() *GrowthChainStatsChain`
 
 NewGrowthChainStatsChainWithDefaults instantiates a new GrowthChainStatsChain object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetBilledMicros
 

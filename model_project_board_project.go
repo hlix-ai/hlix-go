@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -20,10 +20,12 @@ var _ MappedNullable = &ProjectBoardProject{}
 
 // ProjectBoardProject struct for ProjectBoardProject
 type ProjectBoardProject struct {
+	Attention []AgencyOverviewReportAttentionInnerAttentionItem `json:"attention"`
 	Id string `json:"id"`
 	Name string `json:"name"`
-	RunStatus string `json:"runStatus"`
+	PauseReason NullableString `json:"pauseReason"`
 	Status string `json:"status"`
+	StopState string `json:"stopState"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,12 +35,14 @@ type _ProjectBoardProject ProjectBoardProject
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectBoardProject(id string, name string, runStatus string, status string) *ProjectBoardProject {
+func NewProjectBoardProject(attention []AgencyOverviewReportAttentionInnerAttentionItem, id string, name string, pauseReason NullableString, status string, stopState string) *ProjectBoardProject {
 	this := ProjectBoardProject{}
+	this.Attention = attention
 	this.Id = id
 	this.Name = name
-	this.RunStatus = runStatus
+	this.PauseReason = pauseReason
 	this.Status = status
+	this.StopState = stopState
 	return &this
 }
 
@@ -48,6 +52,30 @@ func NewProjectBoardProject(id string, name string, runStatus string, status str
 func NewProjectBoardProjectWithDefaults() *ProjectBoardProject {
 	this := ProjectBoardProject{}
 	return &this
+}
+
+// GetAttention returns the Attention field value
+func (o *ProjectBoardProject) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem {
+	if o == nil {
+		var ret []AgencyOverviewReportAttentionInnerAttentionItem
+		return ret
+	}
+
+	return o.Attention
+}
+
+// GetAttentionOk returns a tuple with the Attention field value
+// and a boolean to check if the value has been set.
+func (o *ProjectBoardProject) GetAttentionOk() ([]AgencyOverviewReportAttentionInnerAttentionItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Attention, true
+}
+
+// SetAttention sets field value
+func (o *ProjectBoardProject) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem) {
+	o.Attention = v
 }
 
 // GetId returns the Id field value
@@ -98,28 +126,30 @@ func (o *ProjectBoardProject) SetName(v string) {
 	o.Name = v
 }
 
-// GetRunStatus returns the RunStatus field value
-func (o *ProjectBoardProject) GetRunStatus() string {
-	if o == nil {
+// GetPauseReason returns the PauseReason field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ProjectBoardProject) GetPauseReason() string {
+	if o == nil || o.PauseReason.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.RunStatus
+	return *o.PauseReason.Get()
 }
 
-// GetRunStatusOk returns a tuple with the RunStatus field value
+// GetPauseReasonOk returns a tuple with the PauseReason field value
 // and a boolean to check if the value has been set.
-func (o *ProjectBoardProject) GetRunStatusOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectBoardProject) GetPauseReasonOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RunStatus, true
+	return o.PauseReason.Get(), o.PauseReason.IsSet()
 }
 
-// SetRunStatus sets field value
-func (o *ProjectBoardProject) SetRunStatus(v string) {
-	o.RunStatus = v
+// SetPauseReason sets field value
+func (o *ProjectBoardProject) SetPauseReason(v string) {
+	o.PauseReason.Set(&v)
 }
 
 // GetStatus returns the Status field value
@@ -146,6 +176,30 @@ func (o *ProjectBoardProject) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetStopState returns the StopState field value
+func (o *ProjectBoardProject) GetStopState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StopState
+}
+
+// GetStopStateOk returns a tuple with the StopState field value
+// and a boolean to check if the value has been set.
+func (o *ProjectBoardProject) GetStopStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StopState, true
+}
+
+// SetStopState sets field value
+func (o *ProjectBoardProject) SetStopState(v string) {
+	o.StopState = v
+}
+
 func (o ProjectBoardProject) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -156,10 +210,12 @@ func (o ProjectBoardProject) MarshalJSON() ([]byte, error) {
 
 func (o ProjectBoardProject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["attention"] = o.Attention
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
-	toSerialize["runStatus"] = o.RunStatus
+	toSerialize["pauseReason"] = o.PauseReason.Get()
 	toSerialize["status"] = o.Status
+	toSerialize["stopState"] = o.StopState
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,10 +229,12 @@ func (o *ProjectBoardProject) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"attention",
 		"id",
 		"name",
-		"runStatus",
+		"pauseReason",
 		"status",
+		"stopState",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -206,10 +264,12 @@ func (o *ProjectBoardProject) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "attention")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "runStatus")
+		delete(additionalProperties, "pauseReason")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "stopState")
 		o.AdditionalProperties = additionalProperties
 	}
 

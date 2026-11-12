@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -22,6 +22,7 @@ var _ MappedNullable = &ProjectDetail{}
 type ProjectDetail struct {
 	ArchivedAt NullableString `json:"archivedAt"`
 	AssignedUserId NullableString `json:"assignedUserId"`
+	Attention []AgencyOverviewReportAttentionInnerAttentionItem `json:"attention"`
 	BranchNames string `json:"branchNames"`
 	BranchPrefix NullableString `json:"branchPrefix"`
 	BranchPrefixLockedAt NullableString `json:"branchPrefixLockedAt"`
@@ -42,33 +43,36 @@ type ProjectDetail struct {
 	GrowthSendingSchedule NullableCreateGrowthPlaySendingSchedule `json:"growthSendingSchedule"`
 	Id string `json:"id"`
 	InitialProposalRequired bool `json:"initialProposalRequired"`
-	Intake ProjectIntake `json:"intake"`
 	Iteration int32 `json:"iteration"`
 	Kind string `json:"kind"`
+	MachineSize NullableString `json:"machineSize"`
 	MaxRevisions NullableInt32 `json:"maxRevisions"`
 	MobileTargetsInitialized bool `json:"mobileTargetsInitialized"`
 	Name string `json:"name"`
 	OrganizationId string `json:"organizationId"`
+	PauseReason NullableString `json:"pauseReason"`
 	PausedAt NullableString `json:"pausedAt"`
 	PausedByUserId NullableString `json:"pausedByUserId"`
 	PrUrl NullableString `json:"prUrl"`
 	PreviewCommand NullableString `json:"previewCommand"`
+	PreviewMergedAt NullableString `json:"previewMergedAt"`
 	PreviewPort NullableInt32 `json:"previewPort"`
 	Repos []ProjectReposInner `json:"repos"`
 	Round int32 `json:"round"`
-	RunStatus string `json:"runStatus"`
 	Runtime ProjectRuntime `json:"runtime"`
-	SandboxSize NullableString `json:"sandboxSize"`
 	SetupReport NullableProjectSetupReport `json:"setupReport"`
 	Slug string `json:"slug"`
+	Sources ProjectSources `json:"sources"`
 	Stack string `json:"stack"`
 	StalledRevisions int32 `json:"stalledRevisions"`
+	Status string `json:"status"`
+	StopState string `json:"stopState"`
 	Tier NullableString `json:"tier"`
 	UseWorkspaceBrand bool `json:"useWorkspaceBrand"`
 	VerifyCommand NullableString `json:"verifyCommand"`
 	ViewerCanAccessCanvas bool `json:"viewerCanAccessCanvas"`
+	ViewerCanMessage bool `json:"viewerCanMessage"`
 	ViewerCanSeeInsights bool `json:"viewerCanSeeInsights"`
-	ViewerCanSteer bool `json:"viewerCanSteer"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,10 +82,11 @@ type _ProjectDetail ProjectDetail
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProjectDetail(archivedAt NullableString, assignedUserId NullableString, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, deploymentPreviewsEnabled bool, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, intake ProjectIntake, iteration int32, kind string, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runStatus string, runtime ProjectRuntime, sandboxSize NullableString, setupReport NullableProjectSetupReport, slug string, stack string, stalledRevisions int32, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, viewerCanAccessCanvas bool, viewerCanSeeInsights bool, viewerCanSteer bool) *ProjectDetail {
+func NewProjectDetail(archivedAt NullableString, assignedUserId NullableString, attention []AgencyOverviewReportAttentionInnerAttentionItem, branchNames string, branchPrefix NullableString, branchPrefixLockedAt NullableString, brief NullableString, claudeMd NullableString, clientAccountId NullableString, completedAtLastRevision int32, costCapMicros NullableInt64, createdAt string, customDomain NullableString, cycleCap NullableInt32, deploymentPreviewsEnabled bool, detectedCommands NullableProjectDetectedCommands, environmentSnapshot NullableProjectEnvironmentSnapshot, extraUsage NullableString, growthAutopilot bool, growthDailyBudgetMicros NullableInt64, growthSendingSchedule NullableCreateGrowthPlaySendingSchedule, id string, initialProposalRequired bool, iteration int32, kind string, machineSize NullableString, maxRevisions NullableInt32, mobileTargetsInitialized bool, name string, organizationId string, pauseReason NullableString, pausedAt NullableString, pausedByUserId NullableString, prUrl NullableString, previewCommand NullableString, previewMergedAt NullableString, previewPort NullableInt32, repos []ProjectReposInner, round int32, runtime ProjectRuntime, setupReport NullableProjectSetupReport, slug string, sources ProjectSources, stack string, stalledRevisions int32, status string, stopState string, tier NullableString, useWorkspaceBrand bool, verifyCommand NullableString, viewerCanAccessCanvas bool, viewerCanMessage bool, viewerCanSeeInsights bool) *ProjectDetail {
 	this := ProjectDetail{}
 	this.ArchivedAt = archivedAt
 	this.AssignedUserId = assignedUserId
+	this.Attention = attention
 	this.BranchNames = branchNames
 	this.BranchPrefix = branchPrefix
 	this.BranchPrefixLockedAt = branchPrefixLockedAt
@@ -102,33 +107,36 @@ func NewProjectDetail(archivedAt NullableString, assignedUserId NullableString, 
 	this.GrowthSendingSchedule = growthSendingSchedule
 	this.Id = id
 	this.InitialProposalRequired = initialProposalRequired
-	this.Intake = intake
 	this.Iteration = iteration
 	this.Kind = kind
+	this.MachineSize = machineSize
 	this.MaxRevisions = maxRevisions
 	this.MobileTargetsInitialized = mobileTargetsInitialized
 	this.Name = name
 	this.OrganizationId = organizationId
+	this.PauseReason = pauseReason
 	this.PausedAt = pausedAt
 	this.PausedByUserId = pausedByUserId
 	this.PrUrl = prUrl
 	this.PreviewCommand = previewCommand
+	this.PreviewMergedAt = previewMergedAt
 	this.PreviewPort = previewPort
 	this.Repos = repos
 	this.Round = round
-	this.RunStatus = runStatus
 	this.Runtime = runtime
-	this.SandboxSize = sandboxSize
 	this.SetupReport = setupReport
 	this.Slug = slug
+	this.Sources = sources
 	this.Stack = stack
 	this.StalledRevisions = stalledRevisions
+	this.Status = status
+	this.StopState = stopState
 	this.Tier = tier
 	this.UseWorkspaceBrand = useWorkspaceBrand
 	this.VerifyCommand = verifyCommand
 	this.ViewerCanAccessCanvas = viewerCanAccessCanvas
+	this.ViewerCanMessage = viewerCanMessage
 	this.ViewerCanSeeInsights = viewerCanSeeInsights
-	this.ViewerCanSteer = viewerCanSteer
 	return &this
 }
 
@@ -190,6 +198,30 @@ func (o *ProjectDetail) GetAssignedUserIdOk() (*string, bool) {
 // SetAssignedUserId sets field value
 func (o *ProjectDetail) SetAssignedUserId(v string) {
 	o.AssignedUserId.Set(&v)
+}
+
+// GetAttention returns the Attention field value
+func (o *ProjectDetail) GetAttention() []AgencyOverviewReportAttentionInnerAttentionItem {
+	if o == nil {
+		var ret []AgencyOverviewReportAttentionInnerAttentionItem
+		return ret
+	}
+
+	return o.Attention
+}
+
+// GetAttentionOk returns a tuple with the Attention field value
+// and a boolean to check if the value has been set.
+func (o *ProjectDetail) GetAttentionOk() ([]AgencyOverviewReportAttentionInnerAttentionItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Attention, true
+}
+
+// SetAttention sets field value
+func (o *ProjectDetail) SetAttention(v []AgencyOverviewReportAttentionInnerAttentionItem) {
+	o.Attention = v
 }
 
 // GetBranchNames returns the BranchNames field value
@@ -698,30 +730,6 @@ func (o *ProjectDetail) SetInitialProposalRequired(v bool) {
 	o.InitialProposalRequired = v
 }
 
-// GetIntake returns the Intake field value
-func (o *ProjectDetail) GetIntake() ProjectIntake {
-	if o == nil {
-		var ret ProjectIntake
-		return ret
-	}
-
-	return o.Intake
-}
-
-// GetIntakeOk returns a tuple with the Intake field value
-// and a boolean to check if the value has been set.
-func (o *ProjectDetail) GetIntakeOk() (*ProjectIntake, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Intake, true
-}
-
-// SetIntake sets field value
-func (o *ProjectDetail) SetIntake(v ProjectIntake) {
-	o.Intake = v
-}
-
 // GetIteration returns the Iteration field value
 func (o *ProjectDetail) GetIteration() int32 {
 	if o == nil {
@@ -768,6 +776,32 @@ func (o *ProjectDetail) GetKindOk() (*string, bool) {
 // SetKind sets field value
 func (o *ProjectDetail) SetKind(v string) {
 	o.Kind = v
+}
+
+// GetMachineSize returns the MachineSize field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ProjectDetail) GetMachineSize() string {
+	if o == nil || o.MachineSize.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.MachineSize.Get()
+}
+
+// GetMachineSizeOk returns a tuple with the MachineSize field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectDetail) GetMachineSizeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MachineSize.Get(), o.MachineSize.IsSet()
+}
+
+// SetMachineSize sets field value
+func (o *ProjectDetail) SetMachineSize(v string) {
+	o.MachineSize.Set(&v)
 }
 
 // GetMaxRevisions returns the MaxRevisions field value
@@ -866,6 +900,32 @@ func (o *ProjectDetail) GetOrganizationIdOk() (*string, bool) {
 // SetOrganizationId sets field value
 func (o *ProjectDetail) SetOrganizationId(v string) {
 	o.OrganizationId = v
+}
+
+// GetPauseReason returns the PauseReason field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ProjectDetail) GetPauseReason() string {
+	if o == nil || o.PauseReason.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.PauseReason.Get()
+}
+
+// GetPauseReasonOk returns a tuple with the PauseReason field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectDetail) GetPauseReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PauseReason.Get(), o.PauseReason.IsSet()
+}
+
+// SetPauseReason sets field value
+func (o *ProjectDetail) SetPauseReason(v string) {
+	o.PauseReason.Set(&v)
 }
 
 // GetPausedAt returns the PausedAt field value
@@ -972,6 +1032,32 @@ func (o *ProjectDetail) SetPreviewCommand(v string) {
 	o.PreviewCommand.Set(&v)
 }
 
+// GetPreviewMergedAt returns the PreviewMergedAt field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ProjectDetail) GetPreviewMergedAt() string {
+	if o == nil || o.PreviewMergedAt.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.PreviewMergedAt.Get()
+}
+
+// GetPreviewMergedAtOk returns a tuple with the PreviewMergedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ProjectDetail) GetPreviewMergedAtOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PreviewMergedAt.Get(), o.PreviewMergedAt.IsSet()
+}
+
+// SetPreviewMergedAt sets field value
+func (o *ProjectDetail) SetPreviewMergedAt(v string) {
+	o.PreviewMergedAt.Set(&v)
+}
+
 // GetPreviewPort returns the PreviewPort field value
 // If the value is explicit nil, the zero value for int32 will be returned
 func (o *ProjectDetail) GetPreviewPort() int32 {
@@ -1046,30 +1132,6 @@ func (o *ProjectDetail) SetRound(v int32) {
 	o.Round = v
 }
 
-// GetRunStatus returns the RunStatus field value
-func (o *ProjectDetail) GetRunStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RunStatus
-}
-
-// GetRunStatusOk returns a tuple with the RunStatus field value
-// and a boolean to check if the value has been set.
-func (o *ProjectDetail) GetRunStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RunStatus, true
-}
-
-// SetRunStatus sets field value
-func (o *ProjectDetail) SetRunStatus(v string) {
-	o.RunStatus = v
-}
-
 // GetRuntime returns the Runtime field value
 func (o *ProjectDetail) GetRuntime() ProjectRuntime {
 	if o == nil {
@@ -1092,32 +1154,6 @@ func (o *ProjectDetail) GetRuntimeOk() (*ProjectRuntime, bool) {
 // SetRuntime sets field value
 func (o *ProjectDetail) SetRuntime(v ProjectRuntime) {
 	o.Runtime = v
-}
-
-// GetSandboxSize returns the SandboxSize field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *ProjectDetail) GetSandboxSize() string {
-	if o == nil || o.SandboxSize.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.SandboxSize.Get()
-}
-
-// GetSandboxSizeOk returns a tuple with the SandboxSize field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ProjectDetail) GetSandboxSizeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SandboxSize.Get(), o.SandboxSize.IsSet()
-}
-
-// SetSandboxSize sets field value
-func (o *ProjectDetail) SetSandboxSize(v string) {
-	o.SandboxSize.Set(&v)
 }
 
 // GetSetupReport returns the SetupReport field value
@@ -1170,6 +1206,30 @@ func (o *ProjectDetail) SetSlug(v string) {
 	o.Slug = v
 }
 
+// GetSources returns the Sources field value
+func (o *ProjectDetail) GetSources() ProjectSources {
+	if o == nil {
+		var ret ProjectSources
+		return ret
+	}
+
+	return o.Sources
+}
+
+// GetSourcesOk returns a tuple with the Sources field value
+// and a boolean to check if the value has been set.
+func (o *ProjectDetail) GetSourcesOk() (*ProjectSources, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sources, true
+}
+
+// SetSources sets field value
+func (o *ProjectDetail) SetSources(v ProjectSources) {
+	o.Sources = v
+}
+
 // GetStack returns the Stack field value
 func (o *ProjectDetail) GetStack() string {
 	if o == nil {
@@ -1216,6 +1276,54 @@ func (o *ProjectDetail) GetStalledRevisionsOk() (*int32, bool) {
 // SetStalledRevisions sets field value
 func (o *ProjectDetail) SetStalledRevisions(v int32) {
 	o.StalledRevisions = v
+}
+
+// GetStatus returns the Status field value
+func (o *ProjectDetail) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ProjectDetail) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ProjectDetail) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetStopState returns the StopState field value
+func (o *ProjectDetail) GetStopState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StopState
+}
+
+// GetStopStateOk returns a tuple with the StopState field value
+// and a boolean to check if the value has been set.
+func (o *ProjectDetail) GetStopStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StopState, true
+}
+
+// SetStopState sets field value
+func (o *ProjectDetail) SetStopState(v string) {
+	o.StopState = v
 }
 
 // GetTier returns the Tier field value
@@ -1318,6 +1426,30 @@ func (o *ProjectDetail) SetViewerCanAccessCanvas(v bool) {
 	o.ViewerCanAccessCanvas = v
 }
 
+// GetViewerCanMessage returns the ViewerCanMessage field value
+func (o *ProjectDetail) GetViewerCanMessage() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ViewerCanMessage
+}
+
+// GetViewerCanMessageOk returns a tuple with the ViewerCanMessage field value
+// and a boolean to check if the value has been set.
+func (o *ProjectDetail) GetViewerCanMessageOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ViewerCanMessage, true
+}
+
+// SetViewerCanMessage sets field value
+func (o *ProjectDetail) SetViewerCanMessage(v bool) {
+	o.ViewerCanMessage = v
+}
+
 // GetViewerCanSeeInsights returns the ViewerCanSeeInsights field value
 func (o *ProjectDetail) GetViewerCanSeeInsights() bool {
 	if o == nil {
@@ -1342,30 +1474,6 @@ func (o *ProjectDetail) SetViewerCanSeeInsights(v bool) {
 	o.ViewerCanSeeInsights = v
 }
 
-// GetViewerCanSteer returns the ViewerCanSteer field value
-func (o *ProjectDetail) GetViewerCanSteer() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.ViewerCanSteer
-}
-
-// GetViewerCanSteerOk returns a tuple with the ViewerCanSteer field value
-// and a boolean to check if the value has been set.
-func (o *ProjectDetail) GetViewerCanSteerOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ViewerCanSteer, true
-}
-
-// SetViewerCanSteer sets field value
-func (o *ProjectDetail) SetViewerCanSteer(v bool) {
-	o.ViewerCanSteer = v
-}
-
 func (o ProjectDetail) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1378,6 +1486,7 @@ func (o ProjectDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["archivedAt"] = o.ArchivedAt.Get()
 	toSerialize["assignedUserId"] = o.AssignedUserId.Get()
+	toSerialize["attention"] = o.Attention
 	toSerialize["branchNames"] = o.BranchNames
 	toSerialize["branchPrefix"] = o.BranchPrefix.Get()
 	toSerialize["branchPrefixLockedAt"] = o.BranchPrefixLockedAt.Get()
@@ -1398,33 +1507,36 @@ func (o ProjectDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize["growthSendingSchedule"] = o.GrowthSendingSchedule.Get()
 	toSerialize["id"] = o.Id
 	toSerialize["initialProposalRequired"] = o.InitialProposalRequired
-	toSerialize["intake"] = o.Intake
 	toSerialize["iteration"] = o.Iteration
 	toSerialize["kind"] = o.Kind
+	toSerialize["machineSize"] = o.MachineSize.Get()
 	toSerialize["maxRevisions"] = o.MaxRevisions.Get()
 	toSerialize["mobileTargetsInitialized"] = o.MobileTargetsInitialized
 	toSerialize["name"] = o.Name
 	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["pauseReason"] = o.PauseReason.Get()
 	toSerialize["pausedAt"] = o.PausedAt.Get()
 	toSerialize["pausedByUserId"] = o.PausedByUserId.Get()
 	toSerialize["prUrl"] = o.PrUrl.Get()
 	toSerialize["previewCommand"] = o.PreviewCommand.Get()
+	toSerialize["previewMergedAt"] = o.PreviewMergedAt.Get()
 	toSerialize["previewPort"] = o.PreviewPort.Get()
 	toSerialize["repos"] = o.Repos
 	toSerialize["round"] = o.Round
-	toSerialize["runStatus"] = o.RunStatus
 	toSerialize["runtime"] = o.Runtime
-	toSerialize["sandboxSize"] = o.SandboxSize.Get()
 	toSerialize["setupReport"] = o.SetupReport.Get()
 	toSerialize["slug"] = o.Slug
+	toSerialize["sources"] = o.Sources
 	toSerialize["stack"] = o.Stack
 	toSerialize["stalledRevisions"] = o.StalledRevisions
+	toSerialize["status"] = o.Status
+	toSerialize["stopState"] = o.StopState
 	toSerialize["tier"] = o.Tier.Get()
 	toSerialize["useWorkspaceBrand"] = o.UseWorkspaceBrand
 	toSerialize["verifyCommand"] = o.VerifyCommand.Get()
 	toSerialize["viewerCanAccessCanvas"] = o.ViewerCanAccessCanvas
+	toSerialize["viewerCanMessage"] = o.ViewerCanMessage
 	toSerialize["viewerCanSeeInsights"] = o.ViewerCanSeeInsights
-	toSerialize["viewerCanSteer"] = o.ViewerCanSteer
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1440,6 +1552,7 @@ func (o *ProjectDetail) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"archivedAt",
 		"assignedUserId",
+		"attention",
 		"branchNames",
 		"branchPrefix",
 		"branchPrefixLockedAt",
@@ -1460,33 +1573,36 @@ func (o *ProjectDetail) UnmarshalJSON(data []byte) (err error) {
 		"growthSendingSchedule",
 		"id",
 		"initialProposalRequired",
-		"intake",
 		"iteration",
 		"kind",
+		"machineSize",
 		"maxRevisions",
 		"mobileTargetsInitialized",
 		"name",
 		"organizationId",
+		"pauseReason",
 		"pausedAt",
 		"pausedByUserId",
 		"prUrl",
 		"previewCommand",
+		"previewMergedAt",
 		"previewPort",
 		"repos",
 		"round",
-		"runStatus",
 		"runtime",
-		"sandboxSize",
 		"setupReport",
 		"slug",
+		"sources",
 		"stack",
 		"stalledRevisions",
+		"status",
+		"stopState",
 		"tier",
 		"useWorkspaceBrand",
 		"verifyCommand",
 		"viewerCanAccessCanvas",
+		"viewerCanMessage",
 		"viewerCanSeeInsights",
-		"viewerCanSteer",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1518,6 +1634,7 @@ func (o *ProjectDetail) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "archivedAt")
 		delete(additionalProperties, "assignedUserId")
+		delete(additionalProperties, "attention")
 		delete(additionalProperties, "branchNames")
 		delete(additionalProperties, "branchPrefix")
 		delete(additionalProperties, "branchPrefixLockedAt")
@@ -1538,33 +1655,36 @@ func (o *ProjectDetail) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "growthSendingSchedule")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "initialProposalRequired")
-		delete(additionalProperties, "intake")
 		delete(additionalProperties, "iteration")
 		delete(additionalProperties, "kind")
+		delete(additionalProperties, "machineSize")
 		delete(additionalProperties, "maxRevisions")
 		delete(additionalProperties, "mobileTargetsInitialized")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "pauseReason")
 		delete(additionalProperties, "pausedAt")
 		delete(additionalProperties, "pausedByUserId")
 		delete(additionalProperties, "prUrl")
 		delete(additionalProperties, "previewCommand")
+		delete(additionalProperties, "previewMergedAt")
 		delete(additionalProperties, "previewPort")
 		delete(additionalProperties, "repos")
 		delete(additionalProperties, "round")
-		delete(additionalProperties, "runStatus")
 		delete(additionalProperties, "runtime")
-		delete(additionalProperties, "sandboxSize")
 		delete(additionalProperties, "setupReport")
 		delete(additionalProperties, "slug")
+		delete(additionalProperties, "sources")
 		delete(additionalProperties, "stack")
 		delete(additionalProperties, "stalledRevisions")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "stopState")
 		delete(additionalProperties, "tier")
 		delete(additionalProperties, "useWorkspaceBrand")
 		delete(additionalProperties, "verifyCommand")
 		delete(additionalProperties, "viewerCanAccessCanvas")
+		delete(additionalProperties, "viewerCanMessage")
 		delete(additionalProperties, "viewerCanSeeInsights")
-		delete(additionalProperties, "viewerCanSteer")
 		o.AdditionalProperties = additionalProperties
 	}
 

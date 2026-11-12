@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Additions** | **float32** |  | 
-**Base** | [**FileContentRef**](FileContentRef.md) |  | 
-**Commits** | [**[]ProjectChangesReposInnerCommitsInner**](ProjectChangesReposInnerCommitsInner.md) |  | 
-**Deletions** | **float32** |  | 
-**Files** | [**[]ProjectChangesInFlightInnerFilesInner**](ProjectChangesInFlightInnerFilesInner.md) |  | 
-**FilesChanged** | **float32** |  | 
-**FilesTruncated** | **bool** |  | 
-**Head** | [**FileContentRef**](FileContentRef.md) |  | 
-**Label** | **string** |  | 
-**NextPage** | Pointer to **NullableInt32** |  | [optional] 
-**RepoKey** | **string** |  | 
-**Unavailable** | **NullableString** |  | 
+**Additions** | **float32** |  |
+**Base** | [**FileContentRef**](FileContentRef.md) |  |
+**Commits** | [**[]ProjectChangesReposInnerCommitsInner**](ProjectChangesReposInnerCommitsInner.md) |  |
+**Deletions** | **float32** |  |
+**Files** | [**[]ProjectChangesInFlightInnerFilesInner**](ProjectChangesInFlightInnerFilesInner.md) |  |
+**FilesChanged** | **float32** |  |
+**FilesTruncated** | **bool** |  |
+**Head** | [**FileContentRef**](FileContentRef.md) |  |
+**Label** | **string** |  |
+**NextPage** | Pointer to **NullableInt32** |  | [optional]
+**RepoKey** | **string** |  |
+**Unavailable** | **NullableString** |  |
 
 ## Methods
 
@@ -24,17 +24,15 @@ Name | Type | Description | Notes
 `func NewProjectChangesReposInner(additions float32, base FileContentRef, commits []ProjectChangesReposInnerCommitsInner, deletions float32, files []ProjectChangesInFlightInnerFilesInner, filesChanged float32, filesTruncated bool, head FileContentRef, label string, repoKey string, unavailable NullableString, ) *ProjectChangesReposInner`
 
 NewProjectChangesReposInner instantiates a new ProjectChangesReposInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewProjectChangesReposInnerWithDefaults
 
 `func NewProjectChangesReposInnerWithDefaults() *ProjectChangesReposInner`
 
 NewProjectChangesReposInnerWithDefaults instantiates a new ProjectChangesReposInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAdditions
 

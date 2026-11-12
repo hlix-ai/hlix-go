@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CorrelationId** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CustomId** | **string** |  | 
-**Error** | **NullableString** |  | 
-**Id** | **string** |  | 
-**JobId** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**ResultKey** | **NullableString** |  | 
-**RetryClass** | **string** |  | 
-**Status** | **string** |  | 
-**Usage** | **map[string]interface{}** |  | 
+**CorrelationId** | **string** |  |
+**CreatedAt** | **string** |  |
+**CustomId** | **string** |  |
+**Error** | **NullableString** |  |
+**Id** | **string** |  |
+**JobId** | **string** |  |
+**OrganizationId** | **string** |  |
+**ResultKey** | **NullableString** |  |
+**RetryClass** | **string** |  |
+**Status** | **string** |  |
+**Usage** | **map[string]interface{}** |  |
 
 ## Methods
 
@@ -23,17 +23,15 @@ Name | Type | Description | Notes
 `func NewAiBatchReadItemsInner(correlationId string, createdAt string, customId string, error_ NullableString, id string, jobId string, organizationId string, resultKey NullableString, retryClass string, status string, usage map[string]interface{}, ) *AiBatchReadItemsInner`
 
 NewAiBatchReadItemsInner instantiates a new AiBatchReadItemsInner object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAiBatchReadItemsInnerWithDefaults
 
 `func NewAiBatchReadItemsInnerWithDefaults() *AiBatchReadItemsInner`
 
 NewAiBatchReadItemsInnerWithDefaults instantiates a new AiBatchReadItemsInner object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetCorrelationId
 

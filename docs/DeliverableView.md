@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Approval** | [**DeliverablePackageViewApproval**](DeliverablePackageViewApproval.md) |  | 
-**ClientStatus** | **string** |  | 
-**CreatedAt** | **string** |  | 
-**CycleId** | **string** |  | 
-**DueDate** | **NullableString** |  | 
-**Id** | **string** |  | 
-**OrganizationId** | **string** |  | 
-**Progress** | [**DeliverableViewProgress**](DeliverableViewProgress.md) |  | 
-**PublishedAt** | **NullableString** |  | 
-**SubmittedRevision** | **NullableInt32** |  | 
-**Summary** | **NullableString** |  | 
-**Title** | **string** |  | 
-**UpdatedAt** | **string** |  | 
-**Visibility** | **string** |  | 
+**Approval** | [**DeliverablePackageViewApproval**](DeliverablePackageViewApproval.md) |  |
+**ClientStatus** | **string** |  |
+**CreatedAt** | **string** |  |
+**CycleId** | **string** |  |
+**DueDate** | **NullableString** |  |
+**Id** | **string** |  |
+**OrganizationId** | **string** |  |
+**Progress** | [**DeliverableViewProgress**](DeliverableViewProgress.md) |  |
+**PublishedAt** | **NullableString** |  |
+**SubmittedRevision** | **NullableInt32** |  |
+**Summary** | **NullableString** |  |
+**Title** | **string** |  |
+**UpdatedAt** | **string** |  |
+**Visibility** | **string** |  |
 
 ## Methods
 
@@ -26,17 +26,15 @@ Name | Type | Description | Notes
 `func NewDeliverableView(approval DeliverablePackageViewApproval, clientStatus string, createdAt string, cycleId string, dueDate NullableString, id string, organizationId string, progress DeliverableViewProgress, publishedAt NullableString, submittedRevision NullableInt32, summary NullableString, title string, updatedAt string, visibility string, ) *DeliverableView`
 
 NewDeliverableView instantiates a new DeliverableView object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewDeliverableViewWithDefaults
 
 `func NewDeliverableViewWithDefaults() *DeliverableView`
 
 NewDeliverableViewWithDefaults instantiates a new DeliverableView object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetApproval
 

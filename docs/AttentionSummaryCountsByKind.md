@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertsBroken** | Pointer to **int32** |  | [optional] 
-**DeliveryUnknown** | Pointer to **int32** |  | [optional] 
-**MentionUnread** | Pointer to **int32** |  | [optional] 
-**ReplyInterested** | Pointer to **int32** |  | [optional] 
-**RequestPending** | Pointer to **int32** |  | [optional] 
-**ReviewUnresolved** | Pointer to **int32** |  | [optional] 
-**RunFailed** | Pointer to **int32** |  | [optional] 
-**SecretsVaultUnreachable** | Pointer to **int32** |  | [optional] 
+**AlertsBroken** | Pointer to **int32** |  | [optional]
+**DeliveryUnknown** | Pointer to **int32** |  | [optional]
+**MentionUnread** | Pointer to **int32** |  | [optional]
+**ReplyInterested** | Pointer to **int32** |  | [optional]
+**RequestPending** | Pointer to **int32** |  | [optional]
+**ReviewUnresolved** | Pointer to **int32** |  | [optional]
+**SecretsVaultUnreachable** | Pointer to **int32** |  | [optional]
 
 ## Methods
 
@@ -20,17 +19,15 @@ Name | Type | Description | Notes
 `func NewAttentionSummaryCountsByKind() *AttentionSummaryCountsByKind`
 
 NewAttentionSummaryCountsByKind instantiates a new AttentionSummaryCountsByKind object
-This constructor will assign default values to properties that have it defined,
-and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+This constructor sets required properties and applies declared defaults.
+Its arguments change when the model's required properties change.
 
 ### NewAttentionSummaryCountsByKindWithDefaults
 
 `func NewAttentionSummaryCountsByKindWithDefaults() *AttentionSummaryCountsByKind`
 
 NewAttentionSummaryCountsByKindWithDefaults instantiates a new AttentionSummaryCountsByKind object
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+This constructor applies declared defaults. It does not ensure required properties are set.
 
 ### GetAlertsBroken
 
@@ -181,31 +178,6 @@ SetReviewUnresolved sets ReviewUnresolved field to given value.
 `func (o *AttentionSummaryCountsByKind) HasReviewUnresolved() bool`
 
 HasReviewUnresolved returns a boolean if a field has been set.
-
-### GetRunFailed
-
-`func (o *AttentionSummaryCountsByKind) GetRunFailed() int32`
-
-GetRunFailed returns the RunFailed field if non-nil, zero value otherwise.
-
-### GetRunFailedOk
-
-`func (o *AttentionSummaryCountsByKind) GetRunFailedOk() (*int32, bool)`
-
-GetRunFailedOk returns a tuple with the RunFailed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunFailed
-
-`func (o *AttentionSummaryCountsByKind) SetRunFailed(v int32)`
-
-SetRunFailed sets RunFailed field to given value.
-
-### HasRunFailed
-
-`func (o *AttentionSummaryCountsByKind) HasRunFailed() bool`
-
-HasRunFailed returns a boolean if a field has been set.
 
 ### GetSecretsVaultUnreachable
 

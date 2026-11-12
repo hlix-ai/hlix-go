@@ -1,7 +1,7 @@
 /*
 hlix API
 
-The hlix control-plane API.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or — for a browser client — with the session cookie better-auth sets at `/v1/api/auth/_*`. The tenant is the `X-Organization-Id` header, falling back to the session's active organization when the header is absent. Client portal requests use `X-Client-Portal` (client account id); the server derives the agency and restricts the caller to that account. Discovery and personal-workspace bootstrap need authentication but no active organization.  Only HANDLED failures are documented. An unhandled server error is answered by the framework as a `text/plain` 500 and is deliberately not part of this contract.  Internal Cloud Machine callbacks (`/v1/api/internal/_*`) and webhook receivers (`/webhooks/_*`) are not a supported client surface and never appear here.
+The Hlix API for projects, agent teams, and delivery workflows.  Protected operations are tenant-scoped. Authenticate with an API key in the `x-api-key` header, or with a browser session established at `/v1/api/auth/_*`. Select a Workspace with `X-Organization-Id`. Always send this header in automation; browser sessions can fall back to their active Workspace. Client portal requests use `X-Client-Portal` for the agency Workspace ID and require a verified user session. API keys cannot authenticate portal access. Clients can access only their explicitly granted projects. Discovery and personal-workspace bootstrap need authentication but no active organization.  Each operation documents its request, response, and expected errors. Clients should also handle unexpected server errors and non-JSON responses.  Use the operations listed in this reference for client integrations.
 
 API version: 1.0.0
 */
@@ -21,11 +21,11 @@ var _ MappedNullable = &ImportAgent{}
 
 // ImportAgent struct for ImportAgent
 type ImportAgent struct {
+	Coder NullableString `json:"coder,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Duty *string `json:"duty,omitempty"`
 	Instructions string `json:"instructions"`
 	Name string `json:"name"`
-	RuntimeKind NullableString `json:"runtimeKind,omitempty"`
 }
 
 type _ImportAgent ImportAgent
@@ -47,6 +47,48 @@ func NewImportAgent(instructions string, name string) *ImportAgent {
 func NewImportAgentWithDefaults() *ImportAgent {
 	this := ImportAgent{}
 	return &this
+}
+
+// GetCoder returns the Coder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ImportAgent) GetCoder() string {
+	if o == nil || IsNil(o.Coder.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Coder.Get()
+}
+
+// GetCoderOk returns a tuple with the Coder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ImportAgent) GetCoderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Coder.Get(), o.Coder.IsSet()
+}
+
+// HasCoder returns a boolean if a field has been set.
+func (o *ImportAgent) HasCoder() bool {
+	if o != nil && o.Coder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCoder gets a reference to the given NullableString and assigns it to the Coder field.
+func (o *ImportAgent) SetCoder(v string) {
+	o.Coder.Set(&v)
+}
+// SetCoderNil sets the value for Coder to be an explicit nil
+func (o *ImportAgent) SetCoderNil() {
+	o.Coder.Set(nil)
+}
+
+// UnsetCoder ensures that no value is present for Coder, not even an explicit nil
+func (o *ImportAgent) UnsetCoder() {
+	o.Coder.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -161,48 +203,6 @@ func (o *ImportAgent) SetName(v string) {
 	o.Name = v
 }
 
-// GetRuntimeKind returns the RuntimeKind field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ImportAgent) GetRuntimeKind() string {
-	if o == nil || IsNil(o.RuntimeKind.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RuntimeKind.Get()
-}
-
-// GetRuntimeKindOk returns a tuple with the RuntimeKind field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ImportAgent) GetRuntimeKindOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RuntimeKind.Get(), o.RuntimeKind.IsSet()
-}
-
-// HasRuntimeKind returns a boolean if a field has been set.
-func (o *ImportAgent) HasRuntimeKind() bool {
-	if o != nil && o.RuntimeKind.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRuntimeKind gets a reference to the given NullableString and assigns it to the RuntimeKind field.
-func (o *ImportAgent) SetRuntimeKind(v string) {
-	o.RuntimeKind.Set(&v)
-}
-// SetRuntimeKindNil sets the value for RuntimeKind to be an explicit nil
-func (o *ImportAgent) SetRuntimeKindNil() {
-	o.RuntimeKind.Set(nil)
-}
-
-// UnsetRuntimeKind ensures that no value is present for RuntimeKind, not even an explicit nil
-func (o *ImportAgent) UnsetRuntimeKind() {
-	o.RuntimeKind.Unset()
-}
-
 func (o ImportAgent) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -213,6 +213,9 @@ func (o ImportAgent) MarshalJSON() ([]byte, error) {
 
 func (o ImportAgent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Coder.IsSet() {
+		toSerialize["coder"] = o.Coder.Get()
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -221,9 +224,6 @@ func (o ImportAgent) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["instructions"] = o.Instructions
 	toSerialize["name"] = o.Name
-	if o.RuntimeKind.IsSet() {
-		toSerialize["runtimeKind"] = o.RuntimeKind.Get()
-	}
 	return toSerialize, nil
 }
 
